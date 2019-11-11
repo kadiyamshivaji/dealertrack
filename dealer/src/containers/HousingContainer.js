@@ -1,11 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux'
 
-import { Form, Icon, Input, Button, Checkbox ,Row,Col} from 'antd';
+import { Form, Icon, Input, Button, Checkbox ,Row,Col,Select,Divider} from 'antd';
+
 
 
 import 'antd/dist/antd.css';
 // import './index.css';
+
+const { Option } = Select;
+
+function onChange(value) {
+  console.log(`selected ${value}`);
+}
+
+function onBlur() {
+  console.log('blur');
+}
+
+function onFocus() {
+  console.log('focus');
+}
+
+function onSearch(val) {
+  console.log('search:', val);
+}
 function hasErrors(fieldsError) {
     return Object.keys(fieldsError).some(field => fieldsError[field]);
   }
@@ -33,7 +52,30 @@ function hasErrors(fieldsError) {
               initialValue: true,
             })(<Checkbox>Both borrowers live at the same address.</Checkbox>)}
           </Form.Item>
-
+          <Form.Item>
+            {getFieldDecorator('username', {
+              rules: [{ required: true, message: 'Please input your username!' }],
+            })(
+              <Select
+              showSearch
+        style={{ width: 200 }}
+        placeholder="Select a person"
+        optionFilterProp="children"
+        onChange={onChange}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        onSearch={onSearch}
+        filterOption={(input, option) =>
+          option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+        }
+      >
+        <Option value="jack">Do you own or Rent</Option>
+        <Option value="lucy">Lucy</Option>
+        <Option value="tom">Tom</Option>
+      </Select>,
+            )}
+          </Form.Item>
+         
 
           <Form.Item>
             {getFieldDecorator('username', {
@@ -71,7 +113,77 @@ function hasErrors(fieldsError) {
       </Col>
     </Row>
   </Form.Item>
+  {this.props.selectedSection==='Joint' && 
+              <div>
+                  <Divider/>
+                  <h6 className="h6">Co-Application Housing </h6>
+                  <Form.Item>
+            {getFieldDecorator('username', {
+              rules: [{ required: true, message: 'Please input your username!' }],
+            })(
+              <Select
+              showSearch
+        style={{ width: 200 }}
+        placeholder="Select a person"
+        optionFilterProp="children"
+        onChange={onChange}
+        onFocus={onFocus}
+        onBlur={onBlur}
+        onSearch={onSearch}
+        filterOption={(input, option) =>
+          option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+        }
+      >
+        <Option value="jack">Do you own or Rent</Option>
+        <Option value="lucy">Lucy</Option>
+        <Option value="tom">Tom</Option>
+      </Select>,
+            )}
+          </Form.Item>
+         
+
+          <Form.Item>
+            {getFieldDecorator('username', {
+              rules: [{ required: true, message: 'Please input your username!' }],
+            })(
+              <Input
+                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                placeholder="Monthly mortgage/Rent"
+              />,
+            )}
+          </Form.Item>
+          
+          <Form.Item>
+            {getFieldDecorator('username', {
+              rules: [{ required: true, message: 'Please input your address' }],
+            })(
+              <Input
+                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                placeholder="Address"
+              />,
+            )}
+          </Form.Item>
+          
+          <label prefix={<Icon type="plus" style={{ color: 'rgba(0,0,0,.25)' }} />}
+          >Suffe/Appartment Number (optional)
+          </label>
+          <p>Have you lived here for 2 years or more?</p>
+          <Form.Item >
+    <Row gutter={8}>
+      <Col span={12}>
+          <Button>Yes</Button>
+      </Col>
+      <Col span={12}>
+          <Button>No</Button>
+      </Col>
+    </Row>
+  </Form.Item>
+              </div>
+            }
         </Form>
+
+        
+           
           </div>
         </div>
       );
@@ -82,7 +194,7 @@ function hasErrors(fieldsError) {
   
             
 const mapStateToProps = (state) => ({
-    news: state.news
+    selectedSection:state.contactSection
 })
 
 Housing = connect(mapStateToProps, null)(WrappedNormalLoginForm);

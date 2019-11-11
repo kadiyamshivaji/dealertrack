@@ -198,9 +198,12 @@ function onChange(date, dateString) {
         <h3 className="h3">Contact Info</h3>
         <h6 className="h6">Application Type</h6>
         <div>
-        <Button name="Individual" onClick={this.setSection} size={this.props.size}>Individual</Button>
+          <div className='tabs'>
+          <Button name="Individual" onClick={this.setSection} size={this.props.size}>Individual</Button>
         <Button name="Joint" onClick={this.setSection}  size={this.props.size} >Joint</Button>      
-         
+        
+          </div>
+        
           {this.IndividualForm()}
           {this.props.selectedSection==='Joint' && 
               <div>
