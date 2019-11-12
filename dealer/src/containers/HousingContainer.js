@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 
 import { Form, Icon, Input, Button, Checkbox ,Row,Col,Select,Divider} from 'antd';
 
+import {setContactSection,setNextPage} from '../store/actions';
 
 
 import 'antd/dist/antd.css';
@@ -25,6 +26,9 @@ function onFocus() {
 function onSearch(val) {
   console.log('search:', val);
 }
+function handleChange(value) {
+  console.log(`selected ${value}`);
+}
 function hasErrors(fieldsError) {
     return Object.keys(fieldsError).some(field => fieldsError[field]);
   }
@@ -37,150 +41,205 @@ function hasErrors(fieldsError) {
         }
       });
     };
-  
+    nextClick = e => {
+      e.preventDefault();
+      this.props.setNextPage({payload:3})
+    };
     render() {
       const { getFieldDecorator } = this.props.form;
       return (
         <div>
-        <h3 className="h3">Housing </h3>
-        <div>
-
-        <Form onSubmit={this.handleSubmit} className="login-form">
-        <Form.Item>
-            {getFieldDecorator('remember', {
-              valuePropName: 'checked',
-              initialValue: true,
-            })(<Checkbox>Both borrowers live at the same address.</Checkbox>)}
-          </Form.Item>
-          <Form.Item>
-            {getFieldDecorator('username', {
-              rules: [{ required: true, message: 'Please input your username!' }],
-            })(
-              <Select
-              showSearch
-        style={{ width: 200 }}
-        placeholder="Select a person"
-        optionFilterProp="children"
-        onChange={onChange}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        onSearch={onSearch}
-        filterOption={(input, option) =>
-          option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-        }
-      >
-        <Option value="jack">Do you own or Rent</Option>
-        <Option value="lucy">Lucy</Option>
-        <Option value="tom">Tom</Option>
-      </Select>,
-            )}
-          </Form.Item>
-         
-
-          <Form.Item>
-            {getFieldDecorator('username', {
-              rules: [{ required: true, message: 'Please input your username!' }],
-            })(
-              <Input
-                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                placeholder="Monthly mortgage/Rent"
-              />,
-            )}
-          </Form.Item>
-          
-          <Form.Item>
-            {getFieldDecorator('username', {
-              rules: [{ required: true, message: 'Please input your address' }],
-            })(
-              <Input
-                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                placeholder="Address"
-              />,
-            )}
-          </Form.Item>
-          
-          <label prefix={<Icon type="plus" style={{ color: 'rgba(0,0,0,.25)' }} />}
-          >Suffe/Appartment Number (optional)
-          </label>
-          <p>Have you lived here for 2 years or more?</p>
-          <Form.Item >
-    <Row gutter={8}>
-      <Col span={12}>
-          <Button>Yes</Button>
-      </Col>
-      <Col span={12}>
-          <Button>No</Button>
-      </Col>
-    </Row>
-  </Form.Item>
-  {this.props.selectedSection==='Joint' && 
-              <div>
-                  <Divider/>
-                  <h6 className="h6">Co-Application Housing </h6>
+          <h2 className="h3">Housing </h2>
+          <div>
+              <Form onSubmit={this.handleSubmit} className="login-form">
+              { this.props.selectedSection==='Joint' && 
                   <Form.Item>
-            {getFieldDecorator('username', {
-              rules: [{ required: true, message: 'Please input your username!' }],
-            })(
-              <Select
-              showSearch
-        style={{ width: 200 }}
-        placeholder="Select a person"
-        optionFilterProp="children"
-        onChange={onChange}
-        onFocus={onFocus}
-        onBlur={onBlur}
-        onSearch={onSearch}
-        filterOption={(input, option) =>
-          option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-        }
-      >
-        <Option value="jack">Do you own or Rent</Option>
-        <Option value="lucy">Lucy</Option>
-        <Option value="tom">Tom</Option>
-      </Select>,
-            )}
-          </Form.Item>
-         
+                      {getFieldDecorator('remember', {
+                        valuePropName: 'checked',
+                        initialValue: true,
+                      })(<Checkbox>Both borrowers live at the same address.</Checkbox>)}
+                    </Form.Item>
+              }
+                <Form.Item>
+                  {getFieldDecorator('username', {
+                    rules: [{ required: true, message: 'Please !' }],
+                  })(
+                    <Select defaultValue="jack" style={{ width: '100% '}} onChange={handleChange}>
+                      <Option value="jack">Do you Own or rent</Option>
+                      <Option value="lucy">yes</Option>
+                      
+                      <Option value="Yiminghe">No</Option>
+                    </Select>,
+                  )}
+                </Form.Item>
+              
 
-          <Form.Item>
-            {getFieldDecorator('username', {
-              rules: [{ required: true, message: 'Please input your username!' }],
-            })(
-              <Input
-                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                placeholder="Monthly mortgage/Rent"
-              />,
-            )}
-          </Form.Item>
-          
-          <Form.Item>
-            {getFieldDecorator('username', {
-              rules: [{ required: true, message: 'Please input your address' }],
-            })(
-              <Input
-                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                placeholder="Address"
-              />,
-            )}
-          </Form.Item>
-          
-          <label prefix={<Icon type="plus" style={{ color: 'rgba(0,0,0,.25)' }} />}
-          >Suffe/Appartment Number (optional)
-          </label>
-          <p>Have you lived here for 2 years or more?</p>
-          <Form.Item >
-    <Row gutter={8}>
-      <Col span={12}>
-          <Button>Yes</Button>
-      </Col>
-      <Col span={12}>
-          <Button>No</Button>
-      </Col>
-    </Row>
-  </Form.Item>
-              </div>
-            }
-        </Form>
+                <Form.Item>
+                  {getFieldDecorator('username', {
+                    rules: [{ required: true, message: 'Please input your username!' }],
+                  })(
+                    <Input
+                      prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                      placeholder="Monthly Mortgage/Rent"
+                    />,
+                  )}
+                </Form.Item>
+                
+                <Form.Item>
+                  {getFieldDecorator('username', {
+                    rules: [{ required: true, message: 'Please input your address' }],
+                  })(
+                    <Input
+                      prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                      placeholder="Street Address"
+                    />,
+                  )}
+                </Form.Item>
+                <Form.Item >
+                    <Row gutter={12}>
+                      <Col span={8}>
+                          {getFieldDecorator('username', {
+                            rules: [{ required: true, message: 'Please input your address' }],
+                            })(
+                            <Input
+                              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                              placeholder="City"
+                            />,
+                           )}
+                      </Col>
+                      <Col span={8}>
+                      {getFieldDecorator('username', {
+                            rules: [{ required: true, message: 'Please input your address' }],
+                            })(
+                            <Input
+                              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                              placeholder="State"
+                            />,
+                           )}
+                      </Col>
+                      <Col span={8}>
+                      {getFieldDecorator('username', {
+                            rules: [{ required: true, message: 'Please input your address' }],
+                            })(
+                            <Input
+                              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                              placeholder="Zip Code"
+                            />,
+                           )}
+                      </Col>
+                    </Row>
+                </Form.Item>
+                
+                <label> <Icon type="plus-circle" />
+                Suffe/Appartment Number (optional)
+                </label><br/><br/>
+                <p>Have you lived here for 2 years or more?</p>
+                <Form.Item >
+                  <Row gutter={12}>
+                        <Col span={12}>
+                        <Button name="Individual" size={this.props.size}>yes</Button>
+                        </Col>
+                        <Col span={12}>
+                        <Button name="Joint"  size={this.props.size} >No</Button>      
+                        </Col>
+                  </Row>
+               </Form.Item>
+               { this.props.selectedSection==='Joint' && 
+                   <div>
+                     <h3>Co-Applicant Housing</h3>
+                      <Form.Item>
+                          {getFieldDecorator('username', {
+                            rules: [{ required: true, message: 'Please !' }],
+                          })(
+                            <Select defaultValue="jack" style={{ width: '100% '}} onChange={handleChange}>
+                              <Option value="jack">Do you Own or rent</Option>
+                              <Option value="lucy">yes</Option>
+                              
+                              <Option value="Yiminghe">No</Option>
+                            </Select>,
+                          )}
+                        </Form.Item>
+                      
+
+                        <Form.Item>
+                          {getFieldDecorator('username', {
+                            rules: [{ required: true, message: 'Please input your username!' }],
+                          })(
+                            <Input
+                              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                              placeholder="Monthly Mortgage/Rent"
+                            />,
+                          )}
+                        </Form.Item>
+                        
+                        <Form.Item>
+                          {getFieldDecorator('username', {
+                            rules: [{ required: true, message: 'Please input your address' }],
+                          })(
+                            <Input
+                              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                              placeholder="Street Address"
+                            />,
+                          )}
+                        </Form.Item>
+                        <Form.Item >
+                            <Row gutter={12}>
+                              <Col span={8}>
+                                  {getFieldDecorator('username', {
+                                    rules: [{ required: true, message: 'Please input your address' }],
+                                    })(
+                                    <Input
+                                      prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                      placeholder="City"
+                                    />,
+                                  )}
+                              </Col>
+                              <Col span={8}>
+                              {getFieldDecorator('username', {
+                                    rules: [{ required: true, message: 'Please input your address' }],
+                                    })(
+                                    <Input
+                                      prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                      placeholder="State"
+                                    />,
+                                  )}
+                              </Col>
+                              <Col span={8}>
+                              {getFieldDecorator('username', {
+                                    rules: [{ required: true, message: 'Please input your address' }],
+                                    })(
+                                    <Input
+                                      prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                                      placeholder="Zip Code"
+                                    />,
+                                  )}
+                              </Col>
+                            </Row>
+                        </Form.Item>
+                        
+                        <label> <Icon type="plus-circle" />
+                        Suffe/Appartment Number (optional)
+                        </label><br/><br/>
+                        <p>Have you lived here for 2 years or more?</p>
+                        <Form.Item >
+                          <Row gutter={12}>
+                                <Col span={12}>
+                                <Button name="Individual" size={this.props.size}>yes</Button>
+                                </Col>
+                                <Col span={12}>
+                                <Button name="Joint"  size={this.props.size} >No</Button>      
+                                </Col>
+                          </Row>
+                      </Form.Item>
+                  </div>
+               }
+                   <Divider/>
+                    <Form.Item >
+                    <Button  onClick={this.nextClick}  type="primary" htmlType="submit" className="login-form-button">
+                                Next Employment
+                                </Button>
+                </Form.Item>
+              </Form>
 
         
            
@@ -195,7 +254,12 @@ function hasErrors(fieldsError) {
             
 const mapStateToProps = (state) => ({
     selectedSection:state.contactSection
+   
+
 })
 
-Housing = connect(mapStateToProps, null)(WrappedNormalLoginForm);
+const mapDispatchToProps = {
+  setNextPage:setNextPage
+};
+Housing = connect(mapStateToProps, mapDispatchToProps)(WrappedNormalLoginForm);
 export default Housing;

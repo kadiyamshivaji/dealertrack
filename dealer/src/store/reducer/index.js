@@ -8,6 +8,10 @@ const reducer = (state = defaultState, action) => {
         return {...state, contactSection:action.payload }
       case 'SET_START_APP':
         return {...state, startApp:action.payload }
+      case 'SET_SHOW_PRO_INFO':
+        return {...state, showMoreProtectedInfo: !state.showMoreProtectedInfo }
+      case 'SET_SHOW_REQ_INFO':
+        return {...state, showMoreRequiredInfo: !state.showMoreRequiredInfo }
       default:
         return state;
     }

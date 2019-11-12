@@ -32,6 +32,36 @@
 p{
   text-align: left;
 }
-h4{
+h3{
   text-align: left;
+}
+.content{
+  margin:10px;
+}
+label{
+  color:blue;  
+  float: left;
+  margin-bottom: 20px;
+}
+.ant-btn-primary{  
+  width: 100% !important;
+  height: 45px !important;
+  font-size: 15px !important;
+  font-weight: bold !important;
+}
+button.ant-btn.ant-btn-lg {
+  width: 100% !important;
+  border-radius: 0 !important;
+}
+.ant-input{  
+  color: #40a9ff;
+  border-color: #40a9ff !important;
+  border-radius: 0 !important;
+}
+.ant-select-selection--single {
+  border-color: #40a9ff !important;
+  border-radius: 0 !important;
+}
+button.ant-btn {
+  width: 100% !important;
 }

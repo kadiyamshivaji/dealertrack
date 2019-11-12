@@ -3,7 +3,9 @@ import { connect } from 'react-redux'
 import ContactInfo from "./ContactInfoContainer";
 import EmploymentContainer from "./EmploymentContainer";
 import Housing from "./HousingContainer";
-import {setNextPage,startApp} from '../store/actions';
+import  PersonalContainer from "./PersonalContainer";
+import {setNextPage,startApp , setShowProInfo,
+    setShowReqInfo} from '../store/actions';
 import { Form, Icon, Input, Button, Checkbox,Steps, Divider } from 'antd';
 const { Step } = Steps;
 
@@ -16,6 +18,14 @@ class HomeContainer extends React.Component {
         e.preventDefault();
         this.props.startApp({payload:true})
       }
+      setShowProInfo =e=>{
+        e.preventDefault();
+        this.props.setShowProInfo()
+      }
+      setShowReqInfo =e=>{
+        e.preventDefault();
+        this.props.setShowReqInfo()
+      }
       pageValues(name){
           const values={
               'contactInfo':1,
@@ -27,31 +37,66 @@ class HomeContainer extends React.Component {
       }
     render() {
         return  (
-            <div >
-                        <h3 className="h3">Apply for Credit  </h3>
-                        <Form onSubmit={this.handleSubmit} className="login-form">
-                         <h4>Why it's smart for Apply Online</h4>
-                         <p>Save time at dealership</p>
-                         <p>Know whatyour payment will be up front</p>
-                         <p>Get the best loan Rate you qualify for</p>
-                         <p>Avoid the suprises if you canit get the car you want</p>
-                         <Divider></Divider>
-                         <h4>Your Information is Protected</h4>
-                         <Button type="primary">
-                            Show more
-                            <Icon type="double-right" />
-                        </Button>
-                         <Divider></Divider>             
-                         <h4>Required Information</h4>
-                         <Button type="primary">
-                            Show more
-                            <Icon type="double-right" />
-                        </Button><br/><br/>
-                         <Button onClick={this.nextClick} name='housing' type="primary" htmlType="submit" className="login-form-button">
-                                                            Start Credit Application
-                         </Button>
-                         <p>if you are not ready to apply the credit and just want to know your rates <a>check them here</a></p>
-           </Form>
+            <div className='content'>
+                 { !this.props.startAppState &&
+                    <div>
+                            <h2 className="h3">Apply for Credit  </h2>
+                            <Form onSubmit={this.handleSubmit} className="login-form">
+                            <h3>Why it's smart for Apply Online</h3>
+                            <p>Save time at dealership</p>
+                            <p>Know whatyour payment will be up front</p>
+                            <p>Get the best loan Rate you qualify for</p>
+                            <p>Avoid the suprises if you canit get the car you want</p>
+                            <Divider></Divider>
+                            <h3>Your Information is Protected</h3>
+                                <label  onClick={this.setShowProInfo} type="primary">
+                                { !this.props.showProInfo? 'Show More' :'Show Less'}
+                                { !this.props.showProInfo?  
+                                        <Icon type="double-right" />
+                                            :<Icon type="up" />}
+                                </label><br/><br/>
+                                {this.props.showProInfo &&
+                                <p>We realize that some people get nervous when giving personal info,especially over the computer.Not to Worry.All information is encrypted and protected and only used to process your application <br></br>
+                                Please Note: Once you submit an application,you can't chnage details about payment terms,vehicle protection or your trade in.</p>
+                                }
+                            
+                            <Divider></Divider>             
+                            <h3>Required Information</h3>
+                            <label onClick={this.setShowReqInfo}  type="primary">
+                            { !this.props.showReqInfo? 'Show More' :'Show Less'}
+                                { !this.props.showReqInfo?  
+                                        <Icon type="double-right" />
+                                            :<Icon type="up" />}
+                            </label><br/><br/>
+                            {this.props.showReqInfo &&
+                                <div>
+                                    <p>Borrower and Co-Borrower,if applicable,will need the following information to compelete the application </p>
+                                    <h3>Personal Information</h3>
+                                    <p>Name</p>
+                                    <p>Phone Number</p>
+                                    <p>Email</p>
+                                    <p>Date of Birth</p>
+                                    <p>Social Security Number</p>
+
+                                    <h3>Housing Information</h3>
+                                    <p>Monthly Mortgage or Rent</p>
+                                    <p>Home Address</p>
+                                    <p>If less than 2 years at current address,what is your previous address></p>
+                                    <h3>Employment Information</h3>
+                                    <p>Employer</p>
+                                    <p>Income</p>
+                                    <p>If less than 2 years at current employer,what is your previous employer ?</p>
+                                    <p>Additional Income(optional)</p>
+                                </div>
+                                }
+                            <Divider></Divider>             
+                            <Button onClick={this.startApp}  type="primary" htmlType="submit" className="login-form-button">
+                                    Start Credit Application
+                            </Button>
+
+                        </Form>
+                    </div>
+                }
             { this.props.startAppState &&
                  <div>
                     <div>
@@ -66,27 +111,24 @@ class HomeContainer extends React.Component {
                     { this.props.currentDot===1 &&
                         <div>
                             <ContactInfo></ContactInfo>
-                                <Button onClick={this.nextClick} name='housing' type="primary" htmlType="submit" className="login-form-button">
-                                Next Housing
-                                </Button>
                         </div>
                     }
 
                     { this.props.currentDot===2 &&
                         <div>
                             <Housing></Housing>
-                                <Button  onClick={this.nextClick} name='employment' type="primary" htmlType="submit" className="login-form-button">
-                                Next Employment
-                                </Button>
                         </div>
                     }
                
                     { this.props.currentDot===3 &&
                         <div>
                                 <EmploymentContainer></EmploymentContainer>
-                                <Button  onClick={this.nextClick} name='personal' type="primary" htmlType="submit" className="login-form-button">
-                                Next Personal
-                                </Button>
+                        </div>
+                    }
+
+                    { this.props.currentDot===4 &&
+                        <div>
+                                <PersonalContainer></PersonalContainer>
                         </div>
                     }
                 </div>                
@@ -98,12 +140,15 @@ class HomeContainer extends React.Component {
 
 const mapStateToProps = (state) => ({
     currentDot:state.currentDot,
-    news: state.news,
-    startAppState:state.startApp
+    startAppState:state.startApp,
+    showProInfo:state.showMoreProtectedInfo,
+    showReqInfo:state.showMoreRequiredInfo
 })
 const mapDispatchToProps = {
     setNextPage: setNextPage,
-    startApp:startApp
+    startApp:startApp,
+    setShowProInfo:setShowProInfo,
+    setShowReqInfo:setShowReqInfo
 };
 HomeContainer = connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
 export default HomeContainer;
