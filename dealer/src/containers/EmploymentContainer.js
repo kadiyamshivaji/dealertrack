@@ -5,11 +5,12 @@ import { connect } from 'react-redux'
 import { Form, Icon, Input, Button, Checkbox ,Row,Col,Select,Divider} from 'antd';
 
 
-import {setContactSection,setNextPage} from '../store/actions';
+import {setContactSection,setNextPage,saveEmploymentInfo} from '../store/actions';
 
 import 'antd/dist/antd.css';
 // import './index.css';
 const ButtonGroup = Button.Group;
+let id = 0;
 
 const { Option } = Select;
 
@@ -40,17 +41,70 @@ function hasErrors(fieldsError) {
       this.props.form.validateFields((err, values) => {
         if (!err) {
           console.log('Received values of form: ', values);
+          this.props.saveEmploymentInfo({payload:values})
+          this.props.setNextPage({payload:3})
         }
       });
     };
+    
+    remove = k => {
+      const { form } = this.props;
+      // can use data-binding to get
+      const keys = form.getFieldValue('keys');
+      // We need at least one appartment number
+      if (keys.length === 1) {
+        return;
+      }
   
+      // can use data-binding to set
+      form.setFieldsValue({
+        keys: keys.filter(key => key !== k),
+      });
+    };
+    add = () => {
+      const { form } = this.props;
+      // can use data-binding to get
+      const keys = form.getFieldValue('keys');
+      const nextKeys = keys.concat(id++);
+      // can use data-binding to set
+      // important! notify form to detect changes
+      form.setFieldsValue({
+        keys: nextKeys,
+      });
+    };
 
     nextClick = e => {
       e.preventDefault();
-      this.props.setNextPage({payload:4})
+     
     };
     render() {
-      const { getFieldDecorator } = this.props.form;
+      const { getFieldDecorator ,getFieldValue} = this.props.form;
+      getFieldDecorator('keys', { initialValue: [] });
+      const keys = getFieldValue('keys');
+      const formItems = keys.map((k, index) => (
+        <Form.Item
+          required={false}
+          key={k}
+        >
+          {getFieldDecorator(`names[${k}]`, {
+            validateTrigger: ['onChange', 'onBlur'],
+            rules: [
+              {
+                whitespace: true,
+                message: "Please input appartment number or delete this field.",
+              },
+            ],
+          })(<Input placeholder="Appartment  number" style={{ width: '60%', marginRight: 8 }} />)}
+          {keys.length > 1 ? (
+            <Icon
+              className="dynamic-delete-button"
+              type="minus-circle-o"
+              onClick={() => this.remove(k)}
+            />
+          ) : null}
+        </Form.Item>
+      ));
+      
       return (
         <div>
         <h2 className="h3">Employment </h2>
@@ -59,23 +113,22 @@ function hasErrors(fieldsError) {
         <Form onSubmit={this.handleSubmit} className="login-form">
           <h3>Thanks You're almost done!</h3>
           <Form.Item>
-            {getFieldDecorator('username', {
-              rules: [{ required: true, message: 'Please input your username!' }],
+            {getFieldDecorator('employeed', {
+              rules: [{ required: true, message: 'Please input your !' }],
             })(
-              <Select defaultValue="jack" style={{ width: '100% '}} onChange={handleChange}>
-              <Option value="jack">Are you currently employed?</Option>
-              <Option value="lucy">yes</Option>
-              
-              <Option value="Yiminghe">No</Option>
+              <Select 
+               placeholder="Are you currently employed ?"
+               style={{ width: '100% '}}>
+              <Option value="0">yes</Option>
+              <Option value="1">no</Option>
             </Select>,
             )}
           </Form.Item>
           <Form.Item>
-            {getFieldDecorator('username', {
-              rules: [{ required: true, message: 'Please input your username!' }],
+            {getFieldDecorator('employer', {
+              rules: [{ required: true, message: 'Please input your employer!' }],
             })(
               <Input
-                prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                 placeholder="Employer"
               />,
             )}
@@ -84,10 +137,10 @@ function hasErrors(fieldsError) {
                 <Form.Item >
                   <Row gutter={12}>
                         <Col span={12}>
-                        <Button name="Individual" size={this.props.size}>yes</Button>
+                        <Button name="yes" size={this.props.size}>yes</Button>
                         </Col>
                         <Col span={12}>
-                        <Button name="Joint"  size={this.props.size} >No</Button>      
+                        <Button name="no"  size={this.props.size} >No</Button>      
                         </Col>
                   </Row>
                </Form.Item>
@@ -96,24 +149,24 @@ function hasErrors(fieldsError) {
           <Form.Item >
                   <Row gutter={12}>
                         <Col span={12}>
-                        {getFieldDecorator('username', {
-                         rules: [{ required: true, message: 'Please input your username!' }],
-                        })(
-                          <Input
-                            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                            placeholder=""
-                          />,
-                        )}
-                                    </Col>
+                          {getFieldDecorator('money', {
+                          rules: [{ required: true, message: 'Please input your username!' }],
+                          })(
+                            <Input
+                              placeholder=""
+                            />,
+                          )}
+                        </Col>
                         <Col span={12}>
-                        {getFieldDecorator('username', {
+                        {getFieldDecorator('paytype', {
                           rules: [{ required: true, message: 'Please input your username!' }],
                         })(
-                          <Select defaultValue="jack" style={{ width: '100% '}} onChange={handleChange}>
-                          <Option value="jack">Monthly</Option>
-                          <Option value="lucy">Quarterly</Option>
-                          
-                          <Option value="Yiminghe">Annualy</Option>
+                          <Select 
+                          placeholder="select your pay"
+                           style={{ width: '100% '}} onChange={handleChange}>
+                          <Option value="m">Monthly</Option>
+                          <Option value="q">Quarterly</Option>                          
+                          <Option value="a">Annualy</Option>
                         </Select>,
                         )}
                         </Col>
@@ -121,28 +174,30 @@ function hasErrors(fieldsError) {
                </Form.Item>
            <h3>Additional Income (optional)</h3>
            <p>Allmany child support, or separete maintenance income need not be discolsed unless  relied upon credit</p>
-           <label> <Icon type="plus-circle" />
-               Add Additional Income (optional)
-                </label><br/><br/>  
-
+           {formItems}
+              <Form.Item >
+                <Button  onClick={this.add} style={{ width: '100%' }}>
+                  <Icon type="plus" /> Suffe/Appartment Number (optional)
+                </Button>
+              </Form.Item>
             {this.props.selectedSection==='Joint' && 
                         <div>
                             <Divider/>
                             <h3 className="h6">Co-Application Employment </h3>
                             <Form.Item>
-            {getFieldDecorator('username', {
+            {getFieldDecorator('employedJ', {
               rules: [{ required: true, message: 'Please input your username!' }],
             })(
-              <Select defaultValue="jack" style={{ width: '100% '}} onChange={handleChange}>
-              <Option value="jack">Are you currently employed?</Option>
-              <Option value="lucy">yes</Option>
-              
-              <Option value="Yiminghe">No</Option>
+              <Select 
+              placeholder="Are you currently employed ?"
+              style={{ width: '100% '}}>
+             <Option value="0">yes</Option>
+             <Option value="1">no</Option>
             </Select>,
             )}
           </Form.Item>
           <Form.Item>
-            {getFieldDecorator('username', {
+            {getFieldDecorator('employerJ', {
               rules: [{ required: true, message: 'Please input your username!' }],
             })(
               <Input
@@ -155,10 +210,10 @@ function hasErrors(fieldsError) {
                 <Form.Item >
                   <Row gutter={12}>
                         <Col span={12}>
-                        <Button name="Individual" size={this.props.size}>yes</Button>
+                        <Button name="yes" size={this.props.size}>yes</Button>
                         </Col>
                         <Col span={12}>
-                        <Button name="Joint"  size={this.props.size} >No</Button>      
+                        <Button name="no"  size={this.props.size} >No</Button>      
                         </Col>
                   </Row>
                </Form.Item>
@@ -167,24 +222,24 @@ function hasErrors(fieldsError) {
           <Form.Item >
                   <Row gutter={12}>
                         <Col span={12}>
-                        {getFieldDecorator('username', {
-                         rules: [{ required: true, message: 'Please input your username!' }],
+                        {getFieldDecorator('moneyJ', {
+                         rules: [{ required: true, message: 'Please input your money!' }],
                         })(
                           <Input
-                            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                             placeholder=""
                           />,
                         )}
-                                    </Col>
+                        </Col>
                         <Col span={12}>
-                        {getFieldDecorator('username', {
-                          rules: [{ required: true, message: 'Please input your username!' }],
+                        {getFieldDecorator('paytypeJ', {
+                          rules: [{ required: true, message: 'Please input your paytype!' }],
                         })(
-                          <Select defaultValue="jack" style={{ width: '100% '}} onChange={handleChange}>
-                          <Option value="jack">Monthly</Option>
-                          <Option value="lucy">Quarterly</Option>
-                          
-                          <Option value="Yiminghe">Annualy</Option>
+                          <Select 
+                          placeholder="select your pay"
+                           style={{ width: '100% '}} onChange={handleChange}>
+                          <Option value="m">Monthly</Option>
+                          <Option value="q">Quarterly</Option>                          
+                          <Option value="a">Annualy</Option>
                         </Select>,
                         )}
                         </Col>
@@ -192,21 +247,21 @@ function hasErrors(fieldsError) {
                </Form.Item>
            <h3>Additional Income (optional)</h3>
            <p>Allmany child support, or separete maintenance income need not be discolsed unless  relied upon credit</p>
-           <label> <Icon type="plus-circle" />
-               Add Additional Income (optional)
-                </label>
+           {formItems}
+              <Form.Item >
+                <Button  onClick={this.add} style={{ width: '100%' }}>
+                  <Icon type="plus" /> Suffe/Appartment Number (optional)
+                </Button>
+              </Form.Item>
                         </div>
             }
-
-        </Form>
-
-         <Divider/>
-                    <Form.Item >
-                    <Button  onClick={this.nextClick}  type="primary" htmlType="submit" className="login-form-button">
-                                 Next Personal
-                                </Button>
-                </Form.Item>
-           
+             <Divider/>
+            <Form.Item >
+              <Button type="primary" htmlType="submit" className="login-form-button">
+                  Next Personal
+              </Button>
+            </Form.Item>
+          </Form>
           </div>
         </div>
       );
@@ -218,10 +273,10 @@ function hasErrors(fieldsError) {
             
 const mapStateToProps = (state) => ({
   selectedSection:state.contactSection
-})
-
+}); 
 const mapDispatchToProps = {
-  setNextPage:setNextPage
+  setNextPage:setNextPage,
+  saveEmploymentInfo:saveEmploymentInfo
 };
 Employment = connect(mapStateToProps, mapDispatchToProps)(WrappedNormalLoginForm);
 export default Employment;

@@ -3,6 +3,10 @@ const SET_CONTACT_SECTION = "SET_CONTACT_SECTION";
 const SET_START_APP="SET_START_APP";
 const SET_SHOW_REQ_INFO="SET_SHOW_REQ_INFO";
 const SET_SHOW_PRO_INFO="SET_SHOW_PRO_INFO";
+const SAVE_CONTACT_INFO="SAVE_CONTACT_INFO";
+const SAVE_HOUSING_INFO="SAVE_HOUSING_INFO";
+const SAVE_EMPLOYEMENT_INFO="SAVE_EMPLOYEMENT_INFO";
+
 
 export const setNextPage = (action) => ({
     type: SET_NEXT_PAGE,
@@ -22,4 +26,15 @@ export const setShowProInfo = () => ({
 export const setShowReqInfo = () => ({
     type: SET_SHOW_REQ_INFO
 });
-
+export const saveContactInfo=(action)=>({
+    type: SAVE_CONTACT_INFO,
+    payload:action.payload
+});
+export const saveHousingInfo=(action)=>({
+    type: SAVE_HOUSING_INFO,
+    payload:action.payload
+});
+export const saveEmploymentInfo=(action)=>({
+    type: SAVE_EMPLOYEMENT_INFO,
+    payload:action.payload
+})

@@ -3,50 +3,78 @@ import { connect } from 'react-redux'
 
 import { Form, Icon, Input, Button, Checkbox ,Row,Col,Select,Divider} from 'antd';
 
-import {setContactSection,setNextPage} from '../store/actions';
+import {setContactSection,setNextPage,saveHousingInfo} from '../store/actions';
 
 
 import 'antd/dist/antd.css';
 // import './index.css';
 
+let id = 0;
 const { Option } = Select;
-
-function onChange(value) {
-  console.log(`selected ${value}`);
-}
-
-function onBlur() {
-  console.log('blur');
-}
-
-function onFocus() {
-  console.log('focus');
-}
-
-function onSearch(val) {
-  console.log('search:', val);
-}
-function handleChange(value) {
-  console.log(`selected ${value}`);
-}
-function hasErrors(fieldsError) {
-    return Object.keys(fieldsError).some(field => fieldsError[field]);
-  }
   class Housing extends React.Component {
     handleSubmit = e => {
       e.preventDefault();
       this.props.form.validateFields((err, values) => {
         if (!err) {
           console.log('Received values of form: ', values);
+          this.props.saveHousingInfo({payload:values})
+         this.props.setNextPage({payload:2})
         }
       });
     };
-    nextClick = e => {
-      e.preventDefault();
-      this.props.setNextPage({payload:3})
+    remove = k => {
+      const { form } = this.props;
+      // can use data-binding to get
+      const keys = form.getFieldValue('keys');
+      // We need at least one appartment number
+      if (keys.length === 1) {
+        return;
+      }
+  
+      // can use data-binding to set
+      form.setFieldsValue({
+        keys: keys.filter(key => key !== k),
+      });
     };
+  add = () => {
+    const { form } = this.props;
+    // can use data-binding to get
+    const keys = form.getFieldValue('keys');
+    const nextKeys = keys.concat(id++);
+    // can use data-binding to set
+    // important! notify form to detect changes
+    form.setFieldsValue({
+      keys: nextKeys,
+    });
+  };
     render() {
-      const { getFieldDecorator } = this.props.form;
+      const { getFieldDecorator ,getFieldValue} = this.props.form;
+      getFieldDecorator('keys', { initialValue: [] });
+      const keys = getFieldValue('keys');
+      const formItems = keys.map((k, index) => (
+        <Form.Item
+          required={false}
+          key={k}
+        >
+          {getFieldDecorator(`names[${k}]`, {
+            validateTrigger: ['onChange', 'onBlur'],
+            rules: [
+              {
+                whitespace: true,
+                message: "Please input appartment number or delete this field.",
+              },
+            ],
+          })(<Input placeholder="Appartment  number" style={{ width: '60%', marginRight: 8 }} />)}
+          {keys.length > 1 ? (
+            <Icon
+              className="dynamic-delete-button"
+              type="minus-circle-o"
+              onClick={() => this.remove(k)}
+            />
+          ) : null}
+        </Form.Item>
+      ));
+      
       return (
         <div>
           <h2 className="h3">Housing </h2>
@@ -61,36 +89,32 @@ function hasErrors(fieldsError) {
                     </Form.Item>
               }
                 <Form.Item>
-                  {getFieldDecorator('username', {
-                    rules: [{ required: true, message: 'Please !' }],
+                  {getFieldDecorator('own', {
+                    rules: [{ required: true, message: 'Please input your !' }],
                   })(
-                    <Select defaultValue="jack" style={{ width: '100% '}} onChange={handleChange}>
-                      <Option value="jack">Do you Own or rent</Option>
-                      <Option value="lucy">yes</Option>
-                      
-                      <Option value="Yiminghe">No</Option>
+                    <Select
+                     placeholder="Do you Own or rent ?"
+                     style={{ width: '100% '}} >
+                      <Option value="yes">yes</Option>                      
+                      <Option value="no">No</Option>
                     </Select>,
                   )}
                 </Form.Item>
-              
-
                 <Form.Item>
-                  {getFieldDecorator('username', {
-                    rules: [{ required: true, message: 'Please input your username!' }],
+                  {getFieldDecorator('rent', {
+                    rules: [{ required: true, message: 'Please input your rent!' }],
                   })(
                     <Input
-                      prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                       placeholder="Monthly Mortgage/Rent"
                     />,
                   )}
                 </Form.Item>
                 
                 <Form.Item>
-                  {getFieldDecorator('username', {
+                  {getFieldDecorator('address', {
                     rules: [{ required: true, message: 'Please input your address' }],
                   })(
                     <Input
-                      prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                       placeholder="Street Address"
                     />,
                   )}
@@ -98,49 +122,48 @@ function hasErrors(fieldsError) {
                 <Form.Item >
                     <Row gutter={12}>
                       <Col span={8}>
-                          {getFieldDecorator('username', {
-                            rules: [{ required: true, message: 'Please input your address' }],
+                          {getFieldDecorator('city', {
+                            rules: [{ required: true, message: 'Please input your city' }],
                             })(
                             <Input
-                              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                               placeholder="City"
                             />,
                            )}
                       </Col>
                       <Col span={8}>
-                      {getFieldDecorator('username', {
-                            rules: [{ required: true, message: 'Please input your address' }],
+                      {getFieldDecorator('state', {
+                            rules: [{ required: true, message: 'Please input your state' }],
                             })(
                             <Input
-                              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                               placeholder="State"
                             />,
                            )}
                       </Col>
                       <Col span={8}>
-                      {getFieldDecorator('username', {
-                            rules: [{ required: true, message: 'Please input your address' }],
+                      {getFieldDecorator('zipcode', {
+                            rules: [{ required: true, message: 'Please input your zipcode' }],
                             })(
                             <Input
-                              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                               placeholder="Zip Code"
                             />,
                            )}
                       </Col>
                     </Row>
                 </Form.Item>
-                
-                <label> <Icon type="plus-circle" />
-                Suffe/Appartment Number (optional)
-                </label><br/><br/>
+                {formItems}
+              <Form.Item >
+                <Button  onClick={this.add} style={{ width: '100%' }}>
+                  <Icon type="plus" /> Suffe/Appartment Number (optional)
+                </Button>
+              </Form.Item>
                 <p>Have you lived here for 2 years or more?</p>
                 <Form.Item >
                   <Row gutter={12}>
                         <Col span={12}>
-                        <Button name="Individual" size={this.props.size}>yes</Button>
+                        <Button name="yes" size={this.props.size}>yes</Button>
                         </Col>
                         <Col span={12}>
-                        <Button name="Joint"  size={this.props.size} >No</Button>      
+                        <Button name="no"  size={this.props.size} >No</Button>      
                         </Col>
                   </Row>
                </Form.Item>
@@ -148,36 +171,34 @@ function hasErrors(fieldsError) {
                    <div>
                      <h3>Co-Applicant Housing</h3>
                       <Form.Item>
-                          {getFieldDecorator('username', {
-                            rules: [{ required: true, message: 'Please !' }],
+                          {getFieldDecorator('ownJ', {
+                            rules: [{ required: true, message: 'Please input your !' }],
                           })(
-                            <Select defaultValue="jack" style={{ width: '100% '}} onChange={handleChange}>
-                              <Option value="jack">Do you Own or rent</Option>
-                              <Option value="lucy">yes</Option>
-                              
-                              <Option value="Yiminghe">No</Option>
-                            </Select>,
+                            <Select
+                            placeholder="Do you Own or rent ?"
+                            style={{ width: '100% '}} >
+                             <Option value="yes">yes</Option>                      
+                             <Option value="no">No</Option>
+                           </Select>,
                           )}
                         </Form.Item>
                       
 
                         <Form.Item>
-                          {getFieldDecorator('username', {
-                            rules: [{ required: true, message: 'Please input your username!' }],
+                          {getFieldDecorator('rentJ', {
+                            rules: [{ required: true, message: 'Please input your rent!' }],
                           })(
                             <Input
-                              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                               placeholder="Monthly Mortgage/Rent"
                             />,
                           )}
                         </Form.Item>
                         
                         <Form.Item>
-                          {getFieldDecorator('username', {
+                          {getFieldDecorator('addressJ', {
                             rules: [{ required: true, message: 'Please input your address' }],
                           })(
                             <Input
-                              prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                               placeholder="Street Address"
                             />,
                           )}
@@ -185,49 +206,49 @@ function hasErrors(fieldsError) {
                         <Form.Item >
                             <Row gutter={12}>
                               <Col span={8}>
-                                  {getFieldDecorator('username', {
-                                    rules: [{ required: true, message: 'Please input your address' }],
+                                  {getFieldDecorator('cityJ', {
+                                    rules: [{ required: true, message: 'Please input your city' }],
                                     })(
                                     <Input
-                                      prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                       placeholder="City"
                                     />,
                                   )}
                               </Col>
                               <Col span={8}>
-                              {getFieldDecorator('username', {
-                                    rules: [{ required: true, message: 'Please input your address' }],
+                              {getFieldDecorator('stateJ', {
+                                    rules: [{ required: true, message: 'Please input your state' }],
                                     })(
                                     <Input
-                                      prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                       placeholder="State"
                                     />,
                                   )}
                               </Col>
                               <Col span={8}>
-                              {getFieldDecorator('username', {
-                                    rules: [{ required: true, message: 'Please input your address' }],
+                              {getFieldDecorator('zipcodeJ', {
+                                    rules: [{ required: true, message: 'Please input your zip code' }],
                                     })(
                                     <Input
-                                      prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                                       placeholder="Zip Code"
                                     />,
                                   )}
                               </Col>
                             </Row>
                         </Form.Item>
-                        
-                        <label> <Icon type="plus-circle" />
-                        Suffe/Appartment Number (optional)
-                        </label><br/><br/>
+                      
+                        {formItems}
+              <Form.Item >
+                <Button  onClick={this.add} style={{ width: '100%' }}>
+                  <Icon type="plus" /> Suffe/Appartment Number (optional)
+                </Button>
+              </Form.Item>
                         <p>Have you lived here for 2 years or more?</p>
                         <Form.Item >
                           <Row gutter={12}>
                                 <Col span={12}>
-                                <Button name="Individual" size={this.props.size}>yes</Button>
+                                <Button name="yes" size={this.props.size}>yes</Button>
                                 </Col>
                                 <Col span={12}>
-                                <Button name="Joint"  size={this.props.size} >No</Button>      
+                                <Button name="no"  size={this.props.size} >No</Button>      
                                 </Col>
                           </Row>
                       </Form.Item>
@@ -235,14 +256,11 @@ function hasErrors(fieldsError) {
                }
                    <Divider/>
                     <Form.Item >
-                    <Button  onClick={this.nextClick}  type="primary" htmlType="submit" className="login-form-button">
+                    <Button  type="primary" htmlType="submit" className="login-form-button">
                                 Next Employment
-                                </Button>
+                    </Button>
                 </Form.Item>
               </Form>
-
-        
-           
           </div>
         </div>
       );
@@ -254,12 +272,10 @@ function hasErrors(fieldsError) {
             
 const mapStateToProps = (state) => ({
     selectedSection:state.contactSection
-   
-
 })
-
 const mapDispatchToProps = {
-  setNextPage:setNextPage
+  setNextPage:setNextPage,
+  saveHousingInfo:saveHousingInfo
 };
 Housing = connect(mapStateToProps, mapDispatchToProps)(WrappedNormalLoginForm);
 export default Housing;

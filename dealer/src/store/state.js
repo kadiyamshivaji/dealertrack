@@ -1,8 +1,7 @@
 export const defaultState={
-    currentDot:1,
+    current:0,
     size: 'large',
     startApp:false,
     showMoreProtectedInfo:false,
-    showMoreRequiredInfo:false,
-
+    showMoreRequiredInfo:false
 }

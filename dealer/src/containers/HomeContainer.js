@@ -6,14 +6,41 @@ import Housing from "./HousingContainer";
 import  PersonalContainer from "./PersonalContainer";
 import {setNextPage,startApp , setShowProInfo,
     setShowReqInfo} from '../store/actions';
-import { Form, Icon, Input, Button, Checkbox,Steps, Divider } from 'antd';
+import { Form, Icon, Input, Button, Checkbox,Steps, Divider,message } from 'antd';
 const { Step } = Steps;
+  
+const steps = [
+  {
+    title: 'Next Housing',
+    content: <ContactInfo></ContactInfo>,
+  },
+  {
+    title: ' Next Employment',
+    content: <Housing></Housing>,
+  },
+  {
+    title: 'Next Personal',
+    content:<EmploymentContainer></EmploymentContainer>,
+  },
+  {
+    title: 'Submit Application',
+    content:<PersonalContainer></PersonalContainer>,
+  },
+];
 
 class HomeContainer extends React.Component {
-    nextClick = e => {
-        e.preventDefault();
-        this.props.setNextPage({payload:this.pageValues(e.target.name)})
-      };
+  next() {
+    const current = this.props.current + 1;
+    this.props.setNextPage({payload:current})
+  }
+  currentPage(e){
+    this.props.setNextPage({payload:e})
+  }
+  prev() {
+    const current = this.props.current - 1;
+    this.props.setNextPage({payload:current})
+  }
+   
       startApp =e=>{
         e.preventDefault();
         this.props.startApp({payload:true})
@@ -36,6 +63,7 @@ class HomeContainer extends React.Component {
           return values[name];
       }
     render() {
+      const { current } = this.props;
         return  (
             <div className='content'>
                  { !this.props.startAppState &&
@@ -100,37 +128,37 @@ class HomeContainer extends React.Component {
             { this.props.startAppState &&
                  <div>
                     <div>
-                        <Steps progressDot={false} current={this.props.currentDot}>
-                        <Step title="Finished" description="This is a description." />
-                        <Step title="In Progress" description="This is a description." />
-                        <Step title="Waiting" description="This is a description." />
-                        <Step title="Waiting" description="This is a description." />
-                        </Steps>
+                    <div>
+        <Steps current={current}>
+         
+            <Step id={current} onClick={(e) => this.currentPage(0)}   />
+            <Step id={current} onClick={(e) => this.currentPage(1)}   />
+            <Step id={current} onClick={(e) => this.currentPage(2)}   />
+            <Step id={current} onClick={(e) => this.currentPage(3)}   />
+         
+        </Steps>
+        <div className="steps-content">{steps[current].content}</div>
+        <div className="steps-action">
+          {/* {current < steps.length - 1 && (
+            <Button type="primary" onClick={() => this.next()}>
+              {steps[current].title}
+            </Button>
+          )} */}
+          {/* {current === steps.length - 1 && (
+            <Button type="primary" onClick={() => message.success('Processing complete!')}>
+              Sumib
+            </Button>
+          )} */}
+          {current > 0 && (
+            <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
+              Previous
+            </Button>
+          )}
+        </div>
+      </div>
                         <Divider />
                     </div>
-                    { this.props.currentDot===1 &&
-                        <div>
-                            <ContactInfo></ContactInfo>
-                        </div>
-                    }
-
-                    { this.props.currentDot===2 &&
-                        <div>
-                            <Housing></Housing>
-                        </div>
-                    }
-               
-                    { this.props.currentDot===3 &&
-                        <div>
-                                <EmploymentContainer></EmploymentContainer>
-                        </div>
-                    }
-
-                    { this.props.currentDot===4 &&
-                        <div>
-                                <PersonalContainer></PersonalContainer>
-                        </div>
-                    }
+                    
                 </div>                
             }               
         </div>
@@ -139,7 +167,7 @@ class HomeContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    currentDot:state.currentDot,
+    current:state.current,
     startAppState:state.startApp,
     showProInfo:state.showMoreProtectedInfo,
     showReqInfo:state.showMoreRequiredInfo

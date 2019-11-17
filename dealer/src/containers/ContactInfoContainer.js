@@ -2,21 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { Form, Icon, Input, Button, Checkbox,Tabs,Select,Row,Col,Divider,DatePicker } from 'antd';
 import 'antd/dist/antd.css';
-import {setContactSection,setNextPage} from '../store/actions';
+import {setContactSection,setNextPage,saveContactInfo} from '../store/actions';
 
-function onChange(date, dateString) {
-  console.log(date, dateString);
-} 
 
-function hasErrors(fieldsError) {
-  return Object.keys(fieldsError).some(field => fieldsError[field]);
-}
   class ContactInfo extends React.Component {  
-    nextClick = e => {
-      e.preventDefault();
-      this.props.setNextPage({payload:2})
-    };
-    setSection=e=>{
+    setSection = e => {
       e.preventDefault();
      this.props.setContactSection({payload:e.target.name})
     }
@@ -26,10 +16,28 @@ function hasErrors(fieldsError) {
       this.props.form.validateFields((err, values) => {
         if (!err) {
           console.log('Received values of form: ', values);
+          this.props.saveContactInfo({payload:values})
+          this.props.setNextPage({payload:1})
+
         }
       });
     };
-
+    compareToFirstEmail = (rule, value, callback) => {
+      const { form } = this.props;
+      if (value && value !== form.getFieldValue('email')) {
+        callback('Two emails that you enter is inconsistent!');
+      } else {
+        callback();
+      }
+    };
+    compareToFirstJointEmail = (rule, value, callback) => {
+      const { form } = this.props;
+      if (value && value !== form.getFieldValue('email')) {
+        callback('Two emails that you enter is inconsistent!');
+      } else {
+        callback();
+      }
+    };
   
     render() {    
       const { getFieldDecorator } = this.props.form;
@@ -38,26 +46,25 @@ function hasErrors(fieldsError) {
       <div>
         <h2 className="h3">Contact Info</h2>
         <h3 className="h6">Application Type</h3>
-            <Form onSubmit={this.handleSubmit} className="login-form">
-            
+            <Form onSubmit={this.handleSubmit} className="login-form">            
                 <Form.Item >
                     <Row gutter={12}>
                       <Col span={12}>
-                      <Button name="Individual" onClick={this.setSection} size={this.props.size}>Individual</Button>
+                      <Button name="Individual" className={this.props.selectedSection==='Joint'?'':'active'}
+                       onClick={this.setSection} size={this.props.size}>Individual</Button>
                       </Col>
                       <Col span={12}>
-                      <Button name="Joint" onClick={this.setSection}  size={this.props.size} >Joint</Button>      
+                      <Button name="Joint"  className={this.props.selectedSection==='Joint'?'active':''} onClick={this.setSection}  size={this.props.size} >Joint</Button>      
                       </Col>
                     </Row>
                 </Form.Item>
                 <h3>Your Name</h3>
                 <Form.Item>
-                  {getFieldDecorator('firstName', {
+                  {getFieldDecorator('firstname', {
                     rules: [{ required: true, message: 'Please input your First Name!' }],
                   })(
                     <Input
-                      prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                      placeholder="First Name"
+                      placeholder="first name"
                     />,
                   )}
                 </Form.Item>
@@ -66,38 +73,46 @@ function hasErrors(fieldsError) {
                     rules: [{ required: true, message: 'Please input your Last Name!' }],
                   })(
                     <Input
-                      prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                      placeholder="Last Name"
+                      placeholder="last name"
                     />,
                   )}
                 </Form.Item>
                 <Form.Item>
                   {getFieldDecorator('phone', {
-                    rules: [{ required: true, message: 'Please input your Phone!' }],
+                    rules: [{ required: true, message: 'Please input your Phone!'}],
                   })(
                     <Input
-                      prefix={<Icon type="phone" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                      placeholder="Phone"
+                      type='number'
+                      placeholder="phone"
                     />,
                   )}
                 </Form.Item>
+               
                 <Form.Item>
                   {getFieldDecorator('email', {
-                    rules: [{ required: true, message: 'Please input your Email!' }],
+                    rules: [ {
+                      type: 'email',
+                      message: 'The input is not valid E-mail!',
+                    },
+                      { required: true, message: 'Please input your Email!' }],
                   })(
                     <Input
                       prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                      placeholder="Email"
+                      placeholder="email"
                     />,
                   )}
                 </Form.Item>
                 <Form.Item>
-                {getFieldDecorator('email', {
-                  rules: [{ required: true, message: 'Please Verify Email!' }],
+                {getFieldDecorator('mail', {
+                  rules: [{ required: true, message: 'Please Verify Email!' },
+                  {
+                    validator: this.compareToFirstEmail,
+                  }],
                 })(
                   <Input
                     prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                    placeholder="Verify Email"
+                    type='email'
+                    placeholder="verify email"
                   />,
                 )}
               </Form.Item>
@@ -105,25 +120,22 @@ function hasErrors(fieldsError) {
            <h3>Requireed for Identity Verification</h3>
            <p>if you are not ready to apply for credit and justwant to know your rates <a>check them here</a></p>
             <Form.Item>
-              <Row gutter={8}>
+             <Row gutter={8}>
                   <Col span={12}>
-                      {getFieldDecorator('email', {
-                        rules: [{ required: true, message: 'Please select date' }],
-                      })(
-                        <DatePicker onChange={onChange} />
-                      )}
+                     {getFieldDecorator('date', {
+                        rules: [{ type: 'object', required: true, message: 'Please select time!' }]
+                     }
+                     )(<DatePicker />)}
                   </Col>
-                      
               </Row>              
             </Form.Item>            
             <Form.Item >
               <Row gutter={8}>
                 <Col span={12}>
-                  {getFieldDecorator('captcha', {
-                    rules: [{ required: true, message: 'Please input the captcha you got!' }],
+                  {getFieldDecorator('ssn', {
+                    rules: [{ required: true, message: 'Please input your social security number' }],
                   })(  <Input
-                    suffix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                    placeholder="Social Security"
+                    placeholder="social security"
                   />,)}
                 </Col>
                 <Col span={12}>                  
@@ -138,53 +150,57 @@ function hasErrors(fieldsError) {
               <div>
                   <Divider/>
                   <h3 className="h6">Co-Application Name</h3>
-                  {/* {this.JointForm()} */}       <Form.Item>
-                  {getFieldDecorator('firstName', {
+                  <Form.Item>
+                  {getFieldDecorator('firstnameJ', {
                     rules: [{ required: true, message: 'Please input your First Name!' }],
                   })(
                     <Input
-                      prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                      placeholder="First Name"
+                      placeholder="first name"
                     />,
                   )}
                 </Form.Item>
                 <Form.Item>
-                  {getFieldDecorator('lastname', {
+                  {getFieldDecorator('lastnameJ', {
                     rules: [{ required: true, message: 'Please input your Last Name!' }],
                   })(
                     <Input
-                      prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                      placeholder="Last Name"
+                      placeholder="last name"
                     />,
                   )}
                 </Form.Item>
                 <Form.Item>
-                  {getFieldDecorator('phone', {
+                  {getFieldDecorator('phoneJ', {
                     rules: [{ required: true, message: 'Please input your Phone!' }],
                   })(
                     <Input
-                      prefix={<Icon type="phone" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                      placeholder="Phone"
+                      placeholder="phone"
                     />,
                   )}
                 </Form.Item>
+                
                 <Form.Item>
                   {getFieldDecorator('email', {
-                    rules: [{ required: true, message: 'Please input your Email!' }],
+                    rules: [ {
+                      type: 'email',
+                      message: 'The input is not valid E-mail!',
+                    },
+                      { required: true, message: 'Please input your Email!' }],
                   })(
                     <Input
-                      prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                      placeholder="Email"
+                      placeholder="email"
                     />,
                   )}
                 </Form.Item>
                 <Form.Item>
-                {getFieldDecorator('email', {
-                  rules: [{ required: true, message: 'Please Verify Email!' }],
+                {getFieldDecorator('confirmJ', {
+                  rules: [{ required: true, message: 'Please Verify Email!' },
+                  {
+                    validator: this.compareToFirstJointEmail,
+                  }],
                 })(
                   <Input
-                    prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                    placeholder="Verify Email"
+                    type='email'
+                    placeholder="verify email"
                   />,
                 )}
               </Form.Item>
@@ -193,12 +209,11 @@ function hasErrors(fieldsError) {
            <p>if you are not ready to apply for credit and justwant to know your rates <a>check them here</a></p>
             <Form.Item>
               <Row gutter={8}>
-                  <Col span={12}>
-                      {getFieldDecorator('email', {
-                        rules: [{ required: true, message: 'Please select date' }],
-                      })(
-                        <DatePicker onChange={onChange} />
-                      )}
+              <Col span={12}>
+                     {getFieldDecorator('dateJ', {
+                        rules: [{ type: 'object', required: true, message: 'Please select time!' }]
+                     }
+                     )(<DatePicker />)}
                   </Col>
                       
               </Row>              
@@ -206,11 +221,10 @@ function hasErrors(fieldsError) {
             <Form.Item >
               <Row gutter={8}>
                 <Col span={12}>
-                  {getFieldDecorator('captcha', {
-                    rules: [{ required: true, message: 'Please input the captcha you got!' }],
+                  {getFieldDecorator('ssnJ', {
+                    rules: [{ required: true, message: 'Please input the social security number' }],
                   })(  <Input
-                    suffix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-                    placeholder="Social Security"
+                    placeholder="social security"
                   />,)}
                 </Col>
                 <Col span={12}>                  
@@ -226,7 +240,7 @@ function hasErrors(fieldsError) {
             }
              <Divider></Divider>
             <Form.Item>
-                <Button onClick={this.nextClick} name='housing' type="primary" htmlType="submit" 
+                <Button name='housing' type="primary" htmlType="submit" 
                   className="login-form-button">
                   Next Housing
                 </Button>
@@ -247,7 +261,8 @@ const mapStateToProps = (state) => ({
 })
 const mapDispatchToProps = {
   setContactSection: setContactSection,
-  setNextPage:setNextPage
+  setNextPage:setNextPage,
+  saveContactInfo:saveContactInfo
 };
 ContactInfo = connect(mapStateToProps, mapDispatchToProps)(WrappedNormalLoginForm);
 export default ContactInfo;
