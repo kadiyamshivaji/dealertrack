@@ -70,3 +70,13 @@ button.ant-btn {
   border-style: outset !important;
   border-color: #000 !important;
 }
+@media (max-width: 480px){
+  .ant-steps-horizontal.ant-steps-label-horizontal .ant-steps-item-content {
+    display: block;
+    min-height: 0 !important; 
+    overflow: hidden;
+  }
+  .ant-steps-horizontal.ant-steps-label-horizontal {
+    display: flex !important; 
+  }
+}

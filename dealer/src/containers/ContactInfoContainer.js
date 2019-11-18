@@ -1,11 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Form, Icon, Input, Button, Checkbox,Tabs,Select,Row,Col,Divider,DatePicker } from 'antd';
+import { Form, Icon, Input, Button, Checkbox,Tabs,Select,Row,Col,Divider,DatePicker,InputNumber } from 'antd';
 import 'antd/dist/antd.css';
 import {setContactSection,setNextPage,saveContactInfo} from '../store/actions';
+const formatters = {
+  'phone'      : [/^\(?\s?(\d{3})\s?\)?\s?\-?\s?(\d{3})\s?\-?\s?(\d{4})$/,     '($1) $2-$3' ],
+  'ssn'        : [/^(\d{3})\s?\-?\s?(\d{2})\s?\-?\s?(\d{3})$/,                 '$1-$2-$3'   ],
+  'creditcard' : [/^(\d{4})\s?\-?\s?(\d{4})\s?\-?\s?(\d{4})\s?\-?\s?(\d{4})$/, '$1-$2-$3-$4']
+};
 
+  class ContactInfo extends React.Component {
+    formate(){
 
-  class ContactInfo extends React.Component {  
+    }  
     setSection = e => {
       e.preventDefault();
      this.props.setContactSection({payload:e.target.name})
@@ -38,7 +45,16 @@ import {setContactSection,setNextPage,saveContactInfo} from '../store/actions';
         callback();
       }
     };
-  
+     formatPhoneNumber(phoneNumberString) {
+      var cleaned = ('' + phoneNumberString).replace(/\D/g, '')
+      var match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/)
+      if (match) {
+        var intlCode = (match[1] ? '+1 ' : '')
+        return [intlCode, '(', match[2], ') ', match[3], '-', match[4]].join('')
+      }
+      return null
+    }
+    
     render() {    
       const { getFieldDecorator } = this.props.form;
       return (
@@ -81,10 +97,12 @@ import {setContactSection,setNextPage,saveContactInfo} from '../store/actions';
                   {getFieldDecorator('phone', {
                     rules: [{ required: true, message: 'Please input your Phone!'}],
                   })(
-                    <Input
-                      type='number'
-                      placeholder="phone"
-                    />,
+                    <InputNumber
+                        style={{ width: '100%', marginRight: 8 }} 
+                        formatter={value => `${value}`.replace(/^\(?\s?(\d{3})\s?\)?\s?\-?\s?(\d{3})\s?\-?\s?(\d{4})$/,'($1) $2-$3')}
+                        maxLength={10}
+                          size='large'
+                        />,
                   )}
                 </Form.Item>
                
@@ -134,8 +152,11 @@ import {setContactSection,setNextPage,saveContactInfo} from '../store/actions';
                 <Col span={12}>
                   {getFieldDecorator('ssn', {
                     rules: [{ required: true, message: 'Please input your social security number' }],
-                  })(  <Input
+                  })(  <InputNumber
+                    style={{ width: '100%', marginRight: 8 }}
                     placeholder="social security"
+                    maxlength="11"
+                    formatter={value => `${value}`.replace(/^(\d{3})\s?\-?\s?(\d{2})\s?\-?\s?(\d{3})$/,'$1-$2-$3')}
                   />,)}
                 </Col>
                 <Col span={12}>                  
@@ -225,6 +246,7 @@ import {setContactSection,setNextPage,saveContactInfo} from '../store/actions';
                     rules: [{ required: true, message: 'Please input the social security number' }],
                   })(  <Input
                     placeholder="social security"
+                    maxlength="11" 
                   />,)}
                 </Col>
                 <Col span={12}>                  
