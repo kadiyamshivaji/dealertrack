@@ -99,7 +99,8 @@ const formatters = {
                   })(
                     <InputNumber
                         style={{ width: '100%', marginRight: 8 }} 
-                        formatter={value => `${value}`.replace(/^\(?\s?(\d{3})\s?\)?\s?\-?\s?(\d{3})\s?\-?\s?(\d{4})$/,'($1) $2-$3')}
+                        formatter={value =>this.formatPhoneNumber(value)}
+                        placeholder='phone'
                         maxLength={10}
                           size='large'
                         />,
@@ -155,7 +156,7 @@ const formatters = {
                   })(  <InputNumber
                     style={{ width: '100%', marginRight: 8 }}
                     placeholder="social security"
-                    maxlength="11"
+                    maxlength={11}
                     formatter={value => `${value}`.replace(/^(\d{3})\s?\-?\s?(\d{2})\s?\-?\s?(\d{3})$/,'$1-$2-$3')}
                   />,)}
                 </Col>
@@ -193,9 +194,13 @@ const formatters = {
                   {getFieldDecorator('phoneJ', {
                     rules: [{ required: true, message: 'Please input your Phone!' }],
                   })(
-                    <Input
-                      placeholder="phone"
-                    />,
+                    <InputNumber
+                        style={{ width: '100%', marginRight: 8 }} 
+                        formatter={value =>this.formatPhoneNumber(value)}
+                        placeholder='phone'
+                        maxLength={10}
+                          size='large'
+                        />,
                   )}
                 </Form.Item>
                 
@@ -244,9 +249,11 @@ const formatters = {
                 <Col span={12}>
                   {getFieldDecorator('ssnJ', {
                     rules: [{ required: true, message: 'Please input the social security number' }],
-                  })(  <Input
+                  })(  <InputNumber
+                    style={{ width: '100%', marginRight: 8 }}
                     placeholder="social security"
-                    maxlength="11" 
+                    maxlength={11}
+                    formatter={value => `${value}`.replace(/^(\d{3})\s?\-?\s?(\d{2})\s?\-?\s?(\d{3})$/,'$1-$2-$3')}
                   />,)}
                 </Col>
                 <Col span={12}>                  
