@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { Form, Icon, Input, Button, Checkbox ,Row,Col,Select,Divider} from 'antd';
 
 
-import {setContactSection,setNextPage,saveEmploymentInfo} from '../store/actions';
+import {setContactSection,setNextPage,saveEmploymentInfo} from '../actions';
 
 import 'antd/dist/antd.css';
 // import './index.css';
@@ -117,10 +117,16 @@ function hasErrors(fieldsError) {
               rules: [{ required: true, message: 'Please input your !' }],
             })(
               <Select 
-               placeholder="Are you currently employed ?"
+               placeholder="Employment Status "
                style={{ width: '100% '}}>
-              <Option value="0">yes</Option>
-              <Option value="1">no</Option>
+              <Option value="Employed">Employed</Option>
+              <Option value="Unemployed">Unemployed</Option>
+              <Option value="Self-Employed">Self-Employed</Option>
+              <Option value="Student">Student</Option>
+              <Option value="Retired">Retired</Option>
+              <Option value="Active Military">Active Military</Option>
+              <Option value="Retired Military">Retired Military</Option>
+              <Option value="Others">Others</Option>
             </Select>,
             )}
           </Form.Item>
@@ -165,8 +171,7 @@ function hasErrors(fieldsError) {
                           placeholder="select your pay"
                            style={{ width: '100% '}} onChange={handleChange}>
                           <Option value="m">Monthly</Option>
-                          <Option value="q">Quarterly</Option>                          
-                          <Option value="a">Annualy</Option>
+                          <Option value="a">Yearly</Option>
                         </Select>,
                         )}
                         </Col>
@@ -185,15 +190,21 @@ function hasErrors(fieldsError) {
                             <Divider/>
                             <h3 className="h6">Co-Application Employment </h3>
                             <Form.Item>
-            {getFieldDecorator('employedJ', {
+            {getFieldDecorator('employeedJ', {
               rules: [{ required: true, message: 'Please input your username!' }],
             })(
               <Select 
-              placeholder="Are you currently employed ?"
+              placeholder="Employment Status "
               style={{ width: '100% '}}>
-             <Option value="0">yes</Option>
-             <Option value="1">no</Option>
-            </Select>,
+             <Option value="Employed">Employed</Option>
+             <Option value="Unemployed">Unemployed</Option>
+             <Option value="Self-Employed">Self-Employed</Option>
+             <Option value="Student">Student</Option>
+             <Option value="Retired">Retired</Option>
+             <Option value="Active Military">Active Military</Option>
+             <Option value="Retired Military">Retired Military</Option>
+             <Option value="Others">Others</Option>
+           </Select>,
             )}
           </Form.Item>
           <Form.Item>
@@ -237,9 +248,8 @@ function hasErrors(fieldsError) {
                           <Select 
                           placeholder="select your pay"
                            style={{ width: '100% '}} onChange={handleChange}>
-                          <Option value="m">Monthly</Option>
-                          <Option value="q">Quarterly</Option>                          
-                          <Option value="a">Annualy</Option>
+                            <Option value="m">Monthly</Option>
+                          <Option value="a">Yearly</Option>
                         </Select>,
                         )}
                         </Col>

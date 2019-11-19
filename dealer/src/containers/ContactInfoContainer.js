@@ -1,18 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Form, Icon, Input, Button, Checkbox,Tabs,Select,Row,Col,Divider,DatePicker,InputNumber } from 'antd';
+import { Input,Form, Icon,  Button, Checkbox,Tabs,Select,Row,Col,Divider,DatePicker,InputNumber } from 'antd';
 import 'antd/dist/antd.css';
-import {setContactSection,setNextPage,saveContactInfo} from '../store/actions';
-const formatters = {
-  'phone'      : [/^\(?\s?(\d{3})\s?\)?\s?\-?\s?(\d{3})\s?\-?\s?(\d{4})$/,     '($1) $2-$3' ],
-  'ssn'        : [/^(\d{3})\s?\-?\s?(\d{2})\s?\-?\s?(\d{3})$/,                 '$1-$2-$3'   ],
-  'creditcard' : [/^(\d{4})\s?\-?\s?(\d{4})\s?\-?\s?(\d{4})\s?\-?\s?(\d{4})$/, '$1-$2-$3-$4']
-};
-
+import {setContactSection,setNextPage,saveContactInfo} from '../actions';
   class ContactInfo extends React.Component {
-    formate(){
-
-    }  
+    constructor(props) {
+      super(props);
+    }
     setSection = e => {
       e.preventDefault();
      this.props.setContactSection({payload:e.target.name})

@@ -91,3 +91,6 @@ button.ant-btn {
     display: flex !important; 
   }
 }
+.ant-steps-item-disabled{
+  pointer-events: none;
+}

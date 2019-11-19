@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Form, Icon, Input, Button, Checkbox ,Row,Col,Select,Divider} from 'antd';
-import {setNextPage} from '../store/actions';
+import {setNextPage} from '../actions';
 import 'antd/dist/antd.css';
 
 const ButtonGroup = Button.Group;
@@ -16,7 +16,10 @@ const { Option } = Select;
     //     }
     //   });
     // };
-  
+
+    currentPage(e){
+      this.props.setNextPage({payload:e})
+    }
 
     nextClick = e => {
       e.preventDefault();
@@ -38,7 +41,7 @@ const { Option } = Select;
                  <Row gutter={12}>
                         <Col span={12}>
                             <label>Primary Applicant
-                            <Icon type="edit" style={{ color: 'blue' }} />
+                            <Icon type="edit" style={{ color: 'blue' }} onClick={(e) => this.currentPage(0)}  />
                             </label>    <br/><br/>
                             <p>{(this.props.contactInfo||{}).firstname||{}} {(this.props.contactInfo||{}).lastname||{}}</p>
                             <p>{(this.props.contactInfo||{}).phone||{}} </p>
@@ -50,7 +53,7 @@ const { Option } = Select;
 
                             <Col span={12}>
                             <label>Secondary Applicant
-                                <Icon type="edit" style={{ color: 'blue' }} />
+                                <Icon type="edit" style={{ color: 'blue' }} onClick={(e) => this.currentPage(0)} />
                                 </label> <br/><br/>
                                 <p>{(this.props.contactInfo||{}).firstnameJ||{}} {(this.props.contactInfo||{}).lastnameJ||{}}</p>
                                 <p>{(this.props.contactInfo||{}).phoneJ||{}} </p>
@@ -63,12 +66,13 @@ const { Option } = Select;
                  <Row gutter={12}>
                         <Col span={12}>
                             <label>Housing
-                            <Icon type="edit" style={{ color: 'blue' }} />
+                            <Icon type="edit" style={{ color: 'blue' }} onClick={(e) => this.currentPage(1)} />
                             </label><br/><br/>
                             <p>{(this.props.housingInfo||{}).own||{}} </p>
                             <p>{(this.props.housingInfo||{}).rent||{}} </p>
                             <p>{(this.props.housingInfo||{}).address||{}} </p>
                             <p>{(this.props.housingInfo||{}).city||{}},{(this.props.housingInfo||{}).state||{}},{(this.props.housingInfo||{}).zipcode||{}} </p>
+                            <p>{(this.props.housingInfo||{}).suitNo||{}} </p>
                             <p>Over 2 years</p>
                             <p>Spouse</p>
                         </Col>
@@ -76,13 +80,14 @@ const { Option } = Select;
             
                             <Col span={12}>
                             <label>Housing
-                                <Icon type="edit" style={{ color: 'blue' }} />
+                                <Icon type="edit" style={{ color: 'blue' }} onClick={(e) => this.currentPage(1)} />
                                 </label> 
                                 <br/><br/>
                                 <p>{(this.props.housingInfo||{}).ownJ||{}} </p>
                                 <p>{(this.props.housingInfo||{}).rentJ||{}} </p>
                                 <p>{(this.props.housingInfo||{}).addressJ||{}} </p>
                                 <p>{(this.props.housingInfo||{}).cityJ||{}},{(this.props.housingInfo||{}).stateJ||{}},{(this.props.housingInfo||{}).zipcodeJ||{}} </p>
+                                <p>{(this.props.housingInfo||{}).suitNoJ||{}} </p>
                                 <p>Over 2 years</p>
                                 <p>Spouse</p>
                             </Col>
@@ -91,8 +96,8 @@ const { Option } = Select;
                    <Row gutter={12}>
                         <Col span={12}>
                             <label>Employment
-                            <Icon type="edit" style={{ color: 'blue' }} />
-                            </label>
+                            <Icon type="edit" style={{ color: 'blue' }} onClick={(e) => this.currentPage(2)} />
+                            </label><br/><br/>
                                <p>{(this.props.employementInfo||{}).employeed||{}} </p>
                                <p>{(this.props.employementInfo||{}).employer||{}} </p>
                                <p>{(this.props.employementInfo||{}).money||{}}/{(this.props.employementInfo||{}).paytype||{}} </p>
@@ -100,7 +105,7 @@ const { Option } = Select;
                         {this.props.selectedSection==='Joint' && 
                         <Col span={12}>
                             <label>Employment
-                            <Icon type="edit" style={{ color: 'blue' }} />
+                            <Icon type="edit" style={{ color: 'blue' }} onClick={(e) => this.currentPage(2)} />
                             </label> <br/><br/>
                             <p>{(this.props.employementInfo||{}).employeedJ||{}} </p>
                                <p>{(this.props.employementInfo||{}).employerJ||{}} </p>
@@ -126,7 +131,7 @@ const { Option } = Select;
               }
             <Divider/>
                   <Form.Item >
-                    <Button  onClick={this.nextClick}  type="primary" htmlType="submit" className="login-form-button">
+                    <Button   type="primary" htmlType="submit" className="login-form-button">
                          Submit Application
                     </Button>
                  </Form.Item>   

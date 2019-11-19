@@ -5,7 +5,7 @@ import EmploymentContainer from "./EmploymentContainer";
 import Housing from "./HousingContainer";
 import  PersonalContainer from "./PersonalContainer";
 import {setNextPage,startApp , setShowProInfo,
-    setShowReqInfo} from '../store/actions';
+    setShowReqInfo} from '../actions';
 import { Form, Icon, Input, Button, Checkbox,Steps, Divider,message } from 'antd';
 const { Step } = Steps;
   
@@ -130,25 +130,13 @@ class HomeContainer extends React.Component {
                     <div>
                     <div>
         <Steps current={current}>
-         
             <Step id={current} onClick={(e) => this.currentPage(0)}   />
-            <Step id={current} onClick={(e) => this.currentPage(1)}   />
-            <Step id={current} onClick={(e) => this.currentPage(2)}   />
-            <Step id={current} onClick={(e) => this.currentPage(3)}   />
-         
+            <Step disabled={!this.props.contractSaved} id={current} onClick={(e) => this.currentPage(1)}   />
+            <Step disabled={!this.props.housingSaved} id={current} onClick={(e) => this.currentPage(2)}   />
+            <Step disabled={!this.props.employmentSaved} id={current} onClick={(e) => this.currentPage(3)}   />
         </Steps>
         <div className="steps-content">{steps[current].content}</div>
         <div className="steps-action">
-          {/* {current < steps.length - 1 && (
-            <Button type="primary" onClick={() => this.next()}>
-              {steps[current].title}
-            </Button>
-          )} */}
-          {/* {current === steps.length - 1 && (
-            <Button type="primary" onClick={() => message.success('Processing complete!')}>
-              Sumib
-            </Button>
-          )} */}
           {current > 0 && (
             <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
               Previous
@@ -170,7 +158,10 @@ const mapStateToProps = (state) => ({
     current:state.current,
     startAppState:state.startApp,
     showProInfo:state.showMoreProtectedInfo,
-    showReqInfo:state.showMoreRequiredInfo
+    showReqInfo:state.showMoreRequiredInfo,
+    contractSaved:state.contractSaved,
+    housingSaved:state.housingSaved,
+    employmentSaved:state.employmentSaved    
 })
 const mapDispatchToProps = {
     setNextPage: setNextPage,

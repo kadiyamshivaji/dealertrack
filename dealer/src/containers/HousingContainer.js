@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import { Form, Icon, Input, Button, Checkbox ,Row,Col,Select,Divider} from 'antd';
 
-import {setContactSection,setNextPage,saveHousingInfo} from '../store/actions';
+import {setContactSection,setNextPage,saveHousingInfo} from '../actions';
 
 
 import 'antd/dist/antd.css';
@@ -95,8 +95,12 @@ const { Option } = Select;
                     <Select
                      placeholder="Do you Own or rent ?"
                      style={{ width: '100% '}} >
-                      <Option value="yes">yes</Option>                      
-                      <Option value="no">No</Option>
+                      <Option value="Mortgage">Mortgage</Option>                      
+                      <Option value="Rent">Rent</Option>
+                      <Option value="Family">Family</Option>
+                      <Option value="Other">Other</Option>
+                      <Option value="OwnOutright">OwnOutright</Option>
+                      <Option value="Military">Military</Option>
                     </Select>,
                   )}
                 </Form.Item>
@@ -152,9 +156,12 @@ const { Option } = Select;
                 </Form.Item>
                 {formItems}
               <Form.Item >
-                <Button  onClick={this.add} style={{ width: '100%' }}>
-                  <Icon type="plus" /> Suffe/Appartment Number (optional)
-                </Button>
+              {getFieldDecorator('suitNo', {
+                    rules: [{ required: true, message: 'Please input your address' }],
+                  })(
+                    <Input
+                      placeholder="Suite/Apt Number (optional)"
+                    />,)}
               </Form.Item>
                 <p>Have you lived here for 2 years or more?</p>
                 <Form.Item >
@@ -175,11 +182,15 @@ const { Option } = Select;
                             rules: [{ required: true, message: 'Please input your !' }],
                           })(
                             <Select
-                            placeholder="Do you Own or rent ?"
-                            style={{ width: '100% '}} >
-                             <Option value="yes">yes</Option>                      
-                             <Option value="no">No</Option>
-                           </Select>,
+                     placeholder="Do you Own or rent ?"
+                     style={{ width: '100% '}} >
+                      <Option value="Mortgage">Mortgage</Option>                      
+                      <Option value="Rent">Rent</Option>
+                      <Option value="Family">Family</Option>
+                      <Option value="Other">Other</Option>
+                      <Option value="OwnOutright">OwnOutright</Option>
+                      <Option value="Military">Military</Option>
+                    </Select>,
                           )}
                         </Form.Item>
                       
@@ -235,11 +246,13 @@ const { Option } = Select;
                             </Row>
                         </Form.Item>
                       
-                        {formItems}
-              <Form.Item >
-                <Button  onClick={this.add} style={{ width: '100%' }}>
-                  <Icon type="plus" /> Suffe/Appartment Number (optional)
-                </Button>
+                        <Form.Item >
+              {getFieldDecorator('suitNoJ', {
+                    rules: [{ required: true, message: 'Please input your address' }],
+                  })(
+                    <Input
+                      placeholder="Suite/Apt Number (optional)"
+                    />,)}
               </Form.Item>
                         <p>Have you lived here for 2 years or more?</p>
                         <Form.Item >
