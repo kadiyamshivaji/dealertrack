@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
-import HomeContainer from './containers/HomeContainer'
+import HomeContainer from './containers/HomeContainer';
+import FormComponent from './Form';
 import { Formik } from 'formik';
 function App() {
   return (
     <div className="App">   
       <header className="App-header">
-        <HomeContainer> </HomeContainer>
+        <FormComponent> </FormComponent>
       </header>
     </div>
   );
