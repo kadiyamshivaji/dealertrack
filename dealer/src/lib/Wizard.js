@@ -14,6 +14,7 @@ class Wizard extends React.Component {
   }
 
   getTotalSteps(children) {
+    debugger
     let totalSteps = 0;
     Children.forEach(children, child => {
       if (child.type.displayName === 'StepsList') {
