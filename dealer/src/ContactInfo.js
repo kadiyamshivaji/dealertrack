@@ -50,7 +50,7 @@ export default ({ touched, errors }) => (
     <Row>
        <p>we respect your privacy and will only use this information to process your appplication and communicate with you about loan</p>
        <h5>Requireed for Identity Verification</h5>
-       <p>if you are not ready to apply for credit and justwant to know your rates <a>check them here</a></p>
+       <p>if you are not ready to apply for credit and justwant to know your rates <a href='' >check them here</a></p>
     </Row>
     <Row>
          <DatePicker name="datepicker" />
@@ -75,6 +75,10 @@ export default ({ touched, errors }) => (
     <Row>
        <p>Your Social Security Number is required to ensure we're reviewing the correct credit report while we consider your application </p>
     </Row>
+    <Row>
+      <hr></hr>
+    </Row>
+    <h3 className="h6">Co-Application Name</h3>
 </Container>
 
   

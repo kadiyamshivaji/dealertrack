@@ -127,3 +127,7 @@ background: none;
 input {
   border-radius: 0px !important;
 }
+hr{
+  background: #ccc;
+  width: 100%;
+}
