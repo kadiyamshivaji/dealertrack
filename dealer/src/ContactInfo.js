@@ -7,6 +7,13 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export default ({ touched, errors }) => (
   <Container>
+      <Row>
+        <h2>Contact Info</h2>
+      </Row>
+        <br/>
+          <Row>
+            <h5>Application Type</h5>
+          </Row>
     <Row>
       <Col><button className='active' name="Individual">Individual</button></Col>
       <Col><button name="Individual" >Joint</button></Col>
@@ -77,7 +84,7 @@ export default ({ touched, errors }) => (
     <Row>
       <hr></hr>
     </Row>
-    <Row>
+    {/* <Row>
       <h3 className="h6">Co-Application Name</h3>
     </Row>
     <Row>
@@ -122,7 +129,6 @@ export default ({ touched, errors }) => (
     </Row>
     <Row>
          <DatePicker name="DatepickerJ" />
-       {/* <Field name="datepicker" id="datepicker" placeholder='datepicker'  /> */}
        {touched.DatepickerJ &&
           typeof errors.DatepickerJ === "string" &&(
             <div className="input-feedback">{errors.DatepickerJ}</div>
@@ -142,7 +148,7 @@ export default ({ touched, errors }) => (
     </Row>
     <Row>
        <p>Your Social Security Number is required to ensure we're reviewing the correct credit report while we consider your application </p>
-    </Row>
+    </Row> */}
 </Container>
 
   

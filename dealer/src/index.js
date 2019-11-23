@@ -3,7 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import LeadFormDetails from './LeadFormDetails';
 import withFormik from "./withFormik";
-import "./helper.css";  
+import "./App.css";  
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App(props) {

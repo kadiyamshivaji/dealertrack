@@ -1,9 +1,19 @@
 import React from "react";
 import { Field } from "formik";
 import {Row,Col,Container} from 'react-bootstrap';
+const RadioBox = ({ id, name, label, checked, ...props }) => (
+  
+  <div>
+    <input type="radio" id={id} name={name} checked={checked} {...props} />
+    <label htmlFor={id}>{label}</label>
+  </div>
+);
 
 export default ({ touched, errors }) => (
   <Container>
+    <Row>
+        <h2>Housing</h2>
+      </Row>
      <Row>
      <select name="own" id="own"
        placeholder="Do you Own or rent ?"
@@ -64,8 +74,34 @@ export default ({ touched, errors }) => (
       <p>Have you lived here for 2 years or more?</p>
     </Row>
     <Row>
-     <Col><button name="yes">yes</button></Col>
-     <Col><button name="no">no</button></Col>
+      <Col>
+      
+    <Field
+          name="present_at_home_visit"
+          render={({ field }) => (
+            <RadioBox
+              {...field}
+              value="true"
+              id="present_at_home_visit-0"
+              // checked={values.present_at_home_visit === "true"}
+              label="Yes"
+            />
+          )}
+        />
+        </Col>
+        <Col>
+        <Field
+          name="present_at_home_visit"
+          render={({ field }) => (
+            <RadioBox
+              {...field}
+              value="false"
+              id="present_at_home_visit-1"
+              // checked={values.present_at_home_visit === "false"}
+              label="No"
+            />
+          )}
+        /></Col>
     </Row>
     <Row>
       <hr></hr>

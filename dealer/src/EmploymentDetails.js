@@ -1,9 +1,18 @@
 import React from "react";
 import { Field } from "formik";
 import {Row,Col,Container} from 'react-bootstrap'
-
+const RadioBox = ({ id, name, label, checked, ...props }) => (
+  
+  <div>
+    <input type="radio" id={id} name={name} checked={checked} {...props} />
+    <label htmlFor={id}>{label}</label>
+  </div>
+);
 export default ({ touched, errors }) => (
   <Container>
+     <Row>
+        <h2>Employment</h2>
+      </Row>
     <Row>
     <select 
                placeholder="Employment Status "
@@ -29,12 +38,41 @@ export default ({ touched, errors }) => (
     <p>Have you lived here for 2 years or more?</p>
     </Row>
     <Row>
-    <Col>   <button name="yes" >yes</button>  </Col>
-      <Col>   <button name="no" >No</button>  </Col>
+      <Col>
+      
+    <Field
+          name="present_at_home_visit"
+          render={({ field }) => (
+            <RadioBox
+              {...field}
+              value="true"
+              id="present_at_home_visit-0"
+              // checked={values.present_at_home_visit === "true"}
+              label="Yes"
+            />
+          )}
+        />
+        </Col>
+        <Col>
+        <Field
+          name="present_at_home_visit"
+          render={({ field }) => (
+            <RadioBox
+              {...field}
+              value="false"
+              id="present_at_home_visit-1"
+              // checked={values.present_at_home_visit === "false"}
+              label="No"
+            />
+          )}
+        /></Col>
     </Row>
     <Row>
-      <h3>How much do you make?</h3>
-      <p>Please include salary wages and bonuses but not other sources like child support or housing allowance</p>
+      <h5>How much do you make?</h5>
+      </Row>
+
+<Row>   
+     <p>Please include salary wages and bonuses but not other sources like child support or housing allowance</p>
     </Row>
     <Row>
       <Col>
@@ -54,7 +92,9 @@ export default ({ touched, errors }) => (
       </Col>
     </Row>
     <Row>
-    <h3>Additional Income (optional)</h3>
+    <h5>Additional Income (optional)</h5>
+    </Row>
+    <Row>
     <p>Allmany child support, or separete maintenance income need not be discolsed unless  relied upon credit</p>
 
     </Row>

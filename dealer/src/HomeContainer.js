@@ -19,7 +19,6 @@ import {
   import WelcomeDetails from './WelcomeDetails';
   import LeadFormDetails from './LeadFormDetails';
   import withFormik from "./withFormik";
-  import "./helper.css";  
   import 'bootstrap/dist/css/bootstrap.min.css';
   function basicValidations({ errors }) {
     return !errors.firstName;

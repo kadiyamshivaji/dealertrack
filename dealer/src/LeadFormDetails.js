@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import {Row,Col,Container} from 'react-bootstrap'
 import { Field } from "formik";
 import { Formik } from 'formik';
-import { FaArrowRight,FaArrowUp } from 'react-icons/fa';
+import { FaArrowRight,FaArrowUp,FaDotCircle ,FaAngleDoubleRight,FaAngleUp} from 'react-icons/fa';
 import HomeContainer from './HomeContainer'
 const validate = {
   1: values => {
@@ -118,6 +118,13 @@ class LeadFormDetails extends React.Component {
             <form onSubmit={handleSubmit}>
           {this.state.ShowLeadPage && 
                <Container>
+                 <Row>
+                   <h2>Lead Form</h2>
+                 </Row>
+                 <br/>
+                 <Row>
+                   <h4>This activity is lead gated</h4>
+                 </Row>
                   <Row>
                     <Field name="FrstNameL" id="FirstNameL" placeholder='FirstName' />
                     {errors.FirstNameL && (
@@ -149,18 +156,19 @@ class LeadFormDetails extends React.Component {
       }
       {this.state.showWelcomePage && 
             <Container>
+                        <Row>
+                          <h2>Welcome  FirstName</h2>
+                        </Row>
+                        <br/>
+                        <Row>
+                          <h4>This activity is lead gated</h4>
+                        </Row>
                           <Row>
-                          <label>Welcome firstName</label>
+                          <p>Placeholder text .A soft inquiry of your credit history does not impact your credit card score and will give you a better understanding of the auto loan rates available to you</p>
                           </Row>
+                          <br/>
                           <Row>
-                          <label>Do you know your credit score?</label>
-                          </Row>
-                          <Row>
-                          <label>Do you know your credit scorkjfskdjfsjdfksjf
-                              sfdksdflsf
-                              sjdfksjfs
-                              skfdhskfksf
-                              jskdfj?</label>
+                            <p>If you are ready to purchase your vehicle,completing you credit application online will save you time in the dealership</p>
                           </Row>
                           <Row>
                             <Field name="LastNameL" id="LastNameL" placeholder='LastName' />
@@ -195,28 +203,37 @@ class LeadFormDetails extends React.Component {
         this.state.ShowHomePage &&
         <Container>
           <Row>
-            <h2 className="h3">Apply for Credit  </h2>
+              <h2>Apply for Credit</h2>
+          </Row>
+          <br/>
+          <Row>
+            <h4>Why it's smart for Apply Online</h4>
           </Row>
           <Row>
-            <h3>Why it's smart for Apply Online</h3>
-            <p>Save time at dealership</p>
-            <p>Know whatyour payment will be up front</p>
-            <p>Get the best loan Rate you qualify for</p>
-            <p>Avoid the suprises if you canit get the car you want</p>
+            <p><FaDotCircle className="circleDot"/> Save time at dealership</p>
+            </Row>
+          <Row>
+            <p><FaDotCircle className="circleDot"/> Know whatyour payment will be up front</p>
+            </Row>
+          <Row>
+            <p><FaDotCircle className="circleDot"/> Get the best loan Rate you qualify for</p>
+            </Row>
+          <Row>
+            <p><FaDotCircle className="circleDot"/> Avoid the suprises if you canit get the car you want</p>
           </Row>
           <Row>
             <hr/>
           </Row>
           <Row>
-            <h3>Your Information is Protected</h3>
+            <h4>Your Information is Protected</h4>
           </Row>
           <Row>
-          <label  onClick={this.setShowProInfo} type="primary">
+          <span  onClick={this.setShowProInfo} type="primary">
             { !this.state.showProInfo? 'Show More' :'Show Less'}
             { !this.state.showProInfo?  
-                    <FaArrowRight />
-                        :<FaArrowUp />}
-            </label><br/><br/>
+                    <FaAngleDoubleRight />
+                        :<FaAngleUp />}
+            </span><br/><br/>
             {this.state.showProInfo &&
             <p>We realize that some people get nervous when giving personal info,especially over the computer.Not to Worry.All information is encrypted and protected and only used to process your application <br></br>
             Please Note: Once you submit an application,you can't chnage details about payment terms,vehicle protection or your trade in.</p>
@@ -226,34 +243,67 @@ class LeadFormDetails extends React.Component {
             <hr/>
           </Row>
           <Row>
-          <h3>Required Information</h3>
+          <h4>Required Information</h4>
           </Row>
           <Row>
-              <label onClick={this.setShowReqInfo}  type="primary">
+              <span onClick={this.setShowReqInfo}  type="primary">
             { !this.state.showReqInfo? 'Show More' :'Show Less'}
                 { !this.state.showReqInfo?  
-                         <FaArrowRight />
-                         :<FaArrowUp />}
-            </label><br/><br/>
+                         <FaAngleDoubleRight />
+                         :<FaAngleUp />}
+            </span><br/><br/>
             {this.state.showReqInfo &&
                 <div>
-                    <p>Borrower and Co-Borrower,if applicable,will need the following information to compelete the application </p>
-                    <h3>Personal Information</h3>
-                    <p>Name</p>
-                    <p>Phone Number</p>
-                    <p>Email</p>
-                    <p>Date of Birth</p>
-                    <p>Social Security Number</p>
+                  <Row>
+                      <p>Borrower and Co-Borrower,if applicable,will need the following information to compelete the application </p>
+                  </Row>     
+                  <Row>              
+                    <h5>Personal Information</h5>
+                    </Row>
+                    <Row>
+                    <p><FaDotCircle className="circleDot"/> Name</p>
 
-                    <h3>Housing Information</h3>
-                    <p>Monthly Mortgage or Rent</p>
-                    <p>Home Address</p>
-                    <p>If less than 2 years at current address,what is your previous address></p>
-                    <h3>Employment Information</h3>
-                    <p>Employer</p>
-                    <p>Income</p>
-                    <p>If less than 2 years at current employer,what is your previous employer ?</p>
-                    <p>Additional Income(optional)</p>
+                    </Row>
+                    <Row>
+
+                    <p><FaDotCircle className="circleDot"/> Phone Number</p>
+                    </Row>
+                    <Row>
+                    <p><FaDotCircle className="circleDot"/> Email</p>
+                    </Row>
+                    <Row>
+                    <p><FaDotCircle className="circleDot"/> Date of Birth</p>
+                    </Row>
+                    <Row>
+                    <p><FaDotCircle className="circleDot"/> Social Security Number</p>
+                    </Row>
+                    <Row>              
+                    <h5>Housing Information</h5>
+                    </Row>
+                    <Row>  
+                    <p> <FaDotCircle className="circleDot"/> Monthly Mortgage or Rent</p>
+                    </Row>
+                    <Row>  
+                    <p><FaDotCircle className="circleDot"/> Home Address</p>
+                    </Row>
+                    <Row>  
+                    <p><FaDotCircle className="circleDot"/> If less than 2 years at current address,what is your previous address></p>
+                    </Row>
+                    <Row>              
+                    <h5>Employment Information</h5>
+                    </Row>
+                    <Row>  
+                    <p><FaDotCircle className="circleDot"/> Employer</p>
+                    </Row>
+                    <Row>  
+                    <p><FaDotCircle className="circleDot"/> Income</p>
+                    </Row>
+                    <Row>  
+                    <p><FaDotCircle className="circleDot"/> If less than 2 years at current employer,what is your previous employer ?</p>
+                    </Row>
+                    <Row>  
+                    <p><FaDotCircle className="circleDot"/> Additional Income(optional)</p>
+                    </Row>
                 </div>
                 }
           </Row>
