@@ -7,7 +7,6 @@ import "react-datepicker/dist/react-datepicker.css";
 
 export default ({ touched, errors }) => (
   <Container>
-    <p>ryrtyrt{process.env.ENV}</p>
     <Row>
       <Col><button className='active' name="Individual">Individual</button></Col>
       <Col><button name="Individual" >Joint</button></Col>
@@ -78,7 +77,72 @@ export default ({ touched, errors }) => (
     <Row>
       <hr></hr>
     </Row>
-    <h3 className="h6">Co-Application Name</h3>
+    <Row>
+      <h3 className="h6">Co-Application Name</h3>
+    </Row>
+    <Row>
+      <Field name="FirstNameJ" id="FirstNameJ" placeholder='FirstNameJ' />
+        {touched.FirstNameJ &&
+          typeof errors.FirstNameJ === "string" &&(
+            <div className="input-feedback">{errors.FirstNameJ}</div>
+          )}
+    </Row>
+    <Row>
+      <Field name="LastNameJ" id="LastNameJ" placeholder='LastNameJ' />
+      {touched.LastNameJ &&
+          typeof errors.LastNameJ === "string" &&(
+            <div className="input-feedback">{errors.LastNameJ}</div>
+          )}
+    </Row>
+    <Row>
+       <Field name="PhoneJ" id="PhoneJ" placeholder='PhoneJ'  />
+       {touched.PhoneJ &&
+          typeof errors.PhoneJ === "string" &&(
+            <div className="input-feedback">{errors.PhoneJ}</div>
+          )}
+    </Row>
+    <Row>
+       <Field name="EmailJ" id="EmailJ" placeholder='EmailJ'  />
+       {touched.EmailJ &&
+          typeof errors.EmailJ === "string" &&(
+            <div className="input-feedback">{errors.EmailJ}</div>
+          )}
+    </Row>
+    <Row>
+       <Field name="ConfirmEmailJ" id="ConfirmEmailJ" placeholder='ConfirmEmailJ'  />
+       {touched.ConfirmEmailJ &&
+          typeof errors.ConfirmEmailJ === "string" &&(
+            <div className="input-feedback">{errors.ConfirmEmailJ}</div>
+          )}
+    </Row>
+    <Row>
+       <p>we respect your privacy and will only use this information to process your appplication and communicate with you about loan</p>
+       <h5>Requireed for Identity Verification</h5>
+       <p>if you are not ready to apply for credit and justwant to know your rates <a href='' >check them here</a></p>
+    </Row>
+    <Row>
+         <DatePicker name="DatepickerJ" />
+       {/* <Field name="datepicker" id="datepicker" placeholder='datepicker'  /> */}
+       {touched.DatepickerJ &&
+          typeof errors.DatepickerJ === "string" &&(
+            <div className="input-feedback">{errors.DatepickerJ}</div>
+          )}
+    </Row>
+    <Row>
+      <Col> 
+          <Field name="SsnJ" id="SsnJ" placeholder='SsnJ'  />
+          {touched.SsnJ &&
+              typeof errors.SsnJ === "string" &&(
+                <div className="input-feedback">{errors.SsnJ}</div>
+              )}
+      </Col>
+      <Col>
+         <label><FaLock></FaLock> SSL Secure Connection</label>
+      </Col>     
+    </Row>
+    <Row>
+       <p>Your Social Security Number is required to ensure we're reviewing the correct credit report while we consider your application </p>
+    </Row>
 </Container>
 
   

@@ -13,12 +13,14 @@ import {
   } from "./lib";
   import { DisplayFormikState } from './helper';
   import ContactInfo from "./ContactInfo";
-  import ContactDetails from "./ContactDetails";
-  import AddressDetails from "./AddressDetails";
+  import HousingDetails from "./HousingDetails";
+  import EmployementDetails from "./EmploymentDetails";
+  import PersonalDetails from "./PersonalDetails";
+  import WelcomeDetails from './WelcomeDetails';
+  import LeadFormDetails from './LeadFormDetails';
   import withFormik from "./withFormik";
-  
- import "./helper.css";  
- import 'bootstrap/dist/css/bootstrap.min.css';
+  import "./helper.css";  
+  import 'bootstrap/dist/css/bootstrap.min.css';
   function basicValidations({ errors }) {
     return !errors.firstName;
   }
@@ -34,16 +36,18 @@ import {
   function App(props) {
     return (
       <div className="App">
-        <FormikWizardProvider {...props}>
+        {/* <FormikWizardProvider {...props}>
           {({ getValidators, ...otherProps }) => (
             <Wizard {...otherProps}>
+        <LeadFormDetails></LeadFormDetails>
+
               <StepsList
                 validators={getValidators([basicValidations, contactValidations, addressValidations])}
               >
                 <Step component={ContactInfo} title="Contact Info" />
-                <Step component={ContactDetails} title="Housing Details" />
-                <Step component={AddressDetails} title="Employement Details" />
-                <Step component={AddressDetails} title="Personal Details" />
+                <Step component={HousingDetails} title="Housing Details" />
+                <Step component={EmployementDetails} title="Employement Details" />
+                <Step component={PersonalDetails} title="Personal Details" />
               </StepsList>
               <ButtonsList>
                 <PreviousButton />
@@ -53,7 +57,8 @@ import {
             </Wizard>
           )}
         </FormikWizardProvider>
-        <DisplayFormikState {...props} />
+        <DisplayFormikState {...props} /> */}
+        <LeadFormDetails></LeadFormDetails>
       </div>
     );
   }
