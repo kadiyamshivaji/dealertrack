@@ -8,7 +8,6 @@ const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2
 
 
   class FormComponent extends React.Component {
-    input
     formatPhoneNumber(phoneNumberString) {
       var cleaned = ('' + phoneNumberString).replace(/\D/g, '')
       var match = cleaned.match(/^(1|)?(\d{3})(\d{3})(\d{4})$/)
