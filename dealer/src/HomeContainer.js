@@ -20,16 +20,20 @@ import {
   import LeadFormDetails from './LeadFormDetails';
   import withFormik from "./withFormik";
   import 'bootstrap/dist/css/bootstrap.min.css';
-  function basicValidations({ errors }) {
-    return !errors.firstName;
+  function ContactInfoValidations({ errors }) {
+    return !errors.FirstName;
   }
   
-  function contactValidations({ errors }) {
-    return !errors.email;
+  function HousingDetailsValidations({ errors }) {
+    return !errors.Rent;
   }
   
-  function addressValidations({ errors }) {
-    return !errors.addressLine1;
+  function EmployementDetailsValidations({ errors }) {
+    return !errors.Employer;
+  }
+
+  function PersonalDetailsValidations({ errors }) {
+    return !errors.Employer;
   }
   class HomeContainer extends React.Component {
       constructor(props){
@@ -45,7 +49,8 @@ import {
         <LeadFormDetails></LeadFormDetails>
 
               <StepsList
-                validators={getValidators([basicValidations, contactValidations, addressValidations])}
+                validators={getValidators([ContactInfoValidations, HousingDetailsValidations,
+                  EmployementDetailsValidations,PersonalDetailsValidations])}
               >
                 <Step component={ContactInfo} title="Contact Info" />
                 <Step component={HousingDetails} title="Housing Details" />

@@ -53,38 +53,38 @@ export default ({ touched, errors,values }) => (
       </Col>
         </Row>
     <Row>
-      <Field name="firstName" id="firstName" placeholder='firstName' />
-        {touched.firstName &&
-          typeof errors.firstName === "string" &&(
-            <div className="input-feedback">{errors.firstName}</div>
+      <Field name="FirstName" id="FirstName" placeholder='firstName' />
+        {touched.FirstName &&
+          typeof errors.FirstName === "string" &&(
+            <div className="input-feedback">{errors.FirstName}</div>
           )}
     </Row>
     <Row>
-      <Field name="lastName" id="lastName" placeholder='lastName' />
-      {touched.lastName &&
-          typeof errors.lastName === "string" &&(
-            <div className="input-feedback">{errors.lastName}</div>
+      <Field name="LastName" id="LastName" placeholder='lastName' />
+      {touched.LastName &&
+          typeof errors.LastName === "string" &&(
+            <div className="input-feedback">{errors.LastName}</div>
           )}
     </Row>
     <Row>
-       <Field name="phone" id="phone" placeholder='phone'  />
-       {touched.phone &&
-          typeof errors.phone === "string" &&(
-            <div className="input-feedback">{errors.phone}</div>
+       <Field name="Phone" id="Phone" placeholder='phone'  />
+       {touched.Phone &&
+          typeof errors.Phone === "string" &&(
+            <div className="input-feedback">{errors.Phone}</div>
           )}
     </Row>
     <Row>
-       <Field name="email" id="email" placeholder='email'  />
-       {touched.email &&
-          typeof errors.email === "string" &&(
-            <div className="input-feedback">{errors.email}</div>
+       <Field name="Email" id="Email" placeholder='email'  />
+       {touched.Email &&
+          typeof errors.Email === "string" &&(
+            <div className="input-feedback">{errors.Email}</div>
           )}
     </Row>
     <Row>
-       <Field name="confirmEmail" id="confirmEmail" placeholder='confirmEmail'  />
-       {touched.confirmEmail &&
-          typeof errors.confirmEmail === "string" &&(
-            <div className="input-feedback">{errors.confirmEmail}</div>
+       <Field name="ConfirmEmail" id="ConfirmEmail" placeholder='confirmEmail'  />
+       {touched.ConfirmEmail &&
+          typeof errors.ConfirmEmail === "string" &&(
+            <div className="input-feedback">{errors.ConfirmEmail}</div>
           )}
     </Row>
     <Row>
@@ -93,19 +93,18 @@ export default ({ touched, errors,values }) => (
        <p>if you are not ready to apply for credit and justwant to know your rates <a href='' >check them here</a></p>
     </Row>
     <Row>
-         <DatePicker name="datepicker" />
-       {/* <Field name="datepicker" id="datepicker" placeholder='datepicker'  /> */}
-       {touched.datepicker &&
-          typeof errors.datepicker === "string" &&(
-            <div className="input-feedback">{errors.datepicker}</div>
+         <DatePicker name="Datepicker" />
+       {touched.Datepicker &&
+          typeof errors.Datepicker === "string" &&(
+            <div className="input-feedback">{errors.Datepicker}</div>
           )}
     </Row>
     <Row>
       <Col> 
-          <Field name="ssn" id="ssn" placeholder='ssn'  />
-          {touched.ssn &&
-              typeof errors.ssn === "string" &&(
-                <div className="input-feedback">{errors.ssn}</div>
+          <Field name="Ssn" id="Ssn" placeholder='ssn'  />
+          {touched.Ssn &&
+              typeof errors.Ssn === "string" &&(
+                <div className="input-feedback">{errors.Ssn}</div>
               )}
       </Col>
       <Col>
@@ -125,35 +124,35 @@ export default ({ touched, errors,values }) => (
       <h6>Co-Application Name</h6>
     </Row>
     <Row>
-      <Field name="FirstNameJ" id="FirstNameJ" placeholder='FirstNameJ' />
+      <Field name="FirstNameJ" id="FirstNameJ" placeholder='FirstName' />
         {touched.FirstNameJ &&
           typeof errors.FirstNameJ === "string" &&(
             <div className="input-feedback">{errors.FirstNameJ}</div>
           )}
     </Row>
     <Row>
-      <Field name="LastNameJ" id="LastNameJ" placeholder='LastNameJ' />
+      <Field name="LastNameJ" id="LastNameJ" placeholder='LastName' />
       {touched.LastNameJ &&
           typeof errors.LastNameJ === "string" &&(
             <div className="input-feedback">{errors.LastNameJ}</div>
           )}
     </Row>
     <Row>
-       <Field name="PhoneJ" id="PhoneJ" placeholder='PhoneJ'  />
+       <Field name="PhoneJ" id="PhoneJ" placeholder='Phone'  />
        {touched.PhoneJ &&
           typeof errors.PhoneJ === "string" &&(
             <div className="input-feedback">{errors.PhoneJ}</div>
           )}
     </Row>
     <Row>
-       <Field name="EmailJ" id="EmailJ" placeholder='EmailJ'  />
+       <Field name="EmailJ" id="EmailJ" placeholder='Email'  />
        {touched.EmailJ &&
           typeof errors.EmailJ === "string" &&(
             <div className="input-feedback">{errors.EmailJ}</div>
           )}
     </Row>
     <Row>
-       <Field name="ConfirmEmailJ" id="ConfirmEmailJ" placeholder='ConfirmEmailJ'  />
+       <Field name="ConfirmEmailJ" id="ConfirmEmailJ" placeholder='ConfirmEmail'  />
        {touched.ConfirmEmailJ &&
           typeof errors.ConfirmEmailJ === "string" &&(
             <div className="input-feedback">{errors.ConfirmEmailJ}</div>
@@ -173,7 +172,7 @@ export default ({ touched, errors,values }) => (
     </Row>
     <Row>
       <Col> 
-          <Field name="SsnJ" id="SsnJ" placeholder='SsnJ'  />
+          <Field name="SsnJ" id="SsnJ" placeholder='Ssn'  />
           {touched.SsnJ &&
               typeof errors.SsnJ === "string" &&(
                 <div className="input-feedback">{errors.SsnJ}</div>

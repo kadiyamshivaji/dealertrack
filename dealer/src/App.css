@@ -162,12 +162,39 @@ input#present_at_home_visit-0 {
 input#present_at_home_visit-1 {
   display: none;
 }
+input#Having_Two_years_Joint-0 {
+  display: none;
+}
+input#Having_Two_years_Joint-1 {
+  display: none;
+}
+input#Having_Two_years_EmployementJ-0 {
+  display: none;
+}
+input#Having_Two_years_EmployementJ-1 {
+  display: none;
+}
 .label{
-  
   padding: .5rem;
   font-size: 16px;
   width: 100%;
   display: block;
   border: 1px solid #ccc;
   color: #000;
+}
+
+.css-yk16xz-control {
+  background-color: initial !important;
+  border-color:initial !important;
+  border-radius:initial !important;
+  border-style:initial !important;
+  border-width:initial !important;
+}
+
+.select{
+  font-size: 16px;
+    width: 100%;
+    display: block;
+    border: 1px solid #ccc;
+    color: #000;
 }

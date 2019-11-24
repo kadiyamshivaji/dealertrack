@@ -2,31 +2,77 @@ import React from "react";
 import { Field } from "formik";
 import {Row,Col,Container} from 'react-bootstrap';
 import { FaPlusCircle} from 'react-icons/fa';
-
+import {CustomSelect} from './lib/Select';
 const RadioBox = ({ id, name, label, checked,css, ...props }) => (
   <div>
     <input type="radio" id={id} name={name} checked={checked} {...props} />
     <label className={css} htmlFor={id}>{label}</label>
   </div> 
 );
+const TenureOptions=[
+  {
+    label: "Monthly",
+    value: "Monthly"
+  },
+  {
+    label: "Yearly",
+    value: "Yearly"
+  }
+];
+const EmployerOptions = [
+  {
+    label: "Employment Status",
+    value: "select"
+  },
+  {
+    label: "Employed",
+    value: "Employed"
+  },
+  {
+    label: "Unemployed",
+    value: "Unemployed"
+  },
+  {
+    label: "Self-Employed",
+    value: "Self-Employed"
+  },
+  {
+    label: "Student",
+    value: "Student"
+  },
+  {
+    label: "Retired",
+    value: "Retired"
+  },
+  {
+    label: "Active Military",
+    value: "Active Military"
+  },
+  {
+    label: "Retired Military",
+    value: "Retired Military"
+  },
+  {
+    label: "Others",
+    value: "Others"
+  }
+];
+
 export default ({ touched, errors,values }) => (
   <Container>
      <Row>
         <h2>Employment</h2>
       </Row>
+      
     <Row>
-      <select 
-        style={{ width: '100% '}}>
-        <option value="dd">Employment Status </option>
-        <option value="Employed">Employed</option>
-        <option value="Unemployed">Unemployed</option>
-        <option value="Self-Employed">Self-Employed</option>
-        <option value="Student">Student</option>
-        <option value="Retired">Retired</option>
-        <option value="Active Military">Active Military</option>
-        <option value="Retired Military">Retired Military</option>
-        <option value="Others">Others</option>
-      </select>
+    <Field
+        className="select"
+        name="Empolyement_Status"
+        options={EmployerOptions}
+        component={CustomSelect}
+        placeholder="Are you currently Employed?"
+        isMulti={false}
+      />
     </Row>
     <Row>
       <Field name="Employer" id="Employer" placeholder='Employer' />
@@ -83,12 +129,14 @@ export default ({ touched, errors,values }) => (
           )}
       </Col>
       <Col>
-      <select 
-          placeholder="select your pay"
-           style={{ width: '100% '}} >
-          <option value="m">Monthly</option>
-          <option value="a">Yearly</option>
-      </select>,
+      <Field
+        className="select"
+        name="Tenure"
+        options={TenureOptions}
+        component={CustomSelect}
+        placeholder="select your pay"
+        isMulti={false}
+      />
       </Col>
     </Row>
     <Row>
@@ -112,24 +160,20 @@ export default ({ touched, errors,values }) => (
           <h6>Co-Application Employment</h6>
       </Row>
     <Row>
-      <select 
-        style={{ width: '100% '}}>
-        <option value="dd">Employment Status </option>
-        <option value="Employed">Employed</option>
-        <option value="Unemployed">Unemployed</option>
-        <option value="Self-Employed">Self-Employed</option>
-        <option value="Student">Student</option>
-        <option value="Retired">Retired</option>
-        <option value="Active Military">Active Military</option>
-        <option value="Retired Military">Retired Military</option>
-        <option value="Others">Others</option>
-      </select>
+    <Field
+        className="select"
+        name="Empolyement_StatusJ"
+        options={EmployerOptions}
+        component={CustomSelect}
+        placeholder="Are you currently Employed?"
+        isMulti={false}
+      />
     </Row>
     <Row>
-      <Field name="EmployerJ" id="Employer" placeholder='Employer' />
-        {touched.Employer &&
-          typeof errors.Employer === "string" &&(
-            <div className="input-feedback">{errors.Employer}</div>
+      <Field name="EmployerJ" id="EmployerJ" placeholder='Employer' />
+        {touched.EmployerJ &&
+          typeof errors.EmployerJ === "string" &&(
+            <div className="input-feedback">{errors.EmployerJ}</div>
           )}
     </Row>
     <Row>
@@ -145,7 +189,7 @@ export default ({ touched, errors,values }) => (
               {...field}
               value="true"
               css= {values.Having_Two_years_EmployementJ === "true" ? 'active' : 'label'}
-              id="present_at_home_visit-0"
+              id="Having_Two_years_EmployementJ-0"
               label="Yes"
             />
           )}
@@ -159,7 +203,7 @@ export default ({ touched, errors,values }) => (
               {...field}
               value="false"
               css= {values.Having_Two_years_EmployementJ === "false" ? 'active' : 'label'}
-              id="present_at_home_visit-1"
+              id="Having_Two_years_EmployementJ-1"
               label="No"
             />
           )}
@@ -173,19 +217,21 @@ export default ({ touched, errors,values }) => (
     </Row>
     <Row>
       <Col>
-      <Field name="MoneyJ" id="Money" placeholder='Money' />
-        {touched.Money &&
-          typeof errors.Money === "string" &&(
-            <div className="input-feedback">{errors.Money}</div>
+      <Field name="MoneyJ" id="MoneyJ" placeholder='Money' />
+        {touched.MoneyJ &&
+          typeof errors.MoneyJ === "string" &&(
+            <div className="input-feedback">{errors.MoneyJ}</div>
           )}
       </Col>
       <Col>
-      <select 
-          placeholder="select your pay"
-           style={{ width: '100% '}} >
-          <option value="m">Monthly</option>
-          <option value="a">Yearly</option>
-      </select>,
+      <Field
+        className="select"
+        name="TenureJ"
+        options={TenureOptions}
+        component={CustomSelect}
+        placeholder="select your pay"
+        isMulti={false}
+      />
       </Col>
     </Row>
     <Row>

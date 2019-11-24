@@ -1,8 +1,34 @@
 import React from "react";
 import { Field } from "formik";
 import {Row,Col,Container} from 'react-bootstrap';
+import {CustomSelect} from './lib/Select';
+const OwnOptions=[
+  {
+    label: "Mortgage",
+    value: "Mortgage"
+  },
+  {
+    label: "Rent",
+    value: "Rent"
+  },
+  {
+    label: "Family",
+    value: "Family"
+  },
+  {
+    label: "Other",
+    value: "Other"
+  },
+  {
+    label: "OwnOutright",
+    value: "OwnOutright"
+  },
+  {
+    label: "Military",
+    value: "Military"
+  }
+];
 const RadioBox = ({ id, name, label, checked, css, ...props }) => (
-  
   <div>
     <input type="radio" id={id} name={name} checked={checked} {...props} />
     <label className={css} htmlFor={id}>{label}</label>
@@ -15,16 +41,14 @@ export default ({ touched, errors,values }) => (
         <h2>Housing</h2>
       </Row>
      <Row>
-     <select name="own" id="own"
-       style={{ width: '100% '}} >
-          <option value="ss">Do you Own or rent ?</option>  
-        <option value="Mortgage">Mortgage</option>                      
-        <option value="Rent">Rent</option>
-        <option value="Family">Family</option>
-        <option value="Other">Other</option>
-        <option value="OwnOutright">OwnOutright</option>
-        <option value="Military">Military</option>
-      </select>
+     <Field
+        className="select"
+        name="Own"
+        options={OwnOptions}
+        component={CustomSelect}
+        placeholder="Do you Own or rent ?"
+        isMulti={false}
+      />
     </Row>
     <Row>
       <Field name="Rent" id="Rent" placeholder='Monthly Mortgage/Rent' />
@@ -84,7 +108,6 @@ export default ({ touched, errors,values }) => (
               css= {values.Having_Two_years === "true" ? 'active' : 'label'}
               value="true"
               id="present_at_home_visit-0"
-              // checked={values.present_at_home_visit === "true"}
               label="Yes"
             />
           )}
@@ -99,7 +122,6 @@ export default ({ touched, errors,values }) => (
               value="false"
               css= {values.Having_Two_years === "false" ? 'active' : 'label'}
               id="present_at_home_visit-1"
-              // checked={values.present_at_home_visit === "false"}
               label="No"
             />
           )}
@@ -114,59 +136,57 @@ export default ({ touched, errors,values }) => (
         <h6>Co-Application Housing</h6>
       </Row>
          <Row>
-         <select name="OwnJ" id="own"
-       style={{ width: '100% '}} >
-          <option value="ss">Do you Own or rent ?</option>  
-        <option value="Mortgage">Mortgage</option>                      
-        <option value="Rent">Rent</option>
-        <option value="Family">Family</option>
-        <option value="Other">Other</option>
-        <option value="OwnOutright">OwnOutright</option>
-        <option value="Military">Military</option>
-      </select>
+         <Field
+        className="select"
+        name="OwnJ"
+        options={OwnOptions}
+        component={CustomSelect}
+        placeholder="Do you Own or rent ?"
+        isMulti={false}
+      />
     </Row>
     <Row>
-      <Field name="RentJ" id="Rent" placeholder='Monthly Mortgage/Rent' />
-        {touched.Rent &&
+      <Field name="RentJ" id="RentJ" placeholder='Monthly Mortgage/Rent' />
+        {touched.RentJ &&
           typeof errors.Rent === "string" &&(
-            <div className="input-feedback">{errors.Rent}</div>
+            <div className="input-feedback">{errors.RentJ}</div>
           )}
     </Row>
     <Row>
-      <Field name="StreetAddressJ" id="StreetAddress" placeholder='Street Address' />
-        {touched.StreetAddress &&
-          typeof errors.StreetAddress === "string" &&(
-            <div className="input-feedback">{errors.StreetAddress}</div>
+      <Field name="StreetAddressJ" id="StreetAddressJ" placeholder='Street Address' />
+        {touched.StreetAddressJ &&
+          typeof errors.StreetAddressJ === "string" &&(
+            <div className="input-feedback">{errors.StreetAddressJ}</div>
           )}
     </Row>
     <Row>
       <Col>
-      <Field name="CityJ" id="City" placeholder='City' />
-        {touched.City &&
-          typeof errors.City === "string" &&(
-            <div className="input-feedback">{errors.City}</div>
+      <Field name="CityJ" id="CityJ" placeholder='City' />
+        {touched.CityJ &&
+          typeof errors.CityJ === "string" &&(
+            <div className="input-feedback">{errors.CityJ}</div>
           )}
       </Col>
       <Col>
-      <Field name="StateJ" id="State" placeholder='State' />
-        {touched.State &&
-          typeof errors.State === "string" &&(
-            <div className="input-feedback">{errors.State}</div>
+      <Field name="StateJ" id="StateJ" placeholder='State' />
+        {touched.StateJ &&
+          typeof errors.StateJ === "string" &&(
+            <div className="input-feedback">{errors.StateJ}</div>
           )}
       </Col>      
       <Col>
-      <Field name="ZipcodeJ" id="Zipcode" placeholder='Zipcode' />
-        {touched.Zipcode &&
-          typeof errors.Zipcode === "string" &&(
-            <div className="input-feedback">{errors.Zipcode}</div>
+      <Field name="ZipcodeJ" id="ZipcodeJ" placeholder='Zipcode' />
+        {touched.ZipcodeJ &&
+          typeof errors.ZipcodeJ === "string" &&(
+            <div className="input-feedback">{errors.ZipcodeJ}</div>
           )}
       </Col>      
     </Row>
     <Row>
-      <Field name="SuitNoJ" id="SuitNo" placeholder='Suite/Apt Number (optional)' />
-        {touched.SuitNo &&
-          typeof errors.SuitNo === "string" &&(
-            <div className="input-feedback">{errors.SuitNo}</div>
+      <Field name="SuitNoJ" id="SuitNoJ" placeholder='Suite/Apt Number (optional)' />
+        {touched.SuitNoJ &&
+          typeof errors.SuitNoJ === "string" &&(
+            <div className="input-feedback">{errors.SuitNoJ}</div>
           )}
     </Row>
     <Row>
@@ -176,13 +196,13 @@ export default ({ touched, errors,values }) => (
       <Col>
       
     <Field
-          name="Having_Two_yearsJ"
+          name="Having_Two_years_Joint"
           render={({ field }) => (
             <RadioBox
               {...field}
-              css= {values.Having_Two_yearsJ === "true" ? 'active' : 'label'}
+              css= {values.Having_Two_years_=== "true" ? 'active' : 'label'}
               value="true"
-              id="present_at_home_visit-0"
+              id="Having_Two_years_Joint-0"
               // checked={values.present_at_home_visit === "true"}
               label="Yes"
             />
@@ -191,13 +211,13 @@ export default ({ touched, errors,values }) => (
         </Col>
         <Col>
         <Field
-          name="Having_Two_yearsJ"
+          name="Having_Two_years_Joint"
           render={({ field }) => (
             <RadioBox
               {...field}
-              value="false"
-              css= {values.Having_Two_yearsJ === "false" ? 'active' : 'label'}
-              id="present_at_home_visit-1"
+              value="false"Joint 
+              css= {values.Having_Two_years_Joint === "false" ? 'active' : 'label'}
+              id="Having_Two_years_Joint-1"
               // checked={values.present_at_home_visit === "false"}
               label="No"
             />
