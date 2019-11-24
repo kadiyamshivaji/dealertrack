@@ -23,6 +23,7 @@ export default withFormik({
     own:'',
     Rent:'',
     mobile: '',
+    Form_Type:"true",
     addressLine1: '',
     addressLine2: '',
     country: '',

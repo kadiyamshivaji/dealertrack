@@ -5,19 +5,53 @@ import { FaLock } from 'react-icons/fa';
 import DatePicker from "./lib/DatePicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-export default ({ touched, errors }) => (
+const RadioBox = ({ id, name, label, checked, css, ...props }) => (
+  <div>
+    <input type="radio" id={id} name={name} checked={checked} {...props} />
+    <label className={css} htmlFor={id}>{label}</label>
+  </div>
+);
+export default ({ touched, errors,values }) => (
   <Container>
       <Row>
-        <h2>Contact Info</h2>
+<h2>Contact Info </h2>
       </Row>
         <br/>
-          <Row>
-            <h5>Application Type</h5>
-          </Row>
+      <Row>
+          <h5>Application Type</h5>
+      </Row>
     <Row>
-      <Col><button className='active' name="Individual">Individual</button></Col>
-      <Col><button name="Individual" >Joint</button></Col>
-    </Row>
+      <Col>
+        <Field
+          name="Form_Type"
+          render={({ field }) => (
+            <RadioBox
+              {...field}
+              css= {values.Form_Type === "true" ? 'active' : ''}
+              value="true"
+              id="present_at_home_visit-0"
+              // checked={values.present_at_home_visit === "true"}
+              label="Individual"
+            />
+          )}
+        />
+      </Col>
+      <Col>
+        <Field
+          name="Form_Type"
+          render={({ field }) => (
+            <RadioBox
+              {...field}
+              value="false"
+              css= {values.Form_Type ==="false" ? 'active' : ''}
+              id="present_at_home_visit-1"
+              // checked={values.present_at_home_visit === "false"}
+              label="Joint"
+            />
+          )}
+        />
+      </Col>
+        </Row>
     <Row>
       <Field name="firstName" id="firstName" placeholder='firstName' />
         {touched.firstName &&
@@ -84,8 +118,11 @@ export default ({ touched, errors }) => (
     <Row>
       <hr></hr>
     </Row>
-    {/* <Row>
-      <h3 className="h6">Co-Application Name</h3>
+    
+    { values.Form_Type ==="false" &&
+    <div> 
+     <Row>
+      <h6>Co-Application Name</h6>
     </Row>
     <Row>
       <Field name="FirstNameJ" id="FirstNameJ" placeholder='FirstNameJ' />
@@ -148,7 +185,12 @@ export default ({ touched, errors }) => (
     </Row>
     <Row>
        <p>Your Social Security Number is required to ensure we're reviewing the correct credit report while we consider your application </p>
-    </Row> */}
+    </Row> 
+    <Row>
+      <hr></hr>
+    </Row>
+    </div>
+    }
 </Container>
 
   

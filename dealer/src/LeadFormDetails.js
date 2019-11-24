@@ -157,42 +157,36 @@ class LeadFormDetails extends React.Component {
       {this.state.showWelcomePage && 
             <Container>
                         <Row>
-                          <h2>Welcome  FirstName</h2>
-                        </Row>
+                          <h2>Vehicle Information</h2>
+                        </Row> 
                         <br/>
-                        <Row>
-                          <h4>This activity is lead gated</h4>
-                        </Row>
                           <Row>
-                          <p>Placeholder text .A soft inquiry of your credit history does not impact your credit card score and will give you a better understanding of the auto loan rates available to you</p>
-                          </Row>
-                          <br/>
-                          <Row>
-                            <p>If you are ready to purchase your vehicle,completing you credit application online will save you time in the dealership</p>
-                          </Row>
-                          <Row>
-                            <Field name="LastNameL" id="LastNameL" placeholder='LastName' />
-                            {touched.LastNameL &&
-                                typeof errors.LastNameL === "string" &&(
-                                  <div className="input-feedback">{errors.LastNameL}</div>
+                            <Field name="vehicle" id="vehicle" placeholder='Vehicle Name' />
+                            {touched.vehicle &&
+                                typeof errors.vehicle === "string" &&(
+                                  <div className="input-feedback">{errors.vehicle}</div>
                                 )}
                           </Row>
                           <Row>
-                            <Field name="PhoneL" id="PhoneL" placeholder='Phone' />
-                            {touched.PhoneL &&
-                                typeof errors.PhoneL === "string" &&(
-                                  <div className="input-feedback">{errors.PhoneL}</div>
+                            <Field name="Make" id="Make" placeholder='Make' />
+                            {touched.Make &&
+                                typeof errors.Make === "string" &&(
+                                  <div className="input-feedback">{errors.Make}</div>
                                 )}
                           </Row>
                           <Row>
-                            <Field name="EmailL" id="EmailL" placeholder='Email' />
-                            {touched.EmailL &&
-                                typeof errors.EmailL === "string" &&(
-                                  <div className="input-feedback">{errors.EmailL}</div>
+                            <Field name="Trim" id="Trim" placeholder='Trim' />
+                            {touched.Trim &&
+                                typeof errors.Trim === "string" &&(
+                                  <div className="input-feedback">{errors.Trim}</div>
                                 )}
                           </Row>
                           <Row>
-                          <button>Get my Credit Rating </button>
+                            <Field name="Trim" id="Trim" placeholder='Trim' />
+                            {touched.Trim &&
+                                typeof errors.Trim === "string" &&(
+                                  <div className="input-feedback">{errors.Trim}</div>
+                                )}
                           </Row>
                           <Row>
                           <button  onClick={()=>this.showMainPage()} >Start Credit Application</button>
