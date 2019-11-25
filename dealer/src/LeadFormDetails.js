@@ -161,24 +161,31 @@ class LeadFormDetails extends React.Component {
                         </Row> 
                         <br/>
                           <Row>
-                            <Field name="vehicle" id="vehicle" placeholder='Vehicle Name' />
+                            <Field name="vehicle" id="vehicle" placeholder='VIN' />
                             {touched.vehicle &&
                                 typeof errors.vehicle === "string" &&(
                                   <div className="input-feedback">{errors.vehicle}</div>
                                 )}
                           </Row>
                           <Row>
-                            <Field name="Make" id="Make" placeholder='Make' />
+                            <Field name="Year" id="Year" placeholder='Year' />
                             {touched.Make &&
+                                typeof errors.Make === "string" &&(
+                                  <div className="input-feedback">{errors.Year}</div>
+                                )}
+                          </Row>
+                          <Row>
+                            <Field name="Make" id="Make" placeholder='Make' />
+                            {touched.Trim &&
                                 typeof errors.Make === "string" &&(
                                   <div className="input-feedback">{errors.Make}</div>
                                 )}
                           </Row>
                           <Row>
-                            <Field name="Trim" id="Trim" placeholder='Trim' />
+                            <Field name="Modal" id="Modal" placeholder='Modal' />
                             {touched.Trim &&
-                                typeof errors.Trim === "string" &&(
-                                  <div className="input-feedback">{errors.Trim}</div>
+                                typeof errors.Modal === "string" &&(
+                                  <div className="input-feedback">{errors.Modal}</div>
                                 )}
                           </Row>
                           <Row>

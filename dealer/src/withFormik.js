@@ -51,7 +51,7 @@ export default withFormik({
     MoneyJ:'',
     TenureJ:'Monthly',
     
-    Form_Type:"false",
+    Form_Type:"true",
     
     addressLine1: '',
     addressLine2: '',
