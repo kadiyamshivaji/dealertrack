@@ -2,24 +2,19 @@ import React from "react";
 import { Field } from "formik";
 import {Row,Col,Container} from 'react-bootstrap'
 import { FaLock } from 'react-icons/fa';
-import DatePicker from "./lib/DatePicker";
+import DatePickerField from "./lib/DatePicker";
+import PhoneInput from "./lib/Phone";
 import "react-datepicker/dist/react-datepicker.css";
-import PhoneInput from "react-phone-number-input/basic-input";
+import NumberFormat from 'react-number-format';
 
-const Phone = ({ field, form, ...props }) => {
-  return (
-    <PhoneInput
-    country="US"
-      placeholder='Phone'
-      value={field.value}
-      maxLength="15"
-      onChange={value => {
-        if (!form.touched[field.name]) form.setFieldTouched(field.name);
-        form.setFieldValue(field.name, value);
-      }}
-    />
-  );
-};
+const SSNFormate = ({ field, form, ...props })=>{
+  return( <NumberFormat
+    onValueChange={value => {
+    if (!form.touched[field.name]) form.setFieldTouched(field.name);
+    form.setFieldValue(field.name, value.value);
+  }}
+  name="Ssn" placeholder="Social Security Number" format="###-##-####" />)
+}
 
 const RadioBox = ({ id, name, label, checked, css, ...props }) => (
   <div>
@@ -29,6 +24,7 @@ const RadioBox = ({ id, name, label, checked, css, ...props }) => (
 );
 export default ({ touched, errors,values }) => (
   <Container>
+   
       <Row>
 <h2>Contact Info </h2>
       </Row>
@@ -69,27 +65,26 @@ export default ({ touched, errors,values }) => (
       </Col>
         </Row>
     <Row>
-      <Field name="FirstName" id="FirstName" placeholder='firstName' />
+      <Field name="FirstName" id="FirstName" placeholder='First Name' />
         {touched.FirstName &&
           typeof errors.FirstName === "string" &&(
             <div className="input-feedback">{errors.FirstName}</div>
           )}
     </Row>
     <Row>
-      <Field name="LastName" id="LastName" placeholder='lastName' />
+      <Field name="LastName" id="LastName" placeholder='Last Name' />
       {touched.LastName &&
           typeof errors.LastName === "string" &&(
             <div className="input-feedback">{errors.LastName}</div>
           )}
     </Row>
     <Row>
-    <Field name="phone" id="Phone"  component={Phone} />
-       {/* <Field name="Phone" id="Phone" placeholder='phone'  /> */}
+      <PhoneInput  name="Phone" id="Phone" ></PhoneInput>
        {touched.Phone &&
           typeof errors.Phone === "string" &&(
             <div className="input-feedback">{errors.Phone}</div>
           )}
-    </Row>
+    </Row> 
     <Row>
        <Field name="Email" id="Email" placeholder='email'  />
        {touched.Email &&
@@ -98,7 +93,7 @@ export default ({ touched, errors,values }) => (
           )}
     </Row>
     <Row>
-       <Field name="ConfirmEmail" id="ConfirmEmail" placeholder='confirmEmail'  />
+       <Field name="ConfirmEmail" id="ConfirmEmail" placeholder='Verify Email'  />
        {touched.ConfirmEmail &&
           typeof errors.ConfirmEmail === "string" &&(
             <div className="input-feedback">{errors.ConfirmEmail}</div>
@@ -110,7 +105,7 @@ export default ({ touched, errors,values }) => (
        <p>if you are not ready to apply for credit and justwant to know your rates <a href='' >check them here</a></p>
     </Row>
     <Row>
-         <DatePicker name="Datepicker" />
+         <DatePickerField placeholder="Date of Birth" name="Datepicker" />
        {touched.Datepicker &&
           typeof errors.Datepicker === "string" &&(
             <div className="input-feedback">{errors.Datepicker}</div>
@@ -118,7 +113,7 @@ export default ({ touched, errors,values }) => (
     </Row>
     <Row>
       <Col> 
-          <Field name="Ssn" id="Ssn" placeholder='ssn'  />
+          <Field name="Ssn" id="Ssn"  component={SSNFormate}/>        
           {touched.Ssn &&
               typeof errors.Ssn === "string" &&(
                 <div className="input-feedback">{errors.Ssn}</div>
@@ -141,21 +136,21 @@ export default ({ touched, errors,values }) => (
       <h6>Co-Application Name</h6>
     </Row>
     <Row>
-      <Field name="FirstNameJ" id="FirstNameJ" placeholder='FirstName' />
+      <Field name="FirstNameJ" id="FirstNameJ" placeholder='First Name' />
         {touched.FirstNameJ &&
           typeof errors.FirstNameJ === "string" &&(
             <div className="input-feedback">{errors.FirstNameJ}</div>
           )}
     </Row>
     <Row>
-      <Field name="LastNameJ" id="LastNameJ" placeholder='LastName' />
+      <Field name="LastNameJ" id="LastNameJ" placeholder='Last Name' />
       {touched.LastNameJ &&
           typeof errors.LastNameJ === "string" &&(
             <div className="input-feedback">{errors.LastNameJ}</div>
           )}
     </Row>
     <Row>
-       <Field name="PhoneJ" id="PhoneJ" placeholder='Phone'  />
+    <PhoneInput  name="PhoneJ" id="PhoneJ" ></PhoneInput>
        {touched.PhoneJ &&
           typeof errors.PhoneJ === "string" &&(
             <div className="input-feedback">{errors.PhoneJ}</div>
@@ -169,7 +164,7 @@ export default ({ touched, errors,values }) => (
           )}
     </Row>
     <Row>
-       <Field name="ConfirmEmailJ" id="ConfirmEmailJ" placeholder='ConfirmEmail'  />
+       <Field name="ConfirmEmailJ" id="ConfirmEmailJ" placeholder='Verify Email'  />
        {touched.ConfirmEmailJ &&
           typeof errors.ConfirmEmailJ === "string" &&(
             <div className="input-feedback">{errors.ConfirmEmailJ}</div>
@@ -181,7 +176,7 @@ export default ({ touched, errors,values }) => (
        <p>if you are not ready to apply for credit and justwant to know your rates <a href='' >check them here</a></p>
     </Row>
     <Row>
-         <DatePicker name="DatepickerJ" />
+         <DatePickerField name="DatepickerJ" />
        {touched.DatepickerJ &&
           typeof errors.DatepickerJ === "string" &&(
             <div className="input-feedback">{errors.DatepickerJ}</div>
@@ -189,7 +184,7 @@ export default ({ touched, errors,values }) => (
     </Row>
     <Row>
       <Col> 
-          <Field name="SsnJ" id="SsnJ" placeholder='Ssn'  />
+          <Field name="SsnJ" id="SsnJ" component={SSNFormate}  />
           {touched.SsnJ &&
               typeof errors.SsnJ === "string" &&(
                 <div className="input-feedback">{errors.SsnJ}</div>

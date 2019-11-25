@@ -17,6 +17,7 @@ const WizardButton = ({
         disabled: typeof validator === 'function' && !validator.call(null),
       })
     ) : (
+      <div className="msg">
       <button
         type={type}
         className={className}
@@ -25,6 +26,8 @@ const WizardButton = ({
       >
         {label || 'Next'}
       </button>
+      <p>This is a Credit Application;Your Credit will checked.</p>
+      </div>
     )
   ) : null;
 
