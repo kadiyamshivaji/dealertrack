@@ -4,6 +4,22 @@ import {Row,Col,Container} from 'react-bootstrap'
 import { FaLock } from 'react-icons/fa';
 import DatePicker from "./lib/DatePicker";
 import "react-datepicker/dist/react-datepicker.css";
+import PhoneInput from "react-phone-number-input/basic-input";
+
+const Phone = ({ field, form, ...props }) => {
+  return (
+    <PhoneInput
+    country="US"
+      placeholder='Phone'
+      value={field.value}
+      maxLength="15"
+      onChange={value => {
+        if (!form.touched[field.name]) form.setFieldTouched(field.name);
+        form.setFieldValue(field.name, value);
+      }}
+    />
+  );
+};
 
 const RadioBox = ({ id, name, label, checked, css, ...props }) => (
   <div>
@@ -67,7 +83,8 @@ export default ({ touched, errors,values }) => (
           )}
     </Row>
     <Row>
-       <Field name="Phone" id="Phone" placeholder='phone'  />
+    <Field name="phone" id="Phone"  component={Phone} />
+       {/* <Field name="Phone" id="Phone" placeholder='phone'  /> */}
        {touched.Phone &&
           typeof errors.Phone === "string" &&(
             <div className="input-feedback">{errors.Phone}</div>

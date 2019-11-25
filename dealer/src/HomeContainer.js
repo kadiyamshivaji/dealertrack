@@ -53,9 +53,9 @@ import {
                   EmployementDetailsValidations,PersonalDetailsValidations])}
               >
                 <Step component={ContactInfo} title="Contact Info" />
-                <Step component={HousingDetails} title="Housing Details" />
-                <Step component={EmployementDetails} title="Employement Details" />
-                <Step component={PersonalDetails} title="Personal Details" />
+                <Step component={HousingDetails} title="Housing" />
+                <Step component={EmployementDetails} title="Employement" />
+                <Step component={PersonalDetails} title="Review" />
               </StepsList>
               <ButtonsList>
                 <PreviousButton />

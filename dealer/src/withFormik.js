@@ -61,11 +61,19 @@ export default withFormik({
     Yup.object().shape({
       FirstName: Yup.string().required('First name is required'),
       LastName: Yup.string().required('Last name is required'),
-      Phone: Yup.string().required('phone is required'),
-      Email: Yup.string().required('Email is required'),
-      ConfirmEmail: Yup.string().required('confirmEmail is required'),
+      Phone: Yup.string()
+             .required('phone is required'),
+      Email: Yup.string()
+             .email().required('Email is required'),
+      ConfirmEmail: Yup.string()
+                .oneOf([Yup.ref('Email'), null])
+                .required('confirmEmail is required'),
       Datepicker: Yup.string().required('datepicker is required'),
-      Ssn: Yup.string().required('ssn is required'),
+      Ssn: Yup.string().when('identifyType',
+      {
+          is: 'Ssn',
+          then: Yup.string().min(9, 'Social Security Number must be up to 9 digits without dashes').required('Social Security Number is Required')
+      }).required('ssn is required'),
       FirstNameJ: Yup.string().required('First name is required'),
       LastNameJ: Yup.string().required('Last name is required'),
       PhoneJ: Yup.string().required('phone is required'),
