@@ -1,5 +1,4 @@
 import React from "react";
-import { Field } from "formik";
 import {Row,Col,Container} from 'react-bootstrap'
 
 export default ({ touched, errors ,values}) => (
@@ -111,7 +110,7 @@ export default ({ touched, errors ,values}) => (
         { values.Form_Type ==="false" && 
         <Col>
             <Row>   
-                 <label>Employement</label>
+                 <label>Employment</label>
             </Row>
             <Row> 
                 <p>{values.Empolyement_StatusJ}</p>

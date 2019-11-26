@@ -1,6 +1,5 @@
 * {
     box-sizing: border-box;
-    font-family: ;
   }
   
   body {
@@ -168,10 +167,10 @@ input#Having_Two_years_Joint-0 {
 input#Having_Two_years_Joint-1 {
   display: none;
 }
-input#Having_Two_years_EmployementJ-0 {
+input#Having_Two_years_EmploymentJ-0 {
   display: none;
 }
-input#Having_Two_years_EmployementJ-1 {
+input#Having_Two_years_EmploymentJ-1 {
   display: none;
 }
 .label{

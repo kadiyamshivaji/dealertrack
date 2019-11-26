@@ -1,37 +1,60 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import { Field } from "formik";
-import {Row,Col,Container} from 'react-bootstrap'
-import { FaLock } from 'react-icons/fa';
+import { Row, Col, Container } from "react-bootstrap";
+import { FaLock } from "react-icons/fa";
 import DatePickerField from "./lib/DatePicker";
 import PhoneInput from "./lib/Phone";
 import "react-datepicker/dist/react-datepicker.css";
-import NumberFormat from 'react-number-format';
+import NumberFormat from "react-number-format";
+import { CustomSelect } from "./lib/Select";
 
-const SSNFormate = ({ field, form, ...props })=>{
-  return( <NumberFormat
-    onValueChange={value => {
-    if (!form.touched[field.name]) form.setFieldTouched(field.name);
-    form.setFieldValue(field.name, value.value);
-  }}
-  name="Ssn" placeholder="Social Security Number" format="###-##-####" />)
-}
+const SSNFormate = ({ field, form, ...props }) => {
+  return (
+    <NumberFormat
+      onValueChange={value => {
+        if (!form.touched[field.name]) form.setFieldTouched(field.name);
+        form.setFieldValue(field.name, value.value);
+      }}
+      name="Ssn"
+      placeholder="Social Security Number"
+      format="###-##-####"
+    />
+  );
+};
 
 const RadioBox = ({ id, name, label, checked, css, ...props }) => (
   <div>
     <input type="radio" id={id} name={name} checked={checked} {...props} />
-    <label className={css} htmlFor={id}>{label}</label>
+    <label className={css} htmlFor={id}>
+      {label}
+    </label>
   </div>
 );
-export default ({ touched, errors,values }) => (
+
+const relationToApplicant = [
+  {
+    label: "Spouse",
+    value: "Spouse"
+  },
+  {
+    label: "Parent",
+    value: "Parent"
+  },
+  {
+    label: "Other",
+    value: "Other"
+  }
+];
+export default ({ touched, errors, values }) => (
   <Container>
-   
-      <Row>
-<h2>Contact Info </h2>
-      </Row>
-        <br/>
-      <Row>
-          <h5>Application Type</h5>
-      </Row>
+    <Row>
+      <h2>Contact Info </h2>
+    </Row>
+    <br />
+    <Row>
+      <h5>Application Type</h5>
+    </Row>
     <Row>
       <Col>
         <Field
@@ -39,7 +62,7 @@ export default ({ touched, errors,values }) => (
           render={({ field }) => (
             <RadioBox
               {...field}
-              css= {values.Form_Type === "true" ? 'active' : ''}
+              css={values.Form_Type === "true" ? "active" : ""}
               value="true"
               id="present_at_home_visit-0"
               // checked={values.present_at_home_visit === "true"}
@@ -55,7 +78,7 @@ export default ({ touched, errors,values }) => (
             <RadioBox
               {...field}
               value="false"
-              css= {values.Form_Type ==="false" ? 'active' : ''}
+              css={values.Form_Type === "false" ? "active" : ""}
               id="present_at_home_visit-1"
               // checked={values.present_at_home_visit === "false"}
               label="Joint"
@@ -63,146 +86,182 @@ export default ({ touched, errors,values }) => (
           )}
         />
       </Col>
-        </Row>
-    <Row>
-      <Field name="FirstName" id="FirstName" placeholder='First Name' />
-        {touched.FirstName &&
-          typeof errors.FirstName === "string" &&(
-            <div className="input-feedback">{errors.FirstName}</div>
-          )}
     </Row>
     <Row>
-      <Field name="LastName" id="LastName" placeholder='Last Name' />
-      {touched.LastName &&
-          typeof errors.LastName === "string" &&(
-            <div className="input-feedback">{errors.LastName}</div>
-          )}
+      <Field name="FirstName" id="FirstName" placeholder="First Name" />
+      {touched.FirstName && typeof errors.FirstName === "string" && (
+        <div className="input-feedback">{errors.FirstName}</div>
+      )}
     </Row>
     <Row>
-      <PhoneInput  name="Phone" id="Phone" ></PhoneInput>
-       {touched.Phone &&
-          typeof errors.Phone === "string" &&(
-            <div className="input-feedback">{errors.Phone}</div>
-          )}
-    </Row> 
-    <Row>
-       <Field name="Email" id="Email" placeholder='email'  />
-       {touched.Email &&
-          typeof errors.Email === "string" &&(
-            <div className="input-feedback">{errors.Email}</div>
-          )}
+      <Field name="LastName" id="LastName" placeholder="Last Name" />
+      {touched.LastName && typeof errors.LastName === "string" && (
+        <div className="input-feedback">{errors.LastName}</div>
+      )}
     </Row>
     <Row>
-       <Field name="ConfirmEmail" id="ConfirmEmail" placeholder='Verify Email'  />
-       {touched.ConfirmEmail &&
-          typeof errors.ConfirmEmail === "string" &&(
-            <div className="input-feedback">{errors.ConfirmEmail}</div>
-          )}
+      <PhoneInput name="Phone" id="Phone"></PhoneInput>
+      {touched.Phone && typeof errors.Phone === "string" && (
+        <div className="input-feedback">{errors.Phone}</div>
+      )}
     </Row>
     <Row>
-       <p>we respect your privacy and will only use this information to process your appplication and communicate with you about loan</p>
-       <h5>Requireed for Identity Verification</h5>
-       <p>if you are not ready to apply for credit and justwant to know your rates <a href='' >check them here</a></p>
+      <Field name="Email" id="Email" placeholder="Email" />
+      {touched.Email && typeof errors.Email === "string" && (
+        <div className="input-feedback">{errors.Email}</div>
+      )}
     </Row>
     <Row>
-         <DatePickerField placeholder="Date of Birth" name="Datepicker" />
-       {touched.Datepicker &&
-          typeof errors.Datepicker === "string" &&(
-            <div className="input-feedback">{errors.Datepicker}</div>
-          )}
+      <Field name="ConfirmEmail" id="ConfirmEmail" placeholder="Verify Email" />
+      {touched.ConfirmEmail && typeof errors.ConfirmEmail === "string" && (
+        <div className="input-feedback">{errors.ConfirmEmail}</div>
+      )}
     </Row>
     <Row>
-      <Col> 
-          <Field name="Ssn" id="Ssn"  component={SSNFormate}/>        
-          {touched.Ssn &&
-              typeof errors.Ssn === "string" &&(
-                <div className="input-feedback">{errors.Ssn}</div>
-              )}
+      <p>
+        We respect your privacy and will only use this information to process
+        your appplication and communicate with you about loan.
+      </p>
+      <h5>Required for Identity Verification</h5>
+      <p>
+        {" "}
+        If you are not ready to apply for credit and just want to know your rates{" "}
+        <a href="">check them here</a>
+      </p>
+    </Row>
+    <Row>
+      <DatePickerField placeholder="Date of Birth" name="Datepicker" />
+      {touched.Datepicker && typeof errors.Datepicker === "string" && (
+        <div className="input-feedback">{errors.Datepicker}</div>
+      )}
+    </Row>
+    <Row>
+      {" "}
+      <p>You must be atleast 18 years to apply.</p>{" "}
+    </Row>
+    <Row>
+      <Col>
+        <Field name="Ssn" id="Ssn" component={SSNFormate} />
+        {touched.Ssn && typeof errors.Ssn === "string" && (
+          <div className="input-feedback">{errors.Ssn}</div>
+        )}
       </Col>
       <Col>
-         <label><FaLock></FaLock> SSL Secure Connection</label>
-      </Col>     
+        <label>
+          <FaLock></FaLock> SSL Secure Connection
+        </label>
+      </Col>
     </Row>
     <Row>
-       <p>Your Social Security Number is required to ensure we're reviewing the correct credit report while we consider your application </p>
+      <p>
+        Your Social Security Number is required to ensure we're reviewing the
+        correct credit report while we consider your application.{" "}
+      </p>
     </Row>
     <Row>
       <hr></hr>
     </Row>
-    
-    { values.Form_Type ==="false" &&
-    <div> 
-     <Row>
-      <h6>Co-Application Name</h6>
-    </Row>
-    <Row>
-      <Field name="FirstNameJ" id="FirstNameJ" placeholder='First Name' />
-        {touched.FirstNameJ &&
-          typeof errors.FirstNameJ === "string" &&(
+
+    {values.Form_Type === "false" && (
+      <div>
+        <Row>
+          <h6>Co-Application Name</h6>
+        </Row>
+        <Row>
+          <Field
+            className="select"
+            name="Empolyement_StatusJ"
+            options={relationToApplicant}
+            component={CustomSelect}
+            placeholder="Relationship to Primary Applicant"
+            isMulti={false}
+          />
+        </Row>
+        <Row>
+          <p>
+            For a Joint Application, both applicants must agree to the Terms,
+            Condtions and Privacy Policy.
+          </p>
+        </Row>
+        <Row>
+          <Field name="FirstNameJ" id="FirstNameJ" placeholder="First Name" />
+          {touched.FirstNameJ && typeof errors.FirstNameJ === "string" && (
             <div className="input-feedback">{errors.FirstNameJ}</div>
           )}
-    </Row>
-    <Row>
-      <Field name="LastNameJ" id="LastNameJ" placeholder='Last Name' />
-      {touched.LastNameJ &&
-          typeof errors.LastNameJ === "string" &&(
+        </Row>
+        <Row>
+          <Field name="LastNameJ" id="LastNameJ" placeholder="Last Name" />
+          {touched.LastNameJ && typeof errors.LastNameJ === "string" && (
             <div className="input-feedback">{errors.LastNameJ}</div>
           )}
-    </Row>
-    <Row>
-    <PhoneInput  name="PhoneJ" id="PhoneJ" ></PhoneInput>
-       {touched.PhoneJ &&
-          typeof errors.PhoneJ === "string" &&(
+        </Row>
+        <Row>
+          <PhoneInput name="PhoneJ" id="PhoneJ"></PhoneInput>
+          {touched.PhoneJ && typeof errors.PhoneJ === "string" && (
             <div className="input-feedback">{errors.PhoneJ}</div>
           )}
-    </Row>
-    <Row>
-       <Field name="EmailJ" id="EmailJ" placeholder='Email'  />
-       {touched.EmailJ &&
-          typeof errors.EmailJ === "string" &&(
+        </Row>
+        <Row>
+          <Field name="EmailJ" id="EmailJ" placeholder="Email" />
+          {touched.EmailJ && typeof errors.EmailJ === "string" && (
             <div className="input-feedback">{errors.EmailJ}</div>
           )}
-    </Row>
-    <Row>
-       <Field name="ConfirmEmailJ" id="ConfirmEmailJ" placeholder='Verify Email'  />
-       {touched.ConfirmEmailJ &&
-          typeof errors.ConfirmEmailJ === "string" &&(
-            <div className="input-feedback">{errors.ConfirmEmailJ}</div>
-          )}
-    </Row>
-    <Row>
-       <p>we respect your privacy and will only use this information to process your appplication and communicate with you about loan</p>
-       <h5>Requireed for Identity Verification</h5>
-       <p>if you are not ready to apply for credit and justwant to know your rates <a href='' >check them here</a></p>
-    </Row>
-    <Row>
-         <DatePickerField name="DatepickerJ" />
-       {touched.DatepickerJ &&
-          typeof errors.DatepickerJ === "string" &&(
+        </Row>
+        <Row>
+          <Field
+            name="ConfirmEmailJ"
+            id="ConfirmEmailJ"
+            placeholder="Verify Email"
+          />
+          {touched.ConfirmEmailJ &&
+            typeof errors.ConfirmEmailJ === "string" && (
+              <div className="input-feedback">{errors.ConfirmEmailJ}</div>
+            )}
+        </Row>
+        <Row>
+          <p>
+            We respect your privacy and will only use this information to
+            process your appplication and communicate with you about loan.
+          </p>
+          <h5>Required for Identity Verification</h5>
+          <p>
+            If you are not ready to apply for credit and just want to know your
+            rates <a href="">check them here</a>
+          </p>
+        </Row>
+        <Row>
+          <DatePickerField name="DatepickerJ" />
+          {touched.DatepickerJ && typeof errors.DatepickerJ === "string" && (
             <div className="input-feedback">{errors.DatepickerJ}</div>
           )}
-    </Row>
-    <Row>
-      <Col> 
-          <Field name="SsnJ" id="SsnJ" component={SSNFormate}  />
-          {touched.SsnJ &&
-              typeof errors.SsnJ === "string" &&(
-                <div className="input-feedback">{errors.SsnJ}</div>
-              )}
-      </Col>
-      <Col>
-         <label><FaLock></FaLock> SSL Secure Connection</label>
-      </Col>     
-    </Row>
-    <Row>
-       <p>Your Social Security Number is required to ensure we're reviewing the correct credit report while we consider your application </p>
-    </Row> 
-    <Row>
-      <hr></hr>
-    </Row>
-    </div>
-    }
-</Container>
-
-  
+        </Row>
+        <Row>
+          {" "}
+          <p>You must be atleast 18 years to apply.</p>{" "}
+        </Row>
+        <Row>
+          <Col>
+            <Field name="SsnJ" id="SsnJ" component={SSNFormate} />
+            {touched.SsnJ && typeof errors.SsnJ === "string" && (
+              <div className="input-feedback">{errors.SsnJ}</div>
+            )}
+          </Col>
+          <Col>
+            <label>
+              <FaLock></FaLock> SSL Secure Connection
+            </label>
+          </Col>
+        </Row>
+        <Row>
+          <p>
+            Your Social Security Number is required to ensure we're reviewing
+            the correct credit report while we consider your application.{" "}
+          </p>
+        </Row>
+        <Row>
+          <hr></hr>
+        </Row>
+      </div>
+    )}
+  </Container>
 );

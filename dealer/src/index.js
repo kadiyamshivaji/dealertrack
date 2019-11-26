@@ -2,7 +2,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import LeadFormDetails from './LeadFormDetails';
-import withFormik from "./withFormik";
 import "./App.css";  
 import 'bootstrap/dist/css/bootstrap.min.css';
 

@@ -26,7 +26,7 @@ const WizardButton = ({
       >
         {label || 'Next'}
       </button>
-      <p>This is a Credit Application;Your Credit will checked.</p>
+      <p>This is a Credit Application; Your Credit will be checked.</p>
       </div>
     )
   ) : null;
