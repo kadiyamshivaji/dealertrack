@@ -14,6 +14,18 @@ const ButtonsList = ({
   <div className="react-formik-wizard__footer">
     {Children.map(children, child => {
       const validator = validators[activeStepIndex];
+      if (child.type.displayName === 'NextButton') {
+        return (
+          <Button
+            className="react-formik-wizard__footer__button react-formik-wizard__footer__button--next"
+            show={activeStepIndex < totalSteps}
+            onClick={onNextStep}
+            validator={validator}
+            label="Next"
+            {...child.props}
+          />
+        );
+      }
       if (child.type.displayName === 'PreviousButton') {
         return (
           <div className="previous">
@@ -25,18 +37,6 @@ const ButtonsList = ({
               {...child.props}
             />
           </div>
-        );
-      }
-      if (child.type.displayName === 'NextButton') {
-        return (
-          <Button
-            className="react-formik-wizard__footer__button react-formik-wizard__footer__button--next"
-            show={activeStepIndex < totalSteps}
-            onClick={onNextStep}
-            validator={validator}
-            label="Next"
-            {...child.props}
-          />
         );
       }
       if (child.type.displayName === 'SubmitButton') {

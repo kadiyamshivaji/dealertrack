@@ -2,6 +2,7 @@ import React from "react";
 import { Field } from "formik";
 import { Row, Col, Container } from "react-bootstrap";
 import { CustomSelect } from "./lib/Select";
+
 const OwnOptions = [
   {
     label: "Mortgage",
@@ -37,11 +38,38 @@ const RadioBox = ({ id, name, label, checked, css, ...props }) => (
   </div>
 );
 
+const CheckBox = ({ id, name, label, checked, css, ...props }) => (
+  <Row>
+    <Col>
+    <input  type="checkbox" id={id} name={name} checked={checked} {...props} />
+    </Col>
+    <Col  xs={10}>
+    <p>
+      {label}
+    </p>
+    </Col>
+    
+  </Row>
+);
+
+
+
 export default ({ touched, errors, values }) => (
   <Container>
     <Row>
       <h2>Housing</h2>
     </Row>
+    {values.Form_Type === "false" && 
+    <Field
+          name="roles"
+          render={({ field }) => (
+            <CheckBox
+              {...field}
+              value="admin"
+              label="Both borrowers live at the same address."
+            />
+          )}
+        />}
     <Row>
       <Field
         className="select"
@@ -62,7 +90,7 @@ export default ({ touched, errors, values }) => (
       <Field
         name="StreetAddress"
         id="StreetAddress"
-        placeholder="Street Address"
+        placeholder="Address"
       />
       {touched.StreetAddress && typeof errors.StreetAddress === "string" && (
         <div className="input-feedback">{errors.StreetAddress}</div>
@@ -159,7 +187,7 @@ export default ({ touched, errors, values }) => (
           <Field
             name="StreetAddressJ"
             id="StreetAddressJ"
-            placeholder="Street Address"
+            placeholder="Address"
           />
           {touched.StreetAddressJ &&
             typeof errors.StreetAddressJ === "string" && (

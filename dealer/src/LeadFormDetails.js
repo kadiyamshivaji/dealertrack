@@ -30,10 +30,15 @@ class LeadFormDetails extends React.Component {
     showReqInfo: false,
     showProInfo: false,
     formValues: {
-      FirstNameL: "",
-      LastNameL: "",
-      EmailL: "",
-      PhoneL: ""
+      FirstNameL: process.env.REACT_APP_SECRET_FIRSTNAME,
+      LastNameL: process.env.REACT_APP_LASTNAME,
+      EmailL: process.env.REACT_APP_SECRET_EMAIL,
+      PhoneL: process.env.REACT_APP_SECRET_PHONE,
+      vehicle:process.env.REACT_APP_SECRET_VIN,
+      Year:process.env.REACT_APP_SECRET_YEAR,
+      Modal:process.env.REACT_APP_SECRET_MODAL,
+      Trim:process.env.REACT_APP_SECRET_TRIM,
+      Make:process.env.REACT_APP_SECRET_MAKE
     },
     step: 1
   };
@@ -129,6 +134,7 @@ class LeadFormDetails extends React.Component {
                     <Field
                       name="FrstNameL"
                       id="FirstNameL"
+                      value={values.FirstNameL}
                       placeholder="FirstName"
                     />
                     {errors.FirstNameL && (
@@ -141,6 +147,7 @@ class LeadFormDetails extends React.Component {
                     <Field
                       name="LastNameL"
                       id="LastNameL"
+                      value={values.LastNameL}
                       placeholder="LastName"
                     />
                     {errors.LastNameL && (
@@ -150,7 +157,7 @@ class LeadFormDetails extends React.Component {
                     )}
                   </Row>
                   <Row>
-                    <Field name="PhoneL" id="PhoneL" placeholder="Phone" />
+                    <Field name="PhoneL" id="PhoneL"  value={values.PhoneL} placeholder="Phone" />
                     {errors.PhoneL && (
                       <div style={{ backgroundColor: "red" }}>
                         {errors.PhoneL}
@@ -158,7 +165,7 @@ class LeadFormDetails extends React.Component {
                     )}
                   </Row>
                   <Row>
-                    <Field name="EmailL" id="EmailL" placeholder="Email" />
+                    <Field name="EmailL" id="EmailL"  value={values.EmailL} placeholder="Email" />
                     {errors.EmailL && (
                       <div style={{ backgroundColor: "red" }}>
                         {errors.EmailL}
@@ -179,31 +186,31 @@ class LeadFormDetails extends React.Component {
                   </Row>
                   <br />
                   <Row>
-                    <Field name="vehicle" id="vehicle" placeholder="VIN" />
+                    <Field name="vehicle" id="vehicle" value={values.vehicle} placeholder="VIN" />
                     {touched.vehicle && typeof errors.vehicle === "string" && (
                       <div className="input-feedback">{errors.vehicle}</div>
                     )}
                   </Row>
                   <Row>
-                    <Field name="Year" id="Year" placeholder="Year" />
+                    <Field name="Year" id="Year" value={values.Year} placeholder="Year" />
                     {touched.Make && typeof errors.Make === "string" && (
                       <div className="input-feedback">{errors.Year}</div>
                     )}
                   </Row>
                   <Row>
-                    <Field name="Make" id="Make" placeholder="Make" />
+                    <Field name="Make" id="Make" value={values.Make} placeholder="Make" />
                     {touched.Trim && typeof errors.Make === "string" && (
                       <div className="input-feedback">{errors.Make}</div>
                     )}
                   </Row>
                   <Row>
-                    <Field name="Modal" id="Modal" placeholder="Modal" />
+                    <Field name="Modal" id="Modal" value={values.Modal}  placeholder="Modal" />
                     {touched.Trim && typeof errors.Modal === "string" && (
                       <div className="input-feedback">{errors.Modal}</div>
                     )}
                   </Row>
                   <Row>
-                    <Field name="Trim" id="Trim" placeholder="Trim" />
+                    <Field name="Trim" id="Trim" value={values.Trim} placeholder="Trim" />
                     {touched.Trim && typeof errors.Trim === "string" && (
                       <div className="input-feedback">{errors.Trim}</div>
                     )}

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Row,  Container } from "react-bootstrap";
 
 const WizardButton = ({
   children,
@@ -17,7 +18,8 @@ const WizardButton = ({
         disabled: typeof validator === 'function' && !validator.call(null),
       })
     ) : (
-      <div className="msg">
+      <Container>
+      <Row>
       <button
         type={type}
         className={className}
@@ -26,8 +28,11 @@ const WizardButton = ({
       >
         {label || 'Next'}
       </button>
+      {label==='Next' && 
       <p>This is a Credit Application; Your Credit will be checked.</p>
-      </div>
+    }
+      </Row>
+      </Container>
     )
   ) : null;
 

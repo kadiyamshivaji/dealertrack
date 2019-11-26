@@ -14,11 +14,7 @@ export const PhoneField = ({ ...props }) => {
       value={field.value}
       maxLength="15"
       onChange={val => {
-        //   if(val===''){
-        //     setErrors("Phone required")
-        //   }
-        // setFieldTouched(field.name);
-        setFieldValue(field.name, val);
+        setFieldValue(field.name,val );
       }}
     />
   );

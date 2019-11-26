@@ -200,3 +200,18 @@ input#Having_Two_years_EmploymentJ-1 {
 .msg{
   width: 100%
 }
+.react-formik-wizard__footer__button {
+  border-radius: 0px !important;
+  color: #fff;
+  font-size: 14px;
+  background: #40a9ff !important;
+  border-color: #40a9ff !important;
+  padding: 10px 10px 10px 10px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.react-formik-wizard__footer {
+  display: initial !important;
+  justify-content: space-between;
+  padding: 10px;
+}

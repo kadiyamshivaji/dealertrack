@@ -17,16 +17,35 @@ import ReviewDetails from "./ReviewDetails";
 import LeadFormDetails from "./LeadFormDetails";
 import withFormik from "./withFormik";
 import "bootstrap/dist/css/bootstrap.min.css";
-function ContactInfoValidations({ errors }) {
-  return !errors.FirstName;
+function ContactInfoValidations({ errors ,values}) {
+ if(values.Form_Type=== "true"){
+  return !errors.FirstName && !errors.LastName && !errors.Email && !errors.Phone && !errors.ConfirmEmail &&!errors.Datepicker 
+          &&!errors.Ssn;
+ }else{
+  return !errors.FirstName && !errors.LastName && !errors.Email && !errors.Phone && !errors.ConfirmEmail && !errors.Datepicker 
+            &&!errors.Ssn &&!errors.FirstNameJ && !errors.LastNameJ && !errors.EmailJ && !errors.PhoneJ && !errors.ConfirmEmailJ
+             && !errors.DatepickerJ &&!errors.SsnJ;
+ }
 }
 
-function HousingDetailsValidations({ errors }) {
-  return !errors.Rent;
+function HousingDetailsValidations({ errors ,values }) {
+  if(values.Form_Type=== "true"){
+    return !errors.Own && !errors.Rent  && !errors.StreetAddress  && !errors.City && !errors.State && !errors.Zipcode;
+  }
+  else{
+    return !errors.Own && !errors.Rent  && !errors.StreetAddress  && !errors.City && !errors.State && !errors.Zipcode 
+      &&!errors.OwnJ && !errors.RentJ && !errors.StreetAddressJ && !errors.CityJ && !errors.StateJ && !errors.ZipcodeJ
+  }
 }
 
-function EmploymentDetailsValidations({ errors }) {
-  return !errors.Employer;
+function EmploymentDetailsValidations({ errors ,values }) {
+  if(values.Form_Type=== "true"){
+  return !errors.Employment_Status && !errors.Employer && !errors.Money && !errors.Tenure;
+}
+  else{
+    return !errors.Employment_Status && !errors.Employer && !errors.Money && !errors.Tenure 
+        &&  !errors.Employment_StatusJ && !errors.EmployerJ && !errors.MoneyJ && !errors.TenureJ;
+  }
 }
 
 function ReviewDetailsValidations({ errors }) {

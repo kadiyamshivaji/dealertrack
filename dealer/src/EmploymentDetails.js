@@ -141,7 +141,7 @@ export default ({ touched, errors, values }) => (
     </Row>
     <Row>
       <Col>
-        <Field name="Money" id="Money" placeholder="Amount" />
+        <Field name="Money" id="Money" placeholder="" />
         {touched.Money && typeof errors.Money === "string" && (
           <div className="input-feedback">{errors.Money}</div>
         )}
@@ -247,7 +247,7 @@ export default ({ touched, errors, values }) => (
         </Row>
         <Row>
           <Col>
-            <Field name="MoneyJ" id="MoneyJ" placeholder="Money" />
+            <Field name="MoneyJ" id="MoneyJ" placeholder="" />
             {touched.MoneyJ && typeof errors.MoneyJ === "string" && (
               <div className="input-feedback">{errors.MoneyJ}</div>
             )}

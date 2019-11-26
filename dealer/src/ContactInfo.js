@@ -17,6 +17,7 @@ const SSNFormate = ({ field, form, ...props }) => {
         form.setFieldValue(field.name, value.value);
       }}
       name="Ssn"
+      value={field.value}
       placeholder="Social Security Number"
       format="###-##-####"
     />
@@ -100,7 +101,7 @@ export default ({ touched, errors, values }) => (
       )}
     </Row>
     <Row>
-      <PhoneInput name="Phone" id="Phone"></PhoneInput>
+      <PhoneInput name="Phone" value={values.Phone} id="Phone"></PhoneInput>
       {touched.Phone && typeof errors.Phone === "string" && (
         <div className="input-feedback">{errors.Phone}</div>
       )}
@@ -141,7 +142,7 @@ export default ({ touched, errors, values }) => (
     </Row>
     <Row>
       <Col>
-        <Field name="Ssn" id="Ssn" component={SSNFormate} />
+        <Field name="Ssn" id="Ssn" value={values.Ssn} component={SSNFormate} />
         {touched.Ssn && typeof errors.Ssn === "string" && (
           <div className="input-feedback">{errors.Ssn}</div>
         )}
@@ -196,7 +197,7 @@ export default ({ touched, errors, values }) => (
           )}
         </Row>
         <Row>
-          <PhoneInput name="PhoneJ" id="PhoneJ"></PhoneInput>
+          <PhoneInput name="PhoneJ" value={values.PhoneJ} id="PhoneJ"></PhoneInput>
           {touched.PhoneJ && typeof errors.PhoneJ === "string" && (
             <div className="input-feedback">{errors.PhoneJ}</div>
           )}
@@ -230,6 +231,7 @@ export default ({ touched, errors, values }) => (
           </p>
         </Row>
         <Row>
+       
           <DatePickerField name="DatepickerJ" />
           {touched.DatepickerJ && typeof errors.DatepickerJ === "string" && (
             <div className="input-feedback">{errors.DatepickerJ}</div>
@@ -241,7 +243,7 @@ export default ({ touched, errors, values }) => (
         </Row>
         <Row>
           <Col>
-            <Field name="SsnJ" id="SsnJ" component={SSNFormate} />
+            <Field name="SsnJ" id="SsnJ"  value={values.SsnJ} component={SSNFormate} />
             {touched.SsnJ && typeof errors.SsnJ === "string" && (
               <div className="input-feedback">{errors.SsnJ}</div>
             )}
