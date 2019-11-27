@@ -4,12 +4,13 @@ import * as Yup from "yup";
 
 export default withFormik({
   displayName: "WizardForm",
-  enableReinitialize: true,
-  mapPropsToValues: () => ({
-    FirstName: process.env.REACT_APP_SECRET_FIRSTNAME,
-    LastName: process.env.REACT_APP_LASTNAME,
-    Email: process.env.REACT_APP_SECRET_EMAIL,
-    Phone: process.env.REACT_APP_SECRET_PHONE,
+  enableReinitialize: false,
+  mapPropsToValues: (props) => (
+    {
+    FirstName: props.data.FirstName,
+    LastName: props.data.LastName,
+    Email: props.data.Email,
+    Phone: props.data.Phone,
     ConfirmEmail: "",
     Datepicker: "",
     Ssn: "",

@@ -52,10 +52,6 @@ function ReviewDetailsValidations({ errors }) {
   return !errors.Employer;
 }
 class HomeContainer extends React.Component {
-  // eslint-disable-next-line no-useless-constructor
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div>
@@ -90,6 +86,5 @@ class HomeContainer extends React.Component {
     );
   }
 }
-
 const WithFormikApp = withFormik(HomeContainer);
 export default WithFormikApp;

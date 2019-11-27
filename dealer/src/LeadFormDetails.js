@@ -4,66 +4,35 @@ import { Field } from "formik";
 import { Formik } from "formik";
 import { FaDotCircle, FaAngleDoubleRight, FaAngleUp } from "react-icons/fa";
 import HomeContainer from "./HomeContainer";
-const validate = {
-  1: values => {
-    const errors = {};
-    if (!values.name) errors.name = "required";
-    return errors;
-  },
-  2: values => {
-    const errors = {};
-    if (!values.email) errors.email = "required";
-    return errors;
-  },
-  3: values => {
-    const errors = {};
-    if (!values.password) errors.password = "required";
-    return errors;
-  }
-};
 class LeadFormDetails extends React.Component {
-  state = {
-    ShowLeadPage: true,
-    showWelcomePage: false,
-    ShowHomePage: false,
-    ShowMainPage: false,
-    showReqInfo: false,
-    showProInfo: false,
-    formValues: {
-      FirstNameL: process.env.REACT_APP_SECRET_FIRSTNAME,
-      LastNameL: process.env.REACT_APP_LASTNAME,
-      EmailL: process.env.REACT_APP_SECRET_EMAIL,
-      PhoneL: process.env.REACT_APP_SECRET_PHONE,
-      vehicle:process.env.REACT_APP_SECRET_VIN,
-      Year:process.env.REACT_APP_SECRET_YEAR,
-      Modal:process.env.REACT_APP_SECRET_MODAL,
-      Trim:process.env.REACT_APP_SECRET_TRIM,
-      Make:process.env.REACT_APP_SECRET_MAKE
-    },
-    step: 1
-  };
-
-  next = formValues =>
-    this.setState(state => ({
-      step: state.step + 1,
-      formValues
-    }));
-
-  onSubmit = values => {
-    alert(JSON.stringify(values, null, 2));
-  };
-  handlePage1Submit=(values)=>{
-    console.log('*****',values)
+  constructor(props){
+    super(props);
+    this.state = {
+      ShowLeadPage: true,
+      showWelcomePage: false,
+      ShowHomePage: false,
+      ShowMainPage: false,
+      showReqInfo: false,
+      showProInfo: false,
+      FirstName: process.env.REACT_APP_SECRET_FIRSTNAME,
+        LastName: process.env.REACT_APP_LASTNAME,
+        Email: process.env.REACT_APP_SECRET_EMAIL,
+        Phone: process.env.REACT_APP_SECRET_PHONE,
+        vehicle:process.env.REACT_APP_SECRET_VIN,
+        Year:process.env.REACT_APP_SECRET_YEAR,
+        Modal:process.env.REACT_APP_SECRET_MODAL,
+        Trim:process.env.REACT_APP_SECRET_TRIM,
+        Make:process.env.REACT_APP_SECRET_MAKE,
+    };
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
-  handleSubmit = (values, bag) => {
-    const { step } = this.state;
-    if (step === 3) {
-      return this.onSubmit(values);
-    } else {
-      this.next(values);
-      bag.setSubmitting(false);
-    }
-  };
+  
+  handleInputChange(event) {
+    const {name,value}=event.target;
+    this.setState({
+      [name]:value
+    })
+}
   showWelcomePage = () => {
     this.setState({
       ShowLeadPage: false,
@@ -107,24 +76,17 @@ class LeadFormDetails extends React.Component {
   };
 
   render() {
-    const { formValues, step } = this.state;
     return (
       <div>
         <Formik
-          initialValues={formValues}
-          validate={validate[step]}
-          onSubmit={this.handleSubmit}
           render={({
-            values,
             touched,
             errors,
-            handleChange,
-            handleBlur,
-            handleSubmit,handlePage1Submit
+            handleSubmit
           }) => (
            <div>
               {this.state.ShowLeadPage && (
-                <form onSubmit={handlePage1Submit}>
+                <form >
                 <Container>
                   <Row>
                     <h2>Lead Form</h2>
@@ -136,43 +98,54 @@ class LeadFormDetails extends React.Component {
                   
                   <Row>
                     <Field
-                      name="FirstNameL"
-                      id="FirstNameL"
-                      value={values.FirstNameL}
-                      placeholder="FirstNameL"
+                      name="FirstName"
+                      id="FirstName"
+                      onChange={this.handleInputChange}
+                      value={this.state.FirstName}
+                      placeholder="FirstName"
                     />
-                    {errors.FirstNameL && (
+                    {errors.FirstName && (
                       <div style={{ backgroundColor: "red" }}>
-                        {errors.FirstNameL }
+                        {errors.FirstName }
                       </div>
                     )}
                   </Row>
                   <Row>
                     <Field
-                      name="LastNameL"
-                      id="LastNameL"
-                      value={values.LastNameL}
+                      name="LastName"
+                      id="LastName"
+                      onChange={this.handleInputChange}
+                      value={this.state.LastName}
                       placeholder="LastName"
                     />
-                    {errors.LastNameL && (
+                    {errors.LastName && (
                       <div style={{ backgroundColor: "red" }}>
-                        {errors.LastNameL}
+                        {errors.LastName}
                       </div>
                     )}
                   </Row>
                   <Row>
-                    <Field name="PhoneL" id="PhoneL"  value={values.PhoneL} placeholder="Phone" />
-                    {errors.PhoneL && (
+                    <Field name="Phone"
+                    onChange={this.handleInputChange} 
+                    id="Phone" 
+                    value={this.state.Phone}
+                     placeholder="Phone" />
+                    {errors.Phone && (
                       <div style={{ backgroundColor: "red" }}>
-                        {errors.PhoneL}
+                        {errors.Phone}
                       </div>
                     )}
                   </Row>
                   <Row>
-                    <Field name="EmailL" id="EmailL"  value={values.EmailL} placeholder="Email" />
-                    {errors.EmailL && (
+                    <Field name="Email" 
+                    onChange={this.handleInputChange}
+                    id="Email"  
+                    value={this.state.Email}
+                     placeholder="Email" 
+                     />
+                    {errors.Email && (
                       <div style={{ backgroundColor: "red" }}>
-                        {errors.EmailL}
+                        {errors.Email}
                       </div>
                     )}
                   </Row>
@@ -192,31 +165,50 @@ class LeadFormDetails extends React.Component {
                   </Row>
                   <br />
                   <Row>
-                    <Field name="vehicle" id="vehicle" value={values.vehicle} placeholder="VIN" />
+                    <Field name="vehicle"
+                    onChange={this.handleInputChange}
+                     id="vehicle" 
+                     value={this.state.vehicle} 
+                     placeholder="VIN" 
+                     />
                     {touched.vehicle && typeof errors.vehicle === "string" && (
                       <div className="input-feedback">{errors.vehicle}</div>
                     )}
                   </Row>
                   <Row>
-                    <Field name="Year" id="Year" value={values.Year} placeholder="Year" />
+                    <Field name="Year"
+                     id="Year" 
+                     onChange={this.handleInputChange}
+                     value={this.state.Year}
+                      placeholder="Year" />
                     {touched.Make && typeof errors.Make === "string" && (
                       <div className="input-feedback">{errors.Year}</div>
                     )}
                   </Row>
                   <Row>
-                    <Field name="Make" id="Make" value={values.Make} placeholder="Make" />
+                    <Field name="Make"
+                     id="Make"
+                     onChange={this.handleInputChange} 
+                     value={this.state.Make} 
+                     placeholder="Make" />
                     {touched.Trim && typeof errors.Make === "string" && (
                       <div className="input-feedback">{errors.Make}</div>
                     )}
                   </Row>
                   <Row>
-                    <Field name="Modal" id="Modal" value={values.Modal}  placeholder="Modal" />
+                    <Field name="Modal"
+                     id="Modal"
+                      value={this.state.Modal}
+                      onChange={this.handleInputChange}
+                        placeholder="Modal" />
                     {touched.Trim && typeof errors.Modal === "string" && (
                       <div className="input-feedback">{errors.Modal}</div>
                     )}
                   </Row>
                   <Row>
-                    <Field name="Trim" id="Trim" value={values.Trim} placeholder="Trim" />
+                    <Field name="Trim" id="Trim"
+                    onChange={this.handleInputChange}
+                     value={this.state.Trim} placeholder="Trim" />
                     {touched.Trim && typeof errors.Trim === "string" && (
                       <div className="input-feedback">{errors.Trim}</div>
                     )}
@@ -413,7 +405,7 @@ class LeadFormDetails extends React.Component {
                 </Container>
               </form>
               }
-              {this.state.ShowMainPage && <HomeContainer details={this.state} />}
+              {this.state.ShowMainPage && <HomeContainer data={this.state} />}
             </div>
           )}
         />
