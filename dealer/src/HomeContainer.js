@@ -68,9 +68,9 @@ class HomeContainer extends React.Component {
                   ReviewDetailsValidations
                 ])}
               >
-                <Step component={ContactInfo} title="Contact Info" />
+               <Step component={ContactInfo} title="Contact Info" />
                 <Step component={HousingDetails} title="Housing" />
-                <Step component={EmploymentDetails} title="Employment" />
+                <Step component={EmploymentDetails} title="Employment" /> 
                 <Step component={ReviewDetails} title="Review" />
               </StepsList>
               <ButtonsList>
