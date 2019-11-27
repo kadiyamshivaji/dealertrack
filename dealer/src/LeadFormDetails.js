@@ -52,7 +52,9 @@ class LeadFormDetails extends React.Component {
   onSubmit = values => {
     alert(JSON.stringify(values, null, 2));
   };
-
+  handlePage1Submit=(values)=>{
+    console.log('*****',values)
+  }
   handleSubmit = (values, bag) => {
     const { step } = this.state;
     if (step === 3) {
@@ -118,10 +120,11 @@ class LeadFormDetails extends React.Component {
             errors,
             handleChange,
             handleBlur,
-            handleSubmit
+            handleSubmit,handlePage1Submit
           }) => (
-            <form onSubmit={handleSubmit}>
+           <div>
               {this.state.ShowLeadPage && (
+                <form onSubmit={handlePage1Submit}>
                 <Container>
                   <Row>
                     <h2>Lead Form</h2>
@@ -130,16 +133,17 @@ class LeadFormDetails extends React.Component {
                   <Row>
                     <h4>This activity is lead gated</h4>
                   </Row>
+                  
                   <Row>
                     <Field
-                      name="FrstNameL"
+                      name="FirstNameL"
                       id="FirstNameL"
                       value={values.FirstNameL}
-                      placeholder="FirstName"
+                      placeholder="FirstNameL"
                     />
                     {errors.FirstNameL && (
                       <div style={{ backgroundColor: "red" }}>
-                        {errors.FirstNameL}
+                        {errors.FirstNameL }
                       </div>
                     )}
                   </Row>
@@ -178,8 +182,10 @@ class LeadFormDetails extends React.Component {
                     </button>
                   </Row>
                 </Container>
+              </form>
               )}
               {this.state.showWelcomePage && (
+                <form onSubmit={handleSubmit}>
                 <Container>
                   <Row>
                     <h2>Vehicle Information</h2>
@@ -216,13 +222,15 @@ class LeadFormDetails extends React.Component {
                     )}
                   </Row>
                   <Row>
-                    <button onClick={() => this.showMainPage()}>
+                    <button  onClick={() => this.showMainPage()}>
                       Start Credit Application
                     </button>
                   </Row>
                 </Container>
+                </form>
               )}
-              {this.state.ShowHomePage && (
+              {this.state.ShowHomePage &&                 <form onSubmit={handleSubmit}>
+
                 <Container>
                   <Row>
                     <h2>Apply for Credit</h2>
@@ -297,7 +305,8 @@ class LeadFormDetails extends React.Component {
                         <FaAngleDoubleRight />
                       ) : (
                         <FaAngleUp />
-                      )}
+                      )
+                      }
                     </span>
                     <br />
                     <br />
@@ -402,9 +411,10 @@ class LeadFormDetails extends React.Component {
                     </button>
                   </Row>
                 </Container>
-              )}
-              {this.state.ShowMainPage && <HomeContainer />}
-            </form>
+              </form>
+              }
+              {this.state.ShowMainPage && <HomeContainer details={this.state} />}
+            </div>
           )}
         />
       </div>

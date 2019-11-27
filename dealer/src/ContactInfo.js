@@ -47,7 +47,7 @@ const relationToApplicant = [
     value: "Other"
   }
 ];
-export default ({ touched, errors, values }) => (
+export default ({ touched, errors, values ,details}) => (
   <Container>
     <Row>
       <h2>Contact Info </h2>
@@ -89,7 +89,7 @@ export default ({ touched, errors, values }) => (
       </Col>
     </Row>
     <Row>
-      <Field name="FirstName" id="FirstName" placeholder="First Name" />
+      <Field name="FirstName" id="FirstName"  placeholder="First Name" />
       {touched.FirstName && typeof errors.FirstName === "string" && (
         <div className="input-feedback">{errors.FirstName}</div>
       )}
