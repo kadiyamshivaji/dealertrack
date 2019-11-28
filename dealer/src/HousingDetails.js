@@ -234,7 +234,7 @@ export default ({ touched, errors, values }) => (
               render={({ field }) => (
                 <RadioBox
                   {...field}
-                  css={values.Having_Two_years_ === "true" ? "active" : "label"}
+                  css={values.Having_Two_years_Joint === "true" ? "active" : "label"}
                   value="true"
                   id="Having_Two_years_Joint-0"
                   // checked={values.present_at_home_visit === "true"}

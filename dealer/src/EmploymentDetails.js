@@ -23,10 +23,6 @@ const TenureOptions = [
 ];
 const EmployerOptions = [
   {
-    label: "Employment Status",
-    value: "select"
-  },
-  {
     label: "Employed",
     value: "Employed"
   },
@@ -69,7 +65,7 @@ export default ({ touched, errors, values }) => (
     <Row>
       <Field
         className="select"
-        name="Empolyement_Status"
+        name="Employment_Status"
         options={EmployerOptions}
         component={CustomSelect}
         placeholder="Are you currently Employed?"
@@ -182,7 +178,7 @@ export default ({ touched, errors, values }) => (
         <Row>
           <Field
             className="select"
-            name="Empolyement_StatusJ"
+            name="Employment_StatusJ"
             options={EmployerOptions}
             component={CustomSelect}
             placeholder="Are you currently Employed?"

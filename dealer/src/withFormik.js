@@ -45,13 +45,14 @@ export default withFormik({
     Employer: "",
     Having_Two_years_Employment: "",
     Money: "",
-    Tenure: "Monthly",
+    Tenure: "",
     Employment_StatusJ: "",
     EmployerJ: "",
     Having_Two_years_EmploymentJ: "",
     MoneyJ: "",
-    TenureJ: "Monthly",
-
+    TenureJ: "",
+    Policy1:"",
+    Policy2:"",
     Form_Type: "true",
 
     addressLine1: "",
@@ -104,7 +105,9 @@ export default withFormik({
       Empolyement_StatusJ: Yup.string().required("Field is required"),
       EmployerJ: Yup.string().required("Employer is required"),
       MoneyJ: Yup.string().required("Field is required"),
-      TenureJ: Yup.string().required("Field is required")
+      TenureJ: Yup.string().required("Field is required"),
+      Policy1:Yup.string().required("Accept the Terms and Conditions"),
+      Policy2:Yup.string().required("Accept the Terms and Conditions"),
     }),
 
   handleSubmit: values => {

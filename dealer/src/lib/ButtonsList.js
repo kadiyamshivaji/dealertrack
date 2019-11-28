@@ -47,7 +47,7 @@ const ButtonsList = ({
             onClick={onSubmit}
             validator={validator}
             type="submit"
-            label="Finish"
+            label="Submit Application"
             {...child.props}
           />
         );

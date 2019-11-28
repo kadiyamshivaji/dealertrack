@@ -171,7 +171,7 @@ export default ({ touched, errors, values ,details}) => (
         <Row>
           <Field
             className="select"
-            name="Empolyement_StatusJ"
+            name="Employee_RealtionShip"
             options={relationToApplicant}
             component={CustomSelect}
             placeholder="Relationship to Primary Applicant"

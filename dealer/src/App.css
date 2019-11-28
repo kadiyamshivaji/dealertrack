@@ -144,7 +144,8 @@ button{
   height:8px ;
 }
 p{
-  text-align: left
+  text-align: left;
+  margin-bottom: 0rem !important;
 }
 select{
   padding: .5rem;
@@ -214,4 +215,44 @@ input#Having_Two_years_EmploymentJ-1 {
   display: initial !important;
   justify-content: space-between;
   padding: 10px;
+}
+
+.box {
+  padding: 0 0 15px;
+}
+
+.box label,
+.box input {
+  margin: 0 5px 0;
+}
+
+.msg-error {
+  color: red;
+  font-weight: bold;
+}
+
+.button-modal {
+  margin: 0 10px 0;
+}
+.styles_modal__gNwvD {
+  width: 100% !important;
+  max-width: initial !important;
+}
+.styles_closeIcon__1QwbI {
+  position: absolute;
+  margin-top: -16px;
+  right: -14px;
+}
+.tittle{
+color:#40a9ff;
+}
+h6{
+  font-size: 20px;
+  text-align: left;
+}
+.pencil{
+  margin-left: 6px;
+}
+.react-datepicker-wrapper {
+width: 100%;
 }

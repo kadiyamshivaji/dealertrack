@@ -48,8 +48,14 @@ function EmploymentDetailsValidations({ errors ,values }) {
   }
 }
 
-function ReviewDetailsValidations({ errors }) {
-  return !errors.Employer;
+function ReviewDetailsValidations({ errors ,values}) {
+ 
+  if(values.Form_Type=== "true"){
+      return !errors.Policy1;
+    }
+      else{
+       return !errors.Policy1 && !errors.Policy2;
+      }
 }
 class HomeContainer extends React.Component {
   render() {
@@ -68,7 +74,7 @@ class HomeContainer extends React.Component {
                   ReviewDetailsValidations
                 ])}
               >
-               <Step component={ContactInfo} title="Contact Info" />
+                <Step component={ContactInfo} title="Contact Info" />
                 <Step component={HousingDetails} title="Housing" />
                 <Step component={EmploymentDetails} title="Employment" /> 
                 <Step component={ReviewDetails} title="Review" />
