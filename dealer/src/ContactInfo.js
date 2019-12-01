@@ -4,39 +4,10 @@ import { Field } from "formik";
 import { Row, Col, Container } from "react-bootstrap";
 import { FaLock } from "react-icons/fa";
 import DatePickerField from "./lib/DatePicker";
-// import PhoneInput from "./lib/Phone";
 import "react-datepicker/dist/react-datepicker.css";
-import NumberFormat from "react-number-format";
 import { CustomSelect } from "./lib/Select";
-
-const SSNFormate = ({ field, form, ...props }) => {
-  return (
-    <NumberFormat
-      onValueChange={value => {
-        if (!form.touched[field.name]) form.setFieldTouched(field.name);
-        form.setFieldValue(field.name, value.value);
-      }}
-      name="Ssn"
-      value={field.value}
-      placeholder="Social Security Number"
-      format="###-##-####"
-    />
-  );
-};
-const SSNFormate1 = ({ field, form, ...props }) => {
-  return (
-    <NumberFormat
-      onValueChange={value => {
-        if (!form.touched[field.name]) form.setFieldTouched(field.name);
-        form.setFieldValue(field.name, value.value);
-      }}
-      name="Ssn"
-      value={field.value}
-      placeholder="Phone"
-      format="(###) ###-####"
-    />
-  );
-};
+import PhoneField from "./lib/Phone";
+import SSNField from "./lib/ssn";
 
 const RadioBox = ({ id, name, label, checked, css, ...props }) => (
   <div>
@@ -115,18 +86,12 @@ export default ({ touched, errors, values ,details}) => (
         <div className="input-feedback">{errors.LastName}</div>
       )}
     </Row>
-    {/* <Row>
-      <PhoneInput name="Phone" value={values.Phone} id="Phone"></PhoneInput>
-      {touched.Phone && typeof errors.Phone === "string" && (
-        <div className="input-feedback">{errors.Phone}</div>
-      )} 
-    </Row>*/}
     <Row>
-        <Field name="Phone" id="Phone" value={values.Phone} component={SSNFormate1} />
-        {touched.Phone && typeof errors.Phone === "string" && (
-          <div className="input-feedback">{errors.Phone}</div>
-        )}
-      </Row>
+       <PhoneField placeholder="Phone" name="Phone" />
+         {touched.Phone && typeof errors.Phone === "string" && (
+           <div className="input-feedback">{errors.Phone}</div>
+         )}
+    </Row>
     <Row>
       <Field name="Email" id="Email" placeholder="Email" />
       {touched.Email && typeof errors.Email === "string" && (
@@ -166,7 +131,7 @@ export default ({ touched, errors, values ,details}) => (
     </Row>
     <Row>
       <Col>
-        <Field name="Ssn" id="Ssn" value={values.Ssn} component={SSNFormate} />
+      <SSNField name="Ssn"/>
         {touched.Ssn && typeof errors.Ssn === "string" && (
           <div className="input-feedback">{errors.Ssn}</div>
         )}
@@ -221,7 +186,7 @@ export default ({ touched, errors, values ,details}) => (
           )}
         </Row>
         <Row>
-        <Field name="PhoneJ" id="PhoneJ" value={values.PhoneJ} component={SSNFormate1} />
+          <PhoneField name="PhoneJ"/>
         {touched.PhoneJ && typeof errors.PhoneJ === "string" && (
           <div className="input-feedback">{errors.PhoneJ}</div>
         )}
@@ -272,7 +237,7 @@ export default ({ touched, errors, values ,details}) => (
         </Row>
         <Row>
           <Col>
-            <Field name="SsnJ" id="SsnJ"  value={values.SsnJ} component={SSNFormate} />
+          <SSNField name="SsnJ"/>
             {touched.SsnJ && typeof errors.SsnJ === "string" && (
               <div className="input-feedback">{errors.SsnJ}</div>
             )}

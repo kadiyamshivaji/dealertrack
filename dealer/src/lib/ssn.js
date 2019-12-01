@@ -2,7 +2,7 @@ import React from "react";
 import { useField, useFormikContext } from "formik";
 import NumberFormat from "react-number-format";
 
-export const  PhoneField= ({ ...props }) => {
+export const  SSNField= ({ ...props }) => {
   const { setFieldValue } = useFormikContext();
   const [field] = useField(props);
   return (
@@ -14,10 +14,10 @@ export const  PhoneField= ({ ...props }) => {
     }}
     name={field.name}
     value={field.value}
-    placeholder="Phone"
-    format="(###) ###-####"
+    placeholder="Socail Security Number"
+    format="###-##-####"
   />
   );
 };
 
-export default PhoneField;
+export default SSNField;

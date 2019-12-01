@@ -4,11 +4,11 @@ import { FaPencilAlt } from "react-icons/fa";
 import Moment from 'react-moment';
 import { Field } from "formik";
 import Modal from "react-responsive-modal";
-import NumberFormat from "react-number-format";
 import DatePickerField from "./lib/DatePicker";
-import PhoneInput from "./lib/Phone";
 import { CustomSelect } from "./lib/Select";
 import * as CurrencyFormat from 'react-currency-format';
+import PhoneField from "./lib/Phone";
+import SSNField from "./lib/ssn";
 
 const TenureOptions = [
   {
@@ -98,20 +98,6 @@ const OwnOptions = [
     value: "Military"
   }
 ];
-const SSNFormate = ({ field, form, ...props }) => {
-  return (
-    <NumberFormat
-      onValueChange={value => {
-        if (!form.touched[field.name]) form.setFieldTouched(field.name);
-        form.setFieldValue(field.name, value.value);
-      }}
-      name="Ssn"
-      value={field.value}
-      placeholder="Social Security Number"
-      format="###-##-####"
-    />
-  );
-};
 const Policy1 = ({ id, name, label, checked, css, ...props }) => (
   <Row>
     <Col >
@@ -189,10 +175,12 @@ export default ({ touched, errors ,values}) => {
                     <p>{values.FirstNameJ} {values.LastNameJ}</p>
                     </Row>
                 <Row>
-                    <p>{values.PhoneJ}</p>
+                    <p>(***) ***-**{values.PhoneJ.toString().slice(-2)}</p>
                     </Row>
                 <Row>
-                    <p>{values.EmailJ}</p>
+                    <p>{values.EmailJ.replace(/^(.)(.*)(.@.*)$/,
+                 (_, a, b, c) => a + b.replace(/./g, '*') + c   
+                )}</p>
                     </Row>
                 <Row>
                     <p> <Moment format="MM/DD/YYYY">
@@ -329,7 +317,8 @@ export default ({ touched, errors ,values}) => {
         )}
       </Row>
         <Row>
-        <PhoneInput name="Phone" value={values.Phone} id="Phone"></PhoneInput>
+          <PhoneField name="Phone"/>
+        {/* <PhoneInput name="Phone" value={values.Phone} id="Phone"></PhoneInput> */}
         {touched.Phone && typeof errors.Phone === "string" && (
           <div className="input-feedback">{errors.Phone}</div>
         )}
@@ -347,7 +336,8 @@ export default ({ touched, errors ,values}) => {
        )}
      </Row>
       <Row>
-        <Field name="Ssn" id="Ssn" value={values.Ssn} component={SSNFormate} />
+        <SSNField  name="Ssn"/>
+        {/* <Field name="Ssn" id="Ssn" value={values.Ssn} component={SSNFormate} /> */}
         {touched.Ssn && typeof errors.Ssn === "string" && (
           <div className="input-feedback">{errors.Ssn}</div>
         )}
@@ -374,7 +364,7 @@ export default ({ touched, errors ,values}) => {
         )}
       </Row>
         <Row>
-        <PhoneInput name="PhoneJ" value={values.PhoneJ} id="Phone"></PhoneInput>
+          <PhoneField name="PhoneJ"/>
         {touched.PhoneJ && typeof errors.PhoneJ === "string" && (
           <div className="input-feedback">{errors.PhoneJ}</div>
         )}
@@ -392,7 +382,7 @@ export default ({ touched, errors ,values}) => {
        )}
      </Row>
       <Row>
-        <Field name="SsnJ" id="SsnJ" value={values.SsnJ} component={SSNFormate} />
+        <SSNField  name="SsnJ" />
         {touched.SsnJ && typeof errors.SsnJ === "string" && (
           <div className="input-feedback">{errors.SsnJ}</div>
         )}

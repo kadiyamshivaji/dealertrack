@@ -271,3 +271,6 @@ input[type="checkbox"]{
   padding-bottom: 5px;
   padding-top: 5px;
 }
+.input-feedback {
+  text-align: left !important;
+}

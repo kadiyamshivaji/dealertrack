@@ -15,7 +15,7 @@ export {
   ButtonsList,
   PreviousButton,
   NextButton,
-  SubmitButton,
+  SubmitButton
 };
 
 export default FormikWizardProvider;
