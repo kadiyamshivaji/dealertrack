@@ -4,6 +4,8 @@ import { Field } from "formik";
 import { Formik } from "formik";
 import { FaDotCircle, FaAngleDoubleRight, FaAngleUp } from "react-icons/fa";
 import HomeContainer from "./HomeContainer";
+import NumberFormat from "react-number-format";
+
 class LeadFormDetails extends React.Component {
   constructor(props){
     super(props);
@@ -15,14 +17,14 @@ class LeadFormDetails extends React.Component {
       showReqInfo: false,
       showProInfo: false,
       FirstName: process.env.REACT_APP_SECRET_FIRSTNAME,
-        LastName: process.env.REACT_APP_LASTNAME,
-        Email: process.env.REACT_APP_SECRET_EMAIL,
-        Phone: process.env.REACT_APP_SECRET_PHONE,
-        vehicle:process.env.REACT_APP_SECRET_VIN,
-        Year:process.env.REACT_APP_SECRET_YEAR,
-        Modal:process.env.REACT_APP_SECRET_MODAL,
-        Trim:process.env.REACT_APP_SECRET_TRIM,
-        Make:process.env.REACT_APP_SECRET_MAKE,
+      LastName: process.env.REACT_APP_LASTNAME,
+      Email: process.env.REACT_APP_SECRET_EMAIL,
+      Phone: process.env.REACT_APP_SECRET_PHONE,
+      vehicle:process.env.REACT_APP_SECRET_VIN,
+      Year:process.env.REACT_APP_SECRET_YEAR,
+      Modal:process.env.REACT_APP_SECRET_MODAL,
+      Trim:process.env.REACT_APP_SECRET_TRIM,
+      Make:process.env.REACT_APP_SECRET_MAKE,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
@@ -56,9 +58,6 @@ class LeadFormDetails extends React.Component {
         showWelcomePage: false,
         ShowHomePage: false,
         ShowMainPage: true
-      },
-      function() {
-        console.log(this.state, null, 2);
       }
     );
   }
@@ -74,7 +73,17 @@ class LeadFormDetails extends React.Component {
       showReqInfo: !this.state.showReqInfo
     });
   };
-
+   PhoneFormate = ({ field, form, ...props }) => {
+    return (
+      <NumberFormat
+        name="Phone"
+        onChange={this.handleInputChange} 
+        value={this.state.Phone}
+        placeholder="Phone"
+        format="(###) ###-####"
+      />
+    );
+  };
   render() {
     return (
       <div>
@@ -124,12 +133,12 @@ class LeadFormDetails extends React.Component {
                       </div>
                     )}
                   </Row>
+                  
                   <Row>
                     <Field name="Phone"
-                    onChange={this.handleInputChange} 
                     id="Phone" 
-                    value={this.state.Phone}
-                     placeholder="Phone" />
+                    component={this.PhoneFormate}
+                    placeholder="Phone" />
                     {errors.Phone && (
                       <div style={{ backgroundColor: "red" }}>
                         {errors.Phone}
@@ -138,10 +147,10 @@ class LeadFormDetails extends React.Component {
                   </Row>
                   <Row>
                     <Field name="Email" 
-                    onChange={this.handleInputChange}
-                    id="Email"  
-                    value={this.state.Email}
-                     placeholder="Email" 
+                      onChange={this.handleInputChange}
+                      id="Email"  
+                      value={this.state.Email}
+                      placeholder="Email" 
                      />
                     {errors.Email && (
                       <div style={{ backgroundColor: "red" }}>

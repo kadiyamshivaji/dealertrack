@@ -11,9 +11,9 @@ import {
 } from "./lib";
 import { DisplayFormikState } from "./helper";
 import ContactInfo from "./ContactInfo";
-import HousingDetails from "./HousingDetails";
-import EmploymentDetails from "./EmploymentDetails";
-import ReviewDetails from "./ReviewDetails";
+import HousingDetails from "./Housing";
+import EmploymentDetails from "./Employment";
+import ReviewDetails from "./Review";
 import LeadFormDetails from "./LeadFormDetails";
 import withFormik from "./withFormik";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -74,8 +74,8 @@ class HomeContainer extends React.Component {
                   ReviewDetailsValidations
                 ])}
               >
-                <Step component={ContactInfo} title="Contact Info" />
-                <Step component={HousingDetails} title="Housing" />
+                <Step component={ContactInfo} title="Contact Info" /> 
+                <Step component={HousingDetails} title="Housing" />   
                 <Step component={EmploymentDetails} title="Employment" /> 
                 <Step component={ReviewDetails} title="Review" />
               </StepsList>

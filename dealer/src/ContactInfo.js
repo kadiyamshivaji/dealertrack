@@ -4,7 +4,7 @@ import { Field } from "formik";
 import { Row, Col, Container } from "react-bootstrap";
 import { FaLock } from "react-icons/fa";
 import DatePickerField from "./lib/DatePicker";
-import PhoneInput from "./lib/Phone";
+// import PhoneInput from "./lib/Phone";
 import "react-datepicker/dist/react-datepicker.css";
 import NumberFormat from "react-number-format";
 import { CustomSelect } from "./lib/Select";
@@ -20,6 +20,20 @@ const SSNFormate = ({ field, form, ...props }) => {
       value={field.value}
       placeholder="Social Security Number"
       format="###-##-####"
+    />
+  );
+};
+const SSNFormate1 = ({ field, form, ...props }) => {
+  return (
+    <NumberFormat
+      onValueChange={value => {
+        if (!form.touched[field.name]) form.setFieldTouched(field.name);
+        form.setFieldValue(field.name, value.value);
+      }}
+      name="Ssn"
+      value={field.value}
+      placeholder="Phone"
+      format="(###) ###-####"
     />
   );
 };
@@ -94,18 +108,25 @@ export default ({ touched, errors, values ,details}) => (
         <div className="input-feedback">{errors.FirstName}</div>
       )}
     </Row>
+   
     <Row>
       <Field name="LastName" id="LastName" placeholder="Last Name" />
       {touched.LastName && typeof errors.LastName === "string" && (
         <div className="input-feedback">{errors.LastName}</div>
       )}
     </Row>
-    <Row>
+    {/* <Row>
       <PhoneInput name="Phone" value={values.Phone} id="Phone"></PhoneInput>
       {touched.Phone && typeof errors.Phone === "string" && (
         <div className="input-feedback">{errors.Phone}</div>
-      )}
-    </Row>
+      )} 
+    </Row>*/}
+    <Row>
+        <Field name="Phone" id="Phone" value={values.Phone} component={SSNFormate1} />
+        {touched.Phone && typeof errors.Phone === "string" && (
+          <div className="input-feedback">{errors.Phone}</div>
+        )}
+      </Row>
     <Row>
       <Field name="Email" id="Email" placeholder="Email" />
       {touched.Email && typeof errors.Email === "string" && (
@@ -123,9 +144,12 @@ export default ({ touched, errors, values ,details}) => (
         We respect your privacy and will only use this information to process
         your appplication and communicate with you about loan.
       </p>
+      </Row>
+      <Row>
       <h5>Required for Identity Verification</h5>
+      </Row>
+      <Row>
       <p>
-        {" "}
         If you are not ready to apply for credit and just want to know your rates{" "}
         <a href="">check them here</a>
       </p>
@@ -197,11 +221,12 @@ export default ({ touched, errors, values ,details}) => (
           )}
         </Row>
         <Row>
-          <PhoneInput name="PhoneJ" value={values.PhoneJ} id="PhoneJ"></PhoneInput>
-          {touched.PhoneJ && typeof errors.PhoneJ === "string" && (
-            <div className="input-feedback">{errors.PhoneJ}</div>
-          )}
-        </Row>
+        <Field name="PhoneJ" id="PhoneJ" value={values.PhoneJ} component={SSNFormate1} />
+        {touched.PhoneJ && typeof errors.PhoneJ === "string" && (
+          <div className="input-feedback">{errors.PhoneJ}</div>
+        )}
+      </Row>
+      
         <Row>
           <Field name="EmailJ" id="EmailJ" placeholder="Email" />
           {touched.EmailJ && typeof errors.EmailJ === "string" && (
@@ -224,7 +249,11 @@ export default ({ touched, errors, values ,details}) => (
             We respect your privacy and will only use this information to
             process your appplication and communicate with you about loan.
           </p>
+          </Row>
+        <Row>
           <h5>Required for Identity Verification</h5>
+          </Row>
+        <Row>
           <p>
             If you are not ready to apply for credit and just want to know your
             rates <a href="">check them here</a>

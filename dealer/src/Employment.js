@@ -1,4 +1,4 @@
-import React from "react";
+import React,  { useState }  from "react";
 import { Field } from "formik";
 import { Row, Col, Container } from "react-bootstrap";
 import { FaPlusCircle } from "react-icons/fa";
@@ -56,12 +56,15 @@ const EmployerOptions = [
   }
 ];
 
-export default ({ touched, errors, values }) => (
+export default ({ touched, errors, values }) => {
+  const [openOptional, setOptional] = useState(false);
+  const [openOptionalJoint, setOptionalJoint] = useState(false);
+
+  return(
   <Container>
     <Row>
       <h2>Employment</h2>
     </Row>
-
     <Row>
       <Field
         className="select"
@@ -148,7 +151,7 @@ export default ({ touched, errors, values }) => (
           name="Tenure"
           options={TenureOptions}
           component={CustomSelect}
-          placeholder="select your pay"
+          placeholder="Select your pay"
           isMulti={false}
         />
       </Col>
@@ -162,8 +165,10 @@ export default ({ touched, errors, values }) => (
         disclosed unless relied upon credit.
       </p>
     </Row>
+    { openOptional && 
+     <Field name="Income" id="Income" placeholder="Income" />}
     <Row>
-      <p>
+      <p onClick={() => setOptional(true)}>
         <FaPlusCircle /> Add Additional Income
       </p>
     </Row>
@@ -254,7 +259,7 @@ export default ({ touched, errors, values }) => (
               name="TenureJ"
               options={TenureOptions}
               component={CustomSelect}
-              placeholder="select your pay"
+              placeholder="Select your pay"
               isMulti={false}
             />
           </Col>
@@ -268,9 +273,11 @@ export default ({ touched, errors, values }) => (
             discolsed unless relied upon credit
           </p>
         </Row>
-        <Row>
-          <p>
-            <FaPlusCircle /> Add Additional Income
+        { openOptionalJoint && 
+        <Field name="IncomeJoint" id="IncomeJoint" placeholder="Income" />}
+         <Row>
+          <p onClick={() => setOptionalJoint(true)}>
+             <FaPlusCircle /> Add Additional Income
           </p>
         </Row>
         <Row>
@@ -279,4 +286,4 @@ export default ({ touched, errors, values }) => (
       </div>
     )}
   </Container>
-);
+)};

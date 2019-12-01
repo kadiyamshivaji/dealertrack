@@ -36,7 +36,7 @@ class Wizard extends React.Component {
   };
 
   onSubmit = () => {
-    console.log('submitted the form');
+    console.log('submitted the form',JSON.stringify(this.props.values));
   };
 
   updateStepTabs = stepTabs => {

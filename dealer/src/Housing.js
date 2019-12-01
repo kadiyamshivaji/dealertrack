@@ -32,7 +32,7 @@ const OwnOptions = [
 const RadioBox = ({ id, name, label, checked, css, ...props }) => (
   <div>
     <input type="radio" id={id} name={name} checked={checked} {...props} />
-    <label className={css} htmlFor={id}>
+    <label  className={css} htmlFor={id}>
       {label}
     </label>
   </div>
@@ -43,8 +43,8 @@ const CheckBox = ({ id, name, label, checked, css, ...props }) => (
     <Col>
     <input  type="checkbox" id={id} name={name} checked={checked} {...props} />
     </Col>
-    <Col  xs={10}>
-    <p>
+    <Col  xs={11}>
+    <p className="checkBox-label">
       {label}
     </p>
     </Col>

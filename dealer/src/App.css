@@ -151,6 +151,7 @@ select{
   padding: .5rem;
   font-size: 16px;
   width: 100%;
+  height: 42px;
   display: block;
   border: 1px solid #ccc;
   color: #000;
@@ -194,6 +195,7 @@ input#Having_Two_years_EmploymentJ-1 {
 .select{
   font-size: 16px;
     width: 100%;
+    height: 42px;
     display: block;
     border: 1px solid #ccc;
     color: #000;
@@ -255,4 +257,17 @@ h6{
 }
 .react-datepicker-wrapper {
 width: 100%;
+}
+
+input[type="checkbox"]{
+  margin-top: 5px;
+  margin-left: -20px;
+}
+.checkBox-label{
+  margin-left: -43px;
+}
+.checkBox-bg{
+  background: #ddd;
+  padding-bottom: 5px;
+  padding-top: 5px;
 }

@@ -1,13 +1,14 @@
-import React,  { useState, memo }  from "react";
-import {Row,Col,Container,Button} from 'react-bootstrap';
-import { FaPencilAlt,FaPen,FaPencilRuler } from "react-icons/fa";
+import React,  { useState }  from "react";
+import {Row,Col,Container} from 'react-bootstrap';
+import { FaPencilAlt } from "react-icons/fa";
 import Moment from 'react-moment';
-import { Field ,Form} from "formik";
+import { Field } from "formik";
 import Modal from "react-responsive-modal";
 import NumberFormat from "react-number-format";
 import DatePickerField from "./lib/DatePicker";
 import PhoneInput from "./lib/Phone";
 import { CustomSelect } from "./lib/Select";
+import * as CurrencyFormat from 'react-currency-format';
 
 const TenureOptions = [
   {
@@ -113,12 +114,12 @@ const SSNFormate = ({ field, form, ...props }) => {
 };
 const Policy1 = ({ id, name, label, checked, css, ...props }) => (
   <Row>
-    <Col>
+    <Col >
     <input  type="checkbox" id={id} name={name} checked={checked} {...props} />
     </Col>
     <Col  xs={11}>
-    <p>
-     I have reviewed and agree to the <a>Terms & Conditions</a> and <a>Privacy and Policy</a>.
+    <p className="checkBox-label">
+     I have reviewed and agree to the <a href="# ">Terms & Conditions</a> and <a href="# ">Privacy and Policy</a>.
      I understand this dealer will check my credit and share the results with their lender
     </p>
     </Col>
@@ -131,7 +132,7 @@ const Policy2 = ({ id, name, label, checked, css, ...props }) => (
     <input  type="checkbox" id={id} name={name} checked={checked} {...props} />
     </Col>
     <Col  xs={11}>
-    <p>
+    <p className="checkBox-label">
      Both borrower intend to apply for joint credit
     </p>
     </Col>
@@ -145,6 +146,7 @@ export default ({ touched, errors ,values}) => {
   const [open4, setOpen4] = useState(false);
   const [open5, setOpen5] = useState(false);
   const [open6, setOpen6] = useState(false);
+
     return(
   <Container>
      <Row>
@@ -162,10 +164,12 @@ export default ({ touched, errors ,values}) => {
                 <p>{values.FirstName } {values.LastName}</p>
             </Row>
             <Row>
-                <p>{values.Phone}</p>
+                <p>(***) ***-**{values.Phone.toString().slice(-2)}</p>
             </Row>
             <Row>
-                <p>{values.Email}</p>
+                <p>{values.Email.replace(/^(.)(.*)(.@.*)$/,
+                 (_, a, b, c) => a + b.replace(/./g, '*') + c   
+                )}</p>
             </Row>
             <Row>
                 <p> <Moment format="MM/DD/YYYY">
@@ -173,7 +177,7 @@ export default ({ touched, errors ,values}) => {
             </Moment></p>
             </Row>
             <Row>
-                <p>{values.Ssn}</p>
+                <p>***-**-{values.Ssn.toString().slice(-4)}</p>
             </Row>
         </Col>
         { values.Form_Type ==="false" &&
@@ -214,7 +218,7 @@ export default ({ touched, errors ,values}) => {
             <p>{values.Own}</p>
             </Row>
             <Row>
-            <p>${values.Rent}/month</p>
+            <p><CurrencyFormat value={values.Rent} displayType={'text'} thousandSeparator={true} prefix={'$'} />/month</p>
             </Row>
             <Row>
             <p>{values.StreetAddress}</p>
@@ -236,7 +240,7 @@ export default ({ touched, errors ,values}) => {
                 <p>{values.OwnJ}</p>
             </Row>
             <Row>
-                <p>${values.RentJ}/month</p>
+            <p><CurrencyFormat value={values.RentJ} displayType={'text'} thousandSeparator={true} prefix={'$'} />/month</p>
             </Row>
             <Row>
                 <p>{values.StreetAddressJ}</p>
@@ -262,7 +266,7 @@ export default ({ touched, errors ,values}) => {
                  <p>{values.Employer}</p>
             </Row>
             <Row>
-                 <p>${values.Money}/{values.Tenure}</p>
+            <p><CurrencyFormat value={values.Money} displayType={'text'} thousandSeparator={true} prefix={'$'} />/{values.Tenure}</p>
             </Row>
         </Col>
         { values.Form_Type ==="false" &&
@@ -277,12 +281,13 @@ export default ({ touched, errors ,values}) => {
                  <p>{values.EmployerJ}</p>
             </Row>
             <Row>
-                 <p>${values.MoneyJ}/{values.TenureJ}</p>
+            <p><CurrencyFormat value={values.MoneyJ} displayType={'text'} thousandSeparator={true} prefix={'$'} />/{values.TenureJ}</p>
+
             </Row>
         </Col>
         }
     </Row>
-    <Row>
+    <div className="checkBox-bg">
       <Field
           name="Policy1"
           render={({ field }) => (
@@ -292,9 +297,7 @@ export default ({ touched, errors ,values}) => {
             />
           )}
         />
-    </Row>
     { values.Form_Type ==="false" &&
-     <Row>
      <Field
          name="Policy2"
          render={({ field }) => (
@@ -304,9 +307,8 @@ export default ({ touched, errors ,values}) => {
            />
          )}
        />
-   </Row>
 }
-  
+</div>
    {/* Primary Modal */}
    <Modal 
       open={open1}
