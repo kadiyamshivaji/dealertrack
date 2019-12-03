@@ -80,7 +80,7 @@ export default withFormik({
         .required("Email is required"),
       ConfirmEmailJ: Yup.string()
         .oneOf([Yup.ref("EmailJ"), null])
-        .required("confirmEmail is required"),
+        .required("Confirm Email is required"),
       DatepickerJ: Yup.string().required("Date of Birth is required"),
       SsnJ: Yup.string().required("Social Security Number  is required"),
       addressLine1: Yup.string().required("Address Line 1 is required"),
@@ -97,7 +97,7 @@ export default withFormik({
       StateJ: Yup.string().required("State is required"),
       ZipcodeJ: Yup.string().required("Zipcode is required"),
       Empolyement_Status: Yup.string().required(
-        "Empolyement_Status is required"
+        "Employment_Status is required"
       ),
       Employer: Yup.string().required("Employer is required"),
       Money: Yup.string().required("Field is required"),

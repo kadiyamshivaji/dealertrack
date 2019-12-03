@@ -160,7 +160,7 @@ class LeadFormDetails extends React.Component {
                   </Row>
                   <Row>
                     <button onClick={() => this.showWelcomePage()}>
-                      Conitnue to Credit
+                      Continue to Credit
                     </button>
                   </Row>
                 </Container>
