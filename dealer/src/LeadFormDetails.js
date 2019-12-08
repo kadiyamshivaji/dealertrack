@@ -5,6 +5,7 @@ import { Formik } from "formik";
 import { FaDotCircle, FaAngleDoubleRight, FaAngleUp } from "react-icons/fa";
 import HomeContainer from "./HomeContainer";
 import NumberFormat from "react-number-format";
+import {getToken } from './api/api'
 
 class LeadFormDetails extends React.Component {
   constructor(props){
@@ -34,6 +35,9 @@ class LeadFormDetails extends React.Component {
     this.setState({
       [name]:value
     })
+}
+componentDidMount() {
+ const gg=getToken();
 }
   showWelcomePage = () => {
     this.setState({
