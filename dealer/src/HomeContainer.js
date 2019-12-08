@@ -80,7 +80,7 @@ class HomeContainer extends React.Component {
                 <Step component={ReviewDetails} title="Review" />
               </StepsList>
               <ButtonsList>
-                {/* <PreviousButton /> */}
+                <PreviousButton />
                 <NextButton />
                 {/* <SubmitButton /> */}
               </ButtonsList>
