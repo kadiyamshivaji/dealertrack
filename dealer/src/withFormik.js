@@ -31,6 +31,7 @@ export default withFormik({
     Zipcode: "",
     SuitNo: "",
     Having_Two_years: "",
+    
     OwnJ: "",
     RentJ: "",
     StreetAddressJ: "",
@@ -68,8 +69,9 @@ export default withFormik({
         .email()
         .required("Email is required"),
       ConfirmEmail: Yup.string()
-        .oneOf([Yup.ref("Email"), null])
-        .required("confirmEmail is required"),
+      .test('passwords-match', 'Email must match', function(value) {
+        return this.parent.Email === value;
+      }),
       Datepicker: Yup.string().required("Date of Birth is required"),
       Ssn: Yup.string().required("Social Security Number is required"),
       FirstNameJ: Yup.string().required("First Name is required"),
@@ -79,8 +81,9 @@ export default withFormik({
         .email()
         .required("Email is required"),
       ConfirmEmailJ: Yup.string()
-        .oneOf([Yup.ref("EmailJ"), null])
-        .required("Confirm Email is required"),
+      .test('passwords-match', 'Email must match', function(value) {
+        return this.parent.EmailJ === value;
+      }),
       DatepickerJ: Yup.string().required("Date of Birth is required"),
       SsnJ: Yup.string().required("Social Security Number  is required"),
       addressLine1: Yup.string().required("Address Line 1 is required"),
@@ -110,7 +113,7 @@ export default withFormik({
       Policy2:Yup.string().required("Accept the Terms and Conditions"),
     }),
 
-  handleSubmit: values => {
+  handleSubmit: (values) => {
     console.log(values);
   }
 });

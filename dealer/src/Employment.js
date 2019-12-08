@@ -3,6 +3,8 @@ import { Field } from "formik";
 import { Row, Col, Container } from "react-bootstrap";
 import { FaPlusCircle } from "react-icons/fa";
 import { CustomSelect } from "./lib/Select";
+import PhoneField from "./lib/Phone";
+
 const RadioBox = ({ id, name, label, checked, css, ...props }) => (
   <div>
     <input type="radio" id={id} name={name} checked={checked} {...props} />
@@ -82,6 +84,18 @@ export default ({ touched, errors, values }) => {
       )}
     </Row>
     <Row>
+       <PhoneField placeholder="WorkPhone" name="WorkPhone" />
+         {touched.WorkPhone && typeof errors.WorkPhone === "string" && (
+           <div className="input-feedback">{errors.WorkPhone}</div>
+         )}
+    </Row>
+    <Row>
+      <Field name="Occupation" id="Occupation" placeholder="Occupation" />
+      {touched.Occupation && typeof errors.Occupation === "string" && (
+        <div className="input-feedback">{errors.Occupation}</div>
+      )}
+    </Row>
+    <Row>
       <p>Have you worked here for 2 years or more?</p>
     </Row>
     <Row>
@@ -122,6 +136,44 @@ export default ({ touched, errors, values }) => {
         />
       </Col>
     </Row>
+    {values.Having_Two_years_Employment === "false" &&
+     <div>
+       <Row>
+         <h6>
+            Previous Details
+         </h6>
+       </Row>
+       
+        <Row>
+        <Field
+          className="select"
+          name="Employment_Status_P"
+          options={EmployerOptions}
+          component={CustomSelect}
+          placeholder="Are you currently Employed?"
+          isMulti={false}
+        />
+      </Row>
+      <Row>
+        <Field name="Employer_P" id="Employer_P" placeholder="Employer" />
+        {touched.Employer_P && typeof errors.Employer_P === "string" && (
+          <div className="input-feedback">{errors.Employer_P}</div>
+        )}
+      </Row>
+      <Row>
+         <PhoneField placeholder="WorkPhone" name="WorkPhone_P" />
+           {touched.WorkPhone_P && typeof errors.WorkPhone_P === "string" && (
+             <div className="input-feedback">{errors.WorkPhone_P}</div>
+           )}
+      </Row>
+      <Row>
+        <Field name="Occupation_P" id="Occupation_P" placeholder="Occupation" />
+        {touched.Occupation_P && typeof errors.Occupation_P === "string" && (
+          <div className="input-feedback">{errors.Occupation_P}</div>
+        )}
+      </Row>
+        
+      </div>}
     <Row>
       <p>
         Employment history is required for your application. If less than two
@@ -166,12 +218,22 @@ export default ({ touched, errors, values }) => {
       </p>
     </Row>
     { openOptional && 
-     <Field name="Income" id="Income" placeholder="Income" />}
-    <Row>
-      <p onClick={() => setOptional(true)}>
-        <FaPlusCircle /> Add Additional Income
-      </p>
-    </Row>
+        <div>
+            <Row>
+              <Field name="Soure_Income" id="Soure_Income" placeholder="Source" /> 
+            </Row>
+            <Row>
+              <Field name="Income" id="Income" placeholder="Income" />
+            </Row>
+        </div>
+      }
+       { !openOptional && 
+        <Row>
+          <p onClick={() => setOptional(true)}>
+            <FaPlusCircle /> Add Additional Income
+          </p>
+        </Row>
+      }
     <Row>
       <hr></hr>
     </Row>
@@ -196,6 +258,18 @@ export default ({ touched, errors, values }) => {
             <div className="input-feedback">{errors.EmployerJ}</div>
           )}
         </Row>
+        <Row>
+          <PhoneField placeholder="WorkPhone" name="WorkPhoneJ" />
+            {touched.WorkPhone && typeof errors.WorkPhone === "string" && (
+              <div className="input-feedback">{errors.WorkPhone}</div>
+            )}
+      </Row>
+      <Row>
+        <Field name="OccupationJ" id="OccupationJ" placeholder="Occupation" />
+          {touched.OccupationJ && typeof errors.OccupationJ === "string" && (
+            <div className="input-feedback">{errors.OccupationJ}</div>
+          )}
+      </Row>
         <Row>
           <p>Have you worked here for 2 years or more?</p>
         </Row>
@@ -237,6 +311,44 @@ export default ({ touched, errors, values }) => {
             />
           </Col>
         </Row>
+      
+        {    values.Having_Two_years_EmploymentJ === "false" && 
+          <div>
+              <Row>
+                <h6>
+                  Previous Details
+                </h6>
+              </Row>
+           
+            <Row>
+              <Field
+                className="select"
+                name="Employment_StatusJ_P"
+                options={EmployerOptions}
+                component={CustomSelect}
+                placeholder="Are you currently Employed?"
+                isMulti={false}
+              />
+            </Row>
+            <Row>
+              <Field name="EmployerJ_P" id="EmployerJ_P" placeholder="Employer" />
+              {touched.EmployerJ_P && typeof errors.EmployerJ_P === "string" && (
+                <div className="input-feedback">{errors.EmployerJ_P}</div>
+              )}
+            </Row>
+            <Row>
+              <PhoneField placeholder="WorkPhone" name="WorkPhoneJ_P" />
+                {touched.WorkPhoneJ_P && typeof errors.WorkPhoneJ_P === "string" && (
+                  <div className="input-feedback">{errors.WorkPhoneJ_P}</div>
+                )}
+          </Row>
+          <Row>
+            <Field name="OccupationJ_P" id="OccupationJ_P" placeholder="Occupation" />
+              {touched.OccupationJ_P && typeof errors.OccupationJ_P === "string" && (
+                <div className="input-feedback">{errors.OccupationJ_P}</div>
+              )}
+          </Row>
+          </div>}
         <Row>
           <h5>How much do you make?</h5>
         </Row>
@@ -274,12 +386,22 @@ export default ({ touched, errors, values }) => {
           </p>
         </Row>
         { openOptionalJoint && 
-        <Field name="IncomeJoint" id="IncomeJoint" placeholder="Income" />}
-         <Row>
-          <p onClick={() => setOptionalJoint(true)}>
-             <FaPlusCircle /> Add Additional Income
-          </p>
-        </Row>
+        <div>
+          <Row>
+            <Field name="Source_Income_Joint" id="Source_Income_Joint" placeholder="Source" />
+          </Row>
+          <Row>
+            <Field name="IncomeJoint" id="IncomeJoint" placeholder="Income" />
+          </Row>
+        </div>
+        }
+         { !openOptionalJoint && 
+          <Row>
+            <p onClick={() => setOptionalJoint(true)}>
+              <FaPlusCircle /> Add Additional Income
+            </p>
+          </Row>
+        }
         <Row>
           <hr></hr>
         </Row>

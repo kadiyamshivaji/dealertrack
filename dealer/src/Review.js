@@ -1,5 +1,5 @@
 import React,  { useState }  from "react";
-import {Row,Col,Container} from 'react-bootstrap';
+import {Row,Col,Container, Button} from 'react-bootstrap';
 import { FaPencilAlt } from "react-icons/fa";
 import Moment from 'react-moment';
 import { Field } from "formik";
@@ -9,7 +9,7 @@ import { CustomSelect } from "./lib/Select";
 import * as CurrencyFormat from 'react-currency-format';
 import PhoneField from "./lib/Phone";
 import SSNField from "./lib/ssn";
-
+import {submit} from './api/api'
 const TenureOptions = [
   {
     label: "Monthly",
@@ -101,13 +101,13 @@ const OwnOptions = [
 const Policy1 = ({ id, name, label, checked, css, ...props }) => (
   <Row>
     <Col >
-    <input  type="checkbox" id={id} name={name} checked={checked} {...props} />
+      <input  type="checkbox" id={id} name={name} checked={checked} {...props} />
     </Col>
     <Col  xs={11}>
-    <p className="checkBox-label">
-     I have reviewed and agree to the <a href="# ">Terms & Conditions</a> and <a href="# ">Privacy and Policy</a>.
-     I understand this dealer will check my credit and share the results with their lender
-    </p>
+      <p className="checkBox-label">
+        I have reviewed and agree to the <a href="# ">Terms & Conditions</a> and <a href="# ">Privacy and Policy</a>.
+        I understand this dealer will check my credit and share the results with their lender
+      </p>
     </Col>
     
   </Row>
@@ -132,9 +132,20 @@ export default ({ touched, errors ,values}) => {
   const [open4, setOpen4] = useState(false);
   const [open5, setOpen5] = useState(false);
   const [open6, setOpen6] = useState(false);
-
-    return(
+  const [policy1, setPolicy1] = useState(false);
+  const [finalPage, setFinalPage] = useState(false);
+ 
+  const num=undefined;
+  function onSubmit(){
+      const g=submit(values);
+      if(g){
+        setFinalPage(true)
+      }
+  };
+return(
   <Container>
+    {!finalPage && 
+    <div>
      <Row>
       <h2>Review and Submit</h2>
     </Row>   
@@ -215,7 +226,7 @@ export default ({ touched, errors ,values}) => {
             <p>{values.City}, {values.State} {values.Zipcode}</p>
             </Row>
             <Row>
-            <p>{values.Having_Two_years?'Over 2 years':'---'}</p>
+            <p>{values.Having_Two_years?'Over 2 years':'less than two years'}</p>
             </Row>
 
         </Col>
@@ -237,7 +248,7 @@ export default ({ touched, errors ,values}) => {
                 <p>{values.CityJ}, {values.StateJ} {values.ZipcodeJ}</p>
             </Row>
             <Row>
-                 <p>{values.Having_Two_years_Joint?'Over 2 years':'---'}</p>
+                 <p>{values.Having_Two_years_Joint?'Over 2 years':'less than two years'}</p>
             </Row>
         </Col>
         }
@@ -275,28 +286,73 @@ export default ({ touched, errors ,values}) => {
         </Col>
         }
     </Row>
+    
     <div className="checkBox-bg">
       <Field
           name="Policy1"
           render={({ field }) => (
             <Policy1
               {...field}
+              checked={values.Policy1}
               value="true"
             />
           )}
         />
-    { values.Form_Type ==="false" &&
+
+{ values.Form_Type ==="false" &&
+
      <Field
          name="Policy2"
          render={({ field }) => (
            <Policy2
              {...field}
+             checked={values.Policy2}
              value="true"
            />
          )}
        />
 }
+
 </div>
+<button
+    className="login-form-button"
+    disabled ={ values.Form_Type==='true'? !values.Policy1: !(values.Policy1 && values.Policy2)}
+    onClick={() => onSubmit()}> Submit Application</button>
+</div>
+}
+{ finalPage &&
+<div>
+  <Row>
+    <h2>Application Submitted!</h2>
+    </Row>
+    <Row>
+    <h4>Applicantion #: 958555857</h4>
+    </Row>
+    <Row>
+      <p>A copy of this Application has been sent to {values.Email}<br/>
+      Somone from our  dealership will contact you.<br/>
+      Questions? Call 1-800-555-1234</p>
+    </Row>
+    <Row>
+      <p>I want  text updates sent to this devices</p>
+    </Row>
+    <Row>
+    <Field name="comment" id="comment" />
+    </Row>
+    <Row>
+      <hr/>
+    </Row>
+    <Row>
+      <button
+          className="login-form-button"> Reserve Your Vehicle</button>
+    </Row>
+    <Row>
+      <label
+          className="button2"> Return to Your Vehicle Details</label>
+    </Row>
+</div>
+}
+   
    {/* Primary Modal */}
    <Modal 
       open={open1}
@@ -337,7 +393,6 @@ export default ({ touched, errors ,values}) => {
      </Row>
       <Row>
         <SSNField  name="Ssn"/>
-        {/* <Field name="Ssn" id="Ssn" value={values.Ssn} component={SSNFormate} /> */}
         {touched.Ssn && typeof errors.Ssn === "string" && (
           <div className="input-feedback">{errors.Ssn}</div>
         )}

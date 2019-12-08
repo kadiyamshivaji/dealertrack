@@ -274,3 +274,13 @@ input[type="checkbox"]{
 .input-feedback {
   text-align: left !important;
 }
+.button2{
+  padding: .5rem;
+    width: 100%;
+    border-color: #40a9ff;
+    background: #fff;
+    color: #40a9ff;
+    font-weight: bold;
+    border-style: solid;
+    border-width: 2px;
+}

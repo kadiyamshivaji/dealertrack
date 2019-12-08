@@ -230,8 +230,8 @@ class LeadFormDetails extends React.Component {
                 </Container>
                 </form>
               )}
-              {this.state.ShowHomePage &&                 <form onSubmit={handleSubmit}>
-
+              {this.state.ShowHomePage &&                
+               <form onSubmit={handleSubmit}>
                 <Container>
                   <Row>
                     <h2>Apply for Credit</h2>

@@ -76,13 +76,13 @@ class HomeContainer extends React.Component {
               >
                 <Step component={ContactInfo} title="Contact Info" /> 
                 <Step component={HousingDetails} title="Housing" />   
-                <Step component={EmploymentDetails} title="Employment" /> 
+                <Step component={EmploymentDetails} title="Employment" />    
                 <Step component={ReviewDetails} title="Review" />
               </StepsList>
               <ButtonsList>
-                <PreviousButton />
+                {/* <PreviousButton /> */}
                 <NextButton />
-                <SubmitButton />
+                {/* <SubmitButton /> */}
               </ButtonsList>
             </Wizard>
           )}
