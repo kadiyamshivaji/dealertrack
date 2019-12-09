@@ -1,23 +1,24 @@
 import { constructPayload } from "../lib/util";
-
 import axios from "axios";
 let token;
 export const getToken = () => {
   axios
-    .post(`https://fni-api-np.dealertrack.com/sfni/uat1/oauth2/token`, {
-      grant_type: "client_credentials",
-      client_id: "261ec6aa-6e3c-4bdb-846c-30f363d1c4fc",
-      client_secret: "N7oH5wG2tV3fS0aU4nM7gV3uM6mP7aQ1wC7tP6gV1eQ2pX8vK8",
-      scope: "sdeals-write"
-    },
-    {
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
+    .post(
+      `https://fni-api-np.dealertrack.com/sfni/uat1/oauth2/token`,
+      {
+        grant_type: "client_credentials",
+        client_id: "261ec6aa-6e3c-4bdb-846c-30f363d1c4fc",
+        client_secret: "N7oH5wG2tV3fS0aU4nM7gV3uM6mP7aQ1wC7tP6gV1eQ2pX8vK8",
+        scope: "sdeals-write"
+      },
+      {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
       }
-    }
-   )
+    )
     .then(res => {
-     token=res.data.access_token
+      token = res.data.access_token;
     });
 };
 export const submit = payload => {

@@ -275,7 +275,7 @@ input[type="checkbox"]{
   text-align: left !important;
 }
 .button2{
-  padding: .5rem;
+    padding: .5rem;
     width: 100%;
     border-color: #40a9ff;
     background: #fff;

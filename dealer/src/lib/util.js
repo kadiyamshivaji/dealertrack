@@ -1,9 +1,8 @@
 export const constructPayload = payload => {
-
   if (payload.Form_Type === "true") {
     return applicantPayload(payload);
   } else {
-    return {...applicantPayload(payload), ...jointPayload(payload)};
+    return { ...applicantPayload(payload), ...jointApplicantPayload(payload) };
   }
 };
 
@@ -23,7 +22,7 @@ function applicantPayload(payload) {
       phone: payload.Phone,
       otherPhone: null,
       ssn: payload.Ssn,
-      dateOfBirth: payload.Datepicker,
+      dateOfBirth: payload.DateOfBirth,
       driversLicenseNumber: null,
       driversLicenseState: null,
       email: payload.Email,
@@ -40,7 +39,6 @@ function applicantPayload(payload) {
       monthsAtPreviousAddress: 12,
       previousAddress: {
         line1: payload.StreetAddress_P,
-        line2: null,
         city: payload.City_P,
         state: payload.State_P,
         postalCode: payload.Zipcode_P
@@ -48,7 +46,7 @@ function applicantPayload(payload) {
       income: payload.Money,
       incomeFrequency: payload.Tenure,
       otherMonthlyIncome: payload.Income,
-      otherMonthlyIncomeSource:payload.Soure_Income,
+      otherMonthlyIncomeSource: payload.Soure_Income,
       currentEmployment: {
         employerName: payload.Employer,
         totalMonthsEmployed: payload.Having_Two_years_Employment ? 24 : 12,
@@ -91,10 +89,10 @@ function applicantPayload(payload) {
       inventoryVehicleCondition: "Used",
       stockNumber: "174ZMWV4",
       vin: "gjhghjjhgj",
-      chromeYear: 2013,
-      chromeMake: "Honda",
-      chromeModel: "Civic Coupe",
-      chromeStyle: "2dr Man EX",
+      chromeYear: payload.Year,
+      chromeMake: payload.Make,
+      chromeModel: payload.Model,
+      chromeStyle: payload.Trim,
       otherYear: 2013,
       otherMake: "Honda",
       otherModel: "Civic Coupe",
@@ -124,48 +122,47 @@ function applicantPayload(payload) {
   };
 }
 
-function jointPayload(payload) {
+function jointApplicantPayload(payload) {
   return {
-  
     coApplicant: {
-      relationship: "Spouse",
-      firstName: "Maxwell",
-      lastName: "Testco",
+      relationship: payload.Employee_Relationship,
+      firstName: payload.FirstNameJ,
+      lastName: payload.LastNameJ,
       suffix: "III",
-      phone: "2145386956",
+      phone: payload.PhoneJ,
       otherPhone: "2146776599",
-      ssn: "555474533",
-      dateOfBirth: "1950-10-20",
-      driversLicenseNumber: "8085TLBADRPF359",
-      driversLicenseState: "TX",
-      email: "maxwelltestco@email.museum",
+      ssn: payload.SsnJ,
+      dateOfBirth: payload.DateOfBirthJ,
+      driversLicenseNumber: null,
+      driversLicenseState: null,
+      email: payload.EmailJ,
       consentGiven: true,
-      housingStatus: "Family",
-      mortgageOrRentAmount: 2692,
-      monthsAtCurrentAddress: 75,
+      housingStatus: payload.OwnJ,
+      mortgageOrRentAmount: payload.RentJ,
+      monthsAtCurrentAddress: payload.Having_Two_years_Joint ? 24 : 12,
       address: {
-        line1: "1202 Munson Drive",
-        city: "Austin",
-        state: "TX",
-        postalCode: "78758"
+        line1: payload.StreetAddressJ,
+        city: payload.CityJ,
+        state: payload.StateJ,
+        postalCode: payload.ZipcodeJ
       },
       monthsAtPreviousAddress: 18,
       previousAddress: {
-        line1: "1202 Munson Drive",
-        city: "Austin",
-        state: "TX",
-        postalCode: "78758"
+        line1: payload.StreetAddressJ_P,
+        city: payload.CityJ_P,
+        state: payload.StateJ_P,
+        postalCode: payload.ZipcodeJ_P
       },
-      income: 147628,
-      incomeFrequency: "Annually",
-      otherMonthlyIncome: 132,
-      otherMonthlyIncomeSource: "Child Support",
+      income: payload.MoneyJ,
+      incomeFrequency: payload.TenureJ,
+      otherMonthlyIncome: payload.IncomeJoint,
+      otherMonthlyIncomeSource: payload.Source_Income_Joint,
       currentEmployment: {
-        employerName: "McDonalds",
-        totalMonthsEmployed: 35,
-        occupation: "Accountant",
-        workPhone: "5303626825",
-        status: "Employed",
+        employerName: payload.EmployerJ,
+        totalMonthsEmployed: payload.Having_Two_years_EmploymentJ ? 24 : 12,
+        occupation: payload.OccupationJ,
+        workPhone: payload.WorkPhoneJ,
+        status: payload.Employment_StatusJ,
         employerAddress: {
           line1: "984114 7qIsE9Zn Lo/z",
           line2: "qo",
@@ -175,11 +172,11 @@ function jointPayload(payload) {
         }
       },
       previousEmployment: {
-        employerName: "ExxonMobil",
-        totalMonthsEmployed: 81,
-        occupation: "Quality Control",
-        workPhone: "2146966045",
-        status: "Employed",
+        employerName: payload.EmployerJ_P,
+        totalMonthsEmployed: payload.Having_Two_years_EmploymentJ ? 24 : 12,
+        occupation: payload.OccupationJ_P,
+        workPhone: payload.WorkPhoneJ_P,
+        status: payload.Employment_StatusJ_P,
         employerAddress: {
           line1: "689274 r2Q80zHGn920V0G0T",
           line2: "mJ",
@@ -240,6 +237,6 @@ function jointPayload(payload) {
         name: "CTDXX10",
         value: "CustomValue-IWYIY895"
       }
-    ],
+    ]
   };
 }

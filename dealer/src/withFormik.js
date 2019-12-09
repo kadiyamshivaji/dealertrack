@@ -5,21 +5,20 @@ import * as Yup from "yup";
 export default withFormik({
   displayName: "WizardForm",
   enableReinitialize: false,
-  mapPropsToValues: (props) => (
-    {
+  mapPropsToValues: props => ({
     FirstName: props.data.FirstName,
     LastName: props.data.LastName,
     Email: props.data.Email,
     Phone: props.data.Phone,
     ConfirmEmail: "",
-    Datepicker: "",
+    DateOfBirth: "",
     Ssn: "",
     FirstNameJ: "",
     LastNameJ: "",
     PhoneJ: "",
     EmailJ: "",
     ConfirmEmailJ: "",
-    DatepickerJ: "",
+    DateOfBirthJ: "",
     SsnJ: "",
 
     /*Housing */
@@ -31,7 +30,7 @@ export default withFormik({
     Zipcode: "",
     SuitNo: "",
     Having_Two_years: "",
-    
+
     OwnJ: "",
     RentJ: "",
     StreetAddressJ: "",
@@ -52,8 +51,8 @@ export default withFormik({
     Having_Two_years_EmploymentJ: "",
     MoneyJ: "",
     TenureJ: "",
-    Policy1:"",
-    Policy2:"",
+    Policy1: "",
+    Policy2: "",
     Form_Type: "true",
 
     addressLine1: "",
@@ -68,11 +67,14 @@ export default withFormik({
       Email: Yup.string()
         .email()
         .required("Email is required"),
-      ConfirmEmail: Yup.string()
-      .test('passwords-match', 'Email must match', function(value) {
-        return this.parent.Email === value;
-      }),
-      Datepicker: Yup.string().required("Date of Birth is required"),
+      ConfirmEmail: Yup.string().test(
+        "passwords-match",
+        "Email must match",
+        function(value) {
+          return this.parent.Email === value;
+        }
+      ),
+      DateOfBirth: Yup.string().required("Date of Birth is required"),
       Ssn: Yup.string().required("Social Security Number is required"),
       FirstNameJ: Yup.string().required("First Name is required"),
       LastNameJ: Yup.string().required("Last Name is required"),
@@ -80,11 +82,14 @@ export default withFormik({
       EmailJ: Yup.string()
         .email()
         .required("Email is required"),
-      ConfirmEmailJ: Yup.string()
-      .test('passwords-match', 'Email must match', function(value) {
-        return this.parent.EmailJ === value;
-      }),
-      DatepickerJ: Yup.string().required("Date of Birth is required"),
+      ConfirmEmailJ: Yup.string().test(
+        "passwords-match",
+        "Email must match",
+        function(value) {
+          return this.parent.EmailJ === value;
+        }
+      ),
+      DateOfBirthJ: Yup.string().required("Date of Birth is required"),
       SsnJ: Yup.string().required("Social Security Number  is required"),
       addressLine1: Yup.string().required("Address Line 1 is required"),
       Own: Yup.string().required("Own is required"),
@@ -109,11 +114,11 @@ export default withFormik({
       EmployerJ: Yup.string().required("Employer is required"),
       MoneyJ: Yup.string().required("Field is required"),
       TenureJ: Yup.string().required("Field is required"),
-      Policy1:Yup.string().required("Accept the Terms and Conditions"),
-      Policy2:Yup.string().required("Accept the Terms and Conditions"),
+      Policy1: Yup.string().required("Accept the Terms and Conditions"),
+      Policy2: Yup.string().required("Accept the Terms and Conditions")
     }),
 
-  handleSubmit: (values) => {
+  handleSubmit: values => {
     console.log(values);
   }
 });

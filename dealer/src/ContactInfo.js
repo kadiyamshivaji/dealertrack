@@ -32,7 +32,7 @@ const relationToApplicant = [
     value: "Other"
   }
 ];
-export default ({ touched, errors, values ,details}) => (
+export default ({ touched, errors, values, details }) => (
   <Container>
     <Row>
       <h2>Contact Info </h2>
@@ -74,12 +74,12 @@ export default ({ touched, errors, values ,details}) => (
       </Col>
     </Row>
     <Row>
-      <Field name="FirstName" id="FirstName"  placeholder="First Name" />
+      <Field name="FirstName" id="FirstName" placeholder="First Name" />
       {touched.FirstName && typeof errors.FirstName === "string" && (
         <div className="input-feedback">{errors.FirstName}</div>
       )}
     </Row>
-   
+
     <Row>
       <Field name="LastName" id="LastName" placeholder="Last Name" />
       {touched.LastName && typeof errors.LastName === "string" && (
@@ -87,10 +87,10 @@ export default ({ touched, errors, values ,details}) => (
       )}
     </Row>
     <Row>
-       <PhoneField placeholder="Phone" name="Phone" />
-         {touched.Phone && typeof errors.Phone === "string" && (
-           <div className="input-feedback">{errors.Phone}</div>
-         )}
+      <PhoneField placeholder="Phone" name="Phone" />
+      {touched.Phone && typeof errors.Phone === "string" && (
+        <div className="input-feedback">{errors.Phone}</div>
+      )}
     </Row>
     <Row>
       <Field name="Email" id="Email" placeholder="Email" />
@@ -109,20 +109,20 @@ export default ({ touched, errors, values ,details}) => (
         We respect your privacy and will only use this information to process
         your appplication and communicate with you about loan.
       </p>
-      </Row>
-      <Row>
+    </Row>
+    <Row>
       <h5>Required for Identity Verification</h5>
-      </Row>
-      <Row>
+    </Row>
+    <Row>
       <p>
-        If you are not ready to apply for credit and just want to know your rates{" "}
-        <a href="">check them here</a>
+        If you are not ready to apply for credit and just want to know your
+        rates <a href="">check them here</a>
       </p>
     </Row>
     <Row>
-      <DatePickerField placeholder="Date of Birth" name="Datepicker" />
-      {touched.Datepicker && typeof errors.Datepicker === "string" && (
-        <div className="input-feedback">{errors.Datepicker}</div>
+      <DatePickerField placeholder="Date of Birth" name="DateOfBirth" />
+      {touched.DateOfBirth && typeof errors.DateOfBirth === "string" && (
+        <div className="input-feedback">{errors.DateOfBirth}</div>
       )}
     </Row>
     <Row>
@@ -131,7 +131,7 @@ export default ({ touched, errors, values ,details}) => (
     </Row>
     <Row>
       <Col>
-      <SSNField name="Ssn"/>
+        <SSNField name="Ssn" />
         {touched.Ssn && typeof errors.Ssn === "string" && (
           <div className="input-feedback">{errors.Ssn}</div>
         )}
@@ -186,12 +186,12 @@ export default ({ touched, errors, values ,details}) => (
           )}
         </Row>
         <Row>
-          <PhoneField name="PhoneJ"/>
-        {touched.PhoneJ && typeof errors.PhoneJ === "string" && (
-          <div className="input-feedback">{errors.PhoneJ}</div>
-        )}
-      </Row>
-      
+          <PhoneField name="PhoneJ" />
+          {touched.PhoneJ && typeof errors.PhoneJ === "string" && (
+            <div className="input-feedback">{errors.PhoneJ}</div>
+          )}
+        </Row>
+
         <Row>
           <Field name="EmailJ" id="EmailJ" placeholder="Email" />
           {touched.EmailJ && typeof errors.EmailJ === "string" && (
@@ -214,10 +214,10 @@ export default ({ touched, errors, values ,details}) => (
             We respect your privacy and will only use this information to
             process your appplication and communicate with you about loan.
           </p>
-          </Row>
+        </Row>
         <Row>
           <h5>Required for Identity Verification</h5>
-          </Row>
+        </Row>
         <Row>
           <p>
             If you are not ready to apply for credit and just want to know your
@@ -225,10 +225,9 @@ export default ({ touched, errors, values ,details}) => (
           </p>
         </Row>
         <Row>
-       
-          <DatePickerField name="DatepickerJ" />
-          {touched.DatepickerJ && typeof errors.DatepickerJ === "string" && (
-            <div className="input-feedback">{errors.DatepickerJ}</div>
+          <DatePickerField name="DateOfBirthJ" />
+          {touched.DateOfBirthJ && typeof errors.DateOfBirthJ === "string" && (
+            <div className="input-feedback">{errors.DateOfBirthJ}</div>
           )}
         </Row>
         <Row>
@@ -237,7 +236,7 @@ export default ({ touched, errors, values ,details}) => (
         </Row>
         <Row>
           <Col>
-          <SSNField name="SsnJ"/>
+            <SSNField name="SsnJ" />
             {touched.SsnJ && typeof errors.SsnJ === "string" && (
               <div className="input-feedback">{errors.SsnJ}</div>
             )}

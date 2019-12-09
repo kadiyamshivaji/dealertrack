@@ -17,45 +17,93 @@ import ReviewDetails from "./Review";
 import LeadFormDetails from "./LeadFormDetails";
 import withFormik from "./withFormik";
 import "bootstrap/dist/css/bootstrap.min.css";
-function ContactInfoValidations({ errors ,values}) {
- if(values.Form_Type=== "true"){
-  return !errors.FirstName && !errors.LastName && !errors.Email && !errors.Phone && !errors.ConfirmEmail &&!errors.Datepicker 
-          &&!errors.Ssn;
- }else{
-  return !errors.FirstName && !errors.LastName && !errors.Email && !errors.Phone && !errors.ConfirmEmail && !errors.Datepicker 
-            &&!errors.Ssn &&!errors.FirstNameJ && !errors.LastNameJ && !errors.EmailJ && !errors.PhoneJ && !errors.ConfirmEmailJ
-             && !errors.DatepickerJ &&!errors.SsnJ;
- }
+function ContactInfoValidations({ errors, values }) {
+  if (values.Form_Type === "true") {
+    return (
+      !errors.FirstName &&
+      !errors.LastName &&
+      !errors.Email &&
+      !errors.Phone &&
+      !errors.ConfirmEmail &&
+      !errors.DateOfBirth &&
+      !errors.Ssn
+    );
+  } else {
+    return (
+      !errors.FirstName &&
+      !errors.LastName &&
+      !errors.Email &&
+      !errors.Phone &&
+      !errors.ConfirmEmail &&
+      !errors.DateOfBirth &&
+      !errors.Ssn &&
+      !errors.FirstNameJ &&
+      !errors.LastNameJ &&
+      !errors.EmailJ &&
+      !errors.PhoneJ &&
+      !errors.ConfirmEmailJ &&
+      !errors.DateOfBirthJ &&
+      !errors.SsnJ
+    );
+  }
 }
 
-function HousingDetailsValidations({ errors ,values }) {
-  if(values.Form_Type=== "true"){
-    return !errors.Own && !errors.Rent  && !errors.StreetAddress  && !errors.City && !errors.State && !errors.Zipcode;
-  }
-  else{
-    return !errors.Own && !errors.Rent  && !errors.StreetAddress  && !errors.City && !errors.State && !errors.Zipcode 
-      &&!errors.OwnJ && !errors.RentJ && !errors.StreetAddressJ && !errors.CityJ && !errors.StateJ && !errors.ZipcodeJ
+function HousingDetailsValidations({ errors, values }) {
+  if (values.Form_Type === "true") {
+    return (
+      !errors.Own &&
+      !errors.Rent &&
+      !errors.StreetAddress &&
+      !errors.City &&
+      !errors.State &&
+      !errors.Zipcode
+    );
+  } else {
+    return (
+      !errors.Own &&
+      !errors.Rent &&
+      !errors.StreetAddress &&
+      !errors.City &&
+      !errors.State &&
+      !errors.Zipcode &&
+      !errors.OwnJ &&
+      !errors.RentJ &&
+      !errors.StreetAddressJ &&
+      !errors.CityJ &&
+      !errors.StateJ &&
+      !errors.ZipcodeJ
+    );
   }
 }
 
-function EmploymentDetailsValidations({ errors ,values }) {
-  if(values.Form_Type=== "true"){
-  return !errors.Employment_Status && !errors.Employer && !errors.Money && !errors.Tenure;
-}
-  else{
-    return !errors.Employment_Status && !errors.Employer && !errors.Money && !errors.Tenure 
-        &&  !errors.Employment_StatusJ && !errors.EmployerJ && !errors.MoneyJ && !errors.TenureJ;
+function EmploymentDetailsValidations({ errors, values }) {
+  if (values.Form_Type === "true") {
+    return (
+      !errors.Employment_Status &&
+      !errors.Employer &&
+      !errors.Money &&
+      !errors.Tenure
+    );
+  } else {
+    return (
+      !errors.Employment_Status &&
+      !errors.Employer &&
+      !errors.Money &&
+      !errors.Tenure &&
+      !errors.Employment_StatusJ &&
+      !errors.EmployerJ &&
+      !errors.MoneyJ &&
+      !errors.TenureJ
+    );
   }
 }
 
-function ReviewDetailsValidations({ errors ,values}) {
- 
-  if(values.Form_Type=== "true"){
-      return !errors.Policy1;
-    }
-      else{
-       return !errors.Policy1 && !errors.Policy2;
-      }
+function ReviewDetailsValidations({ errors, values }) {
+  if (values.Form_Type === "true") {
+    return !errors.Policy1;
+  } else {
+    return !errors.Policy1 && !errors.Policy2;
+  }
 }
 class HomeContainer extends React.Component {
   render() {
@@ -74,9 +122,9 @@ class HomeContainer extends React.Component {
                   ReviewDetailsValidations
                 ])}
               >
-                <Step component={ContactInfo} title="Contact Info" /> 
-                <Step component={HousingDetails} title="Housing" />   
-                <Step component={EmploymentDetails} title="Employment" />    
+                <Step component={ContactInfo} title="Contact Info" />
+                <Step component={HousingDetails} title="Housing" />
+                <Step component={EmploymentDetails} title="Employment" />
                 <Step component={ReviewDetails} title="Review" />
               </StepsList>
               <ButtonsList>
