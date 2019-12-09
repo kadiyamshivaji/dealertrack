@@ -37,7 +37,7 @@ class LeadFormDetails extends React.Component {
     });
   }
   componentDidMount() {
-    const gg = getToken();
+    getToken();
   }
   showWelcomePage = () => {
     this.setState({

@@ -239,7 +239,7 @@ export default ({ touched, errors, values }) => {
       <Row>
         <hr></hr>
       </Row>
-      {values.Form_Type === "false" && (
+      {values.Individual_Form_Type === "false" && (
         <div>
           <Row>
             <h6>Co-Application Employment</h6>

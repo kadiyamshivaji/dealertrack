@@ -6,8 +6,7 @@ import {
   Step,
   ButtonsList,
   PreviousButton,
-  NextButton,
-  SubmitButton
+  NextButton
 } from "./lib";
 import { DisplayFormikState } from "./helper";
 import ContactInfo from "./ContactInfo";
@@ -18,7 +17,7 @@ import LeadFormDetails from "./LeadFormDetails";
 import withFormik from "./withFormik";
 import "bootstrap/dist/css/bootstrap.min.css";
 function ContactInfoValidations({ errors, values }) {
-  if (values.Form_Type === "true") {
+  if (values.Individual_Form_Type === "true") {
     return (
       !errors.FirstName &&
       !errors.LastName &&
@@ -49,7 +48,7 @@ function ContactInfoValidations({ errors, values }) {
 }
 
 function HousingDetailsValidations({ errors, values }) {
-  if (values.Form_Type === "true") {
+  if (values.Individual_Form_Type === "true") {
     return (
       !errors.Own &&
       !errors.Rent &&
@@ -77,7 +76,7 @@ function HousingDetailsValidations({ errors, values }) {
 }
 
 function EmploymentDetailsValidations({ errors, values }) {
-  if (values.Form_Type === "true") {
+  if (values.Individual_Form_Type === "true") {
     return (
       !errors.Employment_Status &&
       !errors.Employer &&
@@ -99,7 +98,7 @@ function EmploymentDetailsValidations({ errors, values }) {
 }
 
 function ReviewDetailsValidations({ errors, values }) {
-  if (values.Form_Type === "true") {
+  if (values.Individual_Form_Type === "true") {
     return !errors.Policy1;
   } else {
     return !errors.Policy1 && !errors.Policy2;

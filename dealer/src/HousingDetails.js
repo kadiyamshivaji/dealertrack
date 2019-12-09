@@ -43,8 +43,8 @@ const CheckBox = ({ id, name, label, checked, css, ...props }) => (
     <Col>
       <input type="checkbox" id={id} name={name} checked={checked} {...props} />
     </Col>
-    <Col xs={11}>
-      <p className="checkBox-label">{label}</p>
+    <Col xs={10}>
+      <p>{label}</p>
     </Col>
   </Row>
 );
@@ -151,44 +151,6 @@ export default ({ touched, errors, values }) => (
         />
       </Col>
     </Row>
-    {values.Having_Two_years === "false" && (
-      <div>
-        <Row>
-          <h6>Previous Housing</h6>
-        </Row>
-        <Row>
-          <Field
-            name="StreetAddress_P"
-            id="StreetAddress_P"
-            placeholder="Address"
-          />
-          {touched.StreetAddress_P &&
-            typeof errors.StreetAddress_P === "string" && (
-              <div className="input-feedback">{errors.StreetAddress_P}</div>
-            )}
-        </Row>
-        <Row>
-          <Col>
-            <Field name="City_P" id="City_P" placeholder="City" />
-            {touched.City_P && typeof errors.City_P === "string" && (
-              <div className="input-feedback">{errors.City_P}</div>
-            )}
-          </Col>
-          <Col>
-            <Field name="State_P" id="State_P" placeholder="State" />
-            {touched.State_P && typeof errors.State_P === "string" && (
-              <div className="input-feedback">{errors.State_P}</div>
-            )}
-          </Col>
-          <Col>
-            <Field name="Zipcode_P" id="Zipcode_P" placeholder="Zipcode" />
-            {touched.Zipcode_P && typeof errors.Zipcode_P === "string" && (
-              <div className="input-feedback">{errors.Zipcode_P}</div>
-            )}
-          </Col>
-        </Row>
-      </div>
-    )}
     <Row>
       <hr></hr>
     </Row>
@@ -264,11 +226,7 @@ export default ({ touched, errors, values }) => (
               render={({ field }) => (
                 <RadioBox
                   {...field}
-                  css={
-                    values.Having_Two_years_Joint === "true"
-                      ? "active"
-                      : "label"
-                  }
+                  css={values.Having_Two_years_ === "true" ? "active" : "label"}
                   value="true"
                   id="Having_Two_years_Joint-0"
                   // checked={values.present_at_home_visit === "true"}
@@ -284,63 +242,20 @@ export default ({ touched, errors, values }) => (
                 <RadioBox
                   {...field}
                   value="false"
+                  Joint
                   css={
                     values.Having_Two_years_Joint === "false"
                       ? "active"
                       : "label"
                   }
                   id="Having_Two_years_Joint-1"
+                  // checked={values.present_at_home_visit === "false"}
                   label="No"
                 />
               )}
             />
           </Col>
         </Row>
-        {values.Having_Two_years_Joint === "false" && (
-          <div>
-            <Row>
-              <h6>Previous Housing</h6>
-            </Row>
-            <Row>
-              <Field
-                name="StreetAddressJ_P"
-                id="StreetAddressJ_P"
-                placeholder="Address"
-              />
-              {touched.StreetAddressJ_P &&
-                typeof errors.StreetAddressJ_P === "string" && (
-                  <div className="input-feedback">
-                    {errors.StreetAddressJ_P}
-                  </div>
-                )}
-            </Row>
-            <Row>
-              <Col>
-                <Field name="CityJ_P" id="CityJ_P" placeholder="City" />
-                {touched.CityJ_P && typeof errors.CityJ_P === "string" && (
-                  <div className="input-feedback">{errors.CityJ_P}</div>
-                )}
-              </Col>
-              <Col>
-                <Field name="StateJ_P" id="StateJ_P" placeholder="State" />
-                {touched.StateJ_P && typeof errors.StateJ_P === "string" && (
-                  <div className="input-feedback">{errors.StateJ_P}</div>
-                )}
-              </Col>
-              <Col>
-                <Field
-                  name="ZipcodeJ_P"
-                  id="ZipcodeJ_P"
-                  placeholder="Zipcode"
-                />
-                {touched.ZipcodeJ_P &&
-                  typeof errors.ZipcodeJ_P === "string" && (
-                    <div className="input-feedback">{errors.ZipcodeJ_P}</div>
-                  )}
-              </Col>
-            </Row>
-          </div>
-        )}
         <Row>
           <hr></hr>
         </Row>

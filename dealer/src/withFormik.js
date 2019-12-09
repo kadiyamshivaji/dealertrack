@@ -53,7 +53,7 @@ export default withFormik({
     TenureJ: "",
     Policy1: "",
     Policy2: "",
-    Form_Type: "true",
+    Individual_Form_Type: "true",
 
     addressLine1: "",
     addressLine2: "",

@@ -1,11 +1,11 @@
-import React from 'react';
-import './App.css';
-import HomeContainer from './containers/HomeContainer';
-import FormComponent from './Form';
-import { Formik } from 'formik';
+import React from "react";
+import "./App.css";
+import HomeContainer from "./containers/HomeContainer";
+import FormComponent from "./Form";
+import { Formik } from "formik";
 function App() {
   return (
-    <div className="App">   
+    <div className="App">
       <header className="App-header">
         <FormComponent> </FormComponent>
       </header>

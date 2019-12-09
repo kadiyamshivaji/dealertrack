@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Row, Col, Container, Button } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import { FaPencilAlt } from "react-icons/fa";
 import Moment from "react-moment";
 import { Field } from "formik";
@@ -131,10 +131,8 @@ export default ({ touched, errors, values }) => {
   const [open4, setOpen4] = useState(false);
   const [open5, setOpen5] = useState(false);
   const [open6, setOpen6] = useState(false);
-  const [policy1, setPolicy1] = useState(false);
   const [finalPage, setFinalPage] = useState(false);
 
-  const num = undefined;
   function onSubmit() {
     const g = submit(values);
     if (g) {
@@ -190,7 +188,7 @@ export default ({ touched, errors, values }) => {
                 <p>***-**-{values.Ssn.toString().slice(-4)}</p>
               </Row>
             </Col>
-            {values.Form_Type === "false" && (
+            {values.Individual_Form_Type === "false" && (
               <Col>
                 <Row>
                   <label className="tittle">
@@ -273,7 +271,7 @@ export default ({ touched, errors, values }) => {
                 </p>
               </Row>
             </Col>
-            {values.Form_Type === "false" && (
+            {values.Individual_Form_Type === "false" && (
               <Col>
                 <Row>
                   <label className="tittle">
@@ -345,7 +343,7 @@ export default ({ touched, errors, values }) => {
                 </p>
               </Row>
             </Col>
-            {values.Form_Type === "false" && (
+            {values.Individual_Form_Type === "false" && (
               <Col>
                 <Row>
                   <label className="tittle">
@@ -385,7 +383,7 @@ export default ({ touched, errors, values }) => {
               )}
             />
 
-            {values.Form_Type === "false" && (
+            {values.Individual_Form_Type === "false" && (
               <Field
                 name="Policy2"
                 render={({ field }) => (
@@ -397,7 +395,7 @@ export default ({ touched, errors, values }) => {
           <button
             className="login-form-button"
             disabled={
-              values.Form_Type === "true"
+              values.Individual_Form_Type === "true"
                 ? !values.Policy1
                 : !(values.Policy1 && values.Policy2)
             }
@@ -472,9 +470,10 @@ export default ({ touched, errors, values }) => {
         </Row>
         <Row>
           <DatePickerField value={values.DateOfBirth} name="DateOfBirth" />
-          {touched.DateOfBirth && typeof errors.DatepDateOfBirthicker === "string" && (
-            <div className="input-feedback">{errors.DateOfBirth}</div>
-          )}
+          {touched.DateOfBirth &&
+            typeof errors.DatepDateOfBirthicker === "string" && (
+              <div className="input-feedback">{errors.DateOfBirth}</div>
+            )}
         </Row>
         <Row>
           <SSNField name="Ssn" />

@@ -1,5 +1,5 @@
 export const constructPayload = payload => {
-  if (payload.Form_Type === "true") {
+  if (payload.Individual_Form_Type === "true") {
     return applicantPayload(payload);
   } else {
     return { ...applicantPayload(payload), ...jointApplicantPayload(payload) };

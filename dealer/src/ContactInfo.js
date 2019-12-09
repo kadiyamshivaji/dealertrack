@@ -44,11 +44,11 @@ export default ({ touched, errors, values, details }) => (
     <Row>
       <Col>
         <Field
-          name="Form_Type"
+          name="Individual_Form_Type"
           render={({ field }) => (
             <RadioBox
               {...field}
-              css={values.Form_Type === "true" ? "active" : ""}
+              css={values.Individual_Form_Type === "true" ? "active" : ""}
               value="true"
               id="present_at_home_visit-0"
               // checked={values.present_at_home_visit === "true"}
@@ -59,12 +59,12 @@ export default ({ touched, errors, values, details }) => (
       </Col>
       <Col>
         <Field
-          name="Form_Type"
+          name="Individual_Form_Type"
           render={({ field }) => (
             <RadioBox
               {...field}
               value="false"
-              css={values.Form_Type === "false" ? "active" : ""}
+              css={values.Individual_Form_Type === "false" ? "active" : ""}
               id="present_at_home_visit-1"
               // checked={values.present_at_home_visit === "false"}
               label="Joint"
@@ -152,7 +152,7 @@ export default ({ touched, errors, values, details }) => (
       <hr></hr>
     </Row>
 
-    {values.Form_Type === "false" && (
+    {values.Individual_Form_Type === "false" && (
       <div>
         <Row>
           <h6>Co-Application Name</h6>

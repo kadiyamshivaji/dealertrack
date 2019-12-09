@@ -1,5 +1,5 @@
-import React, { Children, cloneElement } from 'react';
-import PropTypes from 'prop-types';
+import React, { Children, cloneElement } from "react";
+import PropTypes from "prop-types";
 
 class StepsList extends React.PureComponent {
   componentWillMount() {
@@ -20,7 +20,7 @@ class StepsList extends React.PureComponent {
       }
       return cloneElement(child, {
         isActive: index === activeStepIndex,
-        ...props,
+        ...props
       });
     });
     return newChildren;
@@ -39,10 +39,10 @@ StepsList.propTypes = {
   updateStepTabs: PropTypes.func,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
+    PropTypes.node
+  ])
 };
 
-StepsList.displayName = 'StepsList';
+StepsList.displayName = "StepsList";
 
 export default StepsList;
