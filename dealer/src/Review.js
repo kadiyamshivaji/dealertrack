@@ -203,7 +203,7 @@ return(
                     <p>{values.SsnJ}</p>
                     </Row>
                 <Row>
-                    <p>{values.Employee_RealtionShip}</p>
+                    <p>{values.Employee_Relationship}</p>
                 </Row>
             </Col>
         }
@@ -445,8 +445,8 @@ return(
       <Row>
           <Field
             className="select"
-            name="Employee_RealtionShip"
-            value={values.Employee_RealtionShip}
+            name="Employee_Relationship"
+            value={values.Employee_Relationship}
             options={relationToApplicant}
             component={CustomSelect}
             placeholder="Relationship to Primary Applicant"
