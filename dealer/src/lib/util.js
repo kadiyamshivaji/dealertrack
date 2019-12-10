@@ -19,9 +19,9 @@ function applicantPayload(payload) {
     applicant: {
       firstName: payload.FirstName,
       lastName: payload.LastName,
-      phone: payload.Phone,
+      phone: removeSpecialChar(payload.Phone),
       otherPhone: null,
-      ssn: payload.Ssn,
+      ssn: removeSpecialChar(payload.Ssn),
       dateOfBirth: payload.DateOfBirth,
       driversLicenseNumber: null,
       driversLicenseState: null,
@@ -51,13 +51,13 @@ function applicantPayload(payload) {
         employerName: payload.Employer,
         totalMonthsEmployed: payload.Having_Two_years_Employment ? 24 : 12,
         occupation: payload.Occupation,
-        workPhone: payload.WorkPhone,
+        workPhone: removeSpecialChar(payload.WorkPhone),
         status: payload.Employment_Status
       },
       previousEmployment: {
         employerName: payload.Employer_P,
         occupation: payload.Occupation_P,
-        workPhone: payload.WorkPhone_P,
+        workPhone: removeSpecialChar(payload.WorkPhone_P),
         status: payload.Employment_Status_P
       }
     },
@@ -129,9 +129,9 @@ function jointApplicantPayload(payload) {
       firstName: payload.FirstNameJ,
       lastName: payload.LastNameJ,
       suffix: "III",
-      phone: payload.PhoneJ,
+      phone: removeSpecialChar(payload.PhoneJ),
       otherPhone: "2146776599",
-      ssn: payload.SsnJ,
+      ssn: removeSpecialChar(payload.SsnJ),
       dateOfBirth: payload.DateOfBirthJ,
       driversLicenseNumber: null,
       driversLicenseState: null,
@@ -161,7 +161,7 @@ function jointApplicantPayload(payload) {
         employerName: payload.EmployerJ,
         totalMonthsEmployed: payload.Having_Two_years_EmploymentJ ? 24 : 12,
         occupation: payload.OccupationJ,
-        workPhone: payload.WorkPhoneJ,
+        workPhone: removeSpecialChar(payload.WorkPhoneJ),
         status: payload.Employment_StatusJ,
         employerAddress: {
           line1: "984114 7qIsE9Zn Lo/z",
@@ -175,7 +175,7 @@ function jointApplicantPayload(payload) {
         employerName: payload.EmployerJ_P,
         totalMonthsEmployed: payload.Having_Two_years_EmploymentJ ? 24 : 12,
         occupation: payload.OccupationJ_P,
-        workPhone: payload.WorkPhoneJ_P,
+        workPhone: removeSpecialChar(payload.WorkPhoneJ_P),
         status: payload.Employment_StatusJ_P,
         employerAddress: {
           line1: "689274 r2Q80zHGn920V0G0T",
@@ -239,4 +239,8 @@ function jointApplicantPayload(payload) {
       }
     ]
   };
+}
+function removeSpecialChar(str){
+  if(str)
+  return  str.replace(/[^a-zA-Z ]/g, "");
 }
