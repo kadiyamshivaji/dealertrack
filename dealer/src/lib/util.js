@@ -1,3 +1,5 @@
+import * as moment from "moment";
+
 export const constructPayload = payload => {
   if (payload.Individual_Form_Type === "true") {
     return applicantPayload(payload);
@@ -22,7 +24,7 @@ function applicantPayload(payload) {
       phone: removeSpecialChar(payload.Phone),
       otherPhone: null,
       ssn: removeSpecialChar(payload.Ssn),
-      dateOfBirth: payload.DateOfBirth,
+      dateOfBirth: moment(payload.DateOfBirth).format('YYYY-MM-DD'),
       driversLicenseNumber: null,
       driversLicenseState: null,
       email: payload.Email,
@@ -132,7 +134,7 @@ function jointApplicantPayload(payload) {
       phone: removeSpecialChar(payload.PhoneJ),
       otherPhone: "2146776599",
       ssn: removeSpecialChar(payload.SsnJ),
-      dateOfBirth: payload.DateOfBirthJ,
+      dateOfBirth: moment(payload.DateOfBirthJ).format('YYYY-MM-DD'),
       driversLicenseNumber: null,
       driversLicenseState: null,
       email: payload.EmailJ,
@@ -241,6 +243,7 @@ function jointApplicantPayload(payload) {
   };
 }
 function removeSpecialChar(str){
-  if(str)
-  return  str.replace(/[^a-zA-Z ]/g, "");
+  if(str){
+    return  str.replace(/[^a-zA-Z0-9 ]/g, "");
+  }
 }
