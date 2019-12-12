@@ -1,29 +1,9 @@
 import { constructPayload } from "../lib/util";
 import axios from "axios";
-let token;
-export const getToken = () => {
-  axios
-    .post(
-      `https://fni-api-np.dealertrack.com/sfni/uat1/oauth2/token`,
-      {
-        grant_type: "client_credentials",
-        client_id: "261ec6aa-6e3c-4bdb-846c-30f363d1c4fc",
-        client_secret: "N7oH5wG2tV3fS0aU4nM7gV3uM6mP7aQ1wC7tP6gV1eQ2pX8vK8",
-        scope: "sdeals-write"
-      },
-      {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        }
-      }
-    )
-    .then(res => {
-      token = res.data.access_token;
-    });
-};
+
 export const submit = payload => {
-  // const token =
-  //   "AAIkMjFmODBhMjctOTdkMS00M2VhLWJjZjgtYzJkNjRjMjBkOTFibE_rDxXaNJqThjNlvChcVh0aT439fXv6WUVEvQdJsZtj2FeCoazhr7KsHBm0EONwegEYO-ONvjGZ3pcduC86nhYBpTSs1sMEx5y8wp0_tLooFCJbfaG-oTVIWQ_4Qpmh3vCYjxzk5ZNjCSLx2GglvXECopx3qSEo-bSCeRDw0CM";
+  const token =
+  "AAIkMjYxZWM2YWEtNmUzYy00YmRiLTg0NmMtMzBmMzYzZDFjNGZj8QhzO4z0tzKR4oLpzzK8BXz2jfqOBbXFAWf-elt555iYG_ilPSYYtd9qeXlgnDetZIHgZrbUzwSKoQE0IwtX_TmEv__CVRe6iWXqQ9sfjHkOyH8SaK2YoqmQpXXW4x7tsPEhEaI6QdOiXnIJo6wcu28dj3s-810-kkIZ0w65aFk";
   const payloadJSON = constructPayload(payload);
   axios
     .post(

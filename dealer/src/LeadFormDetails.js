@@ -35,6 +35,7 @@ class LeadFormDetails extends React.Component {
       [name]: value
     });
   }
+
   showWelcomePage = () => {
     this.setState({
       ShowLeadPage: false,

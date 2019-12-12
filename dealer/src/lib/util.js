@@ -9,40 +9,46 @@ export const constructPayload = payload => {
 };
 
 function applicant(payload) {
- const current =currentApplicant(payload)
-    if(payload.Having_Two_years === "false"){
-      current.applicant = {...current.applicant,...previousAddress(payload)}
-    }
-    if( payload.Having_Two_years_Employment === "false"){
-      current.applicant = {...current.applicant,...previousEmployment(payload)}
-    }
-    return current;
+  const current = currentApplicant(payload);
+  if (payload.Having_Two_years === "false") {
+    current.applicant = { ...current.applicant, ...previousAddress(payload) };
+  }
+  if (payload.Having_Two_years_Employment === "false") {
+    current.applicant = {
+      ...current.applicant,
+      ...previousEmployment(payload)
+    };
+  }
+  return current;
 }
 
 function coApplicant(payload) {
-  const joint =jointApplicant(payload)
-  if(payload.Having_Two_years_Joint === "false"){
-    joint.coApplicant = {...joint.coApplicant,...coPreviousAddress(payload)}
+  const joint = jointApplicant(payload);
+  if (payload.Having_Two_years_Joint === "false") {
+    joint.coApplicant = { ...joint.coApplicant, ...coPreviousAddress(payload) };
   }
-  if( payload.Having_Two_years_EmploymentJ === "false"){
-    joint.coApplicant = {...joint.coApplicant,...coPreviousEmployment(payload)}
+  if (payload.Having_Two_years_EmploymentJ === "false") {
+    joint.coApplicant = {
+      ...joint.coApplicant,
+      ...coPreviousEmployment(payload)
+    };
   }
   return joint;
 }
 
-function removeSpecialChar(str){
-  if(str){
-    return  str.replace(/[^a-zA-Z0-9 ]/g, "");
+function removeSpecialChar(str) {
+  if (str) {
+    return str.replace(/[^a-zA-Z0-9 ]/g, "");
   }
 }
 
-function currentApplicant(payload){
+function currentApplicant(payload) {
   return {
-    sourcePartnerId: "QQQ",
+    sourcePartnerId: "MMD",
     targetPlatforms: [
       {
-        id: "PPP",
-        partyId: "999999"
+        id: "DTC",
+        partyId: "3249"
       }
     ],
     financeMethod: "Retail",
@@ -52,7 +58,7 @@ function currentApplicant(payload){
       phone: removeSpecialChar(payload.Phone),
       otherPhone: null,
       ssn: removeSpecialChar(payload.Ssn),
-      dateOfBirth: moment(payload.DateOfBirth).format('YYYY-MM-DD'),
+      dateOfBirth: moment(payload.DateOfBirth).format("YYYY-MM-DD"),
       driversLicenseNumber: null,
       driversLicenseState: null,
       email: payload.Email,
@@ -67,11 +73,11 @@ function currentApplicant(payload){
         postalCode: payload.Zipcode
       },
       monthsAtPreviousAddress: 12,
-     
+
       income: payload.Money,
       incomeFrequency: payload.Tenure,
-      otherMonthlyIncome: payload.Income,
-      otherMonthlyIncomeSource: payload.Soure_Income,
+      otherMonthlyIncome: payload.Income || null,
+      otherMonthlyIncomeSource: payload.Soure_Income || null,
       currentEmployment: {
         employerName: payload.Employer,
         totalMonthsEmployed: payload.Having_Two_years_Employment ? 24 : 12,
@@ -79,7 +85,6 @@ function currentApplicant(payload){
         workPhone: removeSpecialChar(payload.WorkPhone),
         status: payload.Employment_Status
       }
-     
     },
     financeSummary: {
       vehicleSellingPrice: 65083,
@@ -108,7 +113,7 @@ function currentApplicant(payload){
     vehicle: {
       inventoryVehicleCondition: "Used",
       stockNumber: "174ZMWV4",
-      vin: "gjhghjjhgj",
+      vin: "WBA4J7C53KBM75242",
       chromeYear: payload.Year,
       chromeMake: payload.Make,
       chromeModel: payload.Model,
@@ -135,24 +140,23 @@ function currentApplicant(payload){
         }
       }
     ],
-    communityPropertyDisclosureIndicator: true,
     prequalificationReferenceNumber: null,
     leadReferenceNumber: null,
     applicationReferenceNumber: null
   };
 }
 
-function previousAddress(payload){
- return {
-      previousAddress: {
-          line1: payload.StreetAddress_P,
-          city: payload.City_P,
-          state: payload.State_P,
-          postalCode: payload.Zipcode_P
-        }
+function previousAddress(payload) {
+  return {
+    previousAddress: {
+      line1: payload.StreetAddress_P,
+      city: payload.City_P,
+      state: payload.State_P,
+      postalCode: payload.Zipcode_P
     }
+  };
 }
-function previousEmployment(payload){
+function previousEmployment(payload) {
   return {
     previousEmployment: {
       employerName: payload.Employer_P,
@@ -160,10 +164,10 @@ function previousEmployment(payload){
       workPhone: removeSpecialChar(payload.WorkPhone_P),
       status: payload.Employment_Status_P
     }
-  }
+  };
 }
 
-function jointApplicant(payload){
+function jointApplicant(payload) {
   return {
     coApplicant: {
       relationship: payload.Employee_Relationship,
@@ -173,7 +177,7 @@ function jointApplicant(payload){
       phone: removeSpecialChar(payload.PhoneJ),
       otherPhone: "2146776599",
       ssn: removeSpecialChar(payload.SsnJ),
-      dateOfBirth: moment(payload.DateOfBirthJ).format('YYYY-MM-DD'),
+      dateOfBirth: moment(payload.DateOfBirthJ).format("YYYY-MM-DD"),
       driversLicenseNumber: null,
       driversLicenseState: null,
       email: payload.EmailJ,
@@ -188,11 +192,11 @@ function jointApplicant(payload){
         postalCode: payload.ZipcodeJ
       },
       monthsAtPreviousAddress: 18,
-     
+
       income: payload.MoneyJ,
       incomeFrequency: payload.TenureJ,
-      otherMonthlyIncome: payload.IncomeJoint,
-      otherMonthlyIncomeSource: payload.Source_Income_Joint,
+      otherMonthlyIncome: payload.IncomeJoint || null,
+      otherMonthlyIncomeSource: payload.Source_Income_Joint || null,
       currentEmployment: {
         employerName: payload.EmployerJ,
         totalMonthsEmployed: payload.Having_Two_years_EmploymentJ ? 24 : 12,
@@ -207,7 +211,6 @@ function jointApplicant(payload){
           postalCode: "76486"
         }
       }
-      
     },
     lenderList: [
       {
@@ -264,7 +267,7 @@ function jointApplicant(payload){
   };
 }
 
-function coPreviousEmployment(payload){
+function coPreviousEmployment(payload) {
   return {
     previousEmployment: {
       employerName: payload.EmployerJ_P,
@@ -280,16 +283,16 @@ function coPreviousEmployment(payload){
         postalCode: "32201"
       }
     }
-  }
+  };
 }
 
-function coPreviousAddress (payload){
+function coPreviousAddress(payload) {
   return {
     previousAddress: {
       line1: payload.StreetAddressJ_P,
       city: payload.CityJ_P,
       state: payload.StateJ_P,
       postalCode: payload.ZipcodeJ_P
-    },
-  }
+    }
+  };
 }

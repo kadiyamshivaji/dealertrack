@@ -132,13 +132,13 @@ export default ({ touched, errors, values }) => {
   const [open5, setOpen5] = useState(false);
   const [open6, setOpen6] = useState(false);
   const [finalPage, setFinalPage] = useState(false);
-  let response=undefined;
-  let Loading=false;
+  let response = undefined;
+  let Loading = false;
   function onSubmit() {
-    Loading=true;
+    Loading = true;
     response = submit(values);
     if (response) {
-      Loading=false;
+      Loading = false;
       setFinalPage(true);
     }
   }
@@ -409,19 +409,22 @@ export default ({ touched, errors, values }) => {
           </button>
         </div>
       )}
-      { Loading &&
-       <Spinner animation="border" role="status">
-       <span className="sr-only">Loading...</span>
-   </Spinner>
-   }
-     
-      {finalPage &&  (
+      {Loading && (
+        <Spinner animation="border" role="status">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+      )}
+
+      {finalPage && (
         <div>
           <Row>
             <h2>Application Submitted!</h2>
           </Row>
           <Row>
-      <h4>Applicantion #: {response && response.referenceId || 12335525}</h4>
+            <h4>
+              Applicantion #:{" "}
+              {(response && response.applicationReferenceNumber) || 12335525}
+            </h4>
           </Row>
           <Row>
             <p>
