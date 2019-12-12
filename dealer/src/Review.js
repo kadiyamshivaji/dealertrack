@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container, Spinner } from "react-bootstrap";
 import { FaPencilAlt } from "react-icons/fa";
 import Moment from "react-moment";
 import { Field } from "formik";
@@ -132,10 +132,13 @@ export default ({ touched, errors, values }) => {
   const [open5, setOpen5] = useState(false);
   const [open6, setOpen6] = useState(false);
   const [finalPage, setFinalPage] = useState(false);
-
+  let response=undefined;
+  let Loading=false;
   function onSubmit() {
-    const g = submit(values);
-    if (g) {
+    Loading=true;
+    response = submit(values);
+    if (response) {
+      Loading=false;
       setFinalPage(true);
     }
   }
@@ -406,7 +409,13 @@ export default ({ touched, errors, values }) => {
           </button>
         </div>
       )}
-      {finalPage && (
+      { Loading &&
+       <Spinner animation="border" role="status">
+       <span className="sr-only">Loading...</span>
+   </Spinner>
+   }
+     
+      {finalPage &&  (
         <div>
           <Row>
             <h2>Application Submitted!</h2>
