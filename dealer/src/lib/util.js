@@ -2,13 +2,41 @@ import * as moment from "moment";
 
 export const constructPayload = payload => {
   if (payload.Individual_Form_Type === "true") {
-    return applicantPayload(payload);
+    return applicant(payload);
   } else {
-    return { ...applicantPayload(payload), ...jointApplicantPayload(payload) };
+    return { ...applicant(payload), ...coApplicant(payload) };
   }
 };
 
-function applicantPayload(payload) {
+function applicant(payload) {
+ const current =currentApplicant(payload)
+    if(payload.Having_Two_years === "false"){
+      current.applicant = {...current.applicant,...previousAddress(payload)}
+    }
+    if( payload.Having_Two_years_Employment === "false"){
+      current.applicant = {...current.applicant,...previousEmployment(payload)}
+    }
+    return current;
+}
+
+function coApplicant(payload) {
+  const joint =jointApplicant(payload)
+  if(payload.Having_Two_years_Joint === "false"){
+    joint.coApplicant = {...joint.coApplicant,...coPreviousAddress(payload)}
+  }
+  if( payload.Having_Two_years_EmploymentJ === "false"){
+    joint.coApplicant = {...joint.coApplicant,...coPreviousEmployment(payload)}
+  }
+  return joint;
+}
+
+function removeSpecialChar(str){
+  if(str){
+    return  str.replace(/[^a-zA-Z0-9 ]/g, "");
+  }
+}
+
+function currentApplicant(payload){
   return {
     sourcePartnerId: "QQQ",
     targetPlatforms: [
@@ -39,12 +67,7 @@ function applicantPayload(payload) {
         postalCode: payload.Zipcode
       },
       monthsAtPreviousAddress: 12,
-      previousAddress: {
-        line1: payload.StreetAddress_P,
-        city: payload.City_P,
-        state: payload.State_P,
-        postalCode: payload.Zipcode_P
-      },
+     
       income: payload.Money,
       incomeFrequency: payload.Tenure,
       otherMonthlyIncome: payload.Income,
@@ -55,13 +78,8 @@ function applicantPayload(payload) {
         occupation: payload.Occupation,
         workPhone: removeSpecialChar(payload.WorkPhone),
         status: payload.Employment_Status
-      },
-      previousEmployment: {
-        employerName: payload.Employer_P,
-        occupation: payload.Occupation_P,
-        workPhone: removeSpecialChar(payload.WorkPhone_P),
-        status: payload.Employment_Status_P
       }
+     
     },
     financeSummary: {
       vehicleSellingPrice: 65083,
@@ -124,7 +142,28 @@ function applicantPayload(payload) {
   };
 }
 
-function jointApplicantPayload(payload) {
+function previousAddress(payload){
+ return {
+      previousAddress: {
+          line1: payload.StreetAddress_P,
+          city: payload.City_P,
+          state: payload.State_P,
+          postalCode: payload.Zipcode_P
+        }
+    }
+}
+function previousEmployment(payload){
+  return {
+    previousEmployment: {
+      employerName: payload.Employer_P,
+      occupation: payload.Occupation_P,
+      workPhone: removeSpecialChar(payload.WorkPhone_P),
+      status: payload.Employment_Status_P
+    }
+  }
+}
+
+function jointApplicant(payload){
   return {
     coApplicant: {
       relationship: payload.Employee_Relationship,
@@ -149,12 +188,7 @@ function jointApplicantPayload(payload) {
         postalCode: payload.ZipcodeJ
       },
       monthsAtPreviousAddress: 18,
-      previousAddress: {
-        line1: payload.StreetAddressJ_P,
-        city: payload.CityJ_P,
-        state: payload.StateJ_P,
-        postalCode: payload.ZipcodeJ_P
-      },
+     
       income: payload.MoneyJ,
       incomeFrequency: payload.TenureJ,
       otherMonthlyIncome: payload.IncomeJoint,
@@ -172,21 +206,8 @@ function jointApplicantPayload(payload) {
           state: "AZ",
           postalCode: "76486"
         }
-      },
-      previousEmployment: {
-        employerName: payload.EmployerJ_P,
-        totalMonthsEmployed: payload.Having_Two_years_EmploymentJ ? 24 : 12,
-        occupation: payload.OccupationJ_P,
-        workPhone: removeSpecialChar(payload.WorkPhoneJ_P),
-        status: payload.Employment_StatusJ_P,
-        employerAddress: {
-          line1: "689274 r2Q80zHGn920V0G0T",
-          line2: "mJ",
-          city: "gUwLla",
-          state: "KS",
-          postalCode: "32201"
-        }
       }
+      
     },
     lenderList: [
       {
@@ -242,8 +263,33 @@ function jointApplicantPayload(payload) {
     ]
   };
 }
-function removeSpecialChar(str){
-  if(str){
-    return  str.replace(/[^a-zA-Z0-9 ]/g, "");
+
+function coPreviousEmployment(payload){
+  return {
+    previousEmployment: {
+      employerName: payload.EmployerJ_P,
+      totalMonthsEmployed: payload.Having_Two_years_EmploymentJ ? 24 : 12,
+      occupation: payload.OccupationJ_P,
+      workPhone: removeSpecialChar(payload.WorkPhoneJ_P),
+      status: payload.Employment_StatusJ_P,
+      employerAddress: {
+        line1: "689274 r2Q80zHGn920V0G0T",
+        line2: "mJ",
+        city: "gUwLla",
+        state: "KS",
+        postalCode: "32201"
+      }
+    }
+  }
+}
+
+function coPreviousAddress (payload){
+  return {
+    previousAddress: {
+      line1: payload.StreetAddressJ_P,
+      city: payload.CityJ_P,
+      state: payload.StateJ_P,
+      postalCode: payload.ZipcodeJ_P
+    },
   }
 }
