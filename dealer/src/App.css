@@ -8,7 +8,7 @@
     font-size: 14px;
     line-height: 1.5;
     color: #24292e;
-    background-color: #fff;
+    background-color: #F4F8FC;
   }
   
   .app {
@@ -283,4 +283,32 @@ input[type="checkbox"]{
     font-weight: bold;
     border-style: solid;
     border-width: 2px;
+}
+.applicant{
+  background: #ddd;
+  padding: 10px;
+  margin-top: 15px;
+}
+.check{
+  color: blue;
+}
+.radio-box{
+    background: #fff;
+    /* padding-left: 62px; */
+    margin: 0 auto;
+    border-bottom: 5px solid #CCCCCC;
+    margin-left: 5px;
+    padding-top: 9px;
+}
+.user{
+  color: #CCCCCC;
+  font-size: 35px;
+}
+.active-1{
+  background: blue;
+  text-align: center;
+} 
+.label-1{
+  background: none;
+  text-align: center;
 }

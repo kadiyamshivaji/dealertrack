@@ -1,21 +1,24 @@
 import React from "react";
-import { Row, Container } from "react-bootstrap";
+import { Row, Container ,Col,InputGroup,Button} from "react-bootstrap";
 import { Field } from "formik";
 import { Formik } from "formik";
-import { FaDotCircle, FaAngleDoubleRight, FaAngleUp } from "react-icons/fa";
+import { FaDotCircle, FaAngleDoubleRight, FaAngleUp,FaCheck,FaUserAlt,FaUserFriends } from "react-icons/fa";
 import HomeContainer from "./HomeContainer";
 import NumberFormat from "react-number-format";
+
+
 
 class LeadFormDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ShowLeadPage: true,
+      ShowLeadPage: false,
       showWelcomePage: false,
       ShowHomePage: false,
       ShowMainPage: false,
       showReqInfo: false,
       showProInfo: false,
+      newHomePage:true,
       FirstName: process.env.REACT_APP_SECRET_FIRSTNAME,
       LastName: process.env.REACT_APP_LASTNAME,
       Email: process.env.REACT_APP_SECRET_EMAIL,
@@ -24,9 +27,12 @@ class LeadFormDetails extends React.Component {
       Year: process.env.REACT_APP_SECRET_YEAR,
       Modal: process.env.REACT_APP_SECRET_MODAL,
       Trim: process.env.REACT_APP_SECRET_TRIM,
-      Make: process.env.REACT_APP_SECRET_MAKE
+      Make: process.env.REACT_APP_SECRET_MAKE,
+      Individual:false,
+      Joint:false
     };
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.RadioBoxCheck=this.RadioBoxCheck.bind(this)
   }
 
   handleInputChange(event) {
@@ -83,7 +89,35 @@ class LeadFormDetails extends React.Component {
       />
     );
   };
+  RadioBoxCheck = e => {
+    e.preventDefault();
+    alert()
+
+    if(e==="Individual"){
+      this.setState({
+        Individual: true,
+        Joint:false
+      });
+    }else{
+      this.setState({
+        Individual: false,
+        Joint:true
+      });
+    }
+  
+  };
   render() {
+    const RadioBox = ({ id, name, label, checked, css, ...props }) => (
+      <div className='radio-box'>
+        <input type="radio" id={id} onClick={this.RadioBoxCheck}  name={name} checked={checked} {...props} />
+        <Row>
+          <Col><h6 className={css} htmlFor={id}>{label==="Individual"?<FaUserAlt className="user"/>:<FaUserFriends className="user"/>}
+                  {label}
+              </h6>
+          </Col>
+        </Row>    
+      </div> 
+    );
     return (
       <div>
         <Formik
@@ -425,6 +459,53 @@ class LeadFormDetails extends React.Component {
                   </Container>
                 </form>
               )}
+              {this.state.newHomePage &&  (
+                <form onSubmit={handleSubmit}>
+                  <Container>
+                    <Row><h1>Apply for Credit Online</h1></Row>
+                    <Row><p>This application should only take about 10 minutes .Don't worry ,we'll only use this information to process your applications </p></Row>
+                  <div className="applicant">
+                    <Row><h6>What you need for all applicants</h6></Row>
+                    <Row>
+                      <Col><FaCheck className="check" /> Social security number and date of birth </Col>
+                      <Col><FaCheck className="check" /> Housing information</Col>
+                      <Col><FaCheck className="check" /> Employment details</Col>
+                    </Row> 
+                  </div>
+                  <div>
+                    <Row><h6>Are you applying individually or jointly</h6></Row>
+                    <Row>
+                        <Col>
+                          <RadioBox
+                            value="true"
+                            css={
+                              this.state.Individual === "true"
+                                ? "active-1"
+                                : "label-1"
+                            }
+                            id="Having_Two_years_EmploymentJ-0"
+                            label="Individual"
+                          />
+                        </Col>
+                        <Col>
+                            <RadioBox
+                              value="false"
+                              css={
+                                this.state.Joint === "true"
+                                  ? "active-1"
+                                  : "label-1"
+                              }
+                              id="Having_Two_years_EmploymentJ-1"
+                              label="Joint"
+                            />
+                        </Col>
+                      </Row>
+                  </div>
+                  <Row>
+                    <button>Start</button>
+                  </Row>
+                  </Container>
+                  </form>)}
               {this.state.ShowMainPage && <HomeContainer data={this.state} />}
             </div>
           )}
