@@ -1,6 +1,7 @@
 /* eslint-disable no-useless-escape */
 import { withFormik } from "formik";
 import * as Yup from "yup";
+import { FaLandmark } from "react-icons/fa";
 
 export default withFormik({
   displayName: "WizardForm",
@@ -75,11 +76,9 @@ export default withFormik({
     TenureJ: "",
     Source_Income_Joint: "",
     IncomeJoint: "",
-
-    Policy1: "",
-    Policy2: "",
-    Individual_Form_Type: "true",
-
+    Policy1: false,
+    Policy2: false,
+    IsCoApplicantFormEnable: props.data.Joint,
     addressLine1: "",
     addressLine2: "",
     country: ""
@@ -143,7 +142,9 @@ export default withFormik({
       Policy2: Yup.string().required("Accept the Terms and Conditions")
     }),
 
-  handleSubmit: values => {
-    console.log(values);
+  handleSubmit: (values,props) => {
+    debugger
+    console.log(values,props);
+    
   }
 });

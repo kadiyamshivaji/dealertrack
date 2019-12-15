@@ -14,7 +14,7 @@ export const  SSNField= ({ ...props }) => {
     }}
     name={field.name}
     value={field.value}
-    placeholder="Social Security Number"
+    placeholder="____-____-____"
     format="###-##-####"
   />
   );

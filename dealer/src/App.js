@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import "./App.scss";
 import HomeContainer from "./containers/HomeContainer";
 import FormComponent from "./Form";
 import { Formik } from "formik";

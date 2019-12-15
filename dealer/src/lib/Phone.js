@@ -14,7 +14,7 @@ export const  PhoneField= ({ ...props }) => {
     }}
     name={field.name}
     value={field.value}
-    placeholder="Phone"
+    placeholder="(555) 555-5555"
     format="(###) ###-####"
   />
   );

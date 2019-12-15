@@ -1,8 +1,8 @@
 import React from "react";
-import { Row, Container ,Col,InputGroup,Button} from "react-bootstrap";
+import { Row, Container, Col, Spinner } from "react-bootstrap";
 import { Field } from "formik";
 import { Formik } from "formik";
-import { FaDotCircle, FaAngleDoubleRight, FaAngleUp,FaCheck,FaUserAlt,FaUserFriends } from "react-icons/fa";
+import { FaDotCircle, FaAngleDoubleRight, FaAngleUp, FaCheck, FaUserAlt, FaUserFriends, FaCarAlt, FaCheckCircle, FaRegComments } from "react-icons/fa";
 import HomeContainer from "./HomeContainer";
 import NumberFormat from "react-number-format";
 
@@ -15,10 +15,13 @@ class LeadFormDetails extends React.Component {
       ShowLeadPage: false,
       showWelcomePage: false,
       ShowHomePage: false,
-      ShowMainPage: false,
+      ShowMainPage: true,
       showReqInfo: false,
       showProInfo: false,
-      newHomePage:true,
+      newHomePage: false,
+      showResponsePage: false,
+      loading: false,
+      resEmail: undefined,
       FirstName: process.env.REACT_APP_SECRET_FIRSTNAME,
       LastName: process.env.REACT_APP_LASTNAME,
       Email: process.env.REACT_APP_SECRET_EMAIL,
@@ -28,11 +31,11 @@ class LeadFormDetails extends React.Component {
       Modal: process.env.REACT_APP_SECRET_MODAL,
       Trim: process.env.REACT_APP_SECRET_TRIM,
       Make: process.env.REACT_APP_SECRET_MAKE,
-      Individual:false,
-      Joint:false
+      Individual: false,
+      Joint: false
     };
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.RadioBoxCheck=this.RadioBoxCheck.bind(this)
+    this.RadioBoxCheck = this.RadioBoxCheck.bind(this)
   }
 
   handleInputChange(event) {
@@ -63,9 +66,19 @@ class LeadFormDetails extends React.Component {
       ShowLeadPage: false,
       showWelcomePage: false,
       ShowHomePage: false,
+      newHomePage: false,
       ShowMainPage: true
     });
   }
+  newDesign() {
+    this.setState({
+      ShowLeadPage: false,
+      showWelcomePage: false,
+      ShowHomePage: false,
+      newHomePage: true
+    });
+  }
+
   setShowProInfo = e => {
     e.preventDefault();
     this.setState({
@@ -78,6 +91,15 @@ class LeadFormDetails extends React.Component {
       showReqInfo: !this.state.showReqInfo
     });
   };
+  onSubmitFinal(result) {
+    this.setState({
+      showResponsePage: true,
+      ShowMainPage: false,
+      resEmail: result.email,
+      responseId: result.id
+    })
+    console.log('******', result)
+  }
   PhoneFormate = ({ field, form, ...props }) => {
     return (
       <NumberFormat
@@ -90,34 +112,20 @@ class LeadFormDetails extends React.Component {
     );
   };
   RadioBoxCheck = e => {
-    e.preventDefault();
-    alert()
-
-    if(e==="Individual"){
+    if (e === "Individual") {
       this.setState({
         Individual: true,
-        Joint:false
+        Joint: false
       });
-    }else{
+    } else {
       this.setState({
         Individual: false,
-        Joint:true
+        Joint: true
       });
     }
-  
+
   };
   render() {
-    const RadioBox = ({ id, name, label, checked, css, ...props }) => (
-      <div className='radio-box'>
-        <input type="radio" id={id} onClick={this.RadioBoxCheck}  name={name} checked={checked} {...props} />
-        <Row>
-          <Col><h6 className={css} htmlFor={id}>{label==="Individual"?<FaUserAlt className="user"/>:<FaUserFriends className="user"/>}
-                  {label}
-              </h6>
-          </Col>
-        </Row>    
-      </div> 
-    );
     return (
       <div>
         <Formik
@@ -320,8 +328,8 @@ class LeadFormDetails extends React.Component {
                         {!this.state.showProInfo ? (
                           <FaAngleDoubleRight />
                         ) : (
-                          <FaAngleUp />
-                        )}
+                            <FaAngleUp />
+                          )}
                       </span>
                       <br />
                       <br />
@@ -349,8 +357,8 @@ class LeadFormDetails extends React.Component {
                         {!this.state.showReqInfo ? (
                           <FaAngleDoubleRight />
                         ) : (
-                          <FaAngleUp />
-                        )}
+                            <FaAngleUp />
+                          )}
                       </span>
                       <br />
                       <br />
@@ -449,7 +457,7 @@ class LeadFormDetails extends React.Component {
                     </Row>
                     <Row>
                       <button
-                        onClick={() => this.startApp()}
+                        onClick={() => this.newDesign()}
                         type="primary"
                         className="login-form-button"
                       >
@@ -459,54 +467,107 @@ class LeadFormDetails extends React.Component {
                   </Container>
                 </form>
               )}
-              {this.state.newHomePage &&  (
+              {this.state.newHomePage && (
                 <form onSubmit={handleSubmit}>
                   <Container>
-                    <Row><h1>Apply for Credit Online</h1></Row>
-                    <Row><p>This application should only take about 10 minutes .Don't worry ,we'll only use this information to process your applications </p></Row>
-                  <div className="applicant">
-                    <Row><h6>What you need for all applicants</h6></Row>
                     <Row>
-                      <Col><FaCheck className="check" /> Social security number and date of birth </Col>
-                      <Col><FaCheck className="check" /> Housing information</Col>
-                      <Col><FaCheck className="check" /> Employment details</Col>
-                    </Row> 
-                  </div>
-                  <div>
-                    <Row><h6>Are you applying individually or jointly</h6></Row>
-                    <Row>
-                        <Col>
-                          <RadioBox
-                            value="true"
-                            css={
-                              this.state.Individual === "true"
-                                ? "active-1"
-                                : "label-1"
-                            }
-                            id="Having_Two_years_EmploymentJ-0"
-                            label="Individual"
-                          />
-                        </Col>
-                        <Col>
-                            <RadioBox
-                              value="false"
-                              css={
-                                this.state.Joint === "true"
-                                  ? "active-1"
-                                  : "label-1"
-                              }
-                              id="Having_Two_years_EmploymentJ-1"
-                              label="Joint"
-                            />
-                        </Col>
+                      <Col>
+                        <FaCarAlt className='car' />
+                      </Col>
+                      <Col xs={11}>
+                        <Row><h1>Apply for Credit Online</h1></Row>
+                        <Row className='sub-tittle'><p>This application should only take about 10 minutes .Don't worry ,we'll only use this information to process your applications </p></Row>
+                      </Col>
+                    </Row>
+                    <div className="applicant">
+                      <Row><h6>What you need for all applicants</h6></Row>
+                      <Row>
+                        <Col className='text'><FaCheck className="check" />Social security number and date of birth </Col>
+                        <Col className='text'><FaCheck className="check" /> Housing information</Col>
+                        <Col className='text'><FaCheck className="check" /> Employment details</Col>
                       </Row>
-                  </div>
-                  <Row>
-                    <button>Start</button>
-                  </Row>
+                    </div>
+                    <div>
+                      <Row><h6>Are you applying individually or jointly</h6></Row>
+                      <Row>
+                        <Col>
+                          <div className={this.state.Individual ? 'active-1' : 'radio-box'}>
+                            <Row onClick={() => this.RadioBoxCheck('Individual')} >
+                              <Col><h6 ><FaUserAlt className="user" />
+                                {" "}{"Individual"}
+                              </h6>
+                              </Col>
+                            </Row>
+                          </div>
+                        </Col>
+                        <Col>
+
+                          <div className={this.state.Joint ? 'active-1' : 'radio-box'}>
+                            <Row onClick={() => this.RadioBoxCheck('Joint')} >
+                              <Col><h6 ><FaUserFriends className="user" />
+                                {" "}{"Joint"}
+                              </h6>
+                              </Col>
+                            </Row>
+                          </div>
+                        </Col>
+
+                      </Row>
+                    </div>
+                    <Row>
+                      <button
+                        onClick={() => this.startApp()}
+                        type="primary"
+                        className="login-form-button"
+                      >
+                        Start
+                      </button>
+                    </Row>
                   </Container>
-                  </form>)}
-              {this.state.ShowMainPage && <HomeContainer data={this.state} />}
+                </form>)}
+              {this.state.ShowMainPage && <HomeContainer onSubmitFinal={this.onSubmitFinal.bind(this)} data={this.state} />}
+
+              {this.state.showResponsePage &&
+                <div >
+                  <Row>
+                    <Col>
+                      <FaCarAlt className='car' />
+                    </Col>
+                    <Col xs={11}>
+                      <Row><h1>Housing</h1></Row>
+                      <Row className='sub-tittle'><p>For your protection, we will be looking at your recent history to verify your identity.</p></Row>
+                    </Col>
+                  </Row>
+                  <Row className="r-tittle">
+                    <Col xs={9}><p><h3><FaCheckCircle className='check-icon' /> Application Submitted!</h3></p>
+                    </Col>
+                    <Col className='cooment'><FaRegComments className='cooment-icon' /> Get text updates  </Col>
+
+                  </Row>
+                  <div className='r-content'>
+                    <Row>
+                      <h4>
+                        Applicantion #:{" "}
+                        {this.state.responseId}
+                      </h4>
+                    </Row>
+                    <Row>
+                      <p>
+                        A copy of this Application has been sent to <b>{this.state.resEmail}</b>
+                        <br />
+                        Somone from <b>Name</b> dealership will contact you.
+                 <br />
+                        Questions? Call <b>1-800-555-1234</b>
+                      </p>
+                    </Row>
+                  </div>
+                </div>
+              }
+              {this.state.loading && (
+                <Spinner animation="border" role="status">
+                  <span className="sr-only">Loading...</span>
+                </Spinner>
+              )}
             </div>
           )}
         />

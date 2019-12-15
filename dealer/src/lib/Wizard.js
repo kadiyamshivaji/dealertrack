@@ -2,6 +2,7 @@ import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import StepTabs from './StepTabs';
+import { submit } from "../api/api";
 
 class Wizard extends React.Component {
   constructor(props) {
@@ -36,7 +37,13 @@ class Wizard extends React.Component {
   };
 
   onSubmit = () => {
-    console.log('submitted the form',JSON.stringify(this.props.values));
+    const response = submit(this.props.values);
+    const result = {
+      id:  121456,
+      email: 'kadiyams@gmail.com'//this.props.email
+    }
+    this.props.onSubmitFinal(result)
+    console.log('submitted the form', JSON.stringify(this.props.values));
   };
 
   updateStepTabs = stepTabs => {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Row, Col, Container, Spinner } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import { FaPencilAlt } from "react-icons/fa";
 import Moment from "react-moment";
 import { Field } from "formik";
@@ -9,7 +9,8 @@ import { CustomSelect } from "./lib/Select";
 import * as CurrencyFormat from "react-currency-format";
 import PhoneField from "./lib/Phone";
 import SSNField from "./lib/ssn";
-import { submit } from "./api/api";
+import { FaCarAlt, FaQuestionCircle } from "react-icons/fa";
+
 const TenureOptions = [
   {
     label: "Monthly",
@@ -131,124 +132,93 @@ export default ({ touched, errors, values }) => {
   const [open4, setOpen4] = useState(false);
   const [open5, setOpen5] = useState(false);
   const [open6, setOpen6] = useState(false);
-  const [finalPage, setFinalPage] = useState(false);
-  let response = undefined;
-  let Loading = false;
-  function onSubmit() {
-    Loading = true;
-    response = submit(values);
-    if (response) {
-      Loading = false;
-      setFinalPage(true);
-    }
-  }
   return (
     <Container>
-      {!finalPage && (
         <div>
           <Row>
-            <h2>Review and Submit</h2>
-          </Row>
-          <Row>
-            <h6>
-              Please take one last chance to everything.Make changes if needed
-            </h6>
-          </Row>
-          <Row>
             <Col>
+              <FaCarAlt className='car' />
+            </Col>
+            <Col xs={11}>
+              <Row><h1>Review and Submit</h1></Row>
+              <Row className='sub-tittle'><p>Please take one last and make changes if needed before submitting your application.</p></Row>
+            </Col>
+          </Row>
+          <Row className="r-tittle"><h3>Primary Applicant</h3></Row>
+          <div className='r-content'>
+            <div>
               <Row>
-                <label className="tittle">
-                  Primary Applicant{" "}
+                <label>
+                  Personal Information{" "}
                   <FaPencilAlt
                     className="pencil"
                     onClick={() => setOpen1(true)}
                   />
+                  <span className='tittle'>Edit</span>
                 </label>
               </Row>
               <Row>
-                <p>
+                <Col> <p>Name:</p></Col>
+                <Col> <p>
                   {values.FirstName} {values.LastName}
-                </p>
+                </p></Col>
               </Row>
               <Row>
-                <p>(***) ***-**{values.Phone.toString().slice(-2)}</p>
+                <Col><p>Phone</p>
+                </Col>
+                <Col>
+                  <p>(***) ***-**{values.Phone.toString().slice(-2)}</p>
+                </Col>
               </Row>
               <Row>
-                <p>
-                  {values.Email.replace(
-                    /^(.)(.*)(.@.*)$/,
-                    (_, a, b, c) => a + b.replace(/./g, "*") + c
-                  )}
-                </p>
-              </Row>
-              <Row>
-                <p>
-                  {" "}
-                  <Moment format="MM/DD/YYYY">{values.DateOfBirth}</Moment>
-                </p>
-              </Row>
-              <Row>
-                <p>***-**-{values.Ssn.toString().slice(-4)}</p>
-              </Row>
-            </Col>
-            {values.Individual_Form_Type === "false" && (
-              <Col>
-                <Row>
-                  <label className="tittle">
-                    Secondary Applicant{" "}
-                    <FaPencilAlt
-                      className="pencil"
-                      onClick={() => setOpen2(true)}
-                    />
-                  </label>
-                </Row>
-                <Row>
+                <Col><p>Email</p>
+                </Col>
+                <Col>
                   <p>
-                    {values.FirstNameJ} {values.LastNameJ}
-                  </p>
-                </Row>
-                <Row>
-                  <p>(***) ***-**{values.PhoneJ.toString().slice(-2)}</p>
-                </Row>
-                <Row>
-                  <p>
-                    {values.EmailJ.replace(
+                    {values.Email.replace(
                       /^(.)(.*)(.@.*)$/,
                       (_, a, b, c) => a + b.replace(/./g, "*") + c
                     )}
                   </p>
-                </Row>
-                <Row>
-                  <p>
-                    {" "}
-                    <Moment format="MM/DD/YYYY">{values.Datepickerj}</Moment>
-                  </p>
-                </Row>
-                <Row>
-                  <p>{values.SsnJ}</p>
-                </Row>
-                <Row>
-                  <p>{values.Employee_Relationship}</p>
-                </Row>
-              </Col>
-            )}
-          </Row>
-          <Row>
-            <Col>
+                </Col>
+              </Row>
               <Row>
-                <label className="tittle">
+                <Col><p>Date Of Birth</p>
+                </Col>
+                <Col>
+                  <p>
+                    <Moment format="MM/DD/YYYY">{values.DateOfBirth}</Moment>
+                  </p>
+                </Col>
+              </Row>
+              <Row>
+                <Col><p>Social Security Number</p>
+                </Col>
+                <Col>
+                  <p>***-**-{values.Ssn.toString().slice(-4)}</p>
+                </Col>
+              </Row>
+            </div>
+            <div>
+              <Row>
+                <label >
                   Housing{" "}
                   <FaPencilAlt
                     className="pencil"
                     onClick={() => setOpen3(true)}
-                  />{" "}
+                  />
+                  <span className='tittle'>Edit</span>
                 </label>
               </Row>
               <Row>
-                <p>{values.Own}</p>
+                <Col><p>Do You Own or Rent?</p>
+                </Col>
+                <Col><p>{values.Own}</p></Col>
               </Row>
               <Row>
-                <p>
+                <Col><p>Monthly Mortgage/Rent</p>
+                </Col>
+                <Col> <p>
                   <CurrencyFormat
                     value={values.Rent}
                     displayType={"text"}
@@ -256,128 +226,232 @@ export default ({ touched, errors, values }) => {
                     prefix={"$"}
                   />
                   /month
-                </p>
+                </p></Col>
               </Row>
-              <Row>
-                <p>{values.StreetAddress}</p>
-              </Row>
-              <Row>
-                <p>
-                  {values.City}, {values.State} {values.Zipcode}
-                </p>
-              </Row>
-              <Row>
-                <p>
-                  {values.Having_Two_years
-                    ? "Over 2 years"
-                    : "less than two years"}
-                </p>
-              </Row>
-            </Col>
-            {values.Individual_Form_Type === "false" && (
-              <Col>
-                <Row>
-                  <label className="tittle">
-                    Housing{" "}
-                    <FaPencilAlt
-                      className="pencil"
-                      onClick={() => setOpen4(true)}
-                    />{" "}
-                  </label>
-                </Row>
-                <Row>
-                  <p>{values.OwnJ}</p>
-                </Row>
-                <Row>
-                  <p>
-                    <CurrencyFormat
-                      value={values.RentJ}
-                      displayType={"text"}
-                      thousandSeparator={true}
-                      prefix={"$"}
-                    />
-                    /month
-                  </p>
-                </Row>
-                <Row>
-                  <p>{values.StreetAddressJ}</p>
-                </Row>
-                <Row>
-                  <p>
-                    {values.CityJ}, {values.StateJ} {values.ZipcodeJ}
-                  </p>
-                </Row>
-                <Row>
-                  <p>
-                    {values.Having_Two_years_Joint
-                      ? "Over 2 years"
-                      : "less than two years"}
-                  </p>
-                </Row>
-              </Col>
-            )}
-          </Row>
-          <Row>
-            <Col>
-              <Row>
-                <label className="tittle">
-                  Employment{" "}
-                  <FaPencilAlt
-                    className="pencil"
-                    onClick={() => setOpen5(true)}
-                  />{" "}
-                </label>
-              </Row>
-              <Row>
-                <p>{values.Employment_Status}</p>
-              </Row>
-              <Row>
-                <p>{values.Employer}</p>
-              </Row>
-              <Row>
-                <p>
-                  <CurrencyFormat
-                    value={values.Money}
-                    displayType={"text"}
-                    thousandSeparator={true}
-                    prefix={"$"}
-                  />
-                  /{values.Tenure}
-                </p>
-              </Row>
-            </Col>
-            {values.Individual_Form_Type === "false" && (
-              <Col>
-                <Row>
-                  <label className="tittle">
-                    Employment{" "}
-                    <FaPencilAlt
-                      className="pencil"
-                      onClick={() => setOpen6(true)}
-                    />
-                  </label>
-                </Row>
-                <Row>
-                  <p>{values.Employment_StatusJ}</p>
-                </Row>
-                <Row>
-                  <p>{values.EmployerJ}</p>
-                </Row>
-                <Row>
-                  <p>
-                    <CurrencyFormat
-                      value={values.MoneyJ}
-                      displayType={"text"}
-                      thousandSeparator={true}
-                      prefix={"$"}
-                    />
-                    /{values.TenureJ}
-                  </p>
-                </Row>
-              </Col>
-            )}
-          </Row>
 
+              <Row>
+                <Col><p>Current Address</p></Col>
+                <Col> <p>{values.StreetAddress}</p> </Col>
+              </Row>
+              <Row>
+                <Col></Col>
+                <Col><p>
+                  {values.City}, {values.State} {values.Zipcode}
+                </p></Col>
+              </Row>
+              <Row>
+                <Col><p>Have You Lived Here Over 2 Years?</p></Col>
+                <Col> <p>
+                  {values.Having_Two_years
+                    ? "Yes"
+                    : "No"}
+                </p></Col>
+              </Row>
+            </div>
+            <div>
+                  <Row>
+                    <label >
+                      Employment{" "}
+                      <FaPencilAlt
+                        className="pencil"
+                        onClick={() => setOpen5(true)}
+                      />{" "}
+                      <span className="tittle">Edit</span>
+                    </label>
+                  </Row>
+                  <Row>
+                    <Col><p>Employment Status</p>
+                    </Col>
+                    <Col> <p>{values.Employment_Status}</p>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col><p>Employer's Name:</p>
+                    </Col>
+                    <Col>   <p>{values.Employer}</p>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col><p>Monthly Income:</p>
+                    </Col>
+                    <Col>  <p>
+                      <CurrencyFormat
+                        value={values.Money}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                        prefix={"$"}
+                      />
+                      /{values.Tenure}
+                    </p>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col><p>Over 2 Years:</p></Col>
+                    <Col> <p>
+                      {values.Having_Two_years_Employment
+                        ? "Yes"
+                        : "No"}
+                    </p></Col>
+                  </Row>
+                </div>
+          </div>
+
+          {values.IsCoApplicantFormEnable && (
+            <div className="co-applicant">
+              <Row className="r-tittle"><h3>Co Applicant</h3></Row>
+              <div className='r-content'>
+                <div>
+                  <Row>
+                    <label>
+                      Personal Information{" "}
+                      <FaPencilAlt
+                        className="pencil"
+                        onClick={() => setOpen2(true)}
+                      />
+                      <span className='tittle'>Edit</span>
+                    </label>
+                  </Row>
+                  <Row>
+                    <Col> <p>Name:</p></Col>
+                    <Col> <p>
+                      {values.FirstNameJ} {values.LastNameJ}
+                    </p></Col>
+                  </Row>
+                  <Row>
+                    <Col><p>Phone</p>
+                    </Col>
+                    <Col>
+                      <p>(***) ***-**{values.PhoneJ.toString().slice(-2)}</p>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col><p>Email</p>
+                    </Col>
+                    <Col>
+                      <p>
+                        {values.EmailJ.replace(
+                          /^(.)(.*)(.@.*)$/,
+                          (_, a, b, c) => a + b.replace(/./g, "*") + c
+                        )}
+                      </p>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col><p>Date Of Birth</p>
+                    </Col>
+                    <Col>
+                      <p>
+                        <Moment format="MM/DD/YYYY">{values.Datepickerj}</Moment>
+                      </p>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col><p>Social Security Number</p>
+                    </Col>
+                    <Col>
+                      <p>***-**-{values.SsnJ.toString().slice(-4)}</p>
+                    </Col>
+                  </Row>
+                </div>
+
+                <div>
+                  <Row>
+                    <label >
+                      Housing{" "}
+                      <FaPencilAlt
+                        className="pencil"
+                        onClick={() => setOpen4(true)}
+                      />
+                      <span className='tittle'>Edit</span>
+                    </label>
+                  </Row>
+                  <Row>
+                    <Col><p>Do You Own or Rent?</p>
+                    </Col>
+                    <Col><p>{values.OwnJ}</p></Col>
+                  </Row>
+                  <Row>
+                    <Col><p>Monthly Mortgage/Rent</p>
+                    </Col>
+                    <Col> <p>
+                      <CurrencyFormat
+                        value={values.RentJ}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                        prefix={"$"}
+                      />
+                      /month
+                </p></Col>
+                  </Row>
+
+                  <Row>
+                    <Col><p>Current Address</p></Col>
+                    <Col> <p>{values.StreetAddressJ}</p> </Col>
+                  </Row>
+                  <Row>
+                    <Col></Col>
+                    <Col><p>
+                      {values.CityJ}, {values.StateJ} {values.ZipcodeJ}
+                    </p></Col>
+                  </Row>
+                  <Row>
+                    <Col><p>Have You Lived Here Over 2 Years?</p></Col>
+                    <Col> <p>
+                      {values.Having_Two_years_Joint
+                        ? "Yes"
+                        : "No"}
+                    </p></Col>
+                  </Row>
+                </div>
+                <div>
+                  <Row>
+                    <label >
+                      Employment{" "}
+                      <FaPencilAlt
+                        className="pencil"
+                        onClick={() => setOpen6(true)}
+                      />{" "}
+                      <span className="tittle">Edit</span>
+                    </label>
+                  </Row>
+                  <Row>
+                    <Col><p>Employment Status</p>
+                    </Col>
+                    <Col> <p>{values.Employment_StatusJ}</p>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col><p>Employer's Name:</p>
+                    </Col>
+                    <Col>   <p>{values.EmployerJ}</p>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col><p>Monthly Income:</p>
+                    </Col>
+                    <Col>  <p>
+                      <CurrencyFormat
+                        value={values.MoneyJ}
+                        displayType={"text"}
+                        thousandSeparator={true}
+                        prefix={"$"}
+                      />
+                      /{values.Tenure}
+                    </p>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col><p>Over 2 Years:</p></Col>
+                    <Col> <p>
+                      {values.Having_Two_years_EmploymentJ
+                        ? "Yes"
+                        : "No"}
+                    </p></Col>
+                  </Row>
+                </div>
+              </div>
+            </div>
+          )}
           <div className="checkBox-bg">
             <Field
               name="Policy1"
@@ -386,7 +460,7 @@ export default ({ touched, errors, values }) => {
               )}
             />
 
-            {values.Individual_Form_Type === "false" && (
+            {values.IsCoApplicantFormEnable && (
               <Field
                 name="Policy2"
                 render={({ field }) => (
@@ -395,63 +469,7 @@ export default ({ touched, errors, values }) => {
               />
             )}
           </div>
-          <button
-            className="login-form-button"
-            disabled={
-              values.Individual_Form_Type === "true"
-                ? !values.Policy1
-                : !(values.Policy1 && values.Policy2)
-            }
-            onClick={() => onSubmit()}
-          >
-            {" "}
-            Submit Application
-          </button>
         </div>
-      )}
-      {Loading && (
-        <Spinner animation="border" role="status">
-          <span className="sr-only">Loading...</span>
-        </Spinner>
-      )}
-
-      {finalPage && (
-        <div>
-          <Row>
-            <h2>Application Submitted!</h2>
-          </Row>
-          <Row>
-            <h4>
-              Applicantion #:{" "}
-              {(response && response.applicationReferenceNumber) || 12335525}
-            </h4>
-          </Row>
-          <Row>
-            <p>
-              A copy of this Application has been sent to {values.Email}
-              <br />
-              Somone from our dealership will contact you.
-              <br />
-              Questions? Call 1-800-555-1234
-            </p>
-          </Row>
-          <Row>
-            <p>I want text updates sent to this devices</p>
-          </Row>
-          <Row>
-            <Field name="comment" id="comment" />
-          </Row>
-          <Row>
-            <hr />
-          </Row>
-          <Row>
-            <button className="login-form-button"> Reserve Your Vehicle</button>
-          </Row>
-          <Row>
-            <label className="button2"> Return to Your Vehicle Details</label>
-          </Row>
-        </div>
-      )}
 
       {/* Primary Modal */}
       <Modal open={open1} onClose={() => setOpen1(false)} center focusTrapped>
@@ -667,22 +685,10 @@ export default ({ touched, errors, values }) => {
           )}
         </Row>
         <Row>
-          <Col>
             <Field name="Money" id="Money" placeholder="" />
             {touched.Money && typeof errors.Money === "string" && (
               <div className="input-feedback">{errors.Money}</div>
             )}
-          </Col>
-          <Col>
-            <Field
-              className="select"
-              name="Tenure"
-              options={TenureOptions}
-              component={CustomSelect}
-              placeholder="select your pay"
-              isMulti={false}
-            />
-          </Col>
         </Row>
       </Modal>
 
@@ -705,22 +711,10 @@ export default ({ touched, errors, values }) => {
           )}
         </Row>
         <Row>
-          <Col>
             <Field name="MoneyJ" id="MoneyJ" placeholder="" />
             {touched.MoneyJ && typeof errors.MoneyJ === "string" && (
               <div className="input-feedback">{errors.MoneyJ}</div>
             )}
-          </Col>
-          <Col>
-            <Field
-              className="select"
-              name="TenureJ"
-              options={TenureOptions}
-              component={CustomSelect}
-              placeholder="select your pay"
-              isMulti={false}
-            />
-          </Col>
         </Row>
       </Modal>
     </Container>

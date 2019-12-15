@@ -2,7 +2,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import LeadFormDetails from './LeadFormDetails';
-import "./App.css";  
+import "./App.scss";  
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App(props) {

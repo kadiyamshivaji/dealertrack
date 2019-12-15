@@ -16,8 +16,10 @@ import ReviewDetails from "./Review";
 import LeadFormDetails from "./LeadFormDetails";
 import withFormik from "./withFormik";
 import "bootstrap/dist/css/bootstrap.min.css";
+import SubmitButton from './lib/SubmitButton';
 function ContactInfoValidations({ errors, values }) {
-  if (values.Individual_Form_Type === "true") {
+  debugger
+  if (!values.IsCoApplicantFormEnable) {
     return (
       !errors.FirstName &&
       !errors.LastName &&
@@ -48,7 +50,7 @@ function ContactInfoValidations({ errors, values }) {
 }
 
 function HousingDetailsValidations({ errors, values }) {
-  if (values.Individual_Form_Type === "true") {
+  if (!values.IsCoApplicantFormEnable) {
     return (
       !errors.Own &&
       !errors.Rent &&
@@ -76,32 +78,30 @@ function HousingDetailsValidations({ errors, values }) {
 }
 
 function EmploymentDetailsValidations({ errors, values }) {
-  if (values.Individual_Form_Type === "true") {
+  if (!values.IsCoApplicantFormEnable) {
     return (
       !errors.Employment_Status &&
       !errors.Employer &&
-      !errors.Money &&
-      !errors.Tenure
+      !errors.Money
     );
   } else {
     return (
       !errors.Employment_Status &&
       !errors.Employer &&
       !errors.Money &&
-      !errors.Tenure &&
       !errors.Employment_StatusJ &&
       !errors.EmployerJ &&
-      !errors.MoneyJ &&
-      !errors.TenureJ
+      !errors.MoneyJ
     );
   }
 }
 
 function ReviewDetailsValidations({ errors, values }) {
-  if (values.Individual_Form_Type === "true") {
-    return !errors.Policy1;
+  debugger
+  if (!values.IsCoApplicantFormEnable) {
+    return values.Policy1;
   } else {
-    return !errors.Policy1 && !errors.Policy2;
+    return values.Policy1 && values.Policy2;
   }
 }
 class HomeContainer extends React.Component {
@@ -129,7 +129,7 @@ class HomeContainer extends React.Component {
               <ButtonsList>
                 <PreviousButton />
                 <NextButton />
-                {/* <SubmitButton /> */}
+                <SubmitButton />
               </ButtonsList>
             </Wizard>
           )}

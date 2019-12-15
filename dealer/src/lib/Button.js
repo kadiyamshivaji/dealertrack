@@ -28,9 +28,6 @@ const WizardButton = ({
       >
         {label || 'Next'}
       </button>
-      {(label==='Next' ||label==='Submit Application') && 
-      <p>This is a Credit Application; Your Credit will be checked.</p>
-    }
       </Row>
       </Container>
     )
