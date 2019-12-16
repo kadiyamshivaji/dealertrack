@@ -12,10 +12,10 @@ class LeadFormDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ShowLeadPage: false,
+      ShowLeadPage: true,
       showWelcomePage: false,
       ShowHomePage: false,
-      ShowMainPage: true,
+      ShowMainPage: false,
       showReqInfo: false,
       showProInfo: false,
       newHomePage: false,
@@ -31,7 +31,7 @@ class LeadFormDetails extends React.Component {
       Modal: process.env.REACT_APP_SECRET_MODAL,
       Trim: process.env.REACT_APP_SECRET_TRIM,
       Make: process.env.REACT_APP_SECRET_MAKE,
-      Individual: false,
+      Individual: true,
       Joint: false
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -92,13 +92,13 @@ class LeadFormDetails extends React.Component {
     });
   };
   onSubmitFinal(result) {
+    debugger
     this.setState({
       showResponsePage: true,
       ShowMainPage: false,
       resEmail: result.email,
       responseId: result.id
     })
-    console.log('******', result)
   }
   PhoneFormate = ({ field, form, ...props }) => {
     return (
@@ -539,7 +539,7 @@ class LeadFormDetails extends React.Component {
                     </Col>
                   </Row>
                   <Row className="r-tittle">
-                    <Col xs={9}><p><h3><FaCheckCircle className='check-icon' /> Application Submitted!</h3></p>
+                    <Col xs={9}><h3><p><FaCheckCircle className='check-icon' /> Application Submitted!</p></h3>
                     </Col>
                     <Col className='cooment'><FaRegComments className='cooment-icon' /> Get text updates  </Col>
 

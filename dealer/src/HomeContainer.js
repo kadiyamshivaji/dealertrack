@@ -18,7 +18,6 @@ import withFormik from "./withFormik";
 import "bootstrap/dist/css/bootstrap.min.css";
 import SubmitButton from './lib/SubmitButton';
 function ContactInfoValidations({ errors, values }) {
-  debugger
   if (!values.IsCoApplicantFormEnable) {
     return (
       !errors.FirstName &&
@@ -97,7 +96,6 @@ function EmploymentDetailsValidations({ errors, values }) {
 }
 
 function ReviewDetailsValidations({ errors, values }) {
-  debugger
   if (!values.IsCoApplicantFormEnable) {
     return values.Policy1;
   } else {
@@ -123,7 +121,7 @@ class HomeContainer extends React.Component {
               >
                 <Step component={ContactInfo} title="Contact Info" />
                 <Step component={HousingDetails} title="Housing" />
-                <Step component={EmploymentDetails} title="Employment" />
+                <Step component={EmploymentDetails} title="Employment" /> 
                 <Step component={ReviewDetails} title="Review" />
               </StepsList>
               <ButtonsList>

@@ -1,7 +1,6 @@
 /* eslint-disable no-useless-escape */
 import { withFormik } from "formik";
 import * as Yup from "yup";
-import { FaLandmark } from "react-icons/fa";
 
 export default withFormik({
   displayName: "WizardForm",
@@ -30,7 +29,7 @@ export default withFormik({
     State: "",
     Zipcode: "",
     SuitNo: "",
-    Having_Two_years: "",
+    Having_Two_years: false,
     StreetAddress_P: "",
     City_P: "",
     State_P: "",
@@ -43,7 +42,7 @@ export default withFormik({
     StateJ: "",
     ZipcodeJ: "",
     SuitNoJ: "",
-    Having_Two_years_Joint: "",
+    Having_Two_years_Joint: false,
     StreetAddressJ_P: "",
     CityJ_P: "",
     StateJ_P: "",
@@ -52,7 +51,7 @@ export default withFormik({
     /*Employment */
     Employment_Status: "",
     Employer: "",
-    Having_Two_years_Employment: "",
+    Having_Two_years_Employment: false,
     Money: "",
     Occupation: "",
     WorkPhone: "",
@@ -67,7 +66,7 @@ export default withFormik({
     EmployerJ: "",
     WorkPhoneJ: "",
     OccupationJ: "",
-    Having_Two_years_EmploymentJ: "",
+    Having_Two_years_EmploymentJ: false,
     Employment_StatusJ_P: "",
     EmployerJ_P: "",
     WorkPhoneJ_P: "",

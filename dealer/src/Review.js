@@ -9,18 +9,9 @@ import { CustomSelect } from "./lib/Select";
 import * as CurrencyFormat from "react-currency-format";
 import PhoneField from "./lib/Phone";
 import SSNField from "./lib/ssn";
-import { FaCarAlt, FaQuestionCircle } from "react-icons/fa";
+import { FaCarAlt  } from "react-icons/fa";
 
-const TenureOptions = [
-  {
-    label: "Monthly",
-    value: "Monthly"
-  },
-  {
-    label: "Yearly",
-    value: "Yearly"
-  }
-];
+
 const EmployerOptions = [
   {
     label: "Employment Status",
@@ -148,11 +139,11 @@ export default ({ touched, errors, values }) => {
           <div className='r-content'>
             <div>
               <Row>
-                <label>
+                <label onClick={() => setOpen1(true)}>
                   Personal Information{" "}
                   <FaPencilAlt
                     className="pencil"
-                    onClick={() => setOpen1(true)}
+                    
                   />
                   <span className='tittle'>Edit</span>
                 </label>
@@ -201,11 +192,10 @@ export default ({ touched, errors, values }) => {
             </div>
             <div>
               <Row>
-                <label >
+                <label onClick={() => setOpen3(true)}>
                   Housing{" "}
                   <FaPencilAlt
                     className="pencil"
-                    onClick={() => setOpen3(true)}
                   />
                   <span className='tittle'>Edit</span>
                 </label>
@@ -250,11 +240,10 @@ export default ({ touched, errors, values }) => {
             </div>
             <div>
                   <Row>
-                    <label >
+                    <label onClick={() => setOpen5(true)}>
                       Employment{" "}
                       <FaPencilAlt
                         className="pencil"
-                        onClick={() => setOpen5(true)}
                       />{" "}
                       <span className="tittle">Edit</span>
                     </label>
@@ -302,11 +291,11 @@ export default ({ touched, errors, values }) => {
               <div className='r-content'>
                 <div>
                   <Row>
-                    <label>
+                    <label  onClick={() => setOpen2(true)}>
                       Personal Information{" "}
                       <FaPencilAlt
                         className="pencil"
-                        onClick={() => setOpen2(true)}
+                       
                       />
                       <span className='tittle'>Edit</span>
                     </label>
@@ -356,11 +345,11 @@ export default ({ touched, errors, values }) => {
 
                 <div>
                   <Row>
-                    <label >
+                    <label onClick={() => setOpen4(true)}>
                       Housing{" "}
                       <FaPencilAlt
                         className="pencil"
-                        onClick={() => setOpen4(true)}
+                        
                       />
                       <span className='tittle'>Edit</span>
                     </label>
@@ -405,11 +394,11 @@ export default ({ touched, errors, values }) => {
                 </div>
                 <div>
                   <Row>
-                    <label >
+                    <label onClick={() => setOpen6(true)}>
                       Employment{" "}
                       <FaPencilAlt
                         className="pencil"
-                        onClick={() => setOpen6(true)}
+                        
                       />{" "}
                       <span className="tittle">Edit</span>
                     </label>

@@ -39,11 +39,10 @@ class Wizard extends React.Component {
   onSubmit = () => {
     const response = submit(this.props.values);
     const result = {
-      id:  121456,
-      email: 'kadiyams@gmail.com'//this.props.email
+      id:  response.applicationReferenceNumber,
+      email: this.props.email
     }
     this.props.onSubmitFinal(result)
-    console.log('submitted the form', JSON.stringify(this.props.values));
   };
 
   updateStepTabs = stepTabs => {

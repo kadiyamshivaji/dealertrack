@@ -8,22 +8,13 @@ import { FaCarAlt, FaQuestionCircle } from "react-icons/fa";
 
 const RadioBox = ({ id, name, label, checked, css, ...props }) => (
   <div className="can-toggle">
-    <input id={name} type="checkbox" name={name}  checked={checked}  {...props} />
+    <input id={name} type="checkbox" name={name} checked={checked}  {...props} />
     <label htmlFor={name} >
       <div className="can-toggle__switch" data-checked="Yes" data-unchecked="No"></div>
     </label>
   </div>
 );
-const TenureOptions = [
-  {
-    label: "Monthly",
-    value: "Monthly"
-  },
-  {
-    label: "Yearly",
-    value: "Yearly"
-  }
-];
+
 const EmployerOptions = [
   {
     label: "Employed",
@@ -212,7 +203,7 @@ export default ({ touched, errors, values }) => {
             <Col xs={1}></Col>
             <Col>
               <p className="place-holder">Additional Monthly Income</p>
-              <Field name="Income" id="Income"placeholder="e.g. $5002"  />
+              <Field name="Income" id="Income" placeholder="e.g. $5002" />
             </Col>
           </Row>
         </div>

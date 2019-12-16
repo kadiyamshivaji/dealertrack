@@ -8,6 +8,15 @@ import { FaCarAlt, FaQuestionCircle } from "react-icons/fa";
 import PhoneField from "./lib/Phone";
 import SSNField from "./lib/ssn";
 
+const RadioBox = ({ id, name, label, checked, css, ...props }) => (
+  <div>
+    <input type="checkbox" id={id}  name={name} checked={checked} {...props} />
+    <label className={css} htmlFor={id}>
+    <p className='remove'>X Remove</p>
+    </label>
+  </div>
+);
+
 export default ({ touched, errors, values, details }) => (
   <Container>
     <Row>
@@ -98,7 +107,21 @@ export default ({ touched, errors, values, details }) => (
       <div>
         <br />
         <Row>
-          <h6>Co-Application Name</h6>
+          <hr />
+        </Row>
+        <Row>
+          <Col><h6>Co-Application Name</h6></Col>
+          <Col><Field
+              name="IsCoApplicantFormEnable"
+              render={({ field }) => (
+                <RadioBox
+              {...field}
+              value={true}
+              checked={true}
+              id="present_at_home_visit-0"
+            />
+              )}
+            /></Col>
         </Row>
         <Row>
           <Col>

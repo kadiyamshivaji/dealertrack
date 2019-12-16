@@ -1,7 +1,7 @@
 import * as moment from "moment";
 
 export const constructPayload = payload => {
-  if (payload.IsCoApplicantFormEnable) {
+  if (!payload.IsCoApplicantFormEnable) {
     return applicant(payload);
   } else {
     return { ...applicant(payload), ...coApplicant(payload) };
@@ -10,10 +10,10 @@ export const constructPayload = payload => {
 
 function applicant(payload) {
   const current = currentApplicant(payload);
-  if (payload.Having_Two_years ===false) {
+  if (!payload.Having_Two_years) {
     current.applicant = { ...current.applicant, ...previousAddress(payload) };
   }
-  if (payload.Having_Two_years_Employment === false) {
+  if (!payload.Having_Two_years_Employment) {
     current.applicant = {
       ...current.applicant,
       ...previousEmployment(payload)

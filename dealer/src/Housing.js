@@ -33,12 +33,13 @@ const OwnOptions = [
 ];
 const RadioBox = ({ id, name, label, checked, css, ...props }) => (
   <div className="can-toggle">
-    <input id={name} type="checkbox" name={name}  checked={checked}  {...props} />
+    <input id={name} type="checkbox" name={name} checked={checked}  {...props} />
     <label htmlFor={name} >
       <div className="can-toggle__switch" data-checked="Yes" data-unchecked="No"></div>
     </label>
   </div>
 );
+
 const CheckBox = ({ id, name, label, checked, css, ...props }) => (
   <Row>
     <Col>
@@ -200,6 +201,9 @@ export default ({ touched, errors, values }) => (
     </Row>
     {values.IsCoApplicantFormEnable && (
       <div>
+        <Row>
+          <hr />
+        </Row>
         <Row>
           <h6>Co-Application Housing</h6>
         </Row>
