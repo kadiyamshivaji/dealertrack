@@ -174,7 +174,7 @@ export default ({ touched, errors, values, details }) => (
           </Col>
           <Col xs={1}></Col>
           <Col>
-            <p className="place-holder">Phone</p>
+          <p className="place-holder">Date Of Birth <FaQuestionCircle className='hint' /> </p>
             <DatePickerField name="DateOfBirthJ" />
             {touched.DateOfBirthJ && typeof errors.DateOfBirthJ === "string" && (
               <div className="input-feedback">{errors.DateOfBirthJ}</div>
