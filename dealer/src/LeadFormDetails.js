@@ -476,7 +476,7 @@ class LeadFormDetails extends React.Component {
                       </Col>
                       <Col xs={11}>
                         <Row><h1>Apply for Credit Online</h1></Row>
-                        <Row className='sub-tittle'><p>This application should only take about 10 minutes .Don't worry ,we'll only use this information to process your applications </p></Row>
+                        <Row className='sub-tittle'><p>This application should only take about 10 minutes. Don't worry, we'll only use this information to process your applications </p></Row>
                       </Col>
                     </Row>
                     <div className="applicant">

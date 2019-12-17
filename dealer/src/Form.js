@@ -32,7 +32,7 @@ class FormComponent extends React.Component {
   render() {
     return (
       <div className="app">
-        <h2 className="h3">Contact Info</h2>
+        <h2 className="h3">Personal</h2>
         <h3 className="h6">Application Type</h3>
 
         <Formik
