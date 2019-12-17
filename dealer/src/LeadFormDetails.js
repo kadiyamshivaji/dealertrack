@@ -534,12 +534,13 @@ class LeadFormDetails extends React.Component {
                       <FaCarAlt className='car' />
                     </Col>
                     <Col xs={11}>
-                      <Row><h1>Housing</h1></Row>
-                      <Row className='sub-tittle'><p>For your protection, we will be looking at your recent history to verify your identity.</p></Row>
+                      <Row><h1>Your Application is Complete</h1></Row>
+                      <Row className='sub-tittle'><p>Great Work! That's one less thing to do at the dealership.</p></Row>
                     </Col>
                   </Row>
+                  <br/>
                   <Row className="r-tittle">
-                    <Col xs={9}><h3><p><FaCheckCircle className='check-icon' /> Application Submitted!</p></h3>
+                    <Col xs={9}><h2><FaCheckCircle className='check-icon' /> Application Submitted!</h2>
                     </Col>
                     <Col className='cooment'><FaRegComments className='cooment-icon' /> Get text updates  </Col>
 

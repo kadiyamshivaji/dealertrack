@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const submit = payload => {
   const token =
-  "AAIkMjYxZWM2YWEtNmUzYy00YmRiLTg0NmMtMzBmMzYzZDFjNGZj8QhzO4z0tzKR4oLpzzK8BXz2jfqOBbXFAWf-elt555iYG_ilPSYYtd9qeXlgnDetZIHgZrbUzwSKoQE0IwtX_TmEv__CVRe6iWXqQ9sfjHkOyH8SaK2YoqmQpXXW4x7tsPEhEaI6QdOiXnIJo6wcu28dj3s-810-kkIZ0w65aFk";
+  "AAIkMjYxZWM2YWEtNmUzYy00YmRiLTg0NmMtMzBmMzYzZDFjNGZjtAg9zV_Na0LvTfzojN-zc6oPLO_lI-jMBwQYeiqWchPTV41rKYsxT2U-jrrfQgLHisuSn2PSuNj3OeIS5zTPkfwxOkLBFGKpM5Vk5QY0TZZ9D4fdPSYhh7lv4GFh3d3x8NmR89lB4bPkeekJPkyaE7K_QrOqcCncLp-1gcbojsU";
   const payloadJSON = constructPayload(payload);
   axios
     .post(
@@ -17,8 +17,6 @@ export const submit = payload => {
       }
     )
     .then(res => {
-      console.log(res);
-      console.log(res.data);
+      return res.data;
     });
-  return constructPayload(payload);
 };

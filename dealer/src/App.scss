@@ -3,14 +3,16 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 14px;
   line-height: 1.5;
   color: #24292e;
   background-color: #f4f8fc;
 }
-
+h2 {
+  text-align: left;
+}
 .app {
   margin: 2rem;
 }
@@ -39,7 +41,8 @@ input {
 
 input:focus {
   border-color: #007eff;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px rgba(0, 126, 255, 0.1);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    0 0 0 3px rgba(0, 126, 255, 0.1);
   outline: none;
 }
 
@@ -370,7 +373,7 @@ h1 {
   text-align: right;
   color: #357ec9;
 }
-.remove{
+.remove {
   color: #357ec9;
   text-align: right;
   font-weight: bold;
@@ -477,7 +480,12 @@ body {
       ~ label {
         .can-toggle__switch {
           &:after {
-            transform: translate3d($can-toggle-width - ($can-toggle-switch-width + $can-toggle-offset), 0, 0);
+            transform: translate3d(
+              $can-toggle-width -
+                ($can-toggle-switch-width + $can-toggle-offset),
+              0,
+              0
+            );
           }
         }
       }
@@ -625,7 +633,7 @@ body {
       // Label font size
         10px,
       // Switch font size
-        0 2px 2px rgba(black, 0.4) / / Switch shadow on hover/focus
+        0 2px 2px rgba(black, 0.4) // Switch shadow on hover/focus
     );
   }
 
@@ -643,7 +651,7 @@ body {
       // Label font size
         14px,
       // Switch font size
-        0 4px 4px rgba(black, 0.4) / / Switch shadow on hover/focus
+        0 4px 4px rgba(black, 0.4) // Switch shadow on hover/focus
     );
   }
 
@@ -666,7 +674,8 @@ body {
         #69be28,
       // On state color
         rgba(white, 0.7),
-      // Off state text color cubic-bezier(0.86, 0, 0.07, 1) / / Transition timing function
+      // Off state text color cubic-bezier(0.86, 0, 0.07, 1) / / Transition timing
+        function
     );
     @include can-toggle-appearance(
       120px,
@@ -681,7 +690,7 @@ body {
       // Label font size
         13px,
       // Switch font size
-        0 4px 4px rgba(black, 0.4) / / Switch shadow on hover/focus
+        0 4px 4px rgba(black, 0.4) // Switch shadow on hover/focus
     );
   }
 }

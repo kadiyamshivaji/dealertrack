@@ -38,7 +38,7 @@ function coApplicant(payload) {
 
 function removeSpecialChar(str) {
   if (str) {
-    return str.replace(/[^a-zA-Z0-9 ]/g, "");
+    return str.replace(/[^a-zA-Z0-9 ]/g, "").replace(' ','');
   }
 }
 
@@ -75,7 +75,7 @@ function currentApplicant(payload) {
       monthsAtPreviousAddress: 12,
 
       income: payload.Money,
-      incomeFrequency: payload.Tenure,
+      incomeFrequency: "Monthly",
       otherMonthlyIncome: payload.Income || null,
       otherMonthlyIncomeSource: payload.Soure_Income || null,
       currentEmployment: {
@@ -194,7 +194,7 @@ function jointApplicant(payload) {
       monthsAtPreviousAddress: 18,
 
       income: payload.MoneyJ,
-      incomeFrequency: payload.TenureJ,
+      incomeFrequency: "Monthly",
       otherMonthlyIncome: payload.IncomeJoint || null,
       otherMonthlyIncomeSource: payload.Source_Income_Joint || null,
       currentEmployment: {

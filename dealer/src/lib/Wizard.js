@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import cx from 'classnames';
 import StepTabs from './StepTabs';
 import { submit } from "../api/api";
+import { constructPayload } from "../lib/util";
+import axios from "axios";
+
 
 class Wizard extends React.Component {
   constructor(props) {
@@ -37,12 +40,34 @@ class Wizard extends React.Component {
   };
 
   onSubmit = () => {
-    const response = submit(this.props.values);
-    const result = {
-      id:  response.applicationReferenceNumber,
-      email: this.props.email
-    }
-    this.props.onSubmitFinal(result)
+    // const response = submit(this.props.values);
+    const payload=this.props.values
+    debugger
+    const token =
+  "AAIkMjYxZWM2YWEtNmUzYy00YmRiLTg0NmMtMzBmMzYzZDFjNGZjtAg9zV_Na0LvTfzojN-zc6oPLO_lI-jMBwQYeiqWchPTV41rKYsxT2U-jrrfQgLHisuSn2PSuNj3OeIS5zTPkfwxOkLBFGKpM5Vk5QY0TZZ9D4fdPSYhh7lv4GFh3d3x8NmR89lB4bPkeekJPkyaE7K_QrOqcCncLp-1gcbojsU";
+  const payloadJSON = constructPayload(payload);
+  axios
+    .post(
+      `https://fni-api-np.dealertrack.com/sfni/uat1/credit-application/v1/deals/credit-apps
+    `,
+      payloadJSON,
+      {
+        headers: {
+          Authorization: "Bearer " + token
+        }
+      }
+    )
+    .then(res => {
+      debugger
+      const response= res.data;
+      const result = {
+        id:  response.applicationReferenceNumber,
+        email: this.props.values.Email
+      }
+      this.props.onSubmitFinal(result)
+
+    });
+  
   };
 
   updateStepTabs = stepTabs => {
