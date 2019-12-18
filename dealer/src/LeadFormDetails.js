@@ -478,7 +478,7 @@ class LeadFormDetails extends React.Component {
                       <img src={require('./assests/images/car.PNG')} />
                       </Col>
                       <Col xs={10}>
-                        <Row><h1>Apply for Credit Online</h1></Row>
+                        <Row className="heading-style">Apply for Credit Online</Row>
                         <Row className='sub-tittle'><p>This application should only take about 10 minutes. Don't worry, we'll only use this information to process your applications </p></Row>
                       </Col>
                     </Row>
@@ -486,7 +486,7 @@ class LeadFormDetails extends React.Component {
                     <div className="applicant">
                       <Row><h6>What you need for all applicants</h6></Row>
                       <Row>
-                        <Col className='text'><FaCheck className="check" />Social security number and date of birth </Col>
+                        <Col className='text'><FaCheck className="check" /> Social security number and date of birth </Col>
                         <Col className='text'><FaCheck className="check" /> Housing information</Col>
                         <Col className='text'><FaCheck className="check" /> Employment details</Col>
                       </Row>
@@ -547,7 +547,7 @@ class LeadFormDetails extends React.Component {
                       <FaCarAlt className='car' />
                     </Col>
                     <Col xs={11}>
-                      <Row><h1>Your Application is Complete</h1></Row>
+                      <Row className='heading-style'>Your Application is Complete</Row>
                       <Row className='sub-tittle'><p>Great Work! That's one less thing to do at the dealership.</p></Row>
                     </Col>
                   </Row>

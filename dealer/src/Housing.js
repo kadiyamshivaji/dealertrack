@@ -58,7 +58,7 @@ export default ({ touched, errors, values }) => (
         <img src={require('./assests/images/car.PNG')} />
       </Col>
       <Col xs={10}>
-        <Row><h1>Housing</h1></Row>
+        <Row className='heading-style'>Housing</Row>
         <Row className='sub-tittle'><p>For your protection, we will be looking at your recent history to verify your identity.</p></Row>
       </Col>
     </Row>

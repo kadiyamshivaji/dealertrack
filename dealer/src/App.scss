@@ -127,7 +127,8 @@ hr {
   margin-left: 35%;
   font-size: 20px;
   margin-right: 35%;
-  border-radius: 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 .start-button{
   padding: 0.5rem;
@@ -307,7 +308,7 @@ input[type="checkbox"] {
   border-bottom: 5px solid #cccccc;
   margin-left: 5px;
   padding-top: 9px;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 .user {
   color: #cccccc;
@@ -319,22 +320,29 @@ input[type="checkbox"] {
   border-bottom: 5px solid #2574c5;
   margin-left: 5px;
   padding-top: 9px;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 .text {
   font-size: 15px;
   color: #4d4f51;
+  padding: 15px 0 15px 0;
 }
 .car {
   margin-top: 18px;
   font-size: 55px;
 }
-h1 {
-  font-weight: bold;
+
+.heading-style{
+    font-family: OpenSans;
+    font-size: 36px;
+    font-stretch: normal;
+    line-height: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    color: #222222;
+    font-weight: bold;
 }
-.sub-tittle {
-  margin-top: -15px !important;
-}
+
 .place-holder {
   margin-top: 10px;
   color: #222222;

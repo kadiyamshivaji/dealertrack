@@ -131,7 +131,7 @@ export default ({ touched, errors, values }) => {
             <img src={require('./assests/images/car.PNG')} />
             </Col>
             <Col xs={10}>
-              <Row><h1>Review and Submit</h1></Row>
+              <Row className='heading-style'>Review and Submit</Row>
               <Row className='sub-tittle'><p>Please take one last and make changes if needed before submitting your application.</p></Row>
             </Col>
           </Row>

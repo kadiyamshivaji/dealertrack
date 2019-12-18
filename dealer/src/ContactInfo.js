@@ -24,7 +24,7 @@ export default ({ touched, errors, values, details }) => (
       <img src={require('./assests/images/car.PNG')} />
       </Col>
       <Col xs={10}>
-        <Row><h1>Personal Information</h1></Row>
+        <Row className = "heading-style">Personal Information</Row>
         <Row className='sub-tittle'><p>We need a few details about you to start your application.</p></Row>
       </Col>
     </Row>
@@ -112,7 +112,7 @@ export default ({ touched, errors, values, details }) => (
           <hr />
         </Row>
         <Row>
-          <Col><h6>Co-Application Name</h6></Col>
+          <Col><h6>Co-Applicant</h6></Col>
           <Col><Field
               name="IsCoApplicantFormEnable"
               render={({ field }) => (
