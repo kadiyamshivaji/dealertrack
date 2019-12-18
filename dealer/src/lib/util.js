@@ -24,10 +24,10 @@ function applicant(payload) {
 
 function coApplicant(payload) {
   const joint = jointApplicant(payload);
-  if (payload.Having_Two_years_Joint === false) {
+  if (payload.Having_Two_years_Joint) {
     joint.coApplicant = { ...joint.coApplicant, ...coPreviousAddress(payload) };
   }
-  if (payload.Having_Two_years_EmploymentJ === false) {
+  if (payload.Having_Two_years_EmploymentJ) {
     joint.coApplicant = {
       ...joint.coApplicant,
       ...coPreviousEmployment(payload)

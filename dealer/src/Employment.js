@@ -58,9 +58,9 @@ export default ({ touched, errors, values }) => {
     <Container>
       <Row>
         <Col>
-          <FaCarAlt className='car' />
+        <img src={require('./assests/images/car.PNG')} />
         </Col>
-        <Col xs={11}>
+        <Col xs={10}>
           <Row><h1>Employment</h1></Row>
           <Row className='sub-tittle'><p>For your protection, we will be looking at your recent history to verify your identity.</p></Row>
         </Col>

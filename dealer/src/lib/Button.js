@@ -20,14 +20,13 @@ const WizardButton = ({
     ) : (
       <Container>
       <Row>
-      <button
-        type={type}
+      <label
         className={className}
         onClick={!validator || validator.call(null) ? onClick : null}
         disabled={typeof validator === 'function' && !validator.call(null)}
       >
         {label || 'Next'}
-      </button>
+      </label>
       </Row>
       </Container>
     )

@@ -9,7 +9,7 @@ const StepTabs = ({ tabs, activeStepIndex }) => (
           className={index === activeStepIndex ? 'is-active' : ''}
           key={tab.title}
         >
-          {tab.title}
+          <span>{tab.title}</span>
         </li>
       ))}
     </ul>

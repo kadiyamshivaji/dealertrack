@@ -55,16 +55,18 @@ export default ({ touched, errors, values }) => (
   <Container>
     <Row>
       <Col>
-        <FaCarAlt className='car' />
+        <img src={require('./assests/images/car.PNG')} />
       </Col>
-      <Col xs={11}>
+      <Col xs={10}>
         <Row><h1>Housing</h1></Row>
         <Row className='sub-tittle'><p>For your protection, we will be looking at your recent history to verify your identity.</p></Row>
       </Col>
     </Row>
-    <Row>
-      <h3>Primary Applicant</h3>
-    </Row>
+    {values.IsCoApplicantFormEnable &&
+      <Row>
+        <h3>Primary Applicant</h3>
+      </Row>
+    }
     <Row>
       <Col>
         <p className="place-holder">Do you Own or rent?</p>
@@ -147,10 +149,13 @@ export default ({ touched, errors, values }) => (
         />
       </Col>
     </Row>
-    {values.Having_Two_years !== true && (
+    {values.Having_Two_years && (
+
       <div>
+        <br />
+
         <Row>
-          <h6>Previous Housing</h6>
+          <hr />
         </Row>
 
         <Row>
@@ -196,9 +201,7 @@ export default ({ touched, errors, values }) => (
         </Row>
       </div>
     )}
-    <Row>
-      <hr></hr>
-    </Row>
+
     {values.IsCoApplicantFormEnable && (
       <div>
         <Row>
@@ -314,12 +317,12 @@ export default ({ touched, errors, values }) => (
         </Row>
 
 
-        {values.Having_Two_years_Joint !== true && (
+        {values.Having_Two_years_Joint && (
           <div>
+            <br />
             <Row>
-              <h6>Previous Housing</h6>
+              <hr />
             </Row>
-
             <Row>
               <Col>
                 <p className="place-holder">Street Address</p>

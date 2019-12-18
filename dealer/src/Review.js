@@ -128,9 +128,9 @@ export default ({ touched, errors, values }) => {
         <div>
           <Row>
             <Col>
-              <FaCarAlt className='car' />
+            <img src={require('./assests/images/car.PNG')} />
             </Col>
-            <Col xs={11}>
+            <Col xs={10}>
               <Row><h1>Review and Submit</h1></Row>
               <Row className='sub-tittle'><p>Please take one last and make changes if needed before submitting your application.</p></Row>
             </Col>

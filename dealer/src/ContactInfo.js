@@ -4,7 +4,7 @@ import { Field } from "formik";
 import { Row, Col, Container } from "react-bootstrap";
 import DatePickerField from "./lib/DatePicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { FaCarAlt, FaQuestionCircle } from "react-icons/fa";
+import { FaQuestionCircle } from "react-icons/fa";
 import PhoneField from "./lib/Phone";
 import SSNField from "./lib/ssn";
 
@@ -21,16 +21,18 @@ export default ({ touched, errors, values, details }) => (
   <Container>
     <Row>
       <Col>
-        <FaCarAlt className='car' />
+      <img src={require('./assests/images/car.PNG')} />
       </Col>
-      <Col xs={11}>
+      <Col xs={10}>
         <Row><h1>Personal Information</h1></Row>
         <Row className='sub-tittle'><p>We need a few details about you to start your application.</p></Row>
       </Col>
     </Row>
+    {values.IsCoApplicantFormEnable &&
     <Row>
       <h3>Primary Applicant</h3>
     </Row>
+    }
     <Row>
       <Col>
         <p className="place-holder">First Name</p>
@@ -95,8 +97,8 @@ export default ({ touched, errors, values, details }) => (
       <Col xs={1}></Col>
       <Col>
         <Row>
-          <Col><FaCarAlt /></Col>
-          <Col className="score" xs={11}>
+        <Col><img src={require('./assests/images/computer.PNG')} /></Col>
+          <Col className="score" xs={10}>
             <p className="place-holder">Credit Score</p>
             <p>If you  are not ready to apply for credit and just want to know your rates,<a>click here</a></p>
           </Col>

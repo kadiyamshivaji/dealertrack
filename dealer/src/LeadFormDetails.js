@@ -12,13 +12,13 @@ class LeadFormDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ShowLeadPage: true,
+      ShowLeadPage: false,
       showWelcomePage: false,
       ShowHomePage: false,
       ShowMainPage: false,
       showReqInfo: false,
       showProInfo: false,
-      newHomePage: false,
+      newHomePage: true,
       showResponsePage: false,
       loading: false,
       resEmail: undefined,
@@ -198,10 +198,11 @@ class LeadFormDetails extends React.Component {
                         </div>
                       )}
                     </Row>
+                    <br/>
                     <Row>
-                      <button onClick={() => this.showWelcomePage()}>
+                      <label className='button' onClick={() => this.showWelcomePage()}>
                         Continue to Credit
-                      </button>
+                      </label>
                     </Row>
                   </Container>
                 </form>
@@ -274,10 +275,11 @@ class LeadFormDetails extends React.Component {
                         <div className="input-feedback">{errors.Trim}</div>
                       )}
                     </Row>
+                    <br/>
                     <Row>
-                      <button onClick={() => this.showMainPage()}>
+                      <label className='start-button' onClick={() => this.showMainPage()}>
                         Start Credit Application
-                      </button>
+                      </label>
                     </Row>
                   </Container>
                 </form>
@@ -455,14 +457,15 @@ class LeadFormDetails extends React.Component {
                     <Row>
                       <hr />
                     </Row>
+                    <br/>
                     <Row>
-                      <button
+                      <label className='start-button'
                         onClick={() => this.newDesign()}
                         type="primary"
-                        className="login-form-button"
+                        
                       >
                         Start Credit Application
-                      </button>
+                      </label>
                     </Row>
                   </Container>
                 </form>
@@ -472,13 +475,14 @@ class LeadFormDetails extends React.Component {
                   <Container>
                     <Row>
                       <Col>
-                        <FaCarAlt className='car' />
+                      <img src={require('./assests/images/car.PNG')} />
                       </Col>
-                      <Col xs={11}>
+                      <Col xs={10}>
                         <Row><h1>Apply for Credit Online</h1></Row>
                         <Row className='sub-tittle'><p>This application should only take about 10 minutes. Don't worry, we'll only use this information to process your applications </p></Row>
                       </Col>
                     </Row>
+                    <br/>
                     <div className="applicant">
                       <Row><h6>What you need for all applicants</h6></Row>
                       <Row>
@@ -487,6 +491,7 @@ class LeadFormDetails extends React.Component {
                         <Col className='text'><FaCheck className="check" /> Employment details</Col>
                       </Row>
                     </div>
+                    <br/>
                     <div>
                       <Row><h6>Are you applying individually or jointly</h6></Row>
                       <Row>
@@ -500,6 +505,7 @@ class LeadFormDetails extends React.Component {
                             </Row>
                           </div>
                         </Col>
+                        <Col xs={1}></Col>
                         <Col>
 
                           <div className={this.state.Joint ? 'active-1' : 'radio-box'}>
@@ -513,15 +519,22 @@ class LeadFormDetails extends React.Component {
                         </Col>
 
                       </Row>
+                      <br/>
                     </div>
+                    <br/>
                     <Row>
-                      <button
+                      <label className='button'
                         onClick={() => this.startApp()}
                         type="primary"
-                        className="login-form-button"
                       >
                         Start
-                      </button>
+                      </label>
+                    </Row>
+                    <br/>
+                    <Row>
+                      <Col><img src={require('./assests/images/computer.PNG')} /></Col>
+                      <Col xs={11}><p><b>Credit Score</b></p>
+                      <p>If you are not ready to apply for credit and just want to know your rates, <a href="#" title="">click here</a></p></Col>
                     </Row>
                   </Container>
                 </form>)}
