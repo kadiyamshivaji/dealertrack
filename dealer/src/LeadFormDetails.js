@@ -12,13 +12,13 @@ class LeadFormDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ShowLeadPage: false,
+      ShowLeadPage: true,
       showWelcomePage: false,
       ShowHomePage: false,
       ShowMainPage: false,
       showReqInfo: false,
       showProInfo: false,
-      newHomePage: true,
+      newHomePage: false,
       showResponsePage: false,
       loading: false,
       resEmail: undefined,
