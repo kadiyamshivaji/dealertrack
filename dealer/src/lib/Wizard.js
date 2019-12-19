@@ -1,10 +1,9 @@
-import React, { Children, cloneElement } from 'react';
-import PropTypes from 'prop-types';
-import cx from 'classnames';
-import StepTabs from './StepTabs';
+import React, { Children, cloneElement } from "react";
+import PropTypes from "prop-types";
+import cx from "classnames";
+import StepTabs from "./StepTabs";
 import { constructPayload } from "../lib/util";
 import axios from "axios";
-
 
 class Wizard extends React.Component {
   constructor(props) {
@@ -12,14 +11,14 @@ class Wizard extends React.Component {
     this.state = {
       activeStepIndex: 0,
       totalSteps: this.getTotalSteps(props.children),
-      stepTabs: [],
+      stepTabs: []
     };
   }
 
   getTotalSteps(children) {
     let totalSteps = 0;
     Children.forEach(children, child => {
-      if (child.type.displayName === 'StepsList') {
+      if (child.type.displayName === "StepsList") {
         totalSteps = child.props.children.length - 1;
       }
     });
@@ -28,50 +27,46 @@ class Wizard extends React.Component {
 
   onPreviousStep = () => {
     this.setState({
-      activeStepIndex: this.state.activeStepIndex - 1,
+      activeStepIndex: this.state.activeStepIndex - 1
     });
   };
 
   onNextStep = () => {
     this.setState({
-      activeStepIndex: this.state.activeStepIndex + 1,
+      activeStepIndex: this.state.activeStepIndex + 1
     });
   };
 
   onSubmit = () => {
     // const response = submit(this.props.values);
-    const payload=this.props.values
-    debugger
+    const payload = this.props.values;
     const token =
-  "AAIkMjYxZWM2YWEtNmUzYy00YmRiLTg0NmMtMzBmMzYzZDFjNGZjtAg9zV_Na0LvTfzojN-zc6oPLO_lI-jMBwQYeiqWchPTV41rKYsxT2U-jrrfQgLHisuSn2PSuNj3OeIS5zTPkfwxOkLBFGKpM5Vk5QY0TZZ9D4fdPSYhh7lv4GFh3d3x8NmR89lB4bPkeekJPkyaE7K_QrOqcCncLp-1gcbojsU";
-  const payloadJSON = constructPayload(payload);
-  axios
-    .post(
-      `https://fni-api-np.dealertrack.com/sfni/uat1/credit-application/v1/deals/credit-apps
+      "AAIkMjYxZWM2YWEtNmUzYy00YmRiLTg0NmMtMzBmMzYzZDFjNGZjla7VmkO3bkvOTVkKhTT_hP-2sorxUjg0foID_xhLWxSvKeX6oX5JzltzYMfmbYMvFVrnCBDbZnkdX7x5Kvr6rCqytSDLmjZ-1JP95wiRJsovoCgO1TkV5-bTQ0WTlr4ls7GRKqQV1bOvVOm1lcYrfB9eFoMZTjoNYjNYLMdz09g";
+    const payloadJSON = constructPayload(payload);
+    axios
+      .post(
+        `https://fni-api-np.dealertrack.com/sfni/uat1/credit-application/v1/deals/credit-apps
     `,
-      payloadJSON,
-      {
-        headers: {
-          Authorization: "Bearer " + token
+        payloadJSON,
+        {
+          headers: {
+            Authorization: "Bearer " + token
+          }
         }
-      }
-    )
-    .then(res => {
-      debugger
-      const response= res.data;
-      const result = {
-        id:  response.applicationReferenceNumber,
-        email: this.props.values.Email
-      }
-      this.props.onSubmitFinal(result)
-
-    });
-  
+      )
+      .then(res => {
+        const response = res.data;
+        const result = {
+          id: response.applicationReferenceNumber,
+          email: this.props.values.Email
+        };
+        this.props.onSubmitFinal(result);
+      });
   };
 
   updateStepTabs = stepTabs => {
     this.setState({
-      stepTabs,
+      stepTabs
     });
   };
 
@@ -82,18 +77,18 @@ class Wizard extends React.Component {
     let validators = [];
 
     Children.forEach(children, child => {
-      if (child.type.displayName === 'StepsList') {
+      if (child.type.displayName === "StepsList") {
         stepsComponent = cloneElement(child, {
           activeStepIndex: this.state.activeStepIndex,
           updateStepTabs: this.updateStepTabs,
-          ...props,
+          ...props
         });
         if (child.props.validators) {
           // eslint-disable-next-line prefer-destructuring
           validators = child.props.validators;
         }
       }
-      if (child.type.displayName === 'ButtonsList') {
+      if (child.type.displayName === "ButtonsList") {
         buttonsListComponent = cloneElement(child, {
           activeStepIndex: this.state.activeStepIndex,
           totalSteps: this.state.totalSteps,
@@ -101,7 +96,7 @@ class Wizard extends React.Component {
           onNextStep: this.onNextStep,
           onPreviousStep: this.onPreviousStep,
           validators,
-          ...props,
+          ...props
         });
       }
     });
@@ -112,12 +107,12 @@ class Wizard extends React.Component {
     const { className } = this.props;
     const {
       stepsComponent,
-      buttonsListComponent,
+      buttonsListComponent
     } = this.getInitialComponents();
     return (
       <div
-        className={cx('react-formik-wizard', {
-          [className]: !!className,
+        className={cx("react-formik-wizard", {
+          [className]: !!className
         })}
       >
         <StepTabs
@@ -135,10 +130,10 @@ Wizard.propTypes = {
   className: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
+    PropTypes.node
+  ])
 };
 
-Wizard.displayName = 'Wizard';
+Wizard.displayName = "Wizard";
 
 export default Wizard;

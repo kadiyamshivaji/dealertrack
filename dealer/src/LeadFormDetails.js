@@ -2,20 +2,28 @@ import React from "react";
 import { Row, Container, Col, Spinner } from "react-bootstrap";
 import { Field } from "formik";
 import { Formik } from "formik";
-import { FaDotCircle, FaAngleDoubleRight, FaAngleUp, FaCheck, FaUserAlt, FaUserFriends, FaCarAlt, FaCheckCircle, FaRegComments } from "react-icons/fa";
+import {
+  FaDotCircle,
+  FaAngleDoubleRight,
+  FaAngleUp,
+  FaCheck,
+  FaUserAlt,
+  FaUserFriends,
+  FaCarAlt,
+  FaCheckCircle,
+  FaRegComments
+} from "react-icons/fa";
 import HomeContainer from "./HomeContainer";
 import NumberFormat from "react-number-format";
-
-
 
 class LeadFormDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ShowLeadPage: false,
+      ShowLeadPage: true,
       showWelcomePage: false,
       ShowHomePage: false,
-      ShowMainPage: true,
+      ShowMainPage: false,
       showReqInfo: false,
       showProInfo: false,
       newHomePagne: false,
@@ -35,7 +43,7 @@ class LeadFormDetails extends React.Component {
       Joint: false
     };
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.RadioBoxCheck = this.RadioBoxCheck.bind(this)
+    this.RadioBoxCheck = this.RadioBoxCheck.bind(this);
   }
 
   handleInputChange(event) {
@@ -92,13 +100,13 @@ class LeadFormDetails extends React.Component {
     });
   };
   onSubmitFinal(result) {
-    debugger
+    debugger;
     this.setState({
       showResponsePage: true,
       ShowMainPage: false,
       resEmail: result.email,
       responseId: result.id
-    })
+    });
   }
   PhoneFormate = ({ field, form, ...props }) => {
     return (
@@ -123,7 +131,6 @@ class LeadFormDetails extends React.Component {
         Joint: true
       });
     }
-
   };
   render() {
     return (
@@ -198,9 +205,12 @@ class LeadFormDetails extends React.Component {
                         </div>
                       )}
                     </Row>
-                    <br/>
+                    <br />
                     <Row>
-                      <label className='button' onClick={() => this.showWelcomePage()}>
+                      <label
+                        className="button"
+                        onClick={() => this.showWelcomePage()}
+                      >
                         Continue to Credit
                       </label>
                     </Row>
@@ -275,9 +285,12 @@ class LeadFormDetails extends React.Component {
                         <div className="input-feedback">{errors.Trim}</div>
                       )}
                     </Row>
-                    <br/>
+                    <br />
                     <Row>
-                      <label className='start-button' onClick={() => this.showMainPage()}>
+                      <label
+                        className="start-button"
+                        onClick={() => this.showMainPage()}
+                      >
                         Start Credit Application
                       </label>
                     </Row>
@@ -330,8 +343,8 @@ class LeadFormDetails extends React.Component {
                         {!this.state.showProInfo ? (
                           <FaAngleDoubleRight />
                         ) : (
-                            <FaAngleUp />
-                          )}
+                          <FaAngleUp />
+                        )}
                       </span>
                       <br />
                       <br />
@@ -359,8 +372,8 @@ class LeadFormDetails extends React.Component {
                         {!this.state.showReqInfo ? (
                           <FaAngleDoubleRight />
                         ) : (
-                            <FaAngleUp />
-                          )}
+                          <FaAngleUp />
+                        )}
                       </span>
                       <br />
                       <br />
@@ -457,12 +470,12 @@ class LeadFormDetails extends React.Component {
                     <Row>
                       <hr />
                     </Row>
-                    <br/>
+                    <br />
                     <Row>
-                      <label className='start-button'
+                      <label
+                        className="start-button"
                         onClick={() => this.newDesign()}
                         type="primary"
-                        
                       >
                         Start Credit Application
                       </label>
@@ -475,108 +488,170 @@ class LeadFormDetails extends React.Component {
                   <Container>
                     <Row>
                       <Col>
-                      <img alt="" src={require('./assests/images/car.PNG')} />
+                        <img alt="" src={require("./assests/images/car.PNG")} />
                       </Col>
                       <Col xs={10}>
-                        <Row className="heading-style">Apply for Credit Online</Row>
-                        <Row className='sub-tittle'><p>This application should only take about 10 minutes. Don't worry, we'll only use this information to process your applications </p></Row>
+                        <Row className="heading-style">
+                          Apply for Credit Online
+                        </Row>
+                        <Row className="sub-tittle">
+                          <p>
+                            This application should only take about 10 minutes.
+                            Don't worry, we'll only use this information to
+                            process your applications{" "}
+                          </p>
+                        </Row>
                       </Col>
                     </Row>
-                    <br/>
+                    <br />
                     <div className="applicant">
-                      <Row><h6>What you need for all applicants</h6></Row>
                       <Row>
-                        <Col className='text'><FaCheck className="check" /> Social security number and date of birth </Col>
-                        <Col className='text'><FaCheck className="check" /> Housing information</Col>
-                        <Col className='text'><FaCheck className="check" /> Employment details</Col>
+                        <h6>What you need for all applicants</h6>
+                      </Row>
+                      <Row>
+                        <Col className="text">
+                          <FaCheck className="check" /> Social security number
+                          and date of birth{" "}
+                        </Col>
+                        <Col className="text">
+                          <FaCheck className="check" /> Housing information
+                        </Col>
+                        <Col className="text">
+                          <FaCheck className="check" /> Employment details
+                        </Col>
                       </Row>
                     </div>
-                    <br/>
+                    <br />
                     <div>
-                      <Row><h6>Are you applying individually or jointly</h6></Row>
+                      <Row>
+                        <h6>Are you applying individually or jointly</h6>
+                      </Row>
                       <Row>
                         <Col>
-                          <div className={this.state.Individual ? 'active-1' : 'radio-box'}>
-                            <Row onClick={() => this.RadioBoxCheck('Individual')} >
-                              <Col><h6 ><FaUserAlt className="user" />
-                                {" "}{"Individual"}
-                              </h6>
+                          <div
+                            className={
+                              this.state.Individual ? "active-1" : "radio-box"
+                            }
+                          >
+                            <Row
+                              onClick={() => this.RadioBoxCheck("Individual")}
+                            >
+                              <Col>
+                                <h6>
+                                  <FaUserAlt className="user" /> {"Individual"}
+                                </h6>
                               </Col>
                             </Row>
                           </div>
                         </Col>
                         <Col xs={1}></Col>
                         <Col>
-
-                          <div className={this.state.Joint ? 'active-1' : 'radio-box'}>
-                            <Row onClick={() => this.RadioBoxCheck('Joint')} >
-                              <Col><h6 ><FaUserFriends className="user" />
-                                {" "}{"Joint"}
-                              </h6>
+                          <div
+                            className={
+                              this.state.Joint ? "active-1" : "radio-box"
+                            }
+                          >
+                            <Row onClick={() => this.RadioBoxCheck("Joint")}>
+                              <Col>
+                                <h6>
+                                  <FaUserFriends className="user" /> {"Joint"}
+                                </h6>
                               </Col>
                             </Row>
                           </div>
                         </Col>
-
                       </Row>
-                      <br/>
+                      <br />
                     </div>
-                    <br/>
+                    <br />
                     <Row>
-                      <label className='button'
+                      <label
+                        className="button"
                         onClick={() => this.startApp()}
                         type="primary"
                       >
                         Start
                       </label>
                     </Row>
-                    <br/>
+                    <br />
                     <Row>
-                      <Col><img alt="" src={require('./assests/images/computer.PNG')} /></Col>
-                      <Col xs={11}><p><b>Credit Score</b></p>
-                      <p>If you are not ready to apply for credit and just want to know your rates, <a href="/#" title="">click here</a></p></Col>
+                      <Col>
+                        <img
+                          alt=""
+                          src={require("./assests/images/computer.PNG")}
+                        />
+                      </Col>
+                      <Col xs={11}>
+                        <p>
+                          <b>Credit Score</b>
+                        </p>
+                        <p>
+                          If you are not ready to apply for credit and just want
+                          to know your rates,{" "}
+                          <a href="/#" title="">
+                            click here
+                          </a>
+                        </p>
+                      </Col>
                     </Row>
                   </Container>
-                </form>)}
-              {this.state.ShowMainPage && <HomeContainer onSubmitFinal={this.onSubmitFinal.bind(this)} data={this.state} />}
+                </form>
+              )}
+              {this.state.ShowMainPage && (
+                <HomeContainer
+                  onSubmitFinal={this.onSubmitFinal.bind(this)}
+                  data={this.state}
+                />
+              )}
 
-              {this.state.showResponsePage &&
-                <div >
+              {this.state.showResponsePage && (
+                <div>
                   <Row>
                     <Col>
-                      <FaCarAlt className='car' />
+                      <FaCarAlt className="car" />
                     </Col>
                     <Col xs={11}>
-                      <Row className='heading-style'>Your Application is Complete</Row>
-                      <Row className='sub-tittle'><p>Great Work! That's one less thing to do at the dealership.</p></Row>
+                      <Row className="heading-style">
+                        Your Application is Complete
+                      </Row>
+                      <Row className="sub-tittle">
+                        <p>
+                          Great Work! That's one less thing to do at the
+                          dealership.
+                        </p>
+                      </Row>
                     </Col>
                   </Row>
-                  <br/>
+                  <br />
                   <Row className="r-tittle">
-                    <Col xs={9}><h2><FaCheckCircle className='check-icon' /> Application Submitted!</h2>
+                    <Col xs={9}>
+                      <h2>
+                        <FaCheckCircle className="check-icon" /> Application
+                        Submitted!
+                      </h2>
                     </Col>
-                    <Col className='cooment'><FaRegComments className='cooment-icon' /> Get text updates  </Col>
-
+                    <Col className="cooment">
+                      <FaRegComments className="cooment-icon" /> Get text
+                      updates{" "}
+                    </Col>
                   </Row>
-                  <div className='r-content'>
+                  <div className="r-content">
                     <Row>
-                      <h4>
-                        Applicantion #:{" "}
-                        {this.state.responseId}
-                      </h4>
+                      <h4>Application #: {this.state.responseId}</h4>
                     </Row>
                     <Row>
                       <p>
-                        A copy of this Application has been sent to <b>{this.state.resEmail}</b>
+                        A copy of this Application has been sent to{" "}
+                        <b>{this.state.resEmail}</b>
                         <br />
                         Somone from <b>Name</b> dealership will contact you.
-                 <br />
+                        <br />
                         Questions? Call <b>1-800-555-1234</b>
                       </p>
                     </Row>
                   </div>
                 </div>
-              }
+              )}
               {this.state.loading && (
                 <Spinner animation="border" role="status">
                   <span className="sr-only">Loading...</span>

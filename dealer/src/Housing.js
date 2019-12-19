@@ -71,7 +71,7 @@ export default ({ touched, errors, values }) => (
     </Row>
     {values.IsCoApplicantFormEnable && (
       <Row>
-        <h3>Primary Applicant</h3>
+        <h6>Primary Applicant</h6>
       </Row>
     )}
     <Row>
@@ -110,7 +110,7 @@ export default ({ touched, errors, values }) => (
       <Col xs={1}></Col>
       <Col>
         <p className="place-holder">
-          Suite/Apt Number <span className="optional">(Optional)</span>
+          Suite/Apartment Number <span className="optional">(Optional)</span>
         </p>
         <Field name="SuitNo" id="SuitNo" placeholder="e.g. Unit 105" />
         {touched.SuitNo && typeof errors.SuitNo === "string" && (
@@ -134,7 +134,7 @@ export default ({ touched, errors, values }) => (
           name="State"
           options={States}
           component={CustomSelect}
-          placeholder="select"
+          placeholder="Select"
           isMulti={false}
         />
         {touched.State && typeof errors.State === "string" && (
@@ -169,7 +169,7 @@ export default ({ touched, errors, values }) => (
 
         <Row>
           <Col>
-            <p className="place-holder">Street Address</p>
+            <p className="place-holder">Previous Street Address</p>
             <Field
               name="StreetAddress_P"
               id="StreetAddress_P"
@@ -198,7 +198,7 @@ export default ({ touched, errors, values }) => (
                 name="State_P"
                 options={States}
                 component={CustomSelect}
-                placeholder="select"
+                placeholder="Select"
                 isMulti={false}
               />
               {touched.State_P && typeof errors.State_P === "string" && (
@@ -244,7 +244,7 @@ export default ({ touched, errors, values }) => (
               name="OwnJ"
               options={OwnOptions}
               component={CustomSelect}
-              placeholder="Do you Own or rent ?"
+              placeholder="Do you own or rent ?"
               isMulti={false}
             />
           </Col>
@@ -273,7 +273,8 @@ export default ({ touched, errors, values }) => (
           <Col xs={1}></Col>
           <Col>
             <p className="place-holder">
-              Suite/Apt Number <span className="optional"> (Optional)</span>
+              Suite/Apartment Number{" "}
+              <span className="optional"> (Optional)</span>
             </p>
             <Field name="SuitNoJ" id="SuitNoJ" placeholder="e.g. Unit 105" />
             {touched.SuitNoJ && typeof errors.SuitNoJ === "string" && (
@@ -297,7 +298,7 @@ export default ({ touched, errors, values }) => (
               name="StateJ"
               options={States}
               component={CustomSelect}
-              placeholder="select"
+              placeholder="Select"
               isMulti={false}
             />
             {touched.StateJ && typeof errors.StateJ === "string" && (
@@ -346,7 +347,7 @@ export default ({ touched, errors, values }) => (
             </Row>
             <Row>
               <Col>
-                <p className="place-holder">Street Address</p>
+                <p className="place-holder">Previous Street Address</p>
                 <Field
                   name="StreetAddressJ_P"
                   id="StreetAddressJ_P"
@@ -381,7 +382,7 @@ export default ({ touched, errors, values }) => (
                   name="StateJ_P"
                   options={States}
                   component={CustomSelect}
-                  placeholder="select"
+                  placeholder="Select"
                   isMulti={false}
                 />
                 {touched.StateJ_P && typeof errors.StateJ_P === "string" && (

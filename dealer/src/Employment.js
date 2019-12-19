@@ -88,7 +88,7 @@ export default ({ touched, errors, values }) => {
             name="Employment_Status"
             options={EmployerOptions}
             component={CustomSelect}
-            placeholder="select"
+            placeholder="Select"
             isMulti={false}
           />
         </Col>
@@ -243,10 +243,7 @@ export default ({ touched, errors, values }) => {
                       <Col xs={1}></Col>
                       <Col>
                         <p className="place-holder">Additional Income</p>
-                        <Field
-                          name={`Income${index}`}
-                          placeholder="e.g.$600"
-                        />
+                        <Field name={`Income${index}`} placeholder="e.g.$600" />
                       </Col>
                     </Row>
                   </div>
@@ -363,7 +360,7 @@ export default ({ touched, errors, values }) => {
                     name="Employment_StatusJ_P"
                     options={EmployerOptions}
                     component={CustomSelect}
-                    placeholder="select"
+                    placeholder="Select"
                     isMulti={false}
                   />
                 </Col>

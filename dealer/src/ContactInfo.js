@@ -10,9 +10,9 @@ import SSNField from "./lib/ssn";
 
 const RadioBox = ({ id, name, label, checked, css, ...props }) => (
   <div>
-    <input type="checkbox" id={id}  name={name} checked={checked} {...props} />
+    <input type="checkbox" id={id} name={name} checked={checked} {...props} />
     <label className={css} htmlFor={id}>
-    <p className='remove'>X Remove</p>
+      <p className="remove">X Remove</p>
     </label>
   </div>
 );
@@ -21,18 +21,20 @@ export default ({ touched, errors, values, details }) => (
   <Container>
     <Row>
       <Col>
-      <img alt="" src={require('./assests/images/car.PNG')} />
+        <img alt="" src={require("./assests/images/car.PNG")} />
       </Col>
       <Col xs={10}>
-        <Row className = "heading-style">Personal Information</Row>
-        <Row className='sub-tittle'><p>We need a few details about you to start your application.</p></Row>
+        <Row className="heading-style">Personal Information</Row>
+        <Row className="sub-tittle">
+          <p>We need a few details about you to start your application.</p>
+        </Row>
       </Col>
     </Row>
-    {values.IsCoApplicantFormEnable &&
-    <Row>
-      <h3>Primary Applicant</h3>
-    </Row>
-    }
+    {values.IsCoApplicantFormEnable && (
+      <Row>
+        <h6>Primary Applicant</h6>
+      </Row>
+    )}
     <Row>
       <Col>
         <p className="place-holder">First Name</p>
@@ -49,7 +51,6 @@ export default ({ touched, errors, values, details }) => (
           <div className="input-feedback">{errors.LastName}</div>
         )}
       </Col>
-
     </Row>
     <Row>
       <Col>
@@ -62,11 +63,15 @@ export default ({ touched, errors, values, details }) => (
       <Col xs={1}></Col>
       <Col>
         <p className="place-holder">Verify Email</p>
-        <Field name="ConfirmEmail" id="ConfirmEmail" placeholder="Verify Email" />
+        <Field
+          name="ConfirmEmail"
+          id="ConfirmEmail"
+          placeholder="Verify Email"
+        />
         {touched.ConfirmEmail && typeof errors.ConfirmEmail === "string" && (
           <div className="input-feedback">{errors.ConfirmEmail}</div>
-        )}</Col>
-
+        )}
+      </Col>
     </Row>
 
     <Row>
@@ -79,7 +84,9 @@ export default ({ touched, errors, values, details }) => (
       </Col>
       <Col xs={1}></Col>
       <Col>
-        <p className="place-holder">Date Of Birth <FaQuestionCircle className='hint' /> </p>
+        <p className="place-holder">
+          Date Of Birth <FaQuestionCircle className="hint" />{" "}
+        </p>
         <DatePickerField placeholder="Date of Birth" name="DateOfBirth" />
         {touched.DateOfBirth && typeof errors.DateOfBirth === "string" && (
           <div className="input-feedback">{errors.DateOfBirth}</div>
@@ -88,7 +95,9 @@ export default ({ touched, errors, values, details }) => (
     </Row>
     <Row>
       <Col>
-        <p className="place-holder">Social Security Number <FaQuestionCircle className='hint' /></p>
+        <p className="place-holder">
+          Social Security Number <FaQuestionCircle className="hint" />
+        </p>
         <SSNField name="Ssn" />
         {touched.Ssn && typeof errors.Ssn === "string" && (
           <div className="input-feedback">{errors.Ssn}</div>
@@ -97,10 +106,15 @@ export default ({ touched, errors, values, details }) => (
       <Col xs={1}></Col>
       <Col>
         <Row>
-        <Col><img alt="" src={require('./assests/images/computer.PNG')} /></Col>
+          <Col className="credit-score-icon">
+            <img alt="" src={require("./assests/images/computer.PNG")} />
+          </Col>
           <Col className="score" xs={10}>
             <p className="place-holder">Credit Score</p>
-            <p>If you  are not ready to apply for credit and just want to know your rates,<a>click here</a></p>
+            <p>
+              If you are not ready to apply for credit and just want to know
+              your rates,<a>click here</a>
+            </p>
           </Col>
         </Row>
       </Col>
@@ -112,18 +126,22 @@ export default ({ touched, errors, values, details }) => (
           <hr />
         </Row>
         <Row>
-          <Col><h6>Co-Applicant</h6></Col>
-          <Col><Field
+          <Col>
+            <h6>Co-Applicant</h6>
+          </Col>
+          <Col>
+            <Field
               name="IsCoApplicantFormEnable"
               render={({ field }) => (
                 <RadioBox
-              {...field}
-              value={true}
-              checked={true}
-              id="present_at_home_visit-0"
-            />
+                  {...field}
+                  value={true}
+                  checked={true}
+                  id="present_at_home_visit-0"
+                />
               )}
-            /></Col>
+            />
+          </Col>
         </Row>
         <Row>
           <Col>
@@ -142,7 +160,6 @@ export default ({ touched, errors, values, details }) => (
             )}
           </Col>
         </Row>
-
 
         <Row>
           <Col>
@@ -163,7 +180,8 @@ export default ({ touched, errors, values, details }) => (
             {touched.ConfirmEmailJ &&
               typeof errors.ConfirmEmailJ === "string" && (
                 <div className="input-feedback">{errors.ConfirmEmailJ}</div>
-              )}</Col>
+              )}
+          </Col>
         </Row>
 
         <Row>
@@ -176,14 +194,16 @@ export default ({ touched, errors, values, details }) => (
           </Col>
           <Col xs={1}></Col>
           <Col>
-          <p className="place-holder">Date Of Birth <FaQuestionCircle className='hint' /> </p>
+            <p className="place-holder">
+              Date Of Birth <FaQuestionCircle className="hint" />{" "}
+            </p>
             <DatePickerField name="DateOfBirthJ" />
-            {touched.DateOfBirthJ && typeof errors.DateOfBirthJ === "string" && (
-              <div className="input-feedback">{errors.DateOfBirthJ}</div>
-            )}
+            {touched.DateOfBirthJ &&
+              typeof errors.DateOfBirthJ === "string" && (
+                <div className="input-feedback">{errors.DateOfBirthJ}</div>
+              )}
           </Col>
         </Row>
-
 
         <Row>
           <Col>
@@ -200,6 +220,11 @@ export default ({ touched, errors, values, details }) => (
       </div>
     )}
     <br />
-    <Row><p className='qoute'>By Completing this applicantion you authorize us to obtain and verify information about you including access to your credit reports.</p></Row>
+    <Row>
+      <p className="qoute">
+        By Completing this application you authorize us to obtain and verify
+        information about you including access to your credit reports.
+      </p>
+    </Row>
   </Container>
 );

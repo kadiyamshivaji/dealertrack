@@ -38,7 +38,7 @@ function coApplicant(payload) {
 
 function removeSpecialChar(str) {
   if (str) {
-    return str.replace(/[^a-zA-Z0-9 ]/g, "").replace(' ','');
+    return str.replace(/[^a-zA-Z0-9 ]/g, "").replace(" ", "");
   }
 }
 
@@ -48,7 +48,7 @@ function currentApplicant(payload) {
     targetPlatforms: [
       {
         id: "DTC",
-        partyId: "3249"
+        partyId: "100025"
       }
     ],
     financeMethod: "Retail",
@@ -76,8 +76,8 @@ function currentApplicant(payload) {
 
       income: payload.Money,
       incomeFrequency: "Monthly",
-      otherMonthlyIncome: payload.Income || null,
-      otherMonthlyIncomeSource: payload.Soure_Income || null,
+      otherMonthlyIncome: payload.Income0 || null,
+      otherMonthlyIncomeSource: payload.Source0 || null,
       currentEmployment: {
         employerName: payload.Employer,
         totalMonthsEmployed: payload.Having_Two_years_Employment ? 24 : 12,

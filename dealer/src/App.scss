@@ -121,7 +121,7 @@ hr {
 }
 .button {
   padding: 0.5rem;
-  background: #2574C5;
+  background: #2574c5;
   color: #fff;
   width: 40%;
   margin-left: 35%;
@@ -130,9 +130,9 @@ hr {
   border-radius: 5px;
   cursor: pointer;
 }
-.start-button{
+.start-button {
   padding: 0.5rem;
-  background: #2574C5;
+  background: #2574c5;
   color: #fff;
   width: 40%;
   margin-left: 30%;
@@ -209,10 +209,10 @@ input#Having_Two_years_EmploymentJ-1 {
 .react-formik-wizard__footer__button {
   border-radius: 10px !important;
   text-decoration: none;
-  border-color: #2574C5 !important;
+  border-color: #2574c5 !important;
   cursor: pointer;
   padding: 0.5rem;
-  background: #2574C5 !important;
+  background: #2574c5 !important;
   color: #fff;
   width: 40%;
   margin-left: 35%;
@@ -252,8 +252,9 @@ input#Having_Two_years_EmploymentJ-1 {
   margin-top: -16px;
   right: -14px;
 }
-.tittle {
+.edit-title {
   color: #40a9ff;
+  cursor: pointer;
 }
 h6 {
   font-size: 20px;
@@ -269,7 +270,6 @@ h6 {
 
 input[type="checkbox"] {
   margin-top: 5px;
-  margin-left: -20px;
 }
 .checkBox-label {
   margin-left: -43px;
@@ -296,7 +296,7 @@ input[type="checkbox"] {
 .applicant {
   background: #e2e8ed;
   padding: 10px;
-  margin-top: 15px;  
+  margin-top: 15px;
   border-radius: 10px;
 }
 .check {
@@ -332,15 +332,15 @@ input[type="checkbox"] {
   font-size: 55px;
 }
 
-.heading-style{
-    font-family: OpenSans;
-    font-size: 36px;
-    font-stretch: normal;
-    line-height: normal;
-    font-style: normal;
-    letter-spacing: normal;
-    color: #222222;
-    font-weight: bold;
+.heading-style {
+  font-family: OpenSans;
+  font-size: 36px;
+  font-stretch: normal;
+  line-height: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  color: #222222;
+  font-weight: bold;
 }
 
 .place-holder {
@@ -354,6 +354,10 @@ input[type="checkbox"] {
 .score p {
   font-size: 12px;
 }
+.credit-score-icon.col {
+  margin-top: 20px;
+  right: 10px;
+}
 .qoute {
   font-size: 12px;
 }
@@ -362,12 +366,12 @@ input[type="checkbox"] {
   font-weight: normal;
 }
 .add {
-  color: #5190D1;
+  color: #5190d1;
   font-weight: 500;
 }
 .add-disable {
   pointer-events: none;
-  color: #5190D1;
+  color: #5190d1;
   font-weight: 500;
 }
 .r-tittle {
@@ -396,7 +400,9 @@ input[type="checkbox"] {
 }
 .remove {
   color: #357ec9;
-  text-align: right;
+  cursor: pointer;
+  position: absolute;
+  left: 85%;
   font-weight: bold;
 }
 /*toggle */
@@ -654,7 +660,7 @@ body {
       // Label font size
         10px,
       // Switch font size
-        0 2px 2px rgba(black, 0.4) // Switch shadow on hover/focus
+        0 2px 2px rgba(black, 0.4) / / Switch shadow on hover/focus
     );
   }
 
@@ -672,7 +678,7 @@ body {
       // Label font size
         14px,
       // Switch font size
-        0 4px 4px rgba(black, 0.4) // Switch shadow on hover/focus
+        0 4px 4px rgba(black, 0.4) / / Switch shadow on hover/focus
     );
   }
 
@@ -711,24 +717,24 @@ body {
       // Label font size
         13px,
       // Switch font size
-        0 4px 4px rgba(black, 0.4) // Switch shadow on hover/focus
+        0 4px 4px rgba(black, 0.4) / / Switch shadow on hover/focus
     );
   }
 }
 
-
 /*steppers*/
 .react-formik-wizard__step-tabs__tab-list > li.is-active:before {
   background-color: #fff;
-  border-color: #AACAF3;
+  border-color: #aacaf3;
 }
 .react-formik-wizard__step-tabs__tab-list > li {
   counter-increment: stepNum;
   text-align: center;
   display: table-cell;
   position: relative;
-  color: #2E7EE4;
+  color: #2e7ee4;
   z-index: 1;
+  &:before {
+    border-color: #2e7ee4;
+  }
 }
-
-

@@ -9,7 +9,7 @@ export const DatePickerField = ({ ...props }) => {
     <DatePicker
       {...field}
       {...props}
-      placeholderText="mm/dd/yyyy"
+      placeholderText="MM/DD/YYYY"
       selected={(field.value && new Date(field.value)) || null}
       onChange={val => {
         setFieldValue(field.name, val);
