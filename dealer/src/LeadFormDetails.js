@@ -12,14 +12,14 @@ class LeadFormDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ShowLeadPage: true,
+      ShowLeadPage: false,
       showWelcomePage: false,
       ShowHomePage: false,
-      ShowMainPage: false,
+      ShowMainPage: true,
       showReqInfo: false,
       showProInfo: false,
-      newHomePage: false,
-      showResponsePage: false,
+      newHomePagne: false,
+      showResposePage: false,
       loading: false,
       resEmail: undefined,
       FirstName: process.env.REACT_APP_SECRET_FIRSTNAME,
@@ -475,7 +475,7 @@ class LeadFormDetails extends React.Component {
                   <Container>
                     <Row>
                       <Col>
-                      <img src={require('./assests/images/car.PNG')} />
+                      <img alt="" src={require('./assests/images/car.PNG')} />
                       </Col>
                       <Col xs={10}>
                         <Row className="heading-style">Apply for Credit Online</Row>
@@ -532,9 +532,9 @@ class LeadFormDetails extends React.Component {
                     </Row>
                     <br/>
                     <Row>
-                      <Col><img src={require('./assests/images/computer.PNG')} /></Col>
+                      <Col><img alt="" src={require('./assests/images/computer.PNG')} /></Col>
                       <Col xs={11}><p><b>Credit Score</b></p>
-                      <p>If you are not ready to apply for credit and just want to know your rates, <a href="#" title="">click here</a></p></Col>
+                      <p>If you are not ready to apply for credit and just want to know your rates, <a href="/#" title="">click here</a></p></Col>
                     </Row>
                   </Container>
                 </form>)}

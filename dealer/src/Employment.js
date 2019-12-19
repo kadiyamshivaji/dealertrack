@@ -1,20 +1,32 @@
-import React, { useState } from "react";
-import { Field } from "formik";
+import React from "react";
+import { Field, FieldArray } from "formik";
 import { Row, Col, Container } from "react-bootstrap";
 import { FaPlusCircle } from "react-icons/fa";
 import { CustomSelect } from "./lib/Select";
 import PhoneField from "./lib/Phone";
-import { FaCarAlt, FaQuestionCircle } from "react-icons/fa";
-
+import { FaQuestionCircle } from "react-icons/fa";
 const RadioBox = ({ id, name, label, checked, css, ...props }) => (
   <div className="can-toggle">
-    <input id={name} type="checkbox" name={name} checked={checked}  {...props} />
-    <label htmlFor={name} >
-      <div className="can-toggle__switch" data-checked="Yes" data-unchecked="No"></div>
+    <input id={name} type="checkbox" name={name} checked={checked} {...props} />
+    <label htmlFor={name}>
+      <div
+        className="can-toggle__switch"
+        data-checked="Yes"
+        data-unchecked="No"
+      ></div>
     </label>
   </div>
 );
-
+const AdditionalIncome = [
+  {
+    label: "Stocks",
+    value: "Stocks"
+  },
+  {
+    label: "Farming",
+    value: "Farming"
+  }
+];
 const EmployerOptions = [
   {
     label: "Employed",
@@ -51,18 +63,20 @@ const EmployerOptions = [
 ];
 
 export default ({ touched, errors, values }) => {
-  const [openOptional, setOptional] = useState(false);
-  const [openOptionalJoint, setOptionalJoint] = useState(false);
-
   return (
     <Container>
       <Row>
         <Col>
-        <img src={require('./assests/images/car.PNG')} />
+          <img alt="" src={require("./assests/images/car.PNG")} />
         </Col>
         <Col xs={10}>
-          <Row className='heading-style'>Employment</Row>
-          <Row className='sub-tittle'><p>For your protection, we will be looking at your recent history to verify your identity.</p></Row>
+          <Row className="heading-style">Employment</Row>
+          <Row className="sub-tittle">
+            <p>
+              For your protection, we will be looking at your recent history to
+              verify your identity.
+            </p>
+          </Row>
         </Col>
       </Row>
 
@@ -81,7 +95,11 @@ export default ({ touched, errors, values }) => {
         <Col xs={1}></Col>
         <Col>
           <p className="place-holder">Employer's Name</p>
-          <Field name="Employer" id="Employer" placeholder="e.g. Someplace Inc" />
+          <Field
+            name="Employer"
+            id="Employer"
+            placeholder="e.g. Someplace Inc"
+          />
           {touched.Employer && typeof errors.Employer === "string" && (
             <div className="input-feedback">{errors.Employer}</div>
           )}
@@ -108,7 +126,9 @@ export default ({ touched, errors, values }) => {
 
       <Row>
         <Col>
-          <p className="place-holder">Monthly Income <FaQuestionCircle className='hint' /> </p>
+          <p className="place-holder">
+            Monthly Income <FaQuestionCircle className="hint" />{" "}
+          </p>
           <Field name="Money" id="Money" placeholder="e.g. $5002" />
           {touched.Money && typeof errors.Money === "string" && (
             <div className="input-feedback">{errors.Money}</div>
@@ -116,7 +136,9 @@ export default ({ touched, errors, values }) => {
         </Col>
         <Col xs={1}></Col>
         <Col>
-          <p className="place-holder">Have you Worked Here for 2 Years or More?</p>
+          <p className="place-holder">
+            Have you Worked Here for 2 Years or More?
+          </p>
           <Field
             name="Having_Two_years_Employment"
             render={({ field }) => (
@@ -135,12 +157,12 @@ export default ({ touched, errors, values }) => {
           />
         </Col>
       </Row>
+      <br />
 
-
-      {values.Having_Two_years_Employment !== true && (
+      {values.Having_Two_years_Employment && (
         <div>
           <Row>
-            <h6>Previous Employment</h6>
+            <hr />
           </Row>
           <Row>
             <Col>
@@ -157,7 +179,11 @@ export default ({ touched, errors, values }) => {
             <Col xs={1}></Col>
             <Col>
               <p className="place-holder">Employer's Name</p>
-              <Field name="Employer_P" id="Employer_P" placeholder="e.g. Someplace Inc" />
+              <Field
+                name="Employer_P"
+                id="Employer_P"
+                placeholder="e.g. Someplace Inc"
+              />
               {touched.Employer_P && typeof errors.Employer_P === "string" && (
                 <div className="input-feedback">{errors.Employer_P}</div>
               )}
@@ -167,9 +193,10 @@ export default ({ touched, errors, values }) => {
             <Col>
               <p className="place-holder">Phone</p>
               <PhoneField name="WorkPhone_P" />
-              {touched.WorkPhone_P && typeof errors.WorkPhone_P === "string" && (
-                <div className="input-feedback">{errors.WorkPhone_P}</div>
-              )}
+              {touched.WorkPhone_P &&
+                typeof errors.WorkPhone_P === "string" && (
+                  <div className="input-feedback">{errors.WorkPhone_P}</div>
+                )}
             </Col>
             <Col xs={1}></Col>
             <Col>
@@ -185,36 +212,55 @@ export default ({ touched, errors, values }) => {
                 )}
             </Col>
           </Row>
-
-
         </div>
       )}
       <br />
-      <Row>
-        <hr />
-      </Row>
-      {openOptional && (
-        <div>
-          <Row>
-            <Col>
-              <p className="place-holder">Additional Source of Income <span className="optional">(Optional)<FaQuestionCircle className='hint' /></span></p>
-              <Field name="Soure_Income" id="Soure_Income" placeholder="select" />
-            </Col>
-            <Col xs={1}></Col>
-            <Col>
-              <p className="place-holder">Additional Monthly Income</p>
-              <Field name="Income" id="Income" placeholder="e.g. $5002" />
-            </Col>
-          </Row>
-        </div>
-      )}
-      {!openOptional && (
-        <Row>
-          <p className="add" onClick={() => setOptional(true)}>
-            <FaPlusCircle /> Add Additional Income
-          </p>
-        </Row>
-      )}
+      <FieldArray
+        name="Income"
+        render={arrayHelpers => (
+          <div>
+            {values.Income && values.Income.length > 0
+              ? values.Income.map((Income, index) => (
+                  <div key={index}>
+                    <Row>
+                      <Col>
+                        <p className="place-holder">
+                          Additional Source of Income{" "}
+                          <span className="optional">
+                            (Optional)
+                            <FaQuestionCircle className="hint" />
+                          </span>
+                        </p>
+                        <Field
+                          className="select"
+                          name={`Source${index}`}
+                          options={AdditionalIncome}
+                          component={CustomSelect}
+                          placeholder="Select"
+                          isMulti={false}
+                        />
+                      </Col>
+                      <Col xs={1}></Col>
+                      <Col>
+                        <p className="place-holder">Additional Income</p>
+                        <Field
+                          name={`Income${index}`}
+                          placeholder="e.g.$600"
+                        />
+                      </Col>
+                    </Row>
+                  </div>
+                ))
+              : ""}
+            <p
+              className={values.Income.length > 5 ? "add-disable" : "add"}
+              onClick={() => arrayHelpers.push("")}
+            >
+              <FaPlusCircle /> Add Additional Income
+            </p>
+          </div>
+        )}
+      />
       <Row>
         <hr></hr>
       </Row>
@@ -238,7 +284,11 @@ export default ({ touched, errors, values }) => {
             <Col xs={1}></Col>
             <Col>
               <p className="place-holder">Employer's Name</p>
-              <Field name="EmployerJ" id="EmployerJ" placeholder="e.g. Someplace Inc" />
+              <Field
+                name="EmployerJ"
+                id="EmployerJ"
+                placeholder="e.g. Someplace Inc"
+              />
               {touched.EmployerJ && typeof errors.EmployerJ === "string" && (
                 <div className="input-feedback">{errors.EmployerJ}</div>
               )}
@@ -260,14 +310,17 @@ export default ({ touched, errors, values }) => {
                 id="OccupationJ"
                 placeholder="Occupation"
               />
-              {touched.OccupationJ && typeof errors.OccupationJ === "string" && (
-                <div className="input-feedback">{errors.OccupationJ}</div>
-              )}
+              {touched.OccupationJ &&
+                typeof errors.OccupationJ === "string" && (
+                  <div className="input-feedback">{errors.OccupationJ}</div>
+                )}
             </Col>
           </Row>
           <Row>
             <Col>
-              <p className="place-holder">Monthly Income <FaQuestionCircle className='hint' /> </p>
+              <p className="place-holder">
+                Monthly Income <FaQuestionCircle className="hint" />{" "}
+              </p>
               <Field name="MoneyJ" id="MoneyJ" placeholder="e.g. $5002" />
               {touched.MoneyJ && typeof errors.MoneyJ === "string" && (
                 <div className="input-feedback">{errors.MoneyJ}</div>
@@ -275,7 +328,9 @@ export default ({ touched, errors, values }) => {
             </Col>
             <Col xs={1}></Col>
             <Col>
-              <p className="place-holder">Have you worked here for 2 years or more?</p>
+              <p className="place-holder">
+                Have you worked here for 2 years or more?
+              </p>
               <Field
                 name="Having_Two_years_EmploymentJ"
                 render={({ field }) => (
@@ -294,10 +349,11 @@ export default ({ touched, errors, values }) => {
               />
             </Col>
           </Row>
-          {values.Having_Two_years_EmploymentJ !== true && (
+
+          {values.Having_Two_years_EmploymentJ && (
             <div>
               <Row>
-                <h6>Previous Employment</h6>
+                <hr />
               </Row>
               <Row>
                 <Col>
@@ -331,7 +387,9 @@ export default ({ touched, errors, values }) => {
                   <PhoneField name="WorkPhoneJ_P" />
                   {touched.WorkPhoneJ_P &&
                     typeof errors.WorkPhoneJ_P === "string" && (
-                      <div className="input-feedback">{errors.WorkPhoneJ_P}</div>
+                      <div className="input-feedback">
+                        {errors.WorkPhoneJ_P}
+                      </div>
                     )}
                 </Col>
                 <Col xs={1}></Col>
@@ -344,49 +402,66 @@ export default ({ touched, errors, values }) => {
                   />
                   {touched.OccupationJ_P &&
                     typeof errors.OccupationJ_P === "string" && (
-                      <div className="input-feedback">{errors.OccupationJ_P}</div>
+                      <div className="input-feedback">
+                        {errors.OccupationJ_P}
+                      </div>
                     )}
                 </Col>
               </Row>
-
             </div>
           )}
           <br />
-          <Row><hr /></Row>
-          {openOptionalJoint && (
-            <div>
-              <Row>
-                <Col>
-                  <p className="place-holder">Additional Source of Income <span className="optional">(Optional)<FaQuestionCircle className='hint' /></span></p>
-                  <Field
-                    name="Source_Income_Joint"
-                    id="Source_Income_Joint"
-                    placeholder="source"
-                  />
 
-                </Col>
-                <Col xs={1}></Col>
-                <Col>
-                  <p className="place-holder">Additional Monthly Income</p>
-                  <Field
-                    name="IncomeJoint"
-                    id="IncomeJoint"
-                    placeholder="e.g. $600"
-                  />
-                </Col>
-              </Row>
-            </div>
-          )}
-          {!openOptionalJoint && (
-            <Row>
-              <p className='add' onClick={() => setOptionalJoint(true)}>
-                <FaPlusCircle /> Add Additional Income
-              </p>
-            </Row>
-          )}
-          <Row>
-            <hr></hr>
-          </Row>
+          <FieldArray
+            name="IncomeCo"
+            render={arrayHelpersCo => (
+              <div>
+                {values.IncomeCo && values.IncomeCo.length > 0
+                  ? values.IncomeCo.map((Income, index) => (
+                      <div key={index}>
+                        <Row>
+                          <Col>
+                            <p className="place-holder">
+                              Additional Source of Income{" "}
+                              <span className="optional">
+                                (Optional)
+                                <FaQuestionCircle className="hint" />
+                              </span>
+                            </p>
+                            <Field
+                              className="select"
+                              name={`SourceCo${index}`}
+                              options={AdditionalIncome}
+                              component={CustomSelect}
+                              placeholder="Select"
+                              isMulti={false}
+                            />
+                          </Col>
+                          <Col xs={1}></Col>
+                          <Col>
+                            <p className="place-holder">Additional Income</p>
+                            <Field
+                              name={`IncomeCo${index}`}
+                              placeholder="e.g.$600"
+                            />
+                          </Col>
+                        </Row>
+                      </div>
+                    ))
+                  : ""}
+                <p
+                  className={
+                    values.IncomeCo && values.IncomeCo.length > 5
+                      ? "add-disable"
+                      : "add"
+                  }
+                  onClick={() => arrayHelpersCo.push("")}
+                >
+                  <FaPlusCircle /> Add Additional Income
+                </p>
+              </div>
+            )}
+          />
         </div>
       )}
     </Container>

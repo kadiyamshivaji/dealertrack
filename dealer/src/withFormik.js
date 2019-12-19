@@ -60,8 +60,36 @@ export default withFormik({
     WorkPhone_P: "",
     Occupation_P: "",
     Tenure: "",
-    Soure_Income: "",
-    Income: "",
+
+   
+    Income: [],
+    IncomeCo:[],
+    Source0:'',
+    Source1:'',
+    Source2:'',
+    Source3:'',
+    Source4:'',
+    Source5:'',
+    Income0:'',
+    Income1:'',
+    Income2:'',
+    Income3:'',
+    Income4:'',
+    Income5:'',
+    IncomeCo0:'',
+    IncomeCo1:'',
+    IncomeCo2:'',
+    IncomeCo3:'',
+    IncomeCo4:'',
+    IncomeCo5:'',
+    SourceCo0:'',
+    SourceCo1:'',
+    SourceCo2:'',
+    SourceCo3:'',
+    SourceCo4:'',
+    SourceCo5:'',
+
+
     Employment_StatusJ: "",
     EmployerJ: "",
     WorkPhoneJ: "",
@@ -141,9 +169,8 @@ export default withFormik({
       Policy2: Yup.string().required("Accept the Terms and Conditions")
     }),
 
-  handleSubmit: (values,props) => {
-    debugger
-    console.log(values,props);
-    
+  handleSubmit: (values, props) => {
+    debugger;
+    console.log(values, props);
   }
 });

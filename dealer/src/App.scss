@@ -362,7 +362,13 @@ input[type="checkbox"] {
   font-weight: normal;
 }
 .add {
-  color: #5995d3;
+  color: #5190D1;
+  font-weight: 500;
+}
+.add-disable {
+  pointer-events: none;
+  color: #5190D1;
+  font-weight: 500;
 }
 .r-tittle {
   background: #ffff;
@@ -724,3 +730,5 @@ body {
   color: #2E7EE4;
   z-index: 1;
 }
+
+

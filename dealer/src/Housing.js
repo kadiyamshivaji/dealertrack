@@ -2,9 +2,7 @@ import React from "react";
 import { Field } from "formik";
 import { Row, Col, Container } from "react-bootstrap";
 import { CustomSelect } from "./lib/Select";
-import { FaCarAlt } from "react-icons/fa";
-
-
+import { States } from "./lib/States";
 const OwnOptions = [
   {
     label: "Mortgage",
@@ -33,9 +31,13 @@ const OwnOptions = [
 ];
 const RadioBox = ({ id, name, label, checked, css, ...props }) => (
   <div className="can-toggle">
-    <input id={name} type="checkbox" name={name} checked={checked}  {...props} />
-    <label htmlFor={name} >
-      <div className="can-toggle__switch" data-checked="Yes" data-unchecked="No"></div>
+    <input id={name} type="checkbox" name={name} checked={checked} {...props} />
+    <label htmlFor={name}>
+      <div
+        className="can-toggle__switch"
+        data-checked="Yes"
+        data-unchecked="No"
+      ></div>
     </label>
   </div>
 );
@@ -55,18 +57,23 @@ export default ({ touched, errors, values }) => (
   <Container>
     <Row>
       <Col>
-        <img src={require('./assests/images/car.PNG')} />
+        <img alt="" src={require("./assests/images/car.PNG")} />
       </Col>
       <Col xs={10}>
-        <Row className='heading-style'>Housing</Row>
-        <Row className='sub-tittle'><p>For your protection, we will be looking at your recent history to verify your identity.</p></Row>
+        <Row className="heading-style">Housing</Row>
+        <Row className="sub-tittle">
+          <p>
+            For your protection, we will be looking at your recent history to
+            verify your identity.
+          </p>
+        </Row>
       </Col>
     </Row>
-    {values.IsCoApplicantFormEnable &&
+    {values.IsCoApplicantFormEnable && (
       <Row>
         <h3>Primary Applicant</h3>
       </Row>
-    }
+    )}
     <Row>
       <Col>
         <p className="place-holder">Do you Own or rent?</p>
@@ -91,20 +98,21 @@ export default ({ touched, errors, values }) => (
     <Row>
       <Col>
         <p className="place-holder">Street Address</p>
-        <Field name="StreetAddress" id="StreetAddress" placeholder="e.g.1800 Any Place Street" />
+        <Field
+          name="StreetAddress"
+          id="StreetAddress"
+          placeholder="e.g.1800 Any Place Street"
+        />
         {touched.StreetAddress && typeof errors.StreetAddress === "string" && (
           <div className="input-feedback">{errors.StreetAddress}</div>
         )}
-
       </Col>
       <Col xs={1}></Col>
       <Col>
-        <p className="place-holder">Suite/Apt Number <span className="optional">(Optional)</span></p>
-        <Field
-          name="SuitNo"
-          id="SuitNo"
-          placeholder="e.g. Unit 105"
-        />
+        <p className="place-holder">
+          Suite/Apt Number <span className="optional">(Optional)</span>
+        </p>
+        <Field name="SuitNo" id="SuitNo" placeholder="e.g. Unit 105" />
         {touched.SuitNo && typeof errors.SuitNo === "string" && (
           <div className="input-feedback">{errors.SuitNo}</div>
         )}
@@ -121,7 +129,14 @@ export default ({ touched, errors, values }) => (
       <Col xs={1}></Col>
       <Col>
         <p className="place-holder">State</p>
-        <Field name="State" id="State" placeholder="State" />
+        <Field
+          className="select"
+          name="State"
+          options={States}
+          component={CustomSelect}
+          placeholder="select"
+          isMulti={false}
+        />
         {touched.State && typeof errors.State === "string" && (
           <div className="input-feedback">{errors.State}</div>
         )}
@@ -140,17 +155,11 @@ export default ({ touched, errors, values }) => (
         <p className="place-holder">Have you lived here for 2 years or more?</p>
         <Field
           name="Having_Two_years"
-          render={({ field }) => (
-            <RadioBox
-              {...field}
-              value="true"
-            />
-          )}
+          render={({ field }) => <RadioBox {...field} value="true" />}
         />
       </Col>
     </Row>
     {values.Having_Two_years && (
-
       <div>
         <br />
 
@@ -184,7 +193,14 @@ export default ({ touched, errors, values }) => (
           <Col>
             <p className="place-holder">State</p>
             <Col>
-              <Field name="State_P" id="State_P" placeholder="State" />
+              <Field
+                className="select"
+                name="State_P"
+                options={States}
+                component={CustomSelect}
+                placeholder="select"
+                isMulti={false}
+              />
               {touched.State_P && typeof errors.State_P === "string" && (
                 <div className="input-feedback">{errors.State_P}</div>
               )}
@@ -256,12 +272,10 @@ export default ({ touched, errors, values }) => (
           </Col>
           <Col xs={1}></Col>
           <Col>
-            <p className="place-holder">Suite/Apt Number <span className="optional"> (Optional)</span></p>
-            <Field
-              name="SuitNoJ"
-              id="SuitNoJ"
-              placeholder="e.g. Unit 105"
-            />
+            <p className="place-holder">
+              Suite/Apt Number <span className="optional"> (Optional)</span>
+            </p>
+            <Field name="SuitNoJ" id="SuitNoJ" placeholder="e.g. Unit 105" />
             {touched.SuitNoJ && typeof errors.SuitNoJ === "string" && (
               <div className="input-feedback">{errors.SuitNoJ}</div>
             )}
@@ -278,7 +292,14 @@ export default ({ touched, errors, values }) => (
           <Col xs={1}></Col>
           <Col>
             <p className="place-holder">State</p>
-            <Field name="StateJ" id="StateJ" placeholder="State" />
+            <Field
+              className="select"
+              name="StateJ"
+              options={States}
+              component={CustomSelect}
+              placeholder="select"
+              isMulti={false}
+            />
             {touched.StateJ && typeof errors.StateJ === "string" && (
               <div className="input-feedback">{errors.StateJ}</div>
             )}
@@ -294,7 +315,9 @@ export default ({ touched, errors, values }) => (
           </Col>
           <Col xs={1}></Col>
           <Col>
-            <p className="place-holder">Have you lived here for 2 years or more?</p>
+            <p className="place-holder">
+              Have you lived here for 2 years or more?
+            </p>
             <Field
               name="Having_Two_years_Joint"
               render={({ field }) => (
@@ -312,10 +335,8 @@ export default ({ touched, errors, values }) => (
                 />
               )}
             />
-
           </Col>
         </Row>
-
 
         {values.Having_Two_years_Joint && (
           <div>
@@ -341,7 +362,11 @@ export default ({ touched, errors, values }) => (
               <Col xs={1}></Col>
               <Col>
                 <p className="place-holder">City</p>
-                <Field name="CityJ_P" id="CityJ_P" placeholder="e.g. Beverly Hills" />
+                <Field
+                  name="CityJ_P"
+                  id="CityJ_P"
+                  placeholder="e.g. Beverly Hills"
+                />
                 {touched.CityJ_P && typeof errors.CityJ_P === "string" && (
                   <div className="input-feedback">{errors.CityJ_P}</div>
                 )}
@@ -351,7 +376,14 @@ export default ({ touched, errors, values }) => (
             <Row>
               <Col>
                 <p className="place-holder">State</p>
-                <Field name="StateJ_P" id="StateJ_P" placeholder="State" />
+                <Field
+                  className="select"
+                  name="StateJ_P"
+                  options={States}
+                  component={CustomSelect}
+                  placeholder="select"
+                  isMulti={false}
+                />
                 {touched.StateJ_P && typeof errors.StateJ_P === "string" && (
                   <div className="input-feedback">{errors.StateJ_P}</div>
                 )}
@@ -372,7 +404,6 @@ export default ({ touched, errors, values }) => (
             </Row>
           </div>
         )}
-
       </div>
     )}
   </Container>

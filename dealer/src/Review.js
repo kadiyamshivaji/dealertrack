@@ -9,8 +9,6 @@ import { CustomSelect } from "./lib/Select";
 import * as CurrencyFormat from "react-currency-format";
 import PhoneField from "./lib/Phone";
 import SSNField from "./lib/ssn";
-import { FaCarAlt  } from "react-icons/fa";
-
 
 const EmployerOptions = [
   {
@@ -128,7 +126,7 @@ export default ({ touched, errors, values }) => {
         <div>
           <Row>
             <Col>
-            <img src={require('./assests/images/car.PNG')} />
+            <img alt="" src={require('./assests/images/car.PNG')} />
             </Col>
             <Col xs={10}>
               <Row className='heading-style'>Review and Submit</Row>

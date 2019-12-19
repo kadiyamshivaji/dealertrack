@@ -21,7 +21,7 @@ export default ({ touched, errors, values, details }) => (
   <Container>
     <Row>
       <Col>
-      <img src={require('./assests/images/car.PNG')} />
+      <img alt="" src={require('./assests/images/car.PNG')} />
       </Col>
       <Col xs={10}>
         <Row className = "heading-style">Personal Information</Row>
@@ -81,7 +81,7 @@ export default ({ touched, errors, values, details }) => (
       <Col>
         <p className="place-holder">Date Of Birth <FaQuestionCircle className='hint' /> </p>
         <DatePickerField placeholder="Date of Birth" name="DateOfBirth" />
-        {touched.DateOfBirth && typeof errors.DateOfBirth === "DateOfBirth" && (
+        {touched.DateOfBirth && typeof errors.DateOfBirth === "string" && (
           <div className="input-feedback">{errors.DateOfBirth}</div>
         )}
       </Col>
@@ -97,7 +97,7 @@ export default ({ touched, errors, values, details }) => (
       <Col xs={1}></Col>
       <Col>
         <Row>
-        <Col><img src={require('./assests/images/computer.PNG')} /></Col>
+        <Col><img alt="" src={require('./assests/images/computer.PNG')} /></Col>
           <Col className="score" xs={10}>
             <p className="place-holder">Credit Score</p>
             <p>If you  are not ready to apply for credit and just want to know your rates,<a>click here</a></p>

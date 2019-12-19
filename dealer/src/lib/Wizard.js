@@ -2,7 +2,6 @@ import React, { Children, cloneElement } from 'react';
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import StepTabs from './StepTabs';
-import { submit } from "../api/api";
 import { constructPayload } from "../lib/util";
 import axios from "axios";
 

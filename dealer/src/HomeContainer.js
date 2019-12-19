@@ -16,7 +16,7 @@ import ReviewDetails from "./Review";
 import LeadFormDetails from "./LeadFormDetails";
 import withFormik from "./withFormik";
 import "bootstrap/dist/css/bootstrap.min.css";
-import SubmitButton from './lib/SubmitButton';
+import SubmitButton from "./lib/SubmitButton";
 function ContactInfoValidations({ errors, values }) {
   if (!values.IsCoApplicantFormEnable) {
     return (
@@ -78,11 +78,7 @@ function HousingDetailsValidations({ errors, values }) {
 
 function EmploymentDetailsValidations({ errors, values }) {
   if (!values.IsCoApplicantFormEnable) {
-    return (
-      !errors.Employment_Status &&
-      !errors.Employer &&
-      !errors.Money
-    );
+    return !errors.Employment_Status && !errors.Employer && !errors.Money;
   } else {
     return (
       !errors.Employment_Status &&
@@ -121,7 +117,7 @@ class HomeContainer extends React.Component {
               >
                 <Step component={ContactInfo} title="Personal" />
                 <Step component={HousingDetails} title="Housing" />
-                <Step component={EmploymentDetails} title="Employment" /> 
+                <Step component={EmploymentDetails} title="Employment" />
                 <Step component={ReviewDetails} title="Review" />
               </StepsList>
               <ButtonsList>
