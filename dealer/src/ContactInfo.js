@@ -25,7 +25,7 @@ export default ({ touched, errors, values, details }) => (
       </Col>
       <Col xs={10}>
         <Row className="heading-style">Personal Information</Row>
-        <Row className="sub-tittle">
+        <Row className="sub-title">
           <p>We need a few details about you to start your application.</p>
         </Row>
       </Col>

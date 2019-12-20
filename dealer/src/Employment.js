@@ -71,7 +71,7 @@ export default ({ touched, errors, values }) => {
         </Col>
         <Col xs={10}>
           <Row className="heading-style">Employment</Row>
-          <Row className="sub-tittle">
+          <Row className="sub-title">
             <p>
               For your protection, we will be looking at your recent history to
               verify your identity.

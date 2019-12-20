@@ -130,7 +130,7 @@ export default ({ touched, errors, values }) => {
           </Col>
           <Col xs={10}>
             <Row className="heading-style">Review and Submit</Row>
-            <Row className="sub-tittle">
+            <Row className="sub-title">
               <p>
                 Please take one last and make changes if needed before
                 submitting your application.
@@ -138,7 +138,7 @@ export default ({ touched, errors, values }) => {
             </Row>
           </Col>
         </Row>
-        <Row className="r-tittle">
+        <Row className="r-title">
           <h6>Primary Applicant</h6>
         </Row>
         <div className="r-content">
@@ -146,7 +146,7 @@ export default ({ touched, errors, values }) => {
             <Row>
               <label onClick={() => setOpen1(true)}>
                 Personal Information <FaPencilAlt className="pencil" />
-                <span className="tittle">Edit</span>
+                <span className="edit-title">Edit</span>
               </label>
             </Row>
             <Row>
@@ -205,7 +205,7 @@ export default ({ touched, errors, values }) => {
             <Row>
               <label onClick={() => setOpen3(true)}>
                 Housing <FaPencilAlt className="pencil" />
-                <span className="tittle">Edit</span>
+                <span className="edit-title">Edit</span>
               </label>
             </Row>
             <Row>
@@ -260,7 +260,7 @@ export default ({ touched, errors, values }) => {
             <Row>
               <label onClick={() => setOpen5(true)}>
                 Employment <FaPencilAlt className="pencil" />{" "}
-                <span className="tittle">Edit</span>
+                <span className="edit-title">Edit</span>
               </label>
             </Row>
             <Row>
@@ -306,7 +306,7 @@ export default ({ touched, errors, values }) => {
 
         {values.IsCoApplicantFormEnable && (
           <div className="co-applicant">
-            <Row className="r-tittle">
+            <Row className="r-title">
               <h3>Co Applicant</h3>
             </Row>
             <div className="r-content">
@@ -314,7 +314,7 @@ export default ({ touched, errors, values }) => {
                 <Row>
                   <label onClick={() => setOpen2(true)}>
                     Personal Information <FaPencilAlt className="pencil" />
-                    <span className="tittle">Edit</span>
+                    <span className="edit-title">Edit</span>
                   </label>
                 </Row>
                 <Row>
@@ -374,7 +374,7 @@ export default ({ touched, errors, values }) => {
                 <Row>
                   <label onClick={() => setOpen4(true)}>
                     Housing <FaPencilAlt className="pencil" />
-                    <span className="tittle">Edit</span>
+                    <span className="edit-title">Edit</span>
                   </label>
                 </Row>
                 <Row>
@@ -429,7 +429,7 @@ export default ({ touched, errors, values }) => {
                 <Row>
                   <label onClick={() => setOpen6(true)}>
                     Employment <FaPencilAlt className="pencil" />{" "}
-                    <span className="tittle">Edit</span>
+                    <span className="edit-title">Edit</span>
                   </label>
                 </Row>
                 <Row>

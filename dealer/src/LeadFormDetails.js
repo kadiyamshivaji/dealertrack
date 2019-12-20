@@ -494,7 +494,7 @@ class LeadFormDetails extends React.Component {
                         <Row className="heading-style">
                           Apply for Credit Online
                         </Row>
-                        <Row className="sub-tittle">
+                        <Row className="sub-title">
                           <p>
                             This application should only take about 10 minutes.
                             Don't worry, we'll only use this information to
@@ -614,7 +614,7 @@ class LeadFormDetails extends React.Component {
                       <Row className="heading-style">
                         Your Application is Complete
                       </Row>
-                      <Row className="sub-tittle">
+                      <Row className="sub-title">
                         <p>
                           Great Work! That's one less thing to do at the
                           dealership.
@@ -623,7 +623,7 @@ class LeadFormDetails extends React.Component {
                     </Col>
                   </Row>
                   <br />
-                  <Row className="r-tittle">
+                  <Row className="r-title">
                     <Col xs={9}>
                       <h2>
                         <FaCheckCircle className="check-icon" /> Application
