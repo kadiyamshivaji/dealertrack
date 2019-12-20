@@ -10,10 +10,10 @@ export const constructPayload = payload => {
 
 function applicant(payload) {
   const current = currentApplicant(payload);
-  if (!payload.Having_Two_years) {
+  if (payload.Having_Two_years) {
     current.applicant = { ...current.applicant, ...previousAddress(payload) };
   }
-  if (!payload.Having_Two_years_Employment) {
+  if (payload.Having_Two_years_Employment) {
     current.applicant = {
       ...current.applicant,
       ...previousEmployment(payload)
@@ -65,7 +65,7 @@ function currentApplicant(payload) {
       consentGiven: true,
       housingStatus: payload.Own,
       mortgageOrRentAmount: payload.Rent,
-      monthsAtCurrentAddress: payload.Having_Two_years ? 24 : 12,
+      monthsAtCurrentAddress: !payload.Having_Two_years ? 24 : 12,
       address: {
         line1: payload.StreetAddress,
         city: payload.City,
@@ -80,7 +80,7 @@ function currentApplicant(payload) {
       otherMonthlyIncomeSource: payload.Source0 || null,
       currentEmployment: {
         employerName: payload.Employer,
-        totalMonthsEmployed: payload.Having_Two_years_Employment ? 24 : 12,
+        totalMonthsEmployed: !payload.Having_Two_years_Employment ? 24 : 12,
         occupation: payload.Occupation,
         workPhone: removeSpecialChar(payload.WorkPhone),
         status: payload.Employment_Status
@@ -150,6 +150,7 @@ function previousAddress(payload) {
   return {
     previousAddress: {
       line1: payload.StreetAddress_P,
+      line2: payload.SuitNo_P,
       city: payload.City_P,
       state: payload.State_P,
       postalCode: payload.Zipcode_P
@@ -184,7 +185,7 @@ function jointApplicant(payload) {
       consentGiven: true,
       housingStatus: payload.OwnJ,
       mortgageOrRentAmount: payload.RentJ,
-      monthsAtCurrentAddress: payload.Having_Two_years_Joint ? 24 : 12,
+      monthsAtCurrentAddress: !payload.Having_Two_years_Joint ? 24 : 12,
       address: {
         line1: payload.StreetAddressJ,
         city: payload.CityJ,
@@ -199,7 +200,7 @@ function jointApplicant(payload) {
       otherMonthlyIncomeSource: payload.Source_Income_Joint || null,
       currentEmployment: {
         employerName: payload.EmployerJ,
-        totalMonthsEmployed: payload.Having_Two_years_EmploymentJ ? 24 : 12,
+        totalMonthsEmployed: !payload.Having_Two_years_EmploymentJ ? 24 : 12,
         occupation: payload.OccupationJ,
         workPhone: removeSpecialChar(payload.WorkPhoneJ),
         status: payload.Employment_StatusJ,
@@ -271,7 +272,7 @@ function coPreviousEmployment(payload) {
   return {
     previousEmployment: {
       employerName: payload.EmployerJ_P,
-      totalMonthsEmployed: payload.Having_Two_years_EmploymentJ ? 24 : 12,
+      totalMonthsEmployed: !payload.Having_Two_years_EmploymentJ ? 24 : 12,
       occupation: payload.OccupationJ_P,
       workPhone: removeSpecialChar(payload.WorkPhoneJ_P),
       status: payload.Employment_StatusJ_P,
@@ -290,6 +291,7 @@ function coPreviousAddress(payload) {
   return {
     previousAddress: {
       line1: payload.StreetAddressJ_P,
+      line2: payload.SuitNoJ_P,
       city: payload.CityJ_P,
       state: payload.StateJ_P,
       postalCode: payload.ZipcodeJ_P

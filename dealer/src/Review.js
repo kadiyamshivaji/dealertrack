@@ -6,7 +6,7 @@ import { Field } from "formik";
 import Modal from "react-responsive-modal";
 import DatePickerField from "./lib/DatePicker";
 import { CustomSelect } from "./lib/Select";
-import * as CurrencyFormat from "react-currency-format";
+import { formatter } from "./lib/CurrencyFormatter";
 import PhoneField from "./lib/Phone";
 import SSNField from "./lib/ssn";
 
@@ -223,12 +223,7 @@ export default ({ touched, errors, values }) => {
               <Col>
                 {" "}
                 <p>
-                  <CurrencyFormat
-                    value={values.Rent}
-                    displayType={"text"}
-                    thousandSeparator={true}
-                    prefix={"$"}
-                  />
+                  {formatter.format(values.Rent)}
                   /month
                 </p>
               </Col>
@@ -293,13 +288,7 @@ export default ({ touched, errors, values }) => {
               <Col>
                 {" "}
                 <p>
-                  <CurrencyFormat
-                    value={values.Money}
-                    displayType={"text"}
-                    thousandSeparator={true}
-                    prefix={"$"}
-                  />
-                  /{values.Tenure}
+                  {formatter.format(values.Money)}
                 </p>
               </Col>
             </Row>
@@ -403,12 +392,7 @@ export default ({ touched, errors, values }) => {
                   <Col>
                     {" "}
                     <p>
-                      <CurrencyFormat
-                        value={values.RentJ}
-                        displayType={"text"}
-                        thousandSeparator={true}
-                        prefix={"$"}
-                      />
+                      {formatter.format(values.RentJ)}
                       /month
                     </p>
                   </Col>
@@ -473,13 +457,7 @@ export default ({ touched, errors, values }) => {
                   <Col>
                     {" "}
                     <p>
-                      <CurrencyFormat
-                        value={values.MoneyJ}
-                        displayType={"text"}
-                        thousandSeparator={true}
-                        prefix={"$"}
-                      />
-                      /{values.Tenure}
+                      {formatter.format(values.MoneyJ)}
                     </p>
                   </Col>
                 </Row>

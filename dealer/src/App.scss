@@ -61,7 +61,6 @@ input.error {
   margin-top: 0.25rem;
 }
 
-
 .form-group {
   margin-bottom: 1rem;
 }
@@ -202,6 +201,7 @@ input#Having_Two_years_EmploymentJ-1 {
   display: block;
   border: 1px solid #9e9e9e;
   color: #000;
+  z-index: 1000;
 }
 .msg {
   width: 100%;
@@ -365,15 +365,12 @@ input[type="checkbox"] {
   color: #bcbfc3;
   font-weight: normal;
 }
-.add {
+.add-income {
   color: #5190d1;
   font-weight: 500;
+  cursor: pointer;
 }
-.add-disable {
-  pointer-events: none;
-  color: #5190d1;
-  font-weight: 500;
-}
+
 .r-tittle {
   background: #ffff;
   padding-left: 25px;
@@ -737,4 +734,8 @@ body {
   &:before {
     border-color: #2e7ee4;
   }
+}
+
+.react-formik-wizard__step-tabs__tab-list > li:after {
+  background-color: #2e7ee4;
 }

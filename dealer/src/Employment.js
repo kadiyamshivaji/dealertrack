@@ -249,12 +249,12 @@ export default ({ touched, errors, values }) => {
                   </div>
                 ))
               : ""}
-            <p
-              className={values.Income.length > 5 ? "add-disable" : "add"}
-              onClick={() => arrayHelpers.push("")}
-            >
-              <FaPlusCircle /> Add Additional Income
-            </p>
+
+            {values.Income.length <= 5 && (
+              <p className="add-income" onClick={() => arrayHelpers.push("")}>
+                <FaPlusCircle /> Add Additional Income
+              </p>
+            )}
           </div>
         )}
       />
@@ -446,16 +446,14 @@ export default ({ touched, errors, values }) => {
                       </div>
                     ))
                   : ""}
-                <p
-                  className={
-                    values.IncomeCo && values.IncomeCo.length > 5
-                      ? "add-disable"
-                      : "add"
-                  }
-                  onClick={() => arrayHelpersCo.push("")}
-                >
-                  <FaPlusCircle /> Add Additional Income
-                </p>
+                {values.IncomeCo && values.IncomeCo.length <= 5 && (
+                  <p
+                    className="add-income"
+                    onClick={() => arrayHelpersCo.push("")}
+                  >
+                    <FaPlusCircle /> Add Additional Income
+                  </p>
+                )}
               </div>
             )}
           />

@@ -181,6 +181,19 @@ export default ({ touched, errors, values }) => (
               )}
           </Col>
           <Col xs={1}></Col>
+
+          <Col>
+            <p className="place-holder">
+              Suite/Apartment Number{" "}
+              <span className="optional">(Optional)</span>
+            </p>
+            <Field name="SuitNo_P" id="SuitNo_P" placeholder="e.g. Unit 105" />
+            {touched.SuitNo_P && typeof errors.SuitNo_P === "string" && (
+              <div className="input-feedback">{errors.SuitNo_P}</div>
+            )}
+          </Col>
+        </Row>
+        <Row>
           <Col>
             <p className="place-holder">City</p>
             <Field name="City_P" id="City_P" placeholder="e.g. Beverly Hills" />
@@ -188,25 +201,25 @@ export default ({ touched, errors, values }) => (
               <div className="input-feedback">{errors.City_P}</div>
             )}
           </Col>
-        </Row>
-        <Row>
+
+          <Col xs={1}></Col>
           <Col>
             <p className="place-holder">State</p>
-            <Col>
-              <Field
-                className="select"
-                name="State_P"
-                options={States}
-                component={CustomSelect}
-                placeholder="Select"
-                isMulti={false}
-              />
-              {touched.State_P && typeof errors.State_P === "string" && (
-                <div className="input-feedback">{errors.State_P}</div>
-              )}
-            </Col>
+
+            <Field
+              className="select"
+              name="State_P"
+              options={States}
+              component={CustomSelect}
+              placeholder="Select"
+              isMulti={false}
+            />
+            {touched.State_P && typeof errors.State_P === "string" && (
+              <div className="input-feedback">{errors.State_P}</div>
+            )}
           </Col>
-          <Col xs={1}></Col>
+        </Row>
+        <Row>
           <Col>
             <p className="place-holder">ZipCode</p>
             <Field name="Zipcode_P" id="Zipcode_P" placeholder="e.g. 90210" />
@@ -214,6 +227,8 @@ export default ({ touched, errors, values }) => (
               <div className="input-feedback">{errors.Zipcode_P}</div>
             )}
           </Col>
+          <Col xs={1}></Col>
+          <Col></Col>
         </Row>
       </div>
     )}
@@ -362,6 +377,23 @@ export default ({ touched, errors, values }) => (
               </Col>
               <Col xs={1}></Col>
               <Col>
+                <p className="place-holder">
+                  Suite/Apartment Number{" "}
+                  <span className="optional"> (Optional)</span>
+                </p>
+                <Field
+                  name="SuitNoJ_P"
+                  id="SuitNoJ_P"
+                  placeholder="e.g. Unit 105"
+                />
+                {touched.SuitNoJ_P && typeof errors.SuitNoJ_P === "string" && (
+                  <div className="input-feedback">{errors.SuitNoJ_P}</div>
+                )}
+              </Col>
+            </Row>
+
+            <Row>
+              <Col>
                 <p className="place-holder">City</p>
                 <Field
                   name="CityJ_P"
@@ -372,9 +404,8 @@ export default ({ touched, errors, values }) => (
                   <div className="input-feedback">{errors.CityJ_P}</div>
                 )}
               </Col>
-            </Row>
 
-            <Row>
+              <Col xs={1}></Col>
               <Col>
                 <p className="place-holder">State</p>
                 <Field
@@ -389,7 +420,8 @@ export default ({ touched, errors, values }) => (
                   <div className="input-feedback">{errors.StateJ_P}</div>
                 )}
               </Col>
-              <Col xs={1}></Col>
+            </Row>
+            <Row>
               <Col>
                 <p className="place-holder">ZipCode</p>
                 <Field
@@ -402,6 +434,8 @@ export default ({ touched, errors, values }) => (
                     <div className="input-feedback">{errors.ZipcodeJ_P}</div>
                   )}
               </Col>
+              <Col xs={1}></Col>
+              <Col></Col>
             </Row>
           </div>
         )}
