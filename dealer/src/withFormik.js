@@ -35,7 +35,7 @@ export default withFormik({
     City_P: "",
     State_P: "",
     Zipcode_P: "",
-
+    roles:"",
     OwnJ: "",
     RentJ: "",
     StreetAddressJ: "",
@@ -105,7 +105,7 @@ export default withFormik({
     IncomeJoint: "",
     Policy1: false,
     Policy2: false,
-    IsCoApplicantFormEnable: props.data.Joint,
+    IsCoApplicantFormEnable: true,//props.data.Joint,
     addressLine1: "",
     addressLine2: "",
     country: ""

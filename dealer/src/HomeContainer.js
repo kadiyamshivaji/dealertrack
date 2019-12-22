@@ -115,7 +115,7 @@ class HomeContainer extends React.Component {
                   ReviewDetailsValidations
                 ])}
               >
-                <Step component={ContactInfo} title="Personal" />
+                {/* <Step component={ContactInfo} title="Personal" /> */}
                 <Step component={HousingDetails} title="Housing" />
                 <Step component={EmploymentDetails} title="Employment" />
                 <Step component={ReviewDetails} title="Review" />

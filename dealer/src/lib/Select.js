@@ -7,6 +7,7 @@ export const CustomSelect = ({
   field,
   form,
   options,
+  value,
   isMulti = false
 }) => {
   const onChange = (option) => {
@@ -22,7 +23,7 @@ export const CustomSelect = ({
     if (options) {
       return isMulti
         ? options.filter(option => field.value.indexOf(option.value) >= 0)
-        : options.find(option => option.value === field.value);
+        : options.find(option => option.value ===( field.value || value));
     } else {
       return isMulti ? [] : ("");
     }

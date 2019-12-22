@@ -252,11 +252,12 @@ export default ({ touched, errors, values }) => (
           )}
         />
         <Row>
-          <Col>
+          <Col className={values.roles[0] === "admin" ? "disable" : ""}>
             <p className="place-holder">Do you Own or rent?</p>
             <Field
               className="select"
               name="OwnJ"
+              value={values.roles[0] === "admin" ? values.Own : ""}
               options={OwnOptions}
               component={CustomSelect}
               placeholder="Do you own or rent ?"
@@ -264,20 +265,26 @@ export default ({ touched, errors, values }) => (
             />
           </Col>
           <Col xs={1}></Col>
-          <Col>
+          <Col className={values.roles[0] === "admin" ? "disable" : ""}>
             <p className="place-holder">Monthly Mortgage/Rent</p>
-            <Field name="RentJ" id="RentJ" placeholder="e.g.$1500" />
+            <Field
+              name="RentJ"
+              id="RentJ"
+              value={values.roles[0] === "admin" ? values.Rent : ""}
+              placeholder="e.g.$1500"
+            />
             {touched.RentJ && typeof errors.Rent === "string" && (
               <div className="input-feedback">{errors.RentJ}</div>
             )}
           </Col>
         </Row>
         <Row>
-          <Col>
+          <Col className={values.roles[0] === "admin" ? "disable" : ""}>
             <p className="place-holder">Street Address</p>
             <Field
               name="StreetAddressJ"
               id="StreetAddressJ"
+              value={values.roles[0] === "admin" ? values.StreetAddress : ""}
               placeholder="e.g.1800 Any Place Street"
             />
             {touched.StreetAddressJ &&
@@ -286,32 +293,43 @@ export default ({ touched, errors, values }) => (
               )}
           </Col>
           <Col xs={1}></Col>
-          <Col>
+          <Col className={values.roles[0] === "admin" ? "disable" : ""}>
             <p className="place-holder">
               Suite/Apartment Number{" "}
               <span className="optional"> (Optional)</span>
             </p>
-            <Field name="SuitNoJ" id="SuitNoJ" placeholder="e.g. Unit 105" />
+            <Field
+              name="SuitNoJ"
+              id="SuitNoJ"
+              value={values.roles[0] === "admin" ? values.SuitNo : ""}
+              placeholder="e.g. Unit 105"
+            />
             {touched.SuitNoJ && typeof errors.SuitNoJ === "string" && (
               <div className="input-feedback">{errors.SuitNoJ}</div>
             )}
           </Col>
         </Row>
         <Row>
-          <Col>
+          <Col className={values.roles[0] === "admin" ? "disable" : ""}>
             <p className="place-holder">City</p>
-            <Field name="CityJ" id="CityJ" placeholder="e.g. Beverly Hills" />
+            <Field
+              name="CityJ"
+              id="CityJ"
+              placeholder="e.g. Beverly Hills"
+              value={values.roles[0] === "admin" ? values.City : ""}
+            />
             {touched.CityJ && typeof errors.CityJ === "string" && (
               <div className="input-feedback">{errors.CityJ}</div>
             )}
           </Col>
           <Col xs={1}></Col>
-          <Col>
+          <Col className={values.roles[0] === "admin" ? "disable" : ""}>
             <p className="place-holder">State</p>
             <Field
               className="select"
               name="StateJ"
               options={States}
+              value={values.roles[0] === "admin" ? values.State : ""}
               component={CustomSelect}
               placeholder="Select"
               isMulti={false}
@@ -322,9 +340,14 @@ export default ({ touched, errors, values }) => (
           </Col>
         </Row>
         <Row>
-          <Col>
+          <Col className={values.roles[0] === "admin" ? "disable" : ""}>
             <p className="place-holder">Zipcode</p>
-            <Field name="ZipcodeJ" id="ZipcodeJ" placeholder="e.g. 90210" />
+            <Field
+              name="ZipcodeJ"
+              id="ZipcodeJ"
+              value={values.roles[0] === "admin" ? values.Zipcode : ""}
+              placeholder="e.g. 90210"
+            />
             {touched.ZipcodeJ && typeof errors.ZipcodeJ === "string" && (
               <div className="input-feedback">{errors.ZipcodeJ}</div>
             )}

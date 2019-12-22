@@ -370,7 +370,10 @@ input[type="checkbox"] {
   font-weight: 500;
   cursor: pointer;
 }
-
+.disable {
+  opacity: 0.5;
+  pointer-events: none;
+}
 .r-title {
   background: #ffff;
   padding-left: 25px;
