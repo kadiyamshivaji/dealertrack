@@ -256,7 +256,7 @@ export default ({ touched, errors, values }) => (
             <p className="place-holder">Do you Own or rent?</p>
             <Field
               className="select"
-              name="OwnJ"
+              name="Own_Co"
               value={values.roles[0] === "admin" ? values.Own : ""}
               options={OwnOptions}
               component={CustomSelect}
@@ -268,13 +268,13 @@ export default ({ touched, errors, values }) => (
           <Col className={values.roles[0] === "admin" ? "disable" : ""}>
             <p className="place-holder">Monthly Mortgage/Rent</p>
             <Field
-              name="RentJ"
-              id="RentJ"
+              name="Rent_Co"
+              id="Rent_Co"
               value={values.roles[0] === "admin" ? values.Rent : ""}
               placeholder="e.g.$1500"
             />
-            {touched.RentJ && typeof errors.Rent === "string" && (
-              <div className="input-feedback">{errors.RentJ}</div>
+            {touched.Rent_Co && typeof errors.Rent === "string" && (
+              <div className="input-feedback">{errors.Rent_Co}</div>
             )}
           </Col>
         </Row>
@@ -282,14 +282,14 @@ export default ({ touched, errors, values }) => (
           <Col className={values.roles[0] === "admin" ? "disable" : ""}>
             <p className="place-holder">Street Address</p>
             <Field
-              name="StreetAddressJ"
-              id="StreetAddressJ"
+              name="StreetAddress_Co"
+              id="StreetAddress_Co"
               value={values.roles[0] === "admin" ? values.StreetAddress : ""}
               placeholder="e.g.1800 Any Place Street"
             />
-            {touched.StreetAddressJ &&
-              typeof errors.StreetAddressJ === "string" && (
-                <div className="input-feedback">{errors.StreetAddressJ}</div>
+            {touched.StreetAddress_Co &&
+              typeof errors.StreetAddress_Co === "string" && (
+                <div className="input-feedback">{errors.StreetAddress_Co}</div>
               )}
           </Col>
           <Col xs={1}></Col>
@@ -299,13 +299,13 @@ export default ({ touched, errors, values }) => (
               <span className="optional"> (Optional)</span>
             </p>
             <Field
-              name="SuitNoJ"
-              id="SuitNoJ"
+              name="SuitNo_Co"
+              id="SuitNo_Co"
               value={values.roles[0] === "admin" ? values.SuitNo : ""}
               placeholder="e.g. Unit 105"
             />
-            {touched.SuitNoJ && typeof errors.SuitNoJ === "string" && (
-              <div className="input-feedback">{errors.SuitNoJ}</div>
+            {touched.SuitNo_Co && typeof errors.SuitNo_Co === "string" && (
+              <div className="input-feedback">{errors.SuitNo_Co}</div>
             )}
           </Col>
         </Row>
@@ -313,13 +313,13 @@ export default ({ touched, errors, values }) => (
           <Col className={values.roles[0] === "admin" ? "disable" : ""}>
             <p className="place-holder">City</p>
             <Field
-              name="CityJ"
-              id="CityJ"
+              name="City_Co"
+              id="City_Co"
               placeholder="e.g. Beverly Hills"
               value={values.roles[0] === "admin" ? values.City : ""}
             />
-            {touched.CityJ && typeof errors.CityJ === "string" && (
-              <div className="input-feedback">{errors.CityJ}</div>
+            {touched.City_Co && typeof errors.City_Co === "string" && (
+              <div className="input-feedback">{errors.City_Co}</div>
             )}
           </Col>
           <Col xs={1}></Col>
@@ -327,15 +327,15 @@ export default ({ touched, errors, values }) => (
             <p className="place-holder">State</p>
             <Field
               className="select"
-              name="StateJ"
+              name="State_Co"
               options={States}
               value={values.roles[0] === "admin" ? values.State : ""}
               component={CustomSelect}
               placeholder="Select"
               isMulti={false}
             />
-            {touched.StateJ && typeof errors.StateJ === "string" && (
-              <div className="input-feedback">{errors.StateJ}</div>
+            {touched.State_Co && typeof errors.State_Co === "string" && (
+              <div className="input-feedback">{errors.State_Co}</div>
             )}
           </Col>
         </Row>
@@ -343,13 +343,13 @@ export default ({ touched, errors, values }) => (
           <Col className={values.roles[0] === "admin" ? "disable" : ""}>
             <p className="place-holder">Zipcode</p>
             <Field
-              name="ZipcodeJ"
-              id="ZipcodeJ"
+              name="Zipcode_Co"
+              id="Zipcode_Co"
               value={values.roles[0] === "admin" ? values.Zipcode : ""}
               placeholder="e.g. 90210"
             />
-            {touched.ZipcodeJ && typeof errors.ZipcodeJ === "string" && (
-              <div className="input-feedback">{errors.ZipcodeJ}</div>
+            {touched.Zipcode_Co && typeof errors.Zipcode_Co === "string" && (
+              <div className="input-feedback">{errors.Zipcode_Co}</div>
             )}
           </Col>
           <Col xs={1}></Col>
@@ -387,14 +387,14 @@ export default ({ touched, errors, values }) => (
               <Col>
                 <p className="place-holder">Previous Street Address</p>
                 <Field
-                  name="StreetAddressJ_P"
-                  id="StreetAddressJ_P"
+                  name="StreetAddress_Co_P"
+                  id="StreetAddress_Co_P"
                   placeholder="Address"
                 />
-                {touched.StreetAddressJ_P &&
-                  typeof errors.StreetAddressJ_P === "string" && (
+                {touched.StreetAddress_Co_P &&
+                  typeof errors.StreetAddress_Co_P === "string" && (
                     <div className="input-feedback">
-                      {errors.StreetAddressJ_P}
+                      {errors.StreetAddress_Co_P}
                     </div>
                   )}
               </Col>
@@ -405,12 +405,12 @@ export default ({ touched, errors, values }) => (
                   <span className="optional"> (Optional)</span>
                 </p>
                 <Field
-                  name="SuitNoJ_P"
-                  id="SuitNoJ_P"
+                  name="SuitNo_Co_P"
+                  id="SuitNo_Co_P"
                   placeholder="e.g. Unit 105"
                 />
-                {touched.SuitNoJ_P && typeof errors.SuitNoJ_P === "string" && (
-                  <div className="input-feedback">{errors.SuitNoJ_P}</div>
+                {touched.SuitNo_Co_P && typeof errors.SuitNo_Co_P === "string" && (
+                  <div className="input-feedback">{errors.SuitNo_Co_P}</div>
                 )}
               </Col>
             </Row>
@@ -419,12 +419,12 @@ export default ({ touched, errors, values }) => (
               <Col>
                 <p className="place-holder">City</p>
                 <Field
-                  name="CityJ_P"
-                  id="CityJ_P"
+                  name="City_Co_P"
+                  id="City_Co_P"
                   placeholder="e.g. Beverly Hills"
                 />
-                {touched.CityJ_P && typeof errors.CityJ_P === "string" && (
-                  <div className="input-feedback">{errors.CityJ_P}</div>
+                {touched.City_Co_P && typeof errors.City_Co_P === "string" && (
+                  <div className="input-feedback">{errors.City_Co_P}</div>
                 )}
               </Col>
 
@@ -433,14 +433,14 @@ export default ({ touched, errors, values }) => (
                 <p className="place-holder">State</p>
                 <Field
                   className="select"
-                  name="StateJ_P"
+                  name="State_Co_P"
                   options={States}
                   component={CustomSelect}
                   placeholder="Select"
                   isMulti={false}
                 />
-                {touched.StateJ_P && typeof errors.StateJ_P === "string" && (
-                  <div className="input-feedback">{errors.StateJ_P}</div>
+                {touched.State_Co_P && typeof errors.State_Co_P === "string" && (
+                  <div className="input-feedback">{errors.State_Co_P}</div>
                 )}
               </Col>
             </Row>
@@ -448,13 +448,13 @@ export default ({ touched, errors, values }) => (
               <Col>
                 <p className="place-holder">ZipCode</p>
                 <Field
-                  name="ZipcodeJ_P"
-                  id="ZipcodeJ_P"
+                  name="Zipcode_Co_P"
+                  id="Zipcode_Co_P"
                   placeholder="e.g. 90210"
                 />
-                {touched.ZipcodeJ_P &&
-                  typeof errors.ZipcodeJ_P === "string" && (
-                    <div className="input-feedback">{errors.ZipcodeJ_P}</div>
+                {touched.Zipcode_Co_P &&
+                  typeof errors.Zipcode_Co_P === "string" && (
+                    <div className="input-feedback">{errors.Zipcode_Co_P}</div>
                   )}
               </Col>
               <Col xs={1}></Col>

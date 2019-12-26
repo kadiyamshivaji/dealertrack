@@ -27,7 +27,7 @@ function coApplicant(payload) {
   if (payload.Having_Two_years_Joint) {
     joint.coApplicant = { ...joint.coApplicant, ...coPreviousAddress(payload) };
   }
-  if (payload.Having_Two_years_EmploymentJ) {
+  if (payload.Having_Two_years_Employment_Co) {
     joint.coApplicant = {
       ...joint.coApplicant,
       ...coPreviousEmployment(payload)
@@ -172,38 +172,38 @@ function jointApplicant(payload) {
   return {
     coApplicant: {
       relationship: payload.Employee_Relationship,
-      firstName: payload.FirstNameJ,
-      lastName: payload.LastNameJ,
+      firstName: payload.FirstName_Co,
+      lastName: payload.LastName_Co,
       suffix: "III",
-      phone: removeSpecialChar(payload.PhoneJ),
+      phone: removeSpecialChar(payload.Phone_Co),
       otherPhone: "2146776599",
-      ssn: removeSpecialChar(payload.SsnJ),
-      dateOfBirth: moment(payload.DateOfBirthJ).format("YYYY-MM-DD"),
+      ssn: removeSpecialChar(payload.Ssn_Co),
+      dateOfBirth: moment(payload.DateOfBirth_Co).format("YYYY-MM-DD"),
       driversLicenseNumber: null,
       driversLicenseState: null,
-      email: payload.EmailJ,
+      email: payload.Email_Co,
       consentGiven: true,
-      housingStatus: payload.OwnJ,
-      mortgageOrRentAmount: payload.RentJ,
+      housingStatus: payload.Own_Co,
+      mortgageOrRentAmount: payload.Rent_Co,
       monthsAtCurrentAddress: !payload.Having_Two_years_Joint ? 24 : 12,
       address: {
-        line1: payload.StreetAddressJ,
-        city: payload.CityJ,
-        state: payload.StateJ,
-        postalCode: payload.ZipcodeJ
+        line1: payload.StreetAddress_Co,
+        city: payload.City_Co,
+        state: payload.State_Co,
+        postalCode: payload.Zipcode_Co
       },
       monthsAtPreviousAddress: 18,
 
-      income: payload.MoneyJ,
+      income: payload.Money_Co,
       incomeFrequency: "Monthly",
       otherMonthlyIncome: payload.IncomeJoint || null,
       otherMonthlyIncomeSource: payload.Source_Income_Joint || null,
       currentEmployment: {
-        employerName: payload.EmployerJ,
-        totalMonthsEmployed: !payload.Having_Two_years_EmploymentJ ? 24 : 12,
-        occupation: payload.OccupationJ,
-        workPhone: removeSpecialChar(payload.WorkPhoneJ),
-        status: payload.Employment_StatusJ,
+        employerName: payload.Employer_Co,
+        totalMonthsEmployed: !payload.Having_Two_years_Employment_Co ? 24 : 12,
+        occupation: payload.Occupation_Co,
+        workPhone: removeSpecialChar(payload.WorkPhone_Co),
+        status: payload.Employment_Status_Co,
         employerAddress: {
           line1: "984114 7qIsE9Zn Lo/z",
           line2: "qo",
@@ -271,11 +271,11 @@ function jointApplicant(payload) {
 function coPreviousEmployment(payload) {
   return {
     previousEmployment: {
-      employerName: payload.EmployerJ_P,
-      totalMonthsEmployed: !payload.Having_Two_years_EmploymentJ ? 24 : 12,
-      occupation: payload.OccupationJ_P,
-      workPhone: removeSpecialChar(payload.WorkPhoneJ_P),
-      status: payload.Employment_StatusJ_P,
+      employerName: payload.Employer_Co_P,
+      totalMonthsEmployed: !payload.Having_Two_years_Employment_Co ? 24 : 12,
+      occupation: payload.Occupation_Co_P,
+      workPhone: removeSpecialChar(payload.WorkPhone_Co_P),
+      status: payload.Employment_Status_Co_P,
       employerAddress: {
         line1: "689274 r2Q80zHGn920V0G0T",
         line2: "mJ",
@@ -290,11 +290,11 @@ function coPreviousEmployment(payload) {
 function coPreviousAddress(payload) {
   return {
     previousAddress: {
-      line1: payload.StreetAddressJ_P,
-      line2: payload.SuitNoJ_P,
-      city: payload.CityJ_P,
-      state: payload.StateJ_P,
-      postalCode: payload.ZipcodeJ_P
+      line1: payload.StreetAddress_Co_P,
+      line2: payload.SuitNo_Co_P,
+      city: payload.City_Co_P,
+      state: payload.State_Co_P,
+      postalCode: payload.Zipcode_Co_P
     }
   };
 }

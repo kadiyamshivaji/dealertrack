@@ -271,7 +271,7 @@ export default ({ touched, errors, values }) => {
               <p className="place-holder">Employer Status</p>
               <Field
                 className="select"
-                name="Employment_StatusJ"
+                name="Employment_Status_Co"
                 options={EmployerOptions}
                 component={CustomSelect}
                 placeholder="Are you currently Employed?"
@@ -282,19 +282,19 @@ export default ({ touched, errors, values }) => {
             <Col>
               <p className="place-holder">Employer's Name</p>
               <Field
-                name="EmployerJ"
-                id="EmployerJ"
+                name="Employer_Co"
+                id="Employer_Co"
                 placeholder="e.g. Someplace Inc"
               />
-              {touched.EmployerJ && typeof errors.EmployerJ === "string" && (
-                <div className="input-feedback">{errors.EmployerJ}</div>
+              {touched.Employer_Co && typeof errors.Employer_Co === "string" && (
+                <div className="input-feedback">{errors.Employer_Co}</div>
               )}
             </Col>
           </Row>
           <Row>
             <Col>
               <p className="place-holder">Phone</p>
-              <PhoneField placeholder="WorkPhone" name="WorkPhoneJ" />
+              <PhoneField placeholder="WorkPhone" name="WorkPhone_Co" />
               {touched.WorkPhone && typeof errors.WorkPhone === "string" && (
                 <div className="input-feedback">{errors.WorkPhone}</div>
               )}
@@ -303,13 +303,13 @@ export default ({ touched, errors, values }) => {
             <Col>
               <p className="place-holder">Occupation</p>
               <Field
-                name="OccupationJ"
-                id="OccupationJ"
+                name="Occupation_Co"
+                id="Occupation_Co"
                 placeholder="Occupation"
               />
-              {touched.OccupationJ &&
-                typeof errors.OccupationJ === "string" && (
-                  <div className="input-feedback">{errors.OccupationJ}</div>
+              {touched.Occupation_Co &&
+                typeof errors.Occupation_Co === "string" && (
+                  <div className="input-feedback">{errors.Occupation_Co}</div>
                 )}
             </Col>
           </Row>
@@ -318,9 +318,9 @@ export default ({ touched, errors, values }) => {
               <p className="place-holder">
                 Monthly Income <FaQuestionCircle className="hint" />{" "}
               </p>
-              <Field name="MoneyJ" id="MoneyJ" placeholder="e.g. $5002" />
-              {touched.MoneyJ && typeof errors.MoneyJ === "string" && (
-                <div className="input-feedback">{errors.MoneyJ}</div>
+              <Field name="Money_Co" id="Money_Co" placeholder="e.g. $5002" />
+              {touched.Money_Co && typeof errors.Money_Co === "string" && (
+                <div className="input-feedback">{errors.Money_Co}</div>
               )}
             </Col>
             <Col xs={1}></Col>
@@ -329,17 +329,17 @@ export default ({ touched, errors, values }) => {
                 Have you worked here for 2 years or more?
               </p>
               <Field
-                name="Having_Two_years_EmploymentJ"
+                name="Having_Two_years_Employment_Co"
                 render={({ field }) => (
                   <RadioBox
                     {...field}
                     value="false"
                     css={
-                      values.Having_Two_years_EmploymentJ === "false"
+                      values.Having_Two_years_Employment_Co === "false"
                         ? "active"
                         : "label"
                     }
-                    id="Having_Two_years_EmploymentJ-1"
+                    id="Having_Two_years_Employment_Co-1"
                     label="No"
                   />
                 )}
@@ -347,7 +347,7 @@ export default ({ touched, errors, values }) => {
             </Col>
           </Row>
 
-          {values.Having_Two_years_EmploymentJ && (
+          {values.Having_Two_years_Employment_Co && (
             <div>
               <Row>
                 <hr />
@@ -357,7 +357,7 @@ export default ({ touched, errors, values }) => {
                   <p className="place-holder">Employment Status</p>
                   <Field
                     className="select"
-                    name="Employment_StatusJ_P"
+                    name="Employment_Status_Co_P"
                     options={EmployerOptions}
                     component={CustomSelect}
                     placeholder="Select"
@@ -368,24 +368,24 @@ export default ({ touched, errors, values }) => {
                 <Col>
                   <p className="place-holder">Employer's Name</p>
                   <Field
-                    name="EmployerJ_P"
-                    id="EmployerJ_P"
+                    name="Employer_Co_P"
+                    id="Employer_Co_P"
                     placeholder="e.g. Someplace Inc"
                   />
-                  {touched.EmployerJ_P &&
-                    typeof errors.EmployerJ_P === "string" && (
-                      <div className="input-feedback">{errors.EmployerJ_P}</div>
+                  {touched.Employer_Co_P &&
+                    typeof errors.Employer_Co_P === "string" && (
+                      <div className="input-feedback">{errors.Employer_Co_P}</div>
                     )}
                 </Col>
               </Row>
               <Row>
                 <Col>
                   <p className="place-holder">Phone</p>
-                  <PhoneField name="WorkPhoneJ_P" />
-                  {touched.WorkPhoneJ_P &&
-                    typeof errors.WorkPhoneJ_P === "string" && (
+                  <PhoneField name="WorkPhone_Co_P" />
+                  {touched.WorkPhone_Co_P &&
+                    typeof errors.WorkPhone_Co_P === "string" && (
                       <div className="input-feedback">
-                        {errors.WorkPhoneJ_P}
+                        {errors.WorkPhone_Co_P}
                       </div>
                     )}
                 </Col>
@@ -393,14 +393,14 @@ export default ({ touched, errors, values }) => {
                 <Col>
                   <p className="place-holder">Occupation</p>
                   <Field
-                    name="OccupationJ_P"
-                    id="OccupationJ_P"
+                    name="Occupation_Co_P"
+                    id="Occupation_Co_P"
                     placeholder="Occupation"
                   />
-                  {touched.OccupationJ_P &&
-                    typeof errors.OccupationJ_P === "string" && (
+                  {touched.Occupation_Co_P &&
+                    typeof errors.Occupation_Co_P === "string" && (
                       <div className="input-feedback">
-                        {errors.OccupationJ_P}
+                        {errors.Occupation_Co_P}
                       </div>
                     )}
                 </Col>

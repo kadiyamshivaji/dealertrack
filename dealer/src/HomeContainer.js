@@ -37,13 +37,13 @@ function ContactInfoValidations({ errors, values }) {
       !errors.ConfirmEmail &&
       !errors.DateOfBirth &&
       !errors.Ssn &&
-      !errors.FirstNameJ &&
-      !errors.LastNameJ &&
-      !errors.EmailJ &&
-      !errors.PhoneJ &&
-      !errors.ConfirmEmailJ &&
-      !errors.DateOfBirthJ &&
-      !errors.SsnJ
+      !errors.FirstName_Co &&
+      !errors.LastName_Co &&
+      !errors.Email_Co &&
+      !errors.Phone_Co &&
+      !errors.ConfirmEmail_Co &&
+      !errors.DateOfBirth_Co &&
+      !errors.Ssn_Co
     );
   }
 }
@@ -66,12 +66,12 @@ function HousingDetailsValidations({ errors, values }) {
       !errors.City &&
       !errors.State &&
       !errors.Zipcode &&
-      !errors.OwnJ &&
-      !errors.RentJ &&
-      !errors.StreetAddressJ &&
-      !errors.CityJ &&
-      !errors.StateJ &&
-      !errors.ZipcodeJ
+      !errors.Own_Co &&
+      !errors.Rent_Co &&
+      !errors.StreetAddress_Co &&
+      !errors.City_Co &&
+      !errors.State_Co &&
+      !errors.Zipcode_Co
     );
   }
 }
@@ -84,9 +84,9 @@ function EmploymentDetailsValidations({ errors, values }) {
       !errors.Employment_Status &&
       !errors.Employer &&
       !errors.Money &&
-      !errors.Employment_StatusJ &&
-      !errors.EmployerJ &&
-      !errors.MoneyJ
+      !errors.Employment_Status_Co &&
+      !errors.Employer_Co &&
+      !errors.Money_Co
     );
   }
 }
@@ -115,7 +115,7 @@ class HomeContainer extends React.Component {
                   ReviewDetailsValidations
                 ])}
               >
-                {/* <Step component={ContactInfo} title="Personal" /> */}
+                <Step component={ContactInfo} title="Personal" /> 
                 <Step component={HousingDetails} title="Housing" />
                 <Step component={EmploymentDetails} title="Employment" />
                 <Step component={ReviewDetails} title="Review" />

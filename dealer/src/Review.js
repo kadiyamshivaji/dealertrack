@@ -325,7 +325,7 @@ export default ({ touched, errors, values }) => {
                   <Col>
                     {" "}
                     <p>
-                      {values.FirstNameJ} {values.LastNameJ}
+                      {values.FirstName_Co} {values.LastName_Co}
                     </p>
                   </Col>
                 </Row>
@@ -334,7 +334,7 @@ export default ({ touched, errors, values }) => {
                     <p>Phone</p>
                   </Col>
                   <Col>
-                    <p>(***) ***-**{values.PhoneJ.toString().slice(-2)}</p>
+                    <p>(***) ***-**{values.Phone_Co.toString().slice(-2)}</p>
                   </Col>
                 </Row>
                 <Row>
@@ -343,7 +343,7 @@ export default ({ touched, errors, values }) => {
                   </Col>
                   <Col>
                     <p>
-                      {values.EmailJ.replace(
+                      {values.Email_Co.replace(
                         /^(.)(.*)(.@.*)$/,
                         (_, a, b, c) => a + b.replace(/./g, "*") + c
                       )}
@@ -365,7 +365,7 @@ export default ({ touched, errors, values }) => {
                     <p>Social Security Number</p>
                   </Col>
                   <Col>
-                    <p>***-**-{values.SsnJ.toString().slice(-4)}</p>
+                    <p>***-**-{values.Ssn_Co.toString().slice(-4)}</p>
                   </Col>
                 </Row>
               </div>
@@ -382,7 +382,7 @@ export default ({ touched, errors, values }) => {
                     <p>Do You Own or Rent?</p>
                   </Col>
                   <Col>
-                    <p>{values.OwnJ}</p>
+                    <p>{values.Own_Co}</p>
                   </Col>
                 </Row>
                 <Row>
@@ -392,7 +392,7 @@ export default ({ touched, errors, values }) => {
                   <Col>
                     {" "}
                     <p>
-                      {formatter.format(values.RentJ)}
+                      {formatter.format(values.Rent_Co)}
                       /month
                     </p>
                   </Col>
@@ -404,14 +404,14 @@ export default ({ touched, errors, values }) => {
                   </Col>
                   <Col>
                     {" "}
-                    <p>{values.StreetAddressJ}</p>{" "}
+                    <p>{values.StreetAddress_Co}</p>{" "}
                   </Col>
                 </Row>
                 <Row>
                   <Col></Col>
                   <Col>
                     <p>
-                      {values.CityJ}, {values.StateJ} {values.ZipcodeJ}
+                      {values.City_Co}, {values.State_Co} {values.Zipcode_Co}
                     </p>
                   </Col>
                 </Row>
@@ -438,7 +438,7 @@ export default ({ touched, errors, values }) => {
                   </Col>
                   <Col>
                     {" "}
-                    <p>{values.Employment_StatusJ}</p>
+                    <p>{values.Employment_Status_Co}</p>
                   </Col>
                 </Row>
                 <Row>
@@ -447,7 +447,7 @@ export default ({ touched, errors, values }) => {
                   </Col>
                   <Col>
                     {" "}
-                    <p>{values.EmployerJ}</p>
+                    <p>{values.Employer_Co}</p>
                   </Col>
                 </Row>
                 <Row>
@@ -457,7 +457,7 @@ export default ({ touched, errors, values }) => {
                   <Col>
                     {" "}
                     <p>
-                      {formatter.format(values.MoneyJ)}
+                      {formatter.format(values.Money_Co)}
                     </p>
                   </Col>
                 </Row>
@@ -467,7 +467,7 @@ export default ({ touched, errors, values }) => {
                   </Col>
                   <Col>
                     {" "}
-                    <p>{values.Having_Two_years_EmploymentJ ? "Yes" : "No"}</p>
+                    <p>{values.Having_Two_years_Employment_Co ? "Yes" : "No"}</p>
                   </Col>
                 </Row>
               </div>
@@ -538,39 +538,39 @@ export default ({ touched, errors, values }) => {
       {/* Secondary Modal  */}
       <Modal open={open2} onClose={() => setOpen2(false)} center focusTrapped>
         <Row>
-          <Field name="FirstNameJ" id="FirstNameJ" placeholder="First Name" />
-          {touched.FirstNameJ && typeof errors.FirstNameJ === "string" && (
-            <div className="input-feedback">{errors.FirstNameJ}</div>
+          <Field name="FirstName_Co" id="FirstName_Co" placeholder="First Name" />
+          {touched.FirstName_Co && typeof errors.FirstName_Co === "string" && (
+            <div className="input-feedback">{errors.FirstName_Co}</div>
           )}
         </Row>
         <Row>
-          <Field name="LastNameJ" id="LastNameJ" placeholder="Last Name" />
-          {touched.LastNameJ && typeof errors.LastNameJ === "string" && (
-            <div className="input-feedback">{errors.LastNameJ}</div>
+          <Field name="LastName_Co" id="LastName_Co" placeholder="Last Name" />
+          {touched.LastName_Co && typeof errors.LastName_Co === "string" && (
+            <div className="input-feedback">{errors.LastName_Co}</div>
           )}
         </Row>
         <Row>
-          <PhoneField name="PhoneJ" />
-          {touched.PhoneJ && typeof errors.PhoneJ === "string" && (
-            <div className="input-feedback">{errors.PhoneJ}</div>
+          <PhoneField name="Phone_Co" />
+          {touched.Phone_Co && typeof errors.Phone_Co === "string" && (
+            <div className="input-feedback">{errors.Phone_Co}</div>
           )}
         </Row>
         <Row>
-          <Field name="EmailJ" id="EmailJ" placeholder="Email" />
-          {touched.EmailJ && typeof errors.EmailJ === "string" && (
-            <div className="input-feedback">{errors.EmailJ}</div>
+          <Field name="Email_Co" id="Email_Co" placeholder="Email" />
+          {touched.Email_Co && typeof errors.Email_Co === "string" && (
+            <div className="input-feedback">{errors.Email_Co}</div>
           )}
         </Row>
         <Row>
-          <DatePickerField value={values.DateOfBirthJ} name="DateOfBirthJ" />
-          {touched.DateOfBirthJ && typeof errors.DateOfBirthJ === "string" && (
-            <div className="input-feedback">{errors.DateOfBirthJ}</div>
+          <DatePickerField value={values.DateOfBirth_Co} name="DateOfBirth_Co" />
+          {touched.DateOfBirth_Co && typeof errors.DateOfBirth_Co === "string" && (
+            <div className="input-feedback">{errors.DateOfBirth_Co}</div>
           )}
         </Row>
         <Row>
-          <SSNField name="SsnJ" />
-          {touched.SsnJ && typeof errors.SsnJ === "string" && (
-            <div className="input-feedback">{errors.SsnJ}</div>
+          <SSNField name="Ssn_Co" />
+          {touched.Ssn_Co && typeof errors.Ssn_Co === "string" && (
+            <div className="input-feedback">{errors.Ssn_Co}</div>
           )}
         </Row>
         <Row>
@@ -642,7 +642,7 @@ export default ({ touched, errors, values }) => {
         <Row>
           <Field
             className="select"
-            name="OwnJ"
+            name="Own_Co"
             options={OwnOptions}
             component={CustomSelect}
             placeholder="Do you Own or rent ?"
@@ -650,39 +650,39 @@ export default ({ touched, errors, values }) => {
           />
         </Row>
         <Row>
-          <Field name="RentJ" id="RentJ" placeholder="Monthly Mortgage/Rent" />
-          {touched.RentJ && typeof errors.RentJ === "string" && (
-            <div className="input-feedback">{errors.RentJ}</div>
+          <Field name="Rent_Co" id="Rent_Co" placeholder="Monthly Mortgage/Rent" />
+          {touched.Rent_Co && typeof errors.Rent_Co === "string" && (
+            <div className="input-feedback">{errors.Rent_Co}</div>
           )}
         </Row>
         <Row>
           <Field
-            name="StreetAddressJ"
-            id="StreetAddressJ"
+            name="StreetAddress_Co"
+            id="StreetAddress_Co"
             placeholder="Address"
           />
-          {touched.StreetAddressJ &&
-            typeof errors.StreetAddressJ === "string" && (
-              <div className="input-feedback">{errors.StreetAddressJ}</div>
+          {touched.StreetAddress_Co &&
+            typeof errors.StreetAddress_Co === "string" && (
+              <div className="input-feedback">{errors.StreetAddress_Co}</div>
             )}
         </Row>
         <Row>
           <Col>
-            <Field name="CityJ" id="CityJ" placeholder="City" />
-            {touched.CityJ && typeof errors.CityJ === "string" && (
-              <div className="input-feedback">{errors.CityJ}</div>
+            <Field name="City_Co" id="City_Co" placeholder="City" />
+            {touched.City_Co && typeof errors.City_Co === "string" && (
+              <div className="input-feedback">{errors.City_Co}</div>
             )}
           </Col>
           <Col>
-            <Field name="StateJ" id="StateJ" placeholder="State" />
-            {touched.StateJ && typeof errors.StateJ === "string" && (
-              <div className="input-feedback">{errors.StateJ}</div>
+            <Field name="State_Co" id="State_Co" placeholder="State" />
+            {touched.State_Co && typeof errors.State_Co === "string" && (
+              <div className="input-feedback">{errors.State_Co}</div>
             )}
           </Col>
           <Col>
-            <Field name="ZipcodeJ" id="ZipcodeJ" placeholder="Zipcode" />
-            {touched.ZipcodeJ && typeof errors.ZipcodeJ === "string" && (
-              <div className="input-feedback">{errors.ZipcodeJ}</div>
+            <Field name="Zipcode_Co" id="Zipcode_Co" placeholder="Zipcode" />
+            {touched.Zipcode_Co && typeof errors.Zipcode_Co === "string" && (
+              <div className="input-feedback">{errors.Zipcode_Co}</div>
             )}
           </Col>
         </Row>
@@ -719,7 +719,7 @@ export default ({ touched, errors, values }) => {
         <Row>
           <Field
             className="select"
-            name="Employment_StatusJ"
+            name="Employment_Status_Co"
             options={EmployerOptions}
             component={CustomSelect}
             placeholder="Are you currently Employed?"
@@ -727,15 +727,15 @@ export default ({ touched, errors, values }) => {
           />
         </Row>
         <Row>
-          <Field name="EmployerJ" id="EmployerJ" placeholder="Employer" />
-          {touched.EmployerJ && typeof errors.EmployerJ === "string" && (
-            <div className="input-feedback">{errors.EmployerJ}</div>
+          <Field name="Employer_Co" id="Employer_Co" placeholder="Employer" />
+          {touched.Employer_Co && typeof errors.Employer_Co === "string" && (
+            <div className="input-feedback">{errors.Employer_Co}</div>
           )}
         </Row>
         <Row>
-          <Field name="MoneyJ" id="MoneyJ" placeholder="" />
-          {touched.MoneyJ && typeof errors.MoneyJ === "string" && (
-            <div className="input-feedback">{errors.MoneyJ}</div>
+          <Field name="Money_Co" id="Money_Co" placeholder="" />
+          {touched.Money_Co && typeof errors.Money_Co === "string" && (
+            <div className="input-feedback">{errors.Money_Co}</div>
           )}
         </Row>
       </Modal>
